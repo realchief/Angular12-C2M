@@ -4,6 +4,7 @@ import { HeaderNavComponent } from "./header-nav/header-nav.component";
 import { AsideNavComponent } from "./aside-nav/aside-nav.component";
 import { FooterComponent } from "./footer/footer.component";
 import { ScrollTopComponent } from "./scroll-top/scroll-top.component";
+import { MenuRightComponent } from "./menu-right/menu-right.component";
 
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
@@ -18,6 +19,7 @@ import { DashboardComponent } from "../pages/dashboard/dashboard.component";
         AsideNavComponent,
         FooterComponent,
         ScrollTopComponent,
+        MenuRightComponent
         // HrefPreventDefaultDirective,
         // UnwrapTagDirective
     ],
@@ -27,6 +29,7 @@ import { DashboardComponent } from "../pages/dashboard/dashboard.component";
         AsideNavComponent,
         FooterComponent,
         ScrollTopComponent,
+        MenuRightComponent
         // HrefPreventDefaultDirective
     ],
     imports: [CommonModule, RouterModule]
