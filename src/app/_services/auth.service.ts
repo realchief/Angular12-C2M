@@ -22,10 +22,27 @@ export class AuthService {
   }
 
   register(username: string, email: string, password: string): Observable<any> {
+    var UserName = username;
+    var EmailAddress = email;    
+    var FirstName = "Rohit";
+    var MiddleName = "";
+    var LastName = "Roy";
+    var PhoneNumber = "+915566544433";
+    var PolicyBundleId = "11";
+    var GroupId = "1464";
+    var RoleIDs = "357,93,365,356";
+    var AccessToken = "8xYYItfGJ8F9ioWJahK3Y9wmqaLfH1jnjitBjgcGSetiOtV1m9OyehpTG0oopnkvUixIVcpgFxU=";
     return this.http.post(API + 'SignUpUser', {
-      username,
-      email,
-      password
+        UserName,
+        EmailAddress,
+        FirstName,
+        MiddleName,
+        LastName,
+        PhoneNumber,
+        PolicyBundleId,
+        GroupId,
+        RoleIDs,
+        AccessToken
     }, httpOptions);
   }
 }

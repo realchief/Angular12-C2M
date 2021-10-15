@@ -9,21 +9,25 @@ import { LayoutModule } from './theme/layouts/layout.module';
 import { ThemeRoutingModule } from './theme/theme-routing.module';
 
 import { HttpClientModule } from '@angular/common/http';
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+      AppComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    AuthModule,
-    SignUpModule,
-    LayoutModule,
-    ThemeRoutingModule,
-    HttpClientModule
+      BrowserModule,
+      AppRoutingModule,
+      AuthModule,
+      SignUpModule,
+      LayoutModule,
+      ThemeRoutingModule,
+      HttpClientModule,    
   ],
-  providers: [],
+  providers: [
+      authInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
