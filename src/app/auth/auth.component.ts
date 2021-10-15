@@ -34,26 +34,27 @@ export class AuthComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        if (this.tokenStorage.getToken()) {
-          this.isLoggedIn = true;
-          this.roles = this.tokenStorage.getUser().roles;
-        }
+        // if (this.tokenStorage.getToken()) {
+        //   this.isLoginFailed = true;
+        //   this.roles = this.tokenStorage.getUser().roles;
+        // }
     }
 
     onSubmit(): void {
         const { username, password } = this.form;
-        
         this.authService.login(username, password).subscribe(
             data => {
                 console.log(data.status);
-                localStorage.setItem('AccessToken', data.data.Login.APIKey);
-                this.router.navigate(['']);
-                // this.tokenStorage.saveToken(data.accessToken);
-                // this.tokenStorage.saveUser(data);
-                // this.isLoginFailed = false;
-                // this.isLoggedIn = true;
-                // this.roles = this.tokenStorage.getUser().roles;
-                // this.reloadPage();
+                if (data.status == 'SUCCESS') {
+                    localStorage.setItem('AccessToken', data.data.Login.APIKey);
+                    this.router.navigate(['']);  
+                    this.isLoginFailed = false;
+                    this.isLoggedIn = true;
+                } else {                    
+                    this.errorMessage = data.message;
+                    this.isLoginFailed = true;
+                    // this.reloadPage();
+                }
             },
             err => {
                 this.errorMessage = err.error.message;
