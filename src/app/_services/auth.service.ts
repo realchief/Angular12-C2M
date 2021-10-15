@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
-const API = 'https://cloud-staging-icewebapi.c2m.net/api/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -12,12 +12,30 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient) { }
+  endpoint = environment.Setting.BaseAPIUrl;
+
+  constructor(private http: HttpClient) {
+    const accessToken = localStorage.getItem('AccessToken');
+    if (!accessToken) {
+      this.http.post(this.endpoint + 'GetAccessToken', { 
+        UserName: environment.Setting.USERNAME,
+        Password: environment.Setting.PASSWORD,
+        AppKey: environment.Setting.PASSWORD,
+        AppSecret: environment.Setting.AppSecret,
+      }, httpOptions).subscribe(
+        data => {
+          console.log(data);
+        }
+      )
+    }
+   }
 
   login(username: string, password: string): Observable<any> {
-    return this.http.post(API + 'UserLogin', {
-      username,
-      password
+    const accessToken = localStorage.getItem('AccessToken');    
+    return this.http.post(this.endpoint + 'UserLogin', {
+      EmailAddress: username,
+      Password: password,
+      AccessToken: accessToken
     }, httpOptions);
   }
 
@@ -31,8 +49,8 @@ export class AuthService {
     var PolicyBundleId = "11";
     var GroupId = "1464";
     var RoleIDs = "357,93,365,356";
-    var AccessToken = "8xYYItfGJ8F9ioWJahK3Y9wmqaLfH1jnjitBjgcGSetiOtV1m9OyehpTG0oopnkvUixIVcpgFxU=";
-    return this.http.post(API + 'SignUpUser', {
+    var AccessToken = "test";
+    return this.http.post(this.endpoint + 'SignUpUser', {
         UserName,
         EmailAddress,
         FirstName,

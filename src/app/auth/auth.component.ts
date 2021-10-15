@@ -22,13 +22,13 @@ export class AuthComponent implements OnInit {
     roles: string[] = [];
 
     constructor(
-        private _router: Router,
+        private router: Router,
         // private _script: ScriptLoaderService,
         // private _userService: UserService,
         // private _route: ActivatedRoute,
         // private _authService: AuthenticationService,
         // private _alertService: AlertService,
-        private cfr: ComponentFactoryResolver,
+        // private cfr: ComponentFactoryResolver,
         private authService: AuthService, 
         private tokenStorage: TokenStorageService){
     }
@@ -42,15 +42,18 @@ export class AuthComponent implements OnInit {
 
     onSubmit(): void {
         const { username, password } = this.form;
+        
         this.authService.login(username, password).subscribe(
             data => {
-                this.tokenStorage.saveToken(data.accessToken);
-                this.tokenStorage.saveUser(data);
-        
-                this.isLoginFailed = false;
-                this.isLoggedIn = true;
-                this.roles = this.tokenStorage.getUser().roles;
-                this.reloadPage();
+                console.log(data.status);
+                localStorage.setItem('AccessToken', data.data.Login.APIKey);
+                this.router.navigate(['']);
+                // this.tokenStorage.saveToken(data.accessToken);
+                // this.tokenStorage.saveUser(data);
+                // this.isLoginFailed = false;
+                // this.isLoggedIn = true;
+                // this.roles = this.tokenStorage.getUser().roles;
+                // this.reloadPage();
             },
             err => {
                 this.errorMessage = err.error.message;
