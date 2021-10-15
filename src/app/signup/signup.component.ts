@@ -8,8 +8,6 @@ import {
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "../_services/auth.service";
-// import { ScriptLoaderService } from "../_services/script-loader.service";
-// import { Helpers } from "../helpers";
 
 declare let $: any;
 declare let mUtil: any;
