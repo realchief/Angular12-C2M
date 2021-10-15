@@ -8,6 +8,8 @@ import { SignUpModule } from './signup/signup.module';
 import { LayoutModule } from './theme/layouts/layout.module';
 import { ThemeRoutingModule } from './theme/theme-routing.module';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -18,7 +20,8 @@ import { ThemeRoutingModule } from './theme/theme-routing.module';
     AuthModule,
     SignUpModule,
     LayoutModule,
-    ThemeRoutingModule
+    ThemeRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,6 +7,7 @@ import {
     ViewEncapsulation
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { AuthService } from "../_services/auth.service";
 // import { ScriptLoaderService } from "../_services/script-loader.service";
 // import { Helpers } from "../helpers";
 
@@ -19,7 +20,33 @@ declare let mUtil: any;
     encapsulation: ViewEncapsulation.None
 })
 export class SignUpComponent implements OnInit {
-    constructor() {}
+    
+    form: any = {
+        username: null,
+        email: null,
+        password: null
+    };
+    isSuccessful = false;
+    isSignUpFailed = false;
+    errorMessage = '';
 
-    ngOnInit() {}
+    constructor(private authService: AuthService) {}
+
+    ngOnInit(): void {
+    }
+
+    onSubmit(): void {
+        const { username, email, password } = this.form;
+        this.authService.register(username, email, password).subscribe(
+            data => {
+                console.log(data);
+                this.isSuccessful = true;
+                this.isSignUpFailed = false;
+            },
+            err => {
+                this.errorMessage = err.error.message;
+                this.isSignUpFailed = true;
+            }
+        );
+    }
 }
