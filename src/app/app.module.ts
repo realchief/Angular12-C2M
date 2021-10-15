@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { SignUpModule } from './signup/signup.module';
+import { HomeModule } from './home/home.module';
 import { LayoutModule } from './theme/layouts/layout.module';
 import { ThemeRoutingModule } from './theme/theme-routing.module';
 
@@ -21,6 +22,7 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
       AppRoutingModule,
       AuthModule,
       SignUpModule,
+      HomeModule,
       LayoutModule,
       ThemeRoutingModule,
       HttpClientModule,    
