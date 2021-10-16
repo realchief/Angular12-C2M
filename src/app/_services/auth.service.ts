@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
+import { ApiService } from './api.service';
+import { TokenStorageService } from "../_services/token-storage.service";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,17 +15,22 @@ const httpOptions = {
 export class AuthService {
   endpoint = environment.Setting.BaseAPIUrl;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private api: ApiService,
+    private tokenStorage: TokenStorageService
+  ) {
     const accessToken = localStorage.getItem('AccessToken');
     if (!accessToken) {
       this.http.post(this.endpoint + 'GetAccessToken', { 
         UserName: environment.Setting.USERNAME,
         Password: environment.Setting.PASSWORD,
-        AppKey: environment.Setting.PASSWORD,
+        AppKey: environment.Setting.AppKey,
         AppSecret: environment.Setting.AppSecret,
       }, httpOptions).subscribe(
         data => {
-          console.log(data);
+          const cdata:any = data
+          localStorage.setItem('AccessToken', cdata.data.Tokens.AccessToken);
         }
       )
     }
@@ -36,6 +42,20 @@ export class AuthService {
       EmailAddress: username,
       Password: password,
       AccessToken: accessToken
+    }, httpOptions);
+  }
+
+  forgotpassword(email: string): Observable<any> {
+    let accessToken = localStorage.getItem('AccessToken');
+    if (!accessToken) {
+      this.tokenStorage.store_token(environment.Setting.ADMIN_USERNAME, environment.Setting.ADMIN_USER_PASSWORD);
+    }
+    accessToken = localStorage.getItem('AccessToken');
+    console.log(accessToken);    
+    return this.http.post(this.endpoint + 'SendCodeForResetPassword', {
+      EmailAddress: email,
+      AccessToken: accessToken,
+      FromEmail: environment.Setting.FromEmail,
     }, httpOptions);
   }
 

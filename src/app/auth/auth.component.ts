@@ -1,7 +1,8 @@
 import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef, ViewEncapsulation, } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from "../_services/auth.service";
-import { TokenStorageService } from '../_services/token-storage.service';
+import { TokenStorageService } from "../_services/token-storage.service";
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -30,14 +31,13 @@ export class AuthComponent implements OnInit {
         // private _alertService: AlertService,
         // private cfr: ComponentFactoryResolver,
         private authService: AuthService, 
-        private tokenStorage: TokenStorageService){
-    }
+        private tokenStorage: TokenStorageService
+    ){}
 
     ngOnInit(): void {
-        // if (this.tokenStorage.getToken()) {
-        //   this.isLoginFailed = true;
-        //   this.roles = this.tokenStorage.getUser().roles;
-        // }
+        if (localStorage.getItem('AccessToken')) {
+            this.isLoginFailed = true;
+        }
     }
 
     onSubmit(): void {
@@ -50,6 +50,7 @@ export class AuthComponent implements OnInit {
                     this.router.navigate(['']);  
                     this.isLoginFailed = false;
                     this.isLoggedIn = true;
+                    this.tokenStorage.store_token(environment.Setting.ADMIN_USERNAME, environment.Setting.ADMIN_USER_PASSWORD);
                 } else {                    
                     this.errorMessage = data.message;
                     this.isLoginFailed = true;

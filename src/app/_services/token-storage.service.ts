@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ApiService } from './api.service';
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
@@ -11,30 +12,29 @@ const USER_KEY = 'auth-user';
 })
 export class TokenStorageService {
     endpoint = environment.Setting.BaseAPIUrl;
-    constructor() { }
+    constructor(
+        private http: HttpClient,
+        private api: ApiService
+    ) {
+    }
 
-    // store_token(username: string, password: string): Observable<any> {
-    //     const httpOptions = {
-    //         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    //     };
-    //     const payload = {
-    //         "UserName":username,
-    //         "Password":password,
-    //         "AppKey":"cxsr5nuDjC1PhvVgL5RR4IpHUDRvBx14", 
-    //         "AppSecret": "C2M"
-    //     }
-
-    //     this.http.post(this.endpoint + 'GetAccessToken', { 
-    //     }, httpOptions).subscribe(
-    //         data => {
-    //             console.log('hahaha');
-    //             console.log(data);
-    //             // localStorage.setItem('AccessToken', data.accessToken);
-    //         }
-    //     )
-    
-    //     return this.http.post<any>(`${this.endpoint}/${url}`, data, { headers, params });
-    // }
+    store_token(username: string, password: string): void{
+        const httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+        };
+        const payload = {
+            "UserName":username,
+            "Password":password,
+            "AppKey": environment.Setting.AppKey,
+            "AppSecret": environment.Setting.AppSecret
+        }
+        this.http.post(this.endpoint + 'GetAccessToken', payload, httpOptions).subscribe(
+            data => {
+                const cdata:any = data
+                localStorage.setItem('AccessToken', cdata.data.Tokens.AccessToken);
+            }
+        )
+    }
     
     signOut(): void {
         window.sessionStorage.clear();

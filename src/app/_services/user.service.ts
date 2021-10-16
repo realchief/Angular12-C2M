@@ -1,28 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
-const API = 'https://cloud-staging-icewebapi.c2m.net/api/';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserService {
-    constructor(private http: HttpClient) { }
+    endpoint = environment.Setting.BaseAPIUrl;
+
+    constructor(
+        private http: HttpClient
+    ) {
+
+    }
 
     getPublicContent(): Observable<any> {
-        return this.http.get(API + 'all', { responseType: 'text' });
+        return this.http.get(this.endpoint + 'all', { responseType: 'text' });
     }
 
     getUserBoard(): Observable<any> {
-        return this.http.get(API + 'user', { responseType: 'text' });
+        return this.http.get(this.endpoint + 'user', { responseType: 'text' });
     }
 
     getModeratorBoard(): Observable<any> {
-        return this.http.get(API + 'mod', { responseType: 'text' });
+        return this.http.get(this.endpoint + 'mod', { responseType: 'text' });
     }
 
     getAdminBoard(): Observable<any> {
-        return this.http.get(API + 'admin', { responseType: 'text' });
+        return this.http.get(this.endpoint + 'admin', { responseType: 'text' });
     }
 }

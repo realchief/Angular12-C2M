@@ -11,6 +11,9 @@ export const environment = {
     PASSWORD: 'Plasma1',
     AppKey: "cxsr5nuDjC1PhvVgL5RR4IpHUDRvBx14", 
     AppSecret: "C2M",
+    FromEmail: "E-Saleyard@landmark.com.au",
+    ADMIN_USERNAME: "henrydejo8",
+    ADMIN_USER_PASSWORD: "Plasma1!",
     SuperAdmin:false
   },
   regex: {
