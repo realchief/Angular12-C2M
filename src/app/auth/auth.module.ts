@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthRoutingModule } from './auth-routing.routing';
 import { AuthComponent } from './auth.component';
 import { ForgotPasswordComponent } from './forgotpassword.component';
+import { ResetPasswordComponent } from './resetpassword.component';
 // import { AlertComponent } from './_directives/alert.component';
 // import { LogoutComponent } from './logout/logout.component';
 // import { AuthGuard } from './_guards/auth.guard';
@@ -19,6 +20,7 @@ import { ForgotPasswordComponent } from './forgotpassword.component';
     declarations: [
         AuthComponent,
         ForgotPasswordComponent,
+        ResetPasswordComponent,
         // AlertComponent,
         // LogoutComponent,
     ],

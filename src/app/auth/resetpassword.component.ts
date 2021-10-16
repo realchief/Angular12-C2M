@@ -5,16 +5,17 @@ import { AuthService } from "../_services/auth.service";
 
 @Component({
     selector: '.m-grid.m-grid--hor.m-grid--root.m-page',
-    templateUrl: './templates/forgotpassword.component.html',
+    templateUrl: './templates/resetpassword.component.html',
     encapsulation: ViewEncapsulation.None,
 })
 
-export class ForgotPasswordComponent implements OnInit {
+export class ResetPasswordComponent implements OnInit {
     submitted = false;
     form: any = {
-        email: null
+        code: null,
+        password: null
     };
-    isSendingFailed = true;
+    isSuccessful = false;
     accessToken = '';
     errorMessage = '';
     successMessage = '';
@@ -32,17 +33,18 @@ export class ForgotPasswordComponent implements OnInit {
     }
 
     onSubmit() {
-        const { email } = this.form;
-        this.authService.forgotpassword(email).subscribe(
+        const { code, password } = this.form;
+        const email = 'henrydejo8@mailinator.com';
+        this.authService.resetpassword(code, email, password).subscribe(
             data => {
                 console.log(data.status);
                 if (data.status == 'SUCCESS') {
                     this.successMessage = data.message;
-                    this.isSendingFailed = false;
-                    this.router.navigate(['/resetpassword']);
+                    this.isSuccessful = true;
+                    this.router.navigate(['/login']);
                 } else {                    
                     this.errorMessage = data.message;
-                    this.isSendingFailed = true;
+                    this.isSuccessful = false;
                 }
             },
             err => {

@@ -59,6 +59,20 @@ export class AuthService {
     }, httpOptions);
   }
 
+  resetpassword(code: string, email: string, password: string): Observable<any> {
+    let accessToken = localStorage.getItem('AccessToken');
+    if (!accessToken) {
+      this.tokenStorage.store_token(environment.Setting.ADMIN_USERNAME, environment.Setting.ADMIN_USER_PASSWORD);
+    }
+    accessToken = localStorage.getItem('AccessToken');
+    return this.http.post(this.endpoint + 'ResetPasswordByCode', {
+      EmailAddress: email,
+      AccessToken: accessToken,
+      Password: password,
+      PasswordResetCode: code
+    }, httpOptions);
+  }
+
   register(username: string, email: string, password: string): Observable<any> {
     var UserName = username;
     var EmailAddress = email;    
