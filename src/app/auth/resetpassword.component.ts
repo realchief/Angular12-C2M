@@ -12,6 +12,7 @@ import { AuthService } from "../_services/auth.service";
 export class ResetPasswordComponent implements OnInit {
     submitted = false;
     form: any = {
+        email: null,
         code: null,
         password: null
     };
@@ -33,8 +34,7 @@ export class ResetPasswordComponent implements OnInit {
     }
 
     onSubmit() {
-        const { code, password } = this.form;
-        const email = 'henrydejo8@mailinator.com';
+        const { code, email, password } = this.form;
         this.authService.resetpassword(code, email, password).subscribe(
             data => {
                 console.log(data.status);
