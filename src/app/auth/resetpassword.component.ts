@@ -34,22 +34,30 @@ export class ResetPasswordComponent implements OnInit {
     }
 
     onSubmit() {
+
         const { code, email, password } = this.form;
-        this.authService.resetpassword(code, email, password).subscribe(
-            data => {
-                console.log(data.status);
-                if (data.status == 'SUCCESS') {
-                    this.successMessage = data.message;
-                    this.isSuccessful = true;
-                    this.router.navigate(['/login']);
-                } else {                    
-                    this.errorMessage = data.message;
-                    this.isSuccessful = false;
+
+        this.authService.storeToken().subscribe(data => {
+            const cdata: any = data
+            localStorage.setItem('AccessToken', cdata.data.Tokens.AccessToken);
+
+            this.authService.resetpassword(code, email, password).subscribe(
+                data => {
+                    console.log(data.status);
+                    if (data.status == 'SUCCESS') {
+                        this.successMessage = data.message;
+                        this.isSuccessful = true;
+                        this.router.navigate(['/login']);
+                    } else {                    
+                        this.errorMessage = data.message;
+                        this.isSuccessful = false;
+                    }
+                },
+                err => {
+                    this.errorMessage = err.error.message;
                 }
-            },
-            err => {
-                this.errorMessage = err.error.message;
-            }
-        );
+            );
+        });
+        
     }
 }

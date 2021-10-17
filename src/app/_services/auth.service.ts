@@ -59,11 +59,7 @@ export class AuthService {
   }
 
   resetpassword(code: string, email: string, password: string): Observable<any> {
-    let accessToken = localStorage.getItem('AccessToken');
-    if (!accessToken) {
-      this.tokenStorage.store_token(environment.Setting.ADMIN_USERNAME, environment.Setting.ADMIN_USER_PASSWORD);
-    }
-    accessToken = localStorage.getItem('AccessToken');
+    let accessToken: any = localStorage.getItem('AccessToken');
     return this.http.post(this.endpoint + 'ResetPasswordByCode', {
       EmailAddress: email,
       AccessToken: accessToken,
