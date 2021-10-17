@@ -22,8 +22,11 @@ export class SignUpComponent implements OnInit {
     form: any = {
         username: null,
         email: null,
-        password: null
+        password: null,
+        confirm_password: null,
+        signup_terms: null
     };
+    isMatched = true;
     isSuccessful = false;
     isSignUpFailed = false;
     errorMessage = '';
@@ -34,7 +37,15 @@ export class SignUpComponent implements OnInit {
     }
 
     onSubmit(): void {
-        const { username, email, password } = this.form;
+
+        const { username, email, password, confirm_password } = this.form;
+
+        if (password != confirm_password) {
+            this.isMatched = false;
+        } else {
+            this.isMatched = true;
+        }
+
         this.authService.register(username, email, password).subscribe(
             data => {
                 console.log(data);

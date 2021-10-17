@@ -14,9 +14,11 @@ export class ResetPasswordComponent implements OnInit {
     form: any = {
         email: null,
         code: null,
-        password: null
+        password: null,
+        confirm_password: null
     };
     isSuccessful = false;
+    isMatched = true;
     accessToken = '';
     errorMessage = '';
     successMessage = '';
@@ -35,7 +37,13 @@ export class ResetPasswordComponent implements OnInit {
 
     onSubmit() {
 
-        const { code, email, password } = this.form;
+        const { code, email, password, confirm_password } = this.form;
+
+        if (password != confirm_password) {
+            this.isMatched = false;
+        } else {
+            this.isMatched = true;
+        }
 
         this.authService.storeToken().subscribe(data => {
             const cdata: any = data
