@@ -73,27 +73,17 @@ export class AuthService {
   }
 
   register(username: string, email: string, password: string): Observable<any> {
-    var UserName = username;
-    var EmailAddress = email;
-    var FirstName = "Rohit";
-    var MiddleName = "";
-    var LastName = "Roy";
-    var PhoneNumber = "+915566544433";
-    var PolicyBundleId = "11";
-    var GroupId = "1464";
-    var RoleIDs = "357,93,365,356";
-    var AccessToken = "test";
     return this.http.post(this.endpoint + 'SignUpUser', {
-      UserName,
-      EmailAddress,
-      FirstName,
-      MiddleName,
-      LastName,
-      PhoneNumber,
-      PolicyBundleId,
-      GroupId,
-      RoleIDs,
-      AccessToken
+      UserName: username,
+      EmailAddress: email,
+      FirstName: "Rohit",
+      MiddleName: "",
+      LastName: "Roy",
+      PhoneNumber: "+915566544433",
+      PolicyBundleId: "11",
+      GroupId: "1464",
+      RoleIDs: "357,93,365,356",
+      AccessToken: "test"
     }, httpOptions);
   }
 }
