@@ -14,7 +14,7 @@ export class ForgotPasswordComponent implements OnInit {
     form: any = {
         email: null
     };
-    isSendingFailed = true;
+    isSendingFailed = false;
     accessToken = '';
     errorMessage = '';
     successMessage = '';
@@ -24,30 +24,36 @@ export class ForgotPasswordComponent implements OnInit {
         private router: Router,
         private authService: AuthService
     ) {
-        
+
     }
 
-    ngOnInit() { 
-        
+    ngOnInit() {
+
     }
 
     onSubmit() {
         const { email } = this.form;
-        this.authService.forgotpassword(email).subscribe(
-            data => {
-                console.log(data.status);
-                if (data.status == 'SUCCESS') {
-                    this.successMessage = data.message;
-                    this.isSendingFailed = false;
-                    this.router.navigate(['/resetpassword']);
-                } else {                    
-                    this.errorMessage = data.message;
-                    this.isSendingFailed = true;
+
+        this.authService.storeToken().subscribe(data => {
+            const cdata: any = data
+            localStorage.setItem('AccessToken', cdata.data.Tokens.AccessToken);
+
+            this.authService.forgotpassword(email).subscribe(
+                data => {
+                    console.log(data.status);
+                    if (data.status == 'SUCCESS') {
+                        this.successMessage = data.message;
+                        this.isSendingFailed = false;
+                        this.router.navigate(['/resetpassword']);
+                    } else {
+                        this.errorMessage = data.message;
+                        this.isSendingFailed = true;
+                    }
+                },
+                err => {
+                    this.errorMessage = err.error.message;
                 }
-            },
-            err => {
-                this.errorMessage = err.error.message;
-            }
-        );
+            );
+        });
     }
 }

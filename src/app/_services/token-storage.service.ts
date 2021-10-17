@@ -18,7 +18,7 @@ export class TokenStorageService {
     ) {
     }
 
-    store_token(username: string, password: string): void{
+    store_token(username: string, password: string): Observable<any>{
         const httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };
@@ -28,12 +28,7 @@ export class TokenStorageService {
             "AppKey": environment.Setting.AppKey,
             "AppSecret": environment.Setting.AppSecret
         }
-        this.http.post(this.endpoint + 'GetAccessToken', payload, httpOptions).subscribe(
-            data => {
-                const cdata:any = data
-                localStorage.setItem('AccessToken', cdata.data.Tokens.AccessToken);
-            }
-        )
+        return this.http.post(this.endpoint + 'GetAccessToken', payload, httpOptions)
     }
     
     signOut(): void {
