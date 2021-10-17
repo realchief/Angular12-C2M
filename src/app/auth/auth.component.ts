@@ -35,7 +35,7 @@ export class AuthComponent implements OnInit {
     ){}
 
     ngOnInit(): void {
-        if (localStorage.getItem('AccessToken')) {
+        if (localStorage.getItem('APIKey')) {
             this.isLoginFailed = true;
         }
     }
@@ -46,11 +46,15 @@ export class AuthComponent implements OnInit {
             data => {
                 console.log(data.status);
                 if (data.status == 'SUCCESS') {
-                    localStorage.setItem('AccessToken', data.data.Login.APIKey);
+                    localStorage.setItem('APIKey', data.data.Login.APIKey);
                     this.router.navigate(['']);  
                     this.isLoginFailed = false;
                     this.isLoggedIn = true;
-                    this.tokenStorage.store_token(environment.Setting.ADMIN_USERNAME, environment.Setting.ADMIN_USER_PASSWORD);
+                    this.tokenStorage.store_token(environment.Setting.ADMIN_USERNAME, environment.Setting.ADMIN_USER_PASSWORD).subscribe(
+                        data => {
+                            localStorage.setItem('AccessToken', data.data.Tokens.AccessToken);
+                        }
+                    )
                 } else {                    
                     this.errorMessage = data.message;
                     this.isLoginFailed = true;

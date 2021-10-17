@@ -68,6 +68,10 @@ export class AuthService {
     }, httpOptions);
   }
 
+  logout(): void {
+      localStorage.removeItem('APIKey');
+  }
+
   register(username: string, email: string, password: string): Observable<any> {
     var UserName = username;
     var EmailAddress = email;
