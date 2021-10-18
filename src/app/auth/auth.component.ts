@@ -50,7 +50,7 @@ export class AuthComponent implements OnInit {
                     this.router.navigate(['']);  
                     this.isLoginFailed = false;
                     this.isLoggedIn = true;
-                    this.tokenStorage.store_token(environment.Setting.ADMIN_USERNAME, environment.Setting.ADMIN_USER_PASSWORD).subscribe(
+                    this.tokenStorage.store_token(username, password).subscribe(
                         data => {
                             localStorage.setItem('AccessToken', data.data.Tokens.AccessToken);
                         }

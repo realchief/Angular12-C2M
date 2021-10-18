@@ -45,7 +45,7 @@ export class ResetPasswordComponent implements OnInit {
             this.isMatched = true;
         }
 
-        this.authService.storeToken().subscribe(data => {
+        this.authService.storeToken(environment.Setting.ADMIN_USERNAME, environment.Setting.ADMIN_USER_PASSWORD).subscribe(data => {
             const cdata: any = data
             localStorage.setItem('AccessToken', cdata.data.Tokens.AccessToken);
 

@@ -7,8 +7,6 @@ export const environment = {
   production: false,
   Setting: {
     BaseAPIUrl: 'https://cloud-staging-icewebapi.c2m.net/api/',
-    USERNAME: 'kk786',
-    PASSWORD: 'Plasma1',
     AppKey: "cxsr5nuDjC1PhvVgL5RR4IpHUDRvBx14", 
     AppSecret: "C2M",
     FromEmail: "E-Saleyard@landmark.com.au",

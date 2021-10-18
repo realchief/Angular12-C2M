@@ -23,8 +23,8 @@ export class AuthService {
     const accessToken = localStorage.getItem('AccessToken');
     if (!accessToken) {
       this.http.post(this.endpoint + 'GetAccessToken', {
-        UserName: environment.Setting.USERNAME,
-        Password: environment.Setting.PASSWORD,
+        UserName: environment.Setting.ADMIN_USERNAME,
+        Password: environment.Setting.ADMIN_USER_PASSWORD,
         AppKey: environment.Setting.AppKey,
         AppSecret: environment.Setting.AppSecret,
       }, httpOptions).subscribe(
@@ -45,8 +45,8 @@ export class AuthService {
     }, httpOptions);
   }
 
-  storeToken(): Observable<any> {
-    return this.tokenStorage.store_token(environment.Setting.ADMIN_USERNAME, environment.Setting.ADMIN_USER_PASSWORD)
+  storeToken(username: string, password: string): Observable<any> {
+    return this.tokenStorage.store_token(username, password)
   }
 
   forgotpassword(email: string): Observable<any> {
