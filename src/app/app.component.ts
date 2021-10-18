@@ -9,8 +9,9 @@ import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 export class AppComponent {
   title = 'c2m';
 
-  constructor(private _router: Router) {
-  }
+  constructor(
+    private router: Router
+    ) {}
 
   ngOnInit() { }
 }

@@ -5,9 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { SignUpModule } from './signup/signup.module';
-import { HomeModule } from './home/home.module';
-import { LayoutModule } from './theme/layouts/layout.module';
-import { ThemeRoutingModule } from './theme/theme-routing.module';
+import { AsideNavComponent } from './layouts/aside-nav/aside-nav.component';
+import { FooterComponent } from './layouts/footer/footer.component';
+import { HeaderNavComponent } from './layouts/header-nav/header-nav.component';
+import { MenuRightComponent } from './layouts/menu-right/menu-right.component';
+import { ScrollTopComponent } from './layouts/scroll-top/scroll-top.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
@@ -15,16 +17,18 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
-      AppComponent
+      AppComponent,
+      AsideNavComponent,
+      FooterComponent,
+      HeaderNavComponent,
+      MenuRightComponent,
+      ScrollTopComponent
   ],
   imports: [
       BrowserModule,
       AppRoutingModule,
       AuthModule,
       SignUpModule,
-      HomeModule,
-      LayoutModule,
-      ThemeRoutingModule,
       HttpClientModule,    
   ],
   providers: [

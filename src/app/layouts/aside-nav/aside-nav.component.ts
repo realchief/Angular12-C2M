@@ -7,19 +7,12 @@ declare let mLayout: any;
     templateUrl: "./aside-nav.component.html",
     encapsulation: ViewEncapsulation.None,
 })
-export class AsideNavComponent implements OnInit, AfterViewInit {
+export class AsideNavComponent implements OnInit {
 
 
     constructor() {
 
     }
     ngOnInit() {
-
     }
-    ngAfterViewInit() {
-
-        mLayout.initAside();
-
-    }
-
 }
