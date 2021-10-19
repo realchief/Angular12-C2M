@@ -12,6 +12,7 @@ export const environment = {
     FromEmail: "E-Saleyard@landmark.com.au",
     ADMIN_USERNAME: "henrydejo8",
     ADMIN_USER_PASSWORD: "Plasma1!",
+    ADMIN_USER_APIKey: "Y@MWDENW9U@3F6@U0BoT@9EBF/7i1u",
     SuperAdmin:false
   },
   regex: {
