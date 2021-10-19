@@ -8,7 +8,7 @@ declare let mLayout: any;
 })
 export class HeaderNavComponent implements OnInit{
 
-    ishidden = true;
+    ishidden = false;
 
     constructor() {
 
