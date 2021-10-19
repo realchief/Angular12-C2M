@@ -9,10 +9,15 @@ declare let mLayout: any;
 })
 export class AsideNavComponent implements OnInit {
 
-
+    ishidden = false;
     constructor() {
 
     }
     ngOnInit() {
+        
+    }
+
+    show(): void{
+        this.ishidden = !this.ishidden;
     }
 }
