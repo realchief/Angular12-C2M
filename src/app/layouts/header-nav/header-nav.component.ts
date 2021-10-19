@@ -9,6 +9,7 @@ declare let mLayout: any;
 export class HeaderNavComponent implements OnInit{
 
     ishidden = false;
+    userdropdown_hidden = false;
 
     constructor() {
 
@@ -19,5 +20,9 @@ export class HeaderNavComponent implements OnInit{
 
     show(): void{
         this.ishidden = !this.ishidden;
+    }
+
+    userdropdown_show(): void{
+        this.userdropdown_hidden = !this.userdropdown_hidden;
     }
 }
