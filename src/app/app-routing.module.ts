@@ -4,6 +4,7 @@ import { AuthGuard } from "./_guards/auth.guard";
 import { AuthComponent } from './auth/auth.component';
 import { SignUpComponent } from './signup/signup.component';
 import { HomeComponent } from './modules/home/home.component';
+import { DashboardComponent } from './modules/dashboard.component';
 
 const routes: Routes = [
   { 
@@ -15,7 +16,7 @@ const routes: Routes = [
   { 
     path: '', 
     canActivate: [AuthGuard],
-    component: HomeComponent
+    loadChildren: () => import('./modules/dashboard.module').then(m => m.DashboardModule)
   }
 ];
 

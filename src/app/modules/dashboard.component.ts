@@ -3,15 +3,14 @@ import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './dashboard.component.html'
 })
-export class AppComponent {
+export class DashboardComponent {
   title = 'c2m';
 
   constructor(
     private router: Router
-  ) { }
+    ) {}
 
   ngOnInit() { }
 }
