@@ -7,7 +7,6 @@ import { AuthModule } from './auth/auth.module';
 import { SignUpModule } from './signup/signup.module';
 import { DashboardModule } from './modules/dashboard.module';
 
-
 import { HttpClientModule } from '@angular/common/http';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
@@ -22,6 +21,7 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
         AuthModule,
         SignUpModule,
         HttpClientModule,
+        DashboardModule,
     ],
     providers: [
         authInterceptorProviders

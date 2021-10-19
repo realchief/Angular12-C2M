@@ -1,34 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { ApiService } from './api.service';
 
-
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class UserService {
-    endpoint = environment.Setting.BaseAPIUrl;
-
     constructor(
-        private http: HttpClient
-    ) {
+        private apiService: ApiService
+    ) { }
 
+    getUserProfile(body: any) {
+        return this.apiService.postWithOutHeader('GetUserProfile', body);
     }
 
-    getPublicContent(): Observable<any> {
-        return this.http.get(this.endpoint + 'all', { responseType: 'text' });
+    getUserGridList(bodyData: any) {
+        return this.apiService.postWithOutHeader('GetAllManageUserListByApikey', bodyData);
     }
 
-    getUserBoard(): Observable<any> {
-        return this.http.get(this.endpoint + 'user', { responseType: 'text' });
-    }
-
-    getModeratorBoard(): Observable<any> {
-        return this.http.get(this.endpoint + 'mod', { responseType: 'text' });
-    }
-
-    getAdminBoard(): Observable<any> {
-        return this.http.get(this.endpoint + 'admin', { responseType: 'text' });
-    }
 }

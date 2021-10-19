@@ -24,12 +24,6 @@ export class AuthComponent implements OnInit {
 
     constructor(
         private router: Router,
-        // private _script: ScriptLoaderService,
-        // private _userService: UserService,
-        // private _route: ActivatedRoute,
-        // private _authService: AuthenticationService,
-        // private _alertService: AlertService,
-        // private cfr: ComponentFactoryResolver,
         private authService: AuthService, 
         private tokenStorage: TokenStorageService
     ){}

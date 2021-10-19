@@ -14,7 +14,7 @@ export class ApiService {
   setHeaders() {
     let headers;
     const atoken = localStorage.getItem('AccessToken') || '';
-    headers = new HttpHeaders({ accessToken: JSON.parse(atob(atoken.split('.')[1])).AcessToken });
+    headers = new HttpHeaders({ accessToken: atoken });
     return headers;
   }
 
