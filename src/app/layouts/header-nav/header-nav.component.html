@@ -152,10 +152,10 @@
             </nav>
         </div>
         <div class="dropDown">
-            <a role="button" class="compDropdown dropdown-toggle d-flex align-items-center " href="#"  id="compDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <a role="button" (click)="show()" class="compDropdown dropdown-toggle d-flex align-items-center " href="#"  id="compDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fas fa-building"></i> Companies <i class="fas fa-chevron-down"  style="font-size:10px;line-height:19px;height:19px;"></i>
             </a>
-            <div tabindex="-1" class="dropdown-menu dropdown-menu-end pb-0" aria-labelledby="compDropdown">
+            <div tabindex="-1" class="dropdown-menu dropdown-menu-end pb-0" aria-labelledby="compDropdown" [class.activeClass]="ishidden">
                 <div class="navForm shadow-sm p-2 pt-0" style="z-index:1;position:relative;">
                     <input type="search" class="form-control form-control-sm rounded" placeholder="Search" aria-label="Search"
                     aria-describedby="search-addon" />

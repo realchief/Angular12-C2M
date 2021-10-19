@@ -160,3 +160,7 @@ ul.dashList .dashWrap:hover .dashOverlay a:hover{color:#EA593C;}
 .content{width:100%;margin:0 auto;padding:1.875rem 1.875rem 1px;overflow-x:visible;}
 .content .push{margin-bottom:1.875rem;}
 }
+
+.dropdown-menu.activeClass {
+    display: block;
+}

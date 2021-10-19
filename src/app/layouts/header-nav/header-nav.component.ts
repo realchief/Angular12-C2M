@@ -8,11 +8,16 @@ declare let mLayout: any;
 })
 export class HeaderNavComponent implements OnInit{
 
+    ishidden = true;
 
     constructor() {
 
     }
     ngOnInit() {
 
+    }
+
+    show(): void{
+        this.ishidden = !this.ishidden;
     }
 }
