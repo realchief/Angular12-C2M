@@ -13,7 +13,12 @@ const routes: Routes = [
             {
                 path: '',
                 component: HomeComponent
-            }
+            },
+            {
+                path: 'company',
+                canActivate: [AuthGuard],
+                loadChildren: () => import('../modules/company-management/company-management.module').then(m => m.CompanyManagementModule)
+            },
         ] 
     }
 ];
