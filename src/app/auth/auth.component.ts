@@ -41,6 +41,7 @@ export class AuthComponent implements OnInit {
                 console.log(data.status);
                 if (data.status == 'SUCCESS') {
                     localStorage.setItem('APIKey', data.data.Login.APIKey);
+                    localStorage.setItem('Email', username);
                     this.router.navigate(['']);  
                     this.isLoginFailed = false;
                     this.isLoggedIn = true;

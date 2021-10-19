@@ -77,7 +77,7 @@
             <li class="nav-item b-nav-dropdown dropdown dropdown-user">
                 <a (click)="userdropdown_show()" role="button" class="userDropdown dropdown-toggle d-flex align-items-center" href="#"  id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="d-sm-flex d-none user-nav">
-                        <p class="user-name font-weight-bolder mb-0"> Harish Pal </p>
+                        <p class="user-name font-weight-bolder mb-0"> {{currentUser?.FirstName}} {{currentUser?.LastName}} </p>
                         <span class="user-status">admin</span>
                      </div>
                      <span class="b-avatar badge-minimal badge-light-primary rounded-circle" style="width: 40px; height: 40px;">

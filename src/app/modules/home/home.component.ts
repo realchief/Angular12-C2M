@@ -18,21 +18,40 @@ export class HomeComponent implements OnInit {
     private applicationService: ApplicationService
   ) {
     this.loadGrid();
+    this.getUserProfile();
   }
 
   ngOnInit(): void {
+    
   }
 
   loadGrid() {
     const getProcessSubr = this.applicationService.getProcesswf()
       .subscribe(data => {
-        console.log(data);
         if (Array.isArray(data.data.myApps.parentApp)) {
           this.appList = data.data.myApps.parentApp;
         } else if (!data.data.myApps.parentApp) {
           this.appList = [];
         } else {
           this.appList = [data.data.myApps.parentApp];
+        }
+      });
+  }
+
+  getUserProfile() {
+    const email = localStorage.getItem('Email');
+    const accessToken = localStorage.getItem('AccessToken');
+    const apiKey = localStorage.getItem('APIKey');
+
+    const body = {
+      "EmailAddress": email,
+      "AccessToken": accessToken,
+      "APIKey": apiKey
+    }
+    const getProcessSubr = this.userService.getUserProfile(body)
+      .subscribe(data => {
+        if (data.code = '8024') {
+          this.currentUser = data.data.User;
         }
       });
   }
@@ -76,26 +95,26 @@ export class HomeComponent implements OnInit {
         window.open('/company/grid', '_blank');
         break;
       case 'ClientManagement':
-         window.open('/client/grid', '_blank');
+        window.open('/client/grid', '_blank');
         break;
       case 'Renesas_EventMgmt':
         window.open('/events/viewEventMgt', '_blank');
-	      break;
+        break;
       case 'Renesas_NewEventMagmt':
         window.open('/events/viewNewEventMgt', '_blank');
         break;
-        case 'Firmware_DownloadMgt':
-          window.open('/firmware-download/management/admin-Firmware/admin', '_blank');
+      case 'Firmware_DownloadMgt':
+        window.open('/firmware-download/management/admin-Firmware/admin', '_blank');
         break;
-        case 'FirmwareDownload':
-          window.open('/firmware-download/management', '_blank');
+      case 'FirmwareDownload':
+        window.open('/firmware-download/management', '_blank');
         break;
       case 'Renesas_FAQs':
         window.open('/faq/management', '_blank');
         break;
-        case 'Firmware_Campaign':
-          window.open('/firmware-campaign-screens/management', '_blank');
-          break;
+      case 'Firmware_Campaign':
+        window.open('/firmware-campaign-screens/management', '_blank');
+        break;
     }
   }
 }
