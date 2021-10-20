@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IHeaderMap } from 'src/app/_models/plasmaGridInterface';
 import { environment } from 'src/environments/environment';
@@ -7,13 +7,13 @@ import { FormControl } from '@angular/forms';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { AuthService } from 'src/app/_services/auth.service';
 import { ApiService } from 'src/app/_services/api.service';
-
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-users-grid',
     templateUrl: './manageusers-grid.component.html'
 })
-export class ManageUsersGridComponent implements OnInit {
+export class ManageUsersGridComponent implements OnInit, OnDestroy {
 
 
     encrypted: any;
@@ -38,8 +38,10 @@ export class ManageUsersGridComponent implements OnInit {
         SortColumn: 'FirstName',
         SortOrder: 'desc',
         TimeZone: 0,
-        GridFilters: [],
-        SearchName: ''
+        GridFilters: "",
+        UserId: "1683",
+        GroupId: "1145",
+        AccessToken: "dr7qJfhvWlPQrJIt+VB6OdwmqaLfH1jnjitBjgcGSetiOtV1m9OyehuQCXUeGCrpEKbZh+4HbnA="
     };
 
     HeaderMap: IHeaderMap = {
@@ -115,18 +117,24 @@ export class ManageUsersGridComponent implements OnInit {
         private router: Router,
         private activeRoute: ActivatedRoute,
         private authService: AuthService,
-        private apiService: ApiService,
+        private apiService: ApiService,  
+      private titleService: Title      
     ) {
+      this.dateFormat = environment.Setting.dateFormat;
+      sessionStorage.setItem('AppTitle', 'Manage Users');
     }
 
     ngOnInit() {
+      this.titleService.setTitle('ONE | Manage Users');
+      this.bindUser(this.bodyData);
     }
 
     private bindUser(bodyData: any) {
-        this.apiService.post('GetAllManageUserList',bodyData)
+        this.apiService.post('GetAllManageUserList', bodyData)
         .subscribe(res => {
-          this.dataSource = res.Data;
-          this.itemsCount = res.RecordsCount;
+          this.dataSource = res.data.UserInfo.ManageUsers;
+          this.itemsCount = res.totalrecords;
+          console.log(this.dataSource);
         }, error => {
            console.log(error);
         });
@@ -137,6 +145,18 @@ export class ManageUsersGridComponent implements OnInit {
         this.bodyData.PageNumber = event.currentPage;
         this.bodyData.PageSize = event.pageSize;
         this.bindUser(this.bodyData);
+    }
+
+    ngOnDestroy() {
+        sessionStorage.removeItem('AppTitle');
+    }
+
+    ReplaceSingleQuotes(val: string){
+      return val.replace(/'/g, "''");
+    }
+  
+    ReplaceDoubleQuotes(val: string) {
+      return val.replace(/''/g, "'");
     }
    
 }

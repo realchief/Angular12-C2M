@@ -9,6 +9,7 @@ import { DashboardModule } from './modules/dashboard.module';
 
 import { HttpClientModule } from '@angular/common/http';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
         SignUpModule,
         HttpClientModule,
         DashboardModule,
+        NgbModule,
     ],
     providers: [
         authInterceptorProviders

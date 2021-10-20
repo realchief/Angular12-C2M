@@ -1,0 +1,392 @@
+<div *ngIf="dataSource">
+    <div class="table-filters-group" *ngIf="isExport === true">
+      <div class="export-btns-group">
+        <a href="javascript:void(0)" (click)="onAction(0, 'Export Excel')" title="Excel"><i class="far fa-file-excel" role="img" aria-label="Excel"></i>Excel</a>
+        <a href="javascript:void(0)" (click)="onAction(0, 'Export PDF')" title="PDF"><i class="far fa-file-pdf" role="img" aria-label="PDF"></i>PDF</a>
+      </div>
+    </div>
+  
+    <table class="basicTable stripped" style="border-top:0;border-right:0;border-left:0;">
+      <thead cdkDropListGroup>
+        <tr>
+          <th *ngIf="headerMap?.config?.header?.action?.Checkbox" style="width:30px">
+            <label class="inline-checkbox ml-2" [style.width.%]="'1%'" class="isDisable">
+              <input type="checkbox" name="chkboxlist" id="selectAll" [(ngModel)]="selectedAll" (ngModelChange)="selectAllCheckBox()">
+              <i class="skin"></i>
+            </label>
+          </th>
+          <th *ngIf="headerMap?.config?.header?.action?.Edit || headerMap?.config?.header?.action?.Delete" [ngStyle]="{'width.px': actionWidth}">
+            <span class="colHead">Actions</span>
+          </th>
+          <th *ngIf="sNo" style="width: 40px">
+            <span class="colHead">S. No.</span>
+          </th>
+          <th
+            *ngIf="((headerMap?.config?.header?.action?.Link || headerMap?.config?.header?.action?.DropDown) &&
+                    (!headerMap?.config?.header?.action?.Link.Placement || headerMap?.config?.header?.action?.Link.Placement=='Left' || !headerMap?.config?.header?.action?.DropDown.Placement || headerMap?.config?.header?.action?.DropDown.Placement=='Left'))"
+            style="width: 50px"
+          >
+            <span>Action</span>
+          </th>
+          <th *ngFor="let key of headerMap?.config?.header?.columns; let i = index" width={{key.width}}>
+            
+            <div *ngIf="headerMap?.config?.header?.columnFilter" ngbDropdown class="grid-filter-wrap" #ColumnFilterDropdown="ngbDropdown">
+              <div class="" id="dropdownBasic1" ngbDropdownToggle>
+                <img (click)="bindColumnFilterDdl(i, tblFilterForm)" alt="" src="assets/styles/images/arrange-arrow.png">
+              </div>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <ul class="list-unstyled">
+                  <li>
+                    <a href="javascript:;" (click)="sort(i, 'asc', ColumnFilterDropdown)">
+                      <div class="fas fa-sort-alpha-down"></div> {{ 'TABLE.SORT.ASC' | translate }}
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:;" (click)="sort(i, 'desc', ColumnFilterDropdown)">
+                      <div class="fas fa-sort-alpha-up"></div> {{ 'TABLE.SORT.DESC' | translate }}
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:;" (click)="onAction(i, 'Remove Sort', ColumnFilterDropdown)">
+                      <div class="fas fa-random"></div> {{ 'TABLE.SORT.REMOVE' | translate }}
+                    </a>
+                  </li>
+                  <li type="separator" class="li-separator" role="menuitem"></li>
+                  <li>
+                    <form #tblFilterForm #f="ngForm" class='frm_{{key.objectKey}}' (ngSubmit)="f.form.valid && onFilterClick(i, tblFilterForm, 'Filter_Click', ColumnFilterDropdown )">
+                      <div class="filter" style="height: 18px; margin-top: 3px; margin-bottom: 3px;">{{ 'TABLE.SORT.HEADER' | translate }}</div>
+                      <!-- Check box html code and condition -->
+                      <div *ngIf="key.dataType === 'Checkbox' else OtherColumnFilter">
+                        <input type="hidden" value="or" />
+                        <div class="list-group">
+                          <ul style="width: 200px;" class="list-unstyled list-group">
+                            <li *ngFor="let conditionType of headerMap?.config?.header?.columnFilter['colData_' +i]">
+                              <input type="checkbox" name="filterValue1" class="checkbox checkboxMargin" [value]="conditionType.key">
+                              <span>
+                                {{conditionType.value}}
+                              </span>
+                            </li>
+                            <li type="separator" class="li-separator" role="menuitem"></li>
+                          </ul>
+                        </div>
+                      </div>
+                      <!-- Check box html code and condition -->
+  
+                      <ng-template #OtherColumnFilter>
+                        <div class="form-group">
+                          <select
+                            class="form-control"
+                            style="width: 200px;"
+                            name="ConditionOpt1"
+                            #ConditionOpt1
+                            [ngClass]="{ 'is-invalid': f.submitted && ConditionOpt1.value == ''}" required
+                          >
+                            <option *ngFor="let conditionType of headerMap?.config?.header?.columnFilter['colData_' +i]"
+                              [value]="conditionType.key">{{conditionType.value}}</option>
+                          </select>
+                        </div>
+                        <div class="form-group" *ngIf="key.dataType == 'Date'">
+                          <div class="input-group">
+                            <input class="form-control" placeholder="Select Date" name="filterValue1" ngbDatepicker #d="ngbDatepicker" #filterValue1 [ngClass]="{ 'is-invalid': f.submitted  && filterValue1.value == ''  }" required>
+                            <div class="input-group-append">
+                              <button class="btn btn-sm btn-outline-secondary calendar" (click)="d.toggle()" type="button">
+                                <i class="far fa-calendar-alt"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group" *ngIf="key.dataType != 'Date'">
+                          <input
+                            type="text"
+                            class="form-control"
+                            name="filterValue1"
+                            placeholder="Filter Value"
+                            [ngClass]="{ 'is-invalid': f.submitted  && filterValue1.value == ''  }"
+                            required
+                            style="width: 200px;" #filterValue1 />
+                        </div>
+                        <div class="form-group">
+                          <select class="form-control" style="width: 200px;" name="logicalOpt" #logicalOpt>
+                            <option value="">Select...</option>
+                            <option value="OR" selected>Or</option>
+                            <option value="AND">AND</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <select class="form-control" style="width: 200px;" name="ConditionOpt2" #ConditionOpt2>
+                            <option *ngFor="let conditionType of headerMap?.config?.header?.columnFilter['colData_' +i]" [value]="conditionType.key">{{conditionType.value}}</option>
+                          </select>
+                        </div>
+                        <div class="form-group" *ngIf="key.dataType == 'Date'">
+                          <div class="input-group">
+                            <input class="form-control" name="filterValue2" placeholder="Select Date" ngbDatepicker #d="ngbDatepicker" #ToDateobj>
+                            <div class="input-group-append">
+                              <button class="btn btn-sm btn-outline-secondary calendar" (click)="d.toggle()" type="button">
+                                <i class="far fa-calendar-alt"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group" *ngIf="key.dataType != 'Date'">
+                          <input type="text" class="form-control" name="filterValue2" placeholder="Filter Value" style="width: 200px;" #filterValue2>
+                        </div>
+                      </ng-template>
+                      <div>
+                        <button type="submit" class="btn btn-primary btn-sm">{{ 'TABLE.FILTER.DO' | translate }}</button>
+                        <button type="reset" class="btn btn-secondary btn-sm float-right" (click)="onFilterClick(i, tblFilterForm,'FilterClear_Click', ColumnFilterDropdown)">{{ 'TABLE.FILTER.CLEAR' | translate }}</button>
+                      </div>
+                    </form>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <span isEllipsisActive class="colHead header content-text"  (click)="sort(i, sortType)">{{key.displayName}}</span>
+          <th
+            *ngIf="((headerMap?.config?.header?.action?.Link || headerMap?.config?.header?.action?.DropDown)  && ( headerMap?.config?.header?.action?.Link.Placement=='Right' || headerMap?.config?.header?.action?.DropDown.Placement=='Right'  ) )"
+            style="width: 50px"
+          >
+            <span class="colHead">Action</span>
+          </th>
+        </tr>
+      </thead>
+  
+      <tbody *ngIf="dataSource?.length == 0">
+        <tr>
+          <td [colSpan]="colSpan" class="text-center">{{ 'TABLE.NO_DATA' | translate }}</td>
+        </tr>
+      </tbody>
+    
+      <tbody *ngIf="dataSource?.length > 0">
+        <tr
+          *ngFor="let data of dataSource; let i = index" 
+          class="table-row" 
+          [ngClass]="{
+            'active': data['selected']
+          }"
+        >
+          <td *ngIf="headerMap?.config?.header?.action?.Checkbox">
+            <label class="inline-checkbox ml-2">
+              <input type="checkbox" name="chkboxlist" [(ngModel)]="data.selected" (ngModelChange)="checkIfAllSelected()">
+              <i class="skin"></i>
+            </label>
+          </td>
+          <!-- All Action Buttons (Edit, Delete, Copy) -->
+          <td *ngIf="headerMap?.config?.header?.action?.Edit || headerMap?.config?.header?.action?.Copy || headerMap?.config?.header?.action?.Delete">
+            <div class="action-btns">
+              <a href="javascript:void(0)" (click)="onAction(i, 'Edit')" *ngIf="headerMap?.config?.header?.action?.Edit" title="Edit">
+                <i class="fas fa-pencil-alt"></i>
+              </a>
+              <a href="javascript:void(0)" (click)="onAction(i, 'Copy')" *ngIf="headerMap?.config?.header?.action?.Copy" title="Copy">
+                <i class="far fa-copy"></i>
+              </a>
+              <a href="javascript:void(0)" (click)="onAction(i, 'Delete')" *ngIf="headerMap?.config?.header?.action?.Delete" title="Delete">
+                <i class="far fa-trash-alt"></i>
+              </a>
+            </div>
+          </td>
+          <!-- Close All Action Buttons (Edit, Delete, Copy) -->
+          <td *ngIf="sNo">{{ (((itemsPerPage > 0 ? itemsPerPage : pageSizeOptions[0]) * (currentPage-1)) + i) + 1 }}</td>
+          <td
+            *ngIf="((headerMap?.config?.header?.action?.Link || headerMap?.config?.header?.action?.DropDown)  && (!headerMap?.config?.header?.action?.Link.Placement || headerMap?.config?.header?.action?.Link.Placement=='Left' || 
+              !headerMap?.config?.header?.action?.DropDown.Placement || headerMap?.config?.header?.action?.DropDown.Placement=='Left'))"
+            style="width: 40px"
+          >
+            <a href="javascript:void(0)" (click)="onRowClick(i, data)"
+              *ngIf="headerMap?.config?.header?.action?.Link && (!headerMap?.config?.header?.action?.Link.Placement || headerMap?.config?.header?.action?.Link.Placement=='Left')">View</a>
+            <div
+              *ngIf="headerMap?.config?.header?.action?.DropDown.Action && (!headerMap?.config?.header?.action?.DropDown.Placement || headerMap?.config?.header?.action?.DropDown.Placement=='Left')"
+              class="moreDots">
+              <div *ngIf="data['isShowDots'] === undefined || data['isShowDots']== false" ngbDropdown>
+                <button class="btn btn-outline-primary" ngbDropdownToggle></button>
+                <ul ngbDropdownMenu>
+                  <li ngbDropdownItem *ngFor="let actions of headerMap.config?.header?.action?.DropDown?.Action">
+                    <a ngbDropdownItem *ngFor="let key of actions | keyvalue">
+                      {{(key.key=='Toggle_Active' ? 'Toggle Active' : (key.key=='Make_Featured' ? 'Make Featured': key.key) )}}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </td>
+          <td *ngIf="headerMap?.config?.header?.action?.Placement=='Left'" style="width: 40px">
+            <a href="javascript:void(0)" (click)="onRowClick(i, data)" *ngIf="headerMap.config?.header?.action?.Link">View</a>
+          </td>
+          <td *ngFor="let key of headerMap?.config?.header?.columns;" class="column-td">
+            <span *ngIf="headerMap?.config?.header?.action?.Link && headerMap?.config?.header?.action?.Link.Placement==key.objectKey; else simpledata">
+              <span *ngFor="let action of headerMap.config?.header?.action?.Link.Action | keyvalue">
+                <a href="javascript:void(0)">{{data[key.objectKey]}}</a>
+              </span>
+              <a href="javascript:void(0)" (click)="onRowClick(i, data)"
+                *ngIf="headerMap.config?.header?.action?.Link && !headerMap.config?.header?.action?.Link.Action">View</a>
+            </span>
+            <ng-template #simpledata>
+              <div [ngSwitch]="key.dataType">
+                <span *ngSwitchCase="'Currency'">
+                  <ng-container *ngIf="data?.PriceType === '$/head'; else centPrice">
+                    {{data[key.objectKey] | currency:"AUD":"symbol-narrow"}}
+                  </ng-container>
+                  <ng-template #centPrice>
+                    {{+data[key.objectKey]}}&#162;
+                  </ng-template>
+                </span>
+                <span isEllipsisActive *ngSwitchCase="'Date'" class="content-text">{{ convertToLocalDataAndTime(data[key.objectKey],  key.format, key.timeZone) }}</span>
+                <span isEllipsisActive *ngSwitchCase="'DateLocalTime'" class="content-text">{{ getLocalDateTime(data[key.objectKey]) }}</span> 
+                <span isEllipsisActive *ngSwitchCase="'DateLocalTimeddtomm'" class="content-text">{{ convertToLocalDataAndTimeddmmtodd(data[key.objectKey],  key.format, key.timeZone) }}</span>    
+                <span *ngSwitchCase="'Link'">
+                  <a isEllipsisActive  class="content-text" (click)="onLinkAction(i, key.objectKey)" href="javascript:void(0)"> {{ data[key.objectKey] }} </a>
+                </span>
+                <span *ngSwitchCase="'ViewAPM'">
+                  <a  href="javascript:void(0)" (click)="onAction(i, 'ViewAPM')">
+                    <img src="../../../../assets/styles/images/APM.png" alt="View APM" style="width: 25px;"  >
+                   </a>
+                 
+                </span>
+                <span *ngSwitchCase="'faqLink'">
+                  <a *ngIf="data.VisibletoExternal === 'Yes'" href="javascript:void(0)" (click)="onAction(i, 'faqLink')">
+                    Click
+                   </a>
+                 
+                </span>
+                <span *ngSwitchCase="'img-download'">
+                  <a isEllipsisActive  class="content-text" href="javascript:void(0)" (click)="onAction(i, 'img-download')">
+                    Download Image
+                   </a>             
+                </span>
+                <span *ngSwitchCase="'download-file'">
+                  <a isEllipsisActive  class="content-text" href="javascript:void(0)" (click)="onAction(i, 'download-file')">
+                    Download File
+                   </a>             
+                </span>
+                <span *ngSwitchCase="'ColorCodeStatus'" class="textCenter">
+                  <ng-template [ngIf]="data.FeedStatus === 'Active'">
+                    <span class="pass">
+                      <i class="fa fa-circle"></i>
+                    </span>
+                  </ng-template>
+                  <ng-template [ngIf]="data.FeedStatus === ''||data.FeedStatus === 'Inactive'">
+                    <span class="fail">
+                      <i class="fa fa-circle"></i>
+                    </span>
+                  </ng-template>
+                </span>
+                <span *ngSwitchCase="'switchButton'">
+                  <ui-switch size="small"
+                             color="#0CBA14"
+                             defaultBgColor="#979797"
+                             checkedLabel="ON"
+                             uncheckedLabel="OFF"
+                             checkedTextColor="white"
+                             uncheckedTextColor="white"
+                             [checked]="getDeviceStatus(data)" (valueChange)="onSwitchAction(i, $event)">
+                  </ui-switch>
+                </span>
+                <span *ngSwitchCase="'switchButton-invoke'">
+                  <ui-switch size="small"
+                             color="#0CBA14"
+                             defaultBgColor="#979797"
+                             checkedLabel="Revoked"
+                             uncheckedLabel="Suspended"
+                             checkedTextColor="white"
+                             uncheckedTextColor="white"
+                             [checked]="getDeviceStatus(data)" (valueChange)="onSwitchAction(i, $event)">
+                  </ui-switch>
+                </span>
+                <span *ngSwitchCase="'switchButton-disable'">
+                  <ui-switch size="small"
+                             color="#0CBA14"
+                             defaultBgColor="#979797"
+                             [disabled]="true"
+                             checkedLabel="ON"
+                             uncheckedLabel="OFF"
+                             checkedTextColor="white"
+                             uncheckedTextColor="white"
+                             [checked]="getDeviceStatus(data)" (valueChange)="onSwitchAction(i, $event)">
+                  </ui-switch>
+                </span>
+               
+                <span *ngSwitchCase="'TextWithColor'" [ngStyle]="{ 'color': getColorName(key, i) }">
+                  <ng-container *ngIf="key?.displayName === 'Pending Approvals'; else defaultTextWithColor">
+                    <span style="cursor: pointer;" (click)="onAction(i, 'Edit')">{{data[key.objectKey]}}</span>
+                  </ng-container>
+                  <ng-template #defaultTextWithColor>
+                    <span>{{data[key.objectKey]}}</span>
+                  </ng-template>
+                </span>
+                <span *ngSwitchCase="'LinkWithSpecialCasynchar'">
+                  <a href="javascript:void(0)" (click)="onAction(i, 'SpecialCharClick')"> {{ key.SpecialChar }} </a>
+                </span>
+                <span *ngSwitchCase="'LinkWithSpecialChar'">
+                  <a href="javascript:void(0)" (click)="onAction(i, 'SpecialCharClick')"> {{ key.SpecialChar }} </a>
+                </span>
+                <span *ngSwitchCase="'TextWithHyperLink'" class="wordwrap" [innerHTML]="data[key.objectKey]  | safe: 'html'"></span>             
+                <span *ngSwitchCase="'TextWithOtherColumn'">{{ data[key.objectKey] +', ' + data[key.OtherColumn] }}</span>
+                <span *ngSwitchCase="'TextWithSeparator'">
+                  <a class="texthover wordwrap" href="javascript:void(0)" placement="bottom" [ngbPopover]="tipContent" triggers="mouseenter:mouseleave">
+                    {{ textSeprator(data[key.objectKey], key.separator) }}
+                  </a> 
+                </span>
+                <span *ngSwitchDefault>
+                  <!--Added for remove long text from Notification Grid ony for Mail To Column -->
+                  <ng-container *ngIf="key?.displayName === 'Mail To'; else defaultview">
+                    <span title="{{data[key.objectKey]}}">{{(data[key.objectKey].length>17 ? (data[key.objectKey] | slice:0:17) +'...' : data[key.objectKey] ) }}</span>
+                  </ng-container>
+                  <!-- Default Use -->
+                  <ng-template #defaultview>
+                    <!-- <span style="white-space: normal" class="content-text">{{data[key.objectKey]}}</span> -->
+                    <span isEllipsisActive  class="content-text">{{data[key.objectKey]}}</span>
+  
+                  </ng-template>
+                </span>
+              </div>
+            </ng-template>
+            <ng-template #tipContent>
+              <div [innerHTML]="textSepratorHover(data[key.objectKey], key.separator)"></div>
+            </ng-template>
+          </td>
+          <td *ngIf="headerMap?.config?.header?.action?.Placement=='Right'" style="width: 40px">
+            <a href="javascript:void(0)" (click)="onRowClick(i, data)"
+              *ngIf="headerMap.config?.header?.action?.Link">View</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!--Grid Paging-->
+    <nav aria-label="Page navigation" *ngIf="headerMap?.config?.paging && itemsCount != 0">
+      <div class="filter_pagination justify-content-end">
+        <div>
+          <div class="input-group">
+            <div>{{ 'TABLE.PAGINATION.GO_TO_PAGE' | translate }}</div>
+            <input class="gotoPage" #pageSelect type="number" min="1" (change)="goToPage(pageSelect.value)"
+              [value]="currentPage">
+          </div>
+        </div>
+        <div class="selectListing">
+          <div class="input-group">
+            <div>{{ 'TABLE.PAGINATION.SHOW_ROWS' | translate }}</div>
+            <div ngbDropdown>
+              <button class="btn btn-outline-primary" ngbDropdownToggle>{{itemsPerPage > 0 ? itemsPerPage : pageSizeOptions[0]}}</button>
+              <ul ngbDropdownMenu aria-labelledby="dropdownCustomFilter">
+                <li *ngFor="let item of pageSizeOptions;let i = index" ngbDropdownItem value={{item}} (click)="pageChangeClick(item)">{{item}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="input-group">
+            <div style="padding-right:0px;"> {{first}} - {{last}} of {{itemsCount}}</div>
+          </div>
+        </div>
+        <!--Previous button-->
+        <div class="nxt_prvWrap">
+          <a id="previous" tabindex="-1" title="Previous" (click)="previousPage()">
+            <i aria-label="Left arrow" class="fas fa-angle-left" role="img"></i></a>
+        </div>
+        <!--Next Button-->
+        <div class="nxt_prvWrap">
+          <a id="next" tabindex="-1" title="Next" (click)="nextPage()" >
+            <i aria-label="Right arrow" class="fas fa-angle-right" role="img"></i>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </div>
