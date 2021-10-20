@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, of, Observable } from 'rxjs';
+import { AccessManagement, User } from 'src/app/_models/user';
 import { environment } from 'src/environments/environment';
 import { ApiService } from './api.service';
 import { TokenStorageService } from "../_services/token-storage.service";
@@ -14,6 +15,13 @@ const httpOptions = {
 })
 export class AuthService {
   endpoint = environment.Setting.BaseAPIUrl;
+  private currentUserSubject: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
+  get currentUser(): Observable<User | null> {
+    return this.currentUserSubject.asObservable();
+  }
+  get currentUserValue(): User | null {
+    return this.currentUserSubject.value;
+  }
 
   constructor(
     private http: HttpClient,
