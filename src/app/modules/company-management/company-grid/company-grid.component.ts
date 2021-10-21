@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe, formatDate } from '@angular/common';
 import { FormControl } from '@angular/forms';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { ApiService } from 'src/app/_services/api.service';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -11,14 +13,33 @@ import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 })
 export class CompanyGridComponent implements OnInit {
 
+    dataSource: any;
+    itemsCount = 0;
 
     constructor(
         private router: Router,
-        private activeRoute: ActivatedRoute
+        private activeRoute: ActivatedRoute,
+        private apiService: ApiService,
+        private titleService: Title
     ) {
+        sessionStorage.setItem('AppTitle', 'Manage Companies');
     }
 
     ngOnInit() {
+        this.titleService.setTitle('ONE | Manage Users');
+        this.getAllCompany();
+    }
+
+
+    private getAllCompany() {
+        this.apiService.get('GetCompanies', {'apiKey': 'bIPXlfzvB1kHilurK4s@jjnOiDCoVQ', 'companyname': ''})
+            .subscribe(res => {                
+                this.dataSource = res.data.companies.company;
+                console.log(this.dataSource);
+            }, error => {
+                console.log(error);
+            });
+
     }
 
 }

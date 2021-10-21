@@ -7,7 +7,7 @@
 
         <div class="gridActionsGroup mb-2">
             <div class="actionsWrap">
-                <a href="adduser.htm"><i class="fas fa-plus-circle"></i> User</a>
+                <a [routerLink]="['/users/add']"><i class="fas fa-plus-circle"></i> User</a>
                 <a href="#"><i class="fas fa-exchange-alt"></i> Status</a>
                 <a href="#"><i class="fas fa-file-excel"></i> Excel</a>
                 <a href="#"><i class="fas fa-file-pdf"></i> PDF</a>
@@ -65,7 +65,7 @@
                         </td>
                         <td class="text-center">
                             <div class="action-btns">
-                                <a href="adduser.htm" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                <a [routerLink]="['/users/edit/', data.UserId]" title="Edit"><i class="fas fa-pencil-alt"></i></a>
                                 <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
                             </div>
                         </td>

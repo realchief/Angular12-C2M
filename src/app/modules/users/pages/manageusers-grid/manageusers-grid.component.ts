@@ -43,76 +43,7 @@ export class ManageUsersGridComponent implements OnInit, OnDestroy {
     GroupId: "1145",
     AccessToken: localStorage.getItem('AccessToken')
   };
-
-  HeaderMap: IHeaderMap = {
-    config: {
-      header: {
-        columns: [
-          {
-            objectKey: 'UserName',
-            displayName: 'User Name',
-            width: '15%'
-          },
-          {
-            objectKey: 'FirstName',
-            displayName: 'First Name',
-            width: '15%'
-          },
-          {
-            objectKey: 'LastName',
-            displayName: 'Last Name',
-            width: '15%'
-          },
-          {
-            objectKey: 'EmailAddress',
-            displayName: 'Email Address',
-            width: '15%'
-          },
-          {
-            objectKey: 'Phone',
-            displayName: 'Phone',
-            width: '15%'
-          },
-          {
-            objectKey: 'Status',
-            displayName: 'Status',
-            width: '8%'
-          },
-          {
-            objectKey: 'UserType',
-            displayName: 'User Type',
-            width: '12%'
-          },
-          {
-            objectKey: 'DateRegistered',
-            displayName: 'Created On',
-            dataType: 'Date',
-            format: environment.Setting.dateUsFormat, // 'MM/dd/yyyy',
-            timeZone: this.authService.currentUserValue?.TimeZone.toString(),
-            width: '10%'
-          },
-          {
-            objectKey: 'DateLastModified',
-            displayName: 'Modified On',
-            dataType: 'Date',
-            format: environment.Setting.dateUsFormat, // 'MM/dd/yyyy',
-            timeZone: this.authService.currentUserValue?.TimeZone.toString(),
-            width: '10%'
-          },
-        ],
-        action: {
-          Edit: true,
-          Delete: true,
-          Checkbox: true,
-          Placement: 'IsExternalShow',
-          DropDown: false
-        },
-        columnFilter: []
-      },
-      paging: true
-    }
-  };
-
+ 
   constructor(
     private router: Router,
     private activeRoute: ActivatedRoute,
