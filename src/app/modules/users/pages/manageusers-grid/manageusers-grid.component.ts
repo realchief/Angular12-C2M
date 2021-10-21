@@ -41,7 +41,7 @@ export class ManageUsersGridComponent implements OnInit, OnDestroy {
         GridFilters: "",
         UserId: "1683",
         GroupId: "1145",
-        AccessToken: "dr7qJfhvWlPQrJIt+VB6OdwmqaLfH1jnjitBjgcGSetiOtV1m9OyehuQCXUeGCrpEKbZh+4HbnA="
+        AccessToken: localStorage.getItem('AccessToken')
     };
 
     HeaderMap: IHeaderMap = {

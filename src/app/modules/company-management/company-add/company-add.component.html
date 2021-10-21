@@ -1,0 +1,151 @@
+<div class="mainContent content">
+    <h6>Company Profile</h6>
+    <div class="p-3"></div>
+    <form [formGroup]="addContactForm" (ngSubmit)="onSubmit()" class="row gy-3 gx-md-5">
+        <div class="col-md-6 col-lg-4">
+            <label for="input1" class="form-label">
+                Company Name*
+                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                    title="Help text to come here"></i>
+            </label>
+            <input id="company_name" type="text" formControlName="company_name" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.company_name.errors }" />
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <label for="input2" class="form-label">
+                Company Url*
+                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                    title="Help text to come here"></i>
+            </label>
+            <input id="company_url" type="text" formControlName="company_url" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.company_url.errors }" />
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <label for="input3" class="form-label">
+                Policy Bundle*
+                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                    title="Help text to come here"></i>
+            </label>
+            <select formControlName="policy_bundle" id="policy_bundle" class="form-select form-select-sm">
+                <option *ngFor="let policy_bundle_info of policy_bundle_list" [ngValue]="policy_bundle_info.id">{{policy_bundle_info.value}}</option>
+            </select>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <label for="input4" class="form-label">
+                Email Address*
+                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                    title="Help text to come here"></i>
+            </label>
+            <input id="emailaddress" type="text" formControlName="emailaddress" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.emailaddress.errors }" />
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <label for="input5" class="form-label">
+                Phone No*
+                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                    title="Help text to come here"></i>
+            </label>
+            <input id="phone" type="text" formControlName="phone" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <label for="input12" class="form-label">
+                Address Line 1*
+                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                    title="Help text to come here"></i>
+            </label>
+            <input id="address1" type="text" formControlName="address1" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.address1.errors }" />
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <label for="input13" class="form-label">
+                Address Line 2*
+                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                    title="Help text to come here"></i>
+            </label>
+            <input id="address2" type="text" formControlName="address2" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.address2.errors }" />
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <label for="input14" class="form-label">
+                Country*
+                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                    title="Help text to come here"></i>
+            </label>
+            <select formControlName="country" id="country" class="form-select form-select-sm">
+                <option *ngFor="let country of countries" [ngValue]="country.CountryId">{{country.CountryName}}</option>
+            </select>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <label for="input16" class="form-label">
+                State/Province*
+                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                    title="Help text to come here"></i>
+            </label>
+            <select formControlName="policy_bundle" id="policy_bundle" class="form-select form-select-sm">
+                <option *ngFor="let state_province of state_province_list" [ngValue]="state_province.id">{{state_province.value}}</option>
+            </select>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <label for="input15" class="form-label">
+                City*
+                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                    title="Help text to come here"></i>
+            </label>
+            <input id="city" type="text" formControlName="city" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <label for="input17" class="form-label">
+                Zip Code*
+                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                    title="Help text to come here"></i>
+            </label>
+            <input id="zip_code" type="text" formControlName="zip_code" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.zip_code.errors }" />
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <label for="input18" class="form-label">
+                Assign Space*
+                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                    title="Help text to come here"></i>
+            </label>
+            <div class="row">
+                <div class="col-4">
+                    <input id="assign_space" type="text" formControlName="assign_space" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.assign_space.errors }" />
+                </div>
+                <div class="col-8">
+                    <select formControlName="assign_space" id="assign_space" class="form-select form-select-sm">
+                        <option *ngFor="let assign_space_unit of assign_space_unit_list" [ngValue]="assign_space_unit.id">{{assign_space_unit.value}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="p-4"></div>
+
+    <form class="row gy-3 gx-md-5 ">
+        <div class="col-md-6 col-lg-4">
+            <label for="input20" class="form-label">
+                Show Space allocation user level*
+                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                    title="Help text to come here"></i>
+            </label>
+            <div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                        value="option1">
+                    <label class="form-check-label" for="inlineRadio1">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                        value="option2">
+                    <label class="form-check-label" for="inlineRadio2">No</label>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    <div class="p-2"></div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4 mb-4">
+        <button class="btn btn-link me-md-2" type="button">Cancel</button>
+        <button class="btn btn-dark me-md-2" type="button">Back</button>
+        <button class="btn btn-primary" type="submit">Save</button>
+    </div>
+
+</div>
