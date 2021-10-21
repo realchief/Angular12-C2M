@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe, formatDate } from '@angular/common';
 import { FormControl } from '@angular/forms';
@@ -11,7 +11,7 @@ import { Title } from '@angular/platform-browser';
     selector: 'app-company-grid',
     templateUrl: './company-grid.component.html'
 })
-export class CompanyGridComponent implements OnInit {
+export class CompanyGridComponent implements OnInit, OnDestroy {
 
     dataSource: any;
     itemsCount = 0;
@@ -22,11 +22,11 @@ export class CompanyGridComponent implements OnInit {
         private apiService: ApiService,
         private titleService: Title
     ) {
-        sessionStorage.setItem('AppTitle', 'Manage Companies');
+        sessionStorage.setItem('AppTitle', 'Manage Company');
     }
 
     ngOnInit() {
-        this.titleService.setTitle('ONE | Manage Users');
+        this.titleService.setTitle('ONE | Manage Company');
         this.getAllCompany();
     }
 
@@ -40,6 +40,10 @@ export class CompanyGridComponent implements OnInit {
                 console.log(error);
             });
 
+    }
+
+    ngOnDestroy() {
+        sessionStorage.removeItem('AppTitle');
     }
 
 }

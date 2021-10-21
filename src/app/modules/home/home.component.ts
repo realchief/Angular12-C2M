@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserService } from '../../_services/user.service';
 import { ApplicationService } from '../../_services/application.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -15,14 +16,21 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private applicationService: ApplicationService
+    private applicationService: ApplicationService,
+    private titleService: Title
   ) {
+    sessionStorage.setItem('AppTitle', 'C2M Apps');
     this.loadGrid();
     this.getUserProfile();
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle('ONE | Manage Company');
     
+  }
+
+  ngOnDestroy() {
+    sessionStorage.removeItem('AppTitle');
   }
 
   loadGrid() {

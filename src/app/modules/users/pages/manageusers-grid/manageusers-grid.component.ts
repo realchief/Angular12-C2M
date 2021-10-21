@@ -52,11 +52,11 @@ export class ManageUsersGridComponent implements OnInit, OnDestroy {
     private titleService: Title
   ) {
     this.dateFormat = environment.Setting.dateFormat;
-    sessionStorage.setItem('AppTitle', 'Manage Users');
+    sessionStorage.setItem('AppTitle', 'System Users');
   }
 
   ngOnInit() {
-    this.titleService.setTitle('ONE | Manage Users');
+    this.titleService.setTitle('ONE | System Users');
     this.bindUser(this.bodyData);
   }
 
