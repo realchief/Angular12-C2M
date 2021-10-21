@@ -18,6 +18,17 @@ export class ApiService {
     return headers;
   }
 
+  setHeaders_with_apikey() {
+    let headers;
+    const atoken = localStorage.getItem('AccessToken') || '';
+    const apikey = localStorage.getItem('APIKey') || '';
+    headers = new HttpHeaders({ 
+      accessToken: atoken,
+      apiKey: apikey
+    });
+    return headers;
+  }
+
   setParams(parameters: any) {
     let params = new HttpParams();
     if (parameters) {
@@ -38,6 +49,12 @@ export class ApiService {
 
   post(url: string, data: any, parameters?: any): Observable<any> {
     const headers = this.setHeaders();
+    const params = this.setParams(parameters);
+    return this.http.post<any>(`${this.endpoint}/${url}`, data, { headers, params });
+  }
+
+  postWithApiKey(url: string, data: any, parameters?: any): Observable<any> {
+    const headers = this.setHeaders_with_apikey();
     const params = this.setParams(parameters);
     return this.http.post<any>(`${this.endpoint}/${url}`, data, { headers, params });
   }

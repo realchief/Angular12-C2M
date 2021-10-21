@@ -30,7 +30,7 @@ export class AuthService {
   ) {
     const accessToken = localStorage.getItem('AccessToken');
     if (!accessToken) {
-      this.http.post(this.endpoint + 'GetAccessToken', {
+      this.http.post(this.endpoint + '/GetAccessToken', {
         UserName: environment.Setting.ADMIN_USERNAME,
         Password: environment.Setting.ADMIN_USER_PASSWORD,
         AppKey: environment.Setting.AppKey,
@@ -47,7 +47,7 @@ export class AuthService {
 
   login(username: string, password: string): Observable<any> {
     const accessToken = localStorage.getItem('AccessToken');
-    return this.http.post(this.endpoint + 'UserLogin', {
+    return this.http.post(this.endpoint + '/UserLogin', {
       EmailAddress: username,
       Password: password,
       AccessToken: accessToken
@@ -60,7 +60,7 @@ export class AuthService {
 
   forgotpassword(email: string): Observable<any> {
     let accessToken: any = localStorage.getItem('AccessToken');
-    return this.http.post(this.endpoint + 'SendCodeForResetPassword', {
+    return this.http.post(this.endpoint + '/SendCodeForResetPassword', {
       EmailAddress: email,
       AccessToken: accessToken,
       FromEmail: environment.Setting.FromEmail,
@@ -69,7 +69,7 @@ export class AuthService {
 
   resetpassword(code: string, email: string, password: string): Observable<any> {
     let accessToken: any = localStorage.getItem('AccessToken');
-    return this.http.post(this.endpoint + 'ResetPasswordByCode', {
+    return this.http.post(this.endpoint + '/ResetPasswordByCode', {
       EmailAddress: email,
       AccessToken: accessToken,
       Password: password,
@@ -82,7 +82,7 @@ export class AuthService {
   }
 
   register(username: string, email: string, password: string): Observable<any> {
-    return this.http.post(this.endpoint + 'SignUpUser', {
+    return this.http.post(this.endpoint + '/SignUpUser', {
       UserName: username,
       EmailAddress: email,
       FirstName: "Rohit",

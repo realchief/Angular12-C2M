@@ -28,7 +28,7 @@ export class TokenStorageService {
             "AppKey": environment.Setting.AppKey,
             "AppSecret": environment.Setting.AppSecret
         }
-        return this.http.post(this.endpoint + 'GetAccessToken', payload, httpOptions)
+        return this.http.post(this.endpoint + '/GetAccessToken', payload, httpOptions)
     }
     
     signOut(): void {

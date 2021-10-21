@@ -13,7 +13,7 @@ export const environment = {
     dateTimeFormat1: 'MM/dd/yyyy HH:mm:ss',
     dateTimeFormat2: 'dd/MM/yyyy hh:mm:ss a',
     dateTimeFormatNoSeconds: 'dd/MM/yyyy hh:mm a',
-    BaseAPIUrl: 'https://cloud-staging-icewebapi.c2m.net/api/',
+    BaseAPIUrl: 'https://cloud-staging-icewebapi.c2m.net/api',
     AppKey: "cxsr5nuDjC1PhvVgL5RR4IpHUDRvBx14", 
     AppSecret: "C2M",
     FromEmail: "E-Saleyard@landmark.com.au",
