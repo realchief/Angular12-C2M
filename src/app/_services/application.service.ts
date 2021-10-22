@@ -23,7 +23,9 @@ export class ApplicationService {
   }
 
   getProcesswf(){
-    return this.apiService.get(`GetMyAppsDetails?apiKey=${environment.Setting.ADMIN_USER_APIKey}`);
+    // const apikey = environment.Setting.ADMIN_USER_APIKey;
+    const apikey = localStorage.getItem("APIKey");
+    return this.apiService.get(`GetMyAppsDetails?apiKey=${apikey}`);
   }
 
   openTermsCondition() {
