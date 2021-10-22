@@ -16,10 +16,6 @@ import { ApiService } from "src/app/_services/api.service";
 export class CompanyAddComponent implements OnInit {
 
   addCompanyForm: FormGroup;
-  form: any = {
-    username: null,
-    password: null
-  };
   submitted = false;
   isCreatingFailed = false;
   errorMessage = '';
