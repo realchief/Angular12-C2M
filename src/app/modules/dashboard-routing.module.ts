@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AppAddComponent } from './home/app-add/app-add.component';
+import { AppGridComponent } from './home/app-grid/app-grid.component';
 import { AuthGuard } from "../_guards/auth.guard";
 import { DashboardComponent } from './dashboard.component';
 
@@ -16,8 +17,12 @@ const routes: Routes = [
                 component: HomeComponent
             },
             {
-                path: 'app-add',
+                path: 'app/add',
                 component: AppAddComponent
+            },
+            {
+                path: 'app',
+                component: AppGridComponent
             },
             {
                 path: 'company',

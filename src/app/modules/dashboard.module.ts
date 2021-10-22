@@ -13,6 +13,7 @@ import { ScrollTopComponent } from '../layouts/scroll-top/scroll-top.component';
 
 import { HomeComponent } from './home/home.component';
 import { AppAddComponent } from './home/app-add/app-add.component';
+import { AppGridComponent } from './home/app-grid/app-grid.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { AppAddComponent } from './home/app-add/app-add.component';
     MenuRightComponent,
     ScrollTopComponent,
     HomeComponent,
-    AppAddComponent
+    AppAddComponent,
+    AppGridComponent
   ],
   imports: [
     CommonModule,
