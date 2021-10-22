@@ -11,6 +11,9 @@
             </label>
             <input id="user_name" type="text" formControlName="user_name" class="form-control form-control-sm"
                 [ngClass]="{ 'is-invalid': submitted && f.user_name.errors }" />
+            <div *ngIf="submitted" class="alert alert-danger-small">
+                <div *ngIf="f.user_name.errors && f.user_name.errors.required">Username is required.</div>
+            </div>
         </div>
         <div class="col-md-6 col-lg-4">
             <label for="input2" class="form-label">
@@ -20,8 +23,8 @@
             </label>
             <input id="password" type="text" formControlName="password" class="form-control form-control-sm"
                 [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-            <div *ngIf="f.password.touched && f.password.invalid" class="alert alert-danger" style="font-size: 10px; font-style: italic; padding: 0;">
-                <div *ngIf="f.password.errors && f.password.errors.required">Password is required.</div>
+            <div *ngIf="submitted" class="alert alert-danger-small">
+                <div *ngIf="f.password.errors && f.password.errors.required">Confirm Password is required.</div>
             </div>
         </div>
         <div class="col-md-6 col-lg-4">
@@ -33,7 +36,7 @@
             <input id="confirm_password" type="text" formControlName="confirm_password"
                 class="form-control form-control-sm"
                 [ngClass]="{ 'is-invalid': submitted && f.confirm_password.errors }" />
-            <div class="alert alert-danger" style="font-size: 10px; font-style: italic; padding: 0;">
+            <div *ngIf="submitted" class="alert alert-danger-small">
                 <div *ngIf="f.confirm_password.errors && f.confirm_password.errors.required">Password is required.</div>
                 <div *ngIf="f.confirm_password.errors && f.confirm_password.errors.confirmedValidator">Password and Confirm Password must be match.</div>
             </div>
@@ -46,6 +49,9 @@
             </label>
             <input id="first_name" type="text" formControlName="first_name" class="form-control form-control-sm"
                 [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }" />
+            <div *ngIf="submitted" class="alert alert-danger-small">
+                <div *ngIf="f.first_name.errors && f.first_name.errors.required">First name is required.</div>
+            </div>
         </div>
         <div class="col-md-6 col-lg-4">
             <label for="input3" class="form-label">
@@ -55,6 +61,9 @@
             </label>
             <input id="middle_name" type="text" formControlName="middle_name" class="form-control form-control-sm"
                 [ngClass]="{ 'is-invalid': submitted && f.middle_name.errors }" />
+            <div *ngIf="submitted" class="alert alert-danger-small">
+                    <div *ngIf="f.middle_name.errors && f.middle_name.errors.required">Middle name is required.</div>
+                </div>
         </div>
         <div class="col-md-6 col-lg-4">
             <label for="input4" class="form-label">
@@ -64,6 +73,9 @@
             </label>
             <input id="last_name" type="text" formControlName="last_name" class="form-control form-control-sm"
                 [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }" />
+            <div *ngIf="submitted" class="alert alert-danger-small">
+                <div *ngIf="f.last_name.errors && f.last_name.errors.required">Last name is required.</div>
+            </div>
         </div>
         <div class="col-md-6 col-lg-4">
             <label for="input6" class="form-label">
@@ -73,6 +85,9 @@
             </label>
             <input id="title" type="text" formControlName="title" class="form-control form-control-sm"
                 [ngClass]="{ 'is-invalid': submitted && f.title.errors }" />
+            <div *ngIf="submitted" class="alert alert-danger-small">
+                <div *ngIf="f.title.errors && f.title.errors.required">Title is required.</div>
+            </div>  
         </div>
         <div class="col-md-6 col-lg-4">
             <label for="input5" class="form-label">
@@ -82,6 +97,9 @@
             </label>
             <input id="email" type="email" formControlName="email" class="form-control form-control-sm"
                 [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+            <div *ngIf="submitted" class="alert alert-danger-small">
+                <div *ngIf="f.email.errors && f.email.errors.required">Email is required.</div>
+            </div>  
         </div>
 
         <div class="col-md-6 col-lg-4">
@@ -102,6 +120,9 @@
                     </label>
                     <input id="phone" type="text" formControlName="phone" class="form-control form-control-sm"
                         [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+                    <div *ngIf="submitted" class="alert alert-danger-small">
+                        <div *ngIf="f.phone.errors && f.phone.errors.required">Phone is required.</div>
+                    </div>  
                 </div>
             </div>
         </div>
@@ -124,6 +145,9 @@
                     <input id="mobile_phone" type="text" formControlName="mobile_phone"
                         class="form-control form-control-sm"
                         [ngClass]="{ 'is-invalid': submitted && f.mobile_phone.errors }" />
+                    <div *ngIf="submitted" class="alert alert-danger-small">
+                        <div *ngIf="f.mobile_phone.errors && f.mobile_phone.errors.required">Mobile Phone is required.</div>
+                    </div>  
                 </div>
             </div>
         </div>
@@ -136,6 +160,9 @@
             </label>
             <input id="address1" type="text" formControlName="address1" class="form-control form-control-sm"
                 [ngClass]="{ 'is-invalid': submitted && f.address1.errors }" />
+            <div *ngIf="submitted" class="alert alert-danger-small">
+                <div *ngIf="f.address1.errors && f.address1.errors.required">Address1 is required.</div>
+            </div>  
         </div>
         <div class="col-md-6 col-lg-4">
             <label for="input14" class="form-label">
@@ -146,6 +173,9 @@
             <select formControlName="country" id="country" class="form-select form-select-sm"  [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
                 <option *ngFor="let country of countries" [ngValue]="country.CountryId">{{country.CountryName}}</option>
             </select>
+            <div *ngIf="submitted" class="alert alert-danger-small">
+                <div *ngIf="f.country.errors && f.country.errors.required">Country is required.</div>
+            </div>  
         </div>
 
         <div class="col-md-6 col-lg-4">
@@ -158,6 +188,9 @@
                 <option *ngFor="let state_province of state_province_list" [ngValue]="state_province.id">
                     {{state_province.value}}</option>
             </select>
+            <div *ngIf="submitted" class="alert alert-danger-small">
+                <div *ngIf="f.state.errors && f.state.errors.required">State is required.</div>
+            </div>  
         </div>
 
         <div class="col-md-6 col-lg-4">
@@ -168,6 +201,9 @@
             </label>
             <input id="city" type="text" formControlName="city" class="form-control form-control-sm"
                 [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
+            <div *ngIf="submitted" class="alert alert-danger-small">
+                <div *ngIf="f.city.errors && f.city.errors.required">City is required.</div>
+            </div> 
         </div>
         <div class="col-md-6 col-lg-4">
             <label for="input17" class="form-label">
@@ -177,6 +213,9 @@
             </label>
             <input id="zip_code" type="text" formControlName="zip_code" class="form-control form-control-sm"
                 [ngClass]="{ 'is-invalid': submitted && f.zip_code.errors }" />
+            <div *ngIf="submitted" class="alert alert-danger-small">
+                <div *ngIf="f.zip_code.errors && f.zip_code.errors.required">Zip code is required.</div>
+            </div> 
         </div>
 
         <div class="col-md-6 col-lg-4">
@@ -197,6 +236,9 @@
                             [ngValue]="assign_space_unit.id">{{assign_space_unit.value}}
                         </option>
                     </select>
+                    <div *ngIf="submitted" class="alert alert-danger-small">
+                        <div *ngIf="f.assign_space.errors && f.assign_space.errors.required">Assign space is required.</div>
+                    </div> 
                 </div>
             </div>
         </div>
@@ -210,6 +252,9 @@
             <select formControlName="company" id="company" class="form-select form-select-sm"  [ngClass]="{ 'is-invalid': submitted && f.company.errors }">
                 <option *ngFor="let company of companies" [ngValue]="company.ID">{{company.COMPANYNAME}}</option>
             </select>
+            <div *ngIf="submitted" class="alert alert-danger-small">
+                <div *ngIf="f.company.errors && f.company.errors.required">Company is required.</div>
+            </div>
         </div>
         <div class="col-md-6 col-lg-4">
             <label for="input7" class="form-label">
@@ -220,6 +265,9 @@
             <select formControlName="role" id="role" class="form-select form-select-sm"  [ngClass]="{ 'is-invalid': submitted && f.role.errors }">
                 <option *ngFor="let role of role_list" [ngValue]="role.id">{{role.value}}</option>
             </select>
+            <div *ngIf="submitted" class="alert alert-danger-small">
+                <div *ngIf="f.role.errors && f.role.errors.required">Role is required.</div>
+            </div>
         </div>
 
         <div class="col-md-6 col-lg-4">
@@ -230,6 +278,9 @@
             </label>
             <input id="photo" type="file" formControlName="photo" class="form-control form-control-sm"
                 [ngClass]="{ 'is-invalid': submitted && f.photo.errors }" />
+            <div *ngIf="submitted" class="alert alert-danger-small">
+                <div *ngIf="f.photo.errors && f.photo.errors.required">Photo is required.</div>
+            </div>
         </div>
 
 

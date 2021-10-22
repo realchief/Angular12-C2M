@@ -164,3 +164,9 @@ ul.dashList .dashWrap:hover .dashOverlay a:hover{color:#EA593C;}
 .dropdown-menu.activeClass {
     display: block;
 }
+
+.alert-danger-small  {
+    font-size: 10px; 
+    font-style: italic; 
+    padding: 0;
+}
