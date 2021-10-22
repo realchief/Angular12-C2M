@@ -70,7 +70,7 @@ export class ManageUsersAddComponent implements OnInit, OnDestroy {
       middle_name: ['', Validators.required],
       last_name: ['', Validators.required],
       title: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required],
       mobile_phone: ['', Validators.required],
       address1: ['', Validators.required],
