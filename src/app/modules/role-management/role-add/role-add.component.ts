@@ -22,6 +22,14 @@ export class RoleAddComponent implements OnInit, OnDestroy {
   countries: any[] = [];
   companies: any[] = [];
 
+  app_type_list = [
+    { id: 1, value: "option 1" },
+    { id: 2, value: "option 2" },
+    { id: 3, value: "option 3" },
+    { id: 4, value: "option 4" },
+    { id: 5, value: "option 5" }
+  ];
+
   constructor(
     private router: Router,
     private activeRoute: ActivatedRoute,

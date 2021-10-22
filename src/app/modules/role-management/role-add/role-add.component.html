@@ -44,9 +44,10 @@
                 App Type*
                 <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                     title="Help text to come here"></i>
-            </label>
-            <input id="app_type" type="text" formControlName="app_type" class="form-control form-control-sm"
-                [ngClass]="{ 'is-invalid': submitted && f.app_type.errors }" />
+            </label>   
+            <select formControlName="app_type" id="app_type" class="form-select form-select-sm"  [ngClass]="{ 'is-invalid': submitted && f.app_type.errors }">
+                <option *ngFor="let app_type of app_type_list" [ngValue]="app_type.id">{{app_type.value}}</option>
+            </select>
             <div *ngIf="submitted" class="alert alert-danger-small">
                 <div *ngIf="f.app_type.errors && f.app_type.errors.required">App type is required.</div>
             </div>
