@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from "./dashboard.component";
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
@@ -11,6 +12,7 @@ import { MenuRightComponent } from '../layouts/menu-right/menu-right.component';
 import { ScrollTopComponent } from '../layouts/scroll-top/scroll-top.component';
 
 import { HomeComponent } from './home/home.component';
+import { AppAddComponent } from './home/app-add/app-add.component';
 
 
 @NgModule({
@@ -21,14 +23,17 @@ import { HomeComponent } from './home/home.component';
     HeaderNavComponent,
     MenuRightComponent,
     ScrollTopComponent,
-    HomeComponent
+    HomeComponent,
+    AppAddComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
+    ReactiveFormsModule,
   ],
   exports: [
-    HomeComponent
+    HomeComponent,
+    AppAddComponent
   ],
   providers: [
   ],

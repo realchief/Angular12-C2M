@@ -10,12 +10,12 @@ import { ApiService } from "src/app/_services/api.service";
 
 
 @Component({
-  selector: 'app-add',
+  selector: 'app-app-add',
   templateUrl: './app-add.component.html'
 })
 export class AppAddComponent implements OnInit {
 
-  addCompanyForm: FormGroup;
+  addAppForm: FormGroup;
   form: any = {
     username: null,
     password: null
@@ -56,7 +56,7 @@ export class AppAddComponent implements OnInit {
     private apiService: ApiService,
   ) {
     this.getCountries();
-    this.addCompanyForm = this.formBuilder.group({
+    this.addAppForm = this.formBuilder.group({
       company_name: ['', Validators.required],
       company_url: ['', Validators.required],
       emailaddress: ['', Validators.required],
@@ -76,7 +76,7 @@ export class AppAddComponent implements OnInit {
   }
 
   get f() {
-    return this.addCompanyForm.controls;
+    return this.addAppForm.controls;
   }
 
   backClicked() {
