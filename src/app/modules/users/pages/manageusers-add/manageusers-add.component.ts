@@ -18,6 +18,7 @@ export class ManageUsersAddComponent implements OnInit, OnDestroy {
   isCreatingFailed = false;
   errorMessage = '';
   countries: any[] = [];
+  companies: any[] = [];
 
   policy_bundle_list = [
     { id: 1, value: "1" },
@@ -51,6 +52,7 @@ export class ManageUsersAddComponent implements OnInit, OnDestroy {
   ) {
     sessionStorage.setItem('AppTitle', 'Add a new System User');
     this.getCountries();
+    this.getAllCompany();
     this.addUserForm = this.formBuilder.group({
       user_name: ['', Validators.required],
       password: ['', Validators.required],
@@ -99,6 +101,17 @@ export class ManageUsersAddComponent implements OnInit, OnDestroy {
       }
     );
   }
+
+  getAllCompany() {
+    const apikey = localStorage.getItem("APIKey");
+    this.apiService.get('GetCompanies', {'apiKey': apikey, 'companyname': ''})
+        .subscribe(res => {                
+            this.companies = res.data.companies.company;
+            console.log(this.companies);
+        }, error => {
+            console.log(error);
+        });
+    }
 
   onSubmit(): void {
     this.submitted = true;
