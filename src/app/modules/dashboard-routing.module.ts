@@ -25,6 +25,11 @@ const routes: Routes = [
                 loadChildren: () => import('../modules/users/users.module').then(m => m.UsersModule)
             },
             {
+                path: 'systemusers',
+                canActivate: [AuthGuard],
+                loadChildren: () => import('../modules/systemusers/systemusers.module').then(m => m.SystemUsersModule)
+            },
+            {
                 path: 'events',
                 canActivate: [AuthGuard],
                 loadChildren: () => import('../modules/events/events.module').then(m => m.EventsModule),

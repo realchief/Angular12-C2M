@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IHeaderMap } from 'src/app/_models/plasmaGridInterface';
 import { environment } from 'src/environments/environment';
 import { DatePipe, formatDate } from '@angular/common';
 import { FormControl } from '@angular/forms';
@@ -10,10 +9,10 @@ import { ApiService } from 'src/app/_services/api.service';
 import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-users-grid',
-  templateUrl: './manageusers-grid.component.html'
+  selector: 'app-systemusers-grid',
+  templateUrl: './systemusers-grid.component.html'
 })
-export class ManageUsersGridComponent implements OnInit, OnDestroy {
+export class SystemUsersGridComponent implements OnInit, OnDestroy {
 
 
   encrypted: any;
@@ -52,11 +51,11 @@ export class ManageUsersGridComponent implements OnInit, OnDestroy {
     private titleService: Title
   ) {
     this.dateFormat = environment.Setting.dateFormat;
-    sessionStorage.setItem('AppTitle', 'Manage Users');
+    sessionStorage.setItem('AppTitle', 'System Users');
   }
 
   ngOnInit() {
-    this.titleService.setTitle('ONE | Manage Users');
+    this.titleService.setTitle('ONE | System Users');
     this.bindUser(this.bodyData);
   }
 
