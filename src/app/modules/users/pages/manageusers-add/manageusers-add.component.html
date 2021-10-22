@@ -27,7 +27,8 @@
                 <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                     title="Help text to come here"></i>
             </label>
-            <input id="confirm_password" type="text" formControlName="confirm_password" class="form-control form-control-sm"
+            <input id="confirm_password" type="text" formControlName="confirm_password"
+                class="form-control form-control-sm"
                 [ngClass]="{ 'is-invalid': submitted && f.confirm_password.errors }" />
         </div>
         <div class="col-md-6 col-lg-4">
@@ -92,8 +93,8 @@
                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                             title="Help text to come here"></i>
                     </label>
-                    <input id="phone" type="text" formControlName="phone" class="form-control form-control-sm" 
-                    [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+                    <input id="phone" type="text" formControlName="phone" class="form-control form-control-sm"
+                        [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
                 </div>
             </div>
         </div>
@@ -113,8 +114,9 @@
                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                             title="Help text to come here"></i>
                     </label>
-                    <input id="mobile_phone" type="text" formControlName="mobile_phone" class="form-control form-control-sm"
-                    [ngClass]="{ 'is-invalid': submitted && f.mobile_phone.errors }" />
+                    <input id="mobile_phone" type="text" formControlName="mobile_phone"
+                        class="form-control form-control-sm"
+                        [ngClass]="{ 'is-invalid': submitted && f.mobile_phone.errors }" />
                 </div>
             </div>
         </div>
@@ -126,7 +128,7 @@
                     title="Help text to come here"></i>
             </label>
             <input id="address1" type="text" formControlName="address1" class="form-control form-control-sm"
-            [ngClass]="{ 'is-invalid': submitted && f.address1.errors }" />
+                [ngClass]="{ 'is-invalid': submitted && f.address1.errors }" />
         </div>
         <div class="col-md-6 col-lg-4">
             <label for="input14" class="form-label">
@@ -225,72 +227,75 @@
                 [ngClass]="{ 'is-invalid': submitted && f.photo.errors }" />
         </div>
 
+
+
+        <div class="p-4"></div>
+        <label for="input7" class="form-label">
+            Email Preferences*
+            <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                title="Help text to come here"></i>
+        </label>
+        <div class="table-responsive">
+            <table class="table table-striped align-middle table-sm m-0">
+                <thead>
+                    <tr>
+                        <th>
+                            <i class="fas fa-filter"></i> Process Name
+                        </th>
+                        <th>
+                            <i class="fas fa-filter"></i> Role Name
+                        </th>
+                        <th>
+                            Process Email
+                        </th>
+                        <th>
+                            OBE Email
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            FM_Workorder_Workflow
+                        </td>
+                        <td>
+                            Work Order Lifecycle Workflow
+                        </td>
+                        <td class="text-center">
+                            <input type="checkbox" />
+                        </td>
+                        <td class="text-center">
+                            <input type="checkbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            FM_Workorder_Workflow
+                        </td>
+                        <td>
+                            Work Order Lifecycle Workflow
+                        </td>
+                        <td class="text-center">
+                            <input type="checkbox" />
+                        </td>
+                        <td class="text-center">
+                            <input type="checkbox" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="p-4"></div>
+
+        <div class="p-2"></div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4 mb-4">
+            <button class="btn btn-link me-md-2" type="button">Cancel</button>
+            <button class="btn btn-dark me-md-2" type="button">Back</button>
+            <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+
     </form>
 
-    <div class="p-4"></div>
-    <label for="input7" class="form-label">
-        Email Preferences*
-        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-            title="Help text to come here"></i>
-    </label>
-    <div class="table-responsive">
-        <table class="table table-striped align-middle table-sm m-0">
-            <thead>
-                <tr>
-                    <th>
-                        <i class="fas fa-filter"></i> Process Name
-                    </th>
-                    <th>
-                        <i class="fas fa-filter"></i> Role Name
-                    </th>
-                    <th>
-                        Process Email
-                    </th>
-                    <th>
-                        OBE Email
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        FM_Workorder_Workflow
-                    </td>
-                    <td>
-                        Work Order Lifecycle Workflow
-                    </td>
-                    <td class="text-center">
-                        <input type="checkbox" />
-                    </td>
-                    <td class="text-center">
-                        <input type="checkbox" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        FM_Workorder_Workflow
-                    </td>
-                    <td>
-                        Work Order Lifecycle Workflow
-                    </td>
-                    <td class="text-center">
-                        <input type="checkbox" />
-                    </td>
-                    <td class="text-center">
-                        <input type="checkbox" />
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="p-4"></div>
-
-    <div class="p-2"></div>
-
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4 mb-4">
-        <button class="btn btn-link me-md-2" type="button">Cancel</button>
-        <button class="btn btn-dark me-md-2" type="button">Back</button>
-        <button class="btn btn-primary" type="button">Save</button>
-    </div>
 </div>

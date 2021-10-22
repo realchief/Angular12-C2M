@@ -41,7 +41,7 @@ export class ManageUsersAddComponent implements OnInit, OnDestroy {
       { id: 2, value: "GB" },
       { id: 3, value: "TB" }
     ];
- 
+
   constructor(
     private router: Router,
     private activeRoute: ActivatedRoute,
@@ -50,7 +50,7 @@ export class ManageUsersAddComponent implements OnInit, OnDestroy {
     private titleService: Title,
     private formBuilder: FormBuilder,
   ) {
-    sessionStorage.setItem('AppTitle', 'Add a new System User');
+    sessionStorage.setItem('AppTitle', 'Add a new User');
     this.getCountries();
     this.getAllCompany();
     this.addUserForm = this.formBuilder.group({
@@ -70,14 +70,15 @@ export class ManageUsersAddComponent implements OnInit, OnDestroy {
       city: ['', Validators.required],
       zip_code: ['', Validators.required],
       assign_space: ['', Validators.required],
-      photo: ['', Validators.required]
+      photo: ['', Validators.required],
+      company: ['', Validators.required]
     });
   }
 
   ngOnInit() {
-    this.titleService.setTitle('ONE | Add a new System User');
+    this.titleService.setTitle('ONE | Add a new User');
   }
-  
+
   ngOnDestroy() {
     sessionStorage.removeItem('AppTitle');
   }
@@ -104,48 +105,49 @@ export class ManageUsersAddComponent implements OnInit, OnDestroy {
 
   getAllCompany() {
     const apikey = localStorage.getItem("APIKey");
-    this.apiService.get('GetCompanies', {'apiKey': apikey, 'companyname': ''})
-        .subscribe(res => {                
-            this.companies = res.data.companies.company;
-            console.log(this.companies);
-        }, error => {
-            console.log(error);
-        });
-    }
+    this.apiService.get('GetCompanies', { 'apiKey': apikey, 'companyname': '' })
+      .subscribe(res => {
+        this.companies = res.data.companies.company;
+        console.log(this.companies);
+      }, error => {
+        console.log(error);
+      });
+  }
 
   onSubmit(): void {
     this.submitted = true;
-    let form_data_payload = {
-      CountryId: this.f.country.value,
-      PolicyBundleIdntryId: this.f.policy_bundle.value,
-      ZipCode: this.f.zip_code.value,
-      Address1: this.f.address1.value,
-      Address2: this.f.address2.value,
-      StateId: this.f.state.value,
-      WebURL: this.f.company_url.value,
-      city: this.f.city.value,
-      emailaddress: this.f.emailaddress.value,
-      CompanyName: this.f.company_name.value,
-      Phone: this.f.phone.value,
-      CategoryIds: '13,15',
-      Description: 'test',
-      Domain: '12345678975'
-    }
-      this.apiService.postWithApiKey('v1/AddCompany', form_data_payload).subscribe(
-      data => {
-        console.log(data);
-        if (data.status == 'SUCCESS') {
-          this.router.navigate(['/company']);
-        } else {
-          this.errorMessage = data.data.response;
+    if (this.addUserForm.valid) {
+      let form_data_payload = {
+        FirstName: this.f.first_name.value,
+        MiddleName: this.f.middle_name.value,
+        LastName: this.f.last_name.value,
+        UserName: this.f.user_name.value,
+        PhoneNumber: this.f.phone.value,
+        PolicyBundleId: "11",
+        GroupId: '1464',
+        EmailAddress: this.f.email.value,
+        RoleIDs: '357,93,365,356',
+        EmailBody: "Hi, This is user Email Body defined by himself",
+        AccessToken: localStorage.getItem("AccessToken"),
+        Subject: this.f.title.value,
+        FromEmail: 'E-Saleyard@landmark.com.au'
+      }
+      this.apiService.postWithOutHeader('SignUpUser', form_data_payload).subscribe(
+        data => {
+          console.log(data);
+          if (data.status == 'SUCCESS') {
+            this.router.navigate(['/users']);
+          } else {
+            this.errorMessage = data.data.response;
+            this.isCreatingFailed = true;
+          }
+        },
+        err => {
+          this.errorMessage = err.error.message;
           this.isCreatingFailed = true;
         }
-      },
-      err => {
-        this.errorMessage = err.error.message;
-        this.isCreatingFailed = true;
-      }
-    );
+      );
+    }
   }
 
 }
