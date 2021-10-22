@@ -24,6 +24,12 @@ const routes: Routes = [
                 canActivate: [AuthGuard],
                 loadChildren: () => import('../modules/users/users.module').then(m => m.UsersModule)
             },
+            {
+                path: 'events',
+                canActivate: [AuthGuard],
+                loadChildren: () => import('../modules/events/events.module').then(m => m.EventsModule),
+                data: { breadcrumb: { label: 'Event Management', info: 'home' } }
+            },
         ] 
     }
 ];
