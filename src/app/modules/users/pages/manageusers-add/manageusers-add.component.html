@@ -20,6 +20,9 @@
             </label>
             <input id="password" type="text" formControlName="password" class="form-control form-control-sm"
                 [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+            <div *ngIf="f.password.touched && f.password.invalid" class="alert alert-danger" style="font-size: 10px; font-style: italic; padding: 0;">
+                <div *ngIf="f.password.errors && f.password.errors.required">Password is required.</div>
+            </div>
         </div>
         <div class="col-md-6 col-lg-4">
             <label for="input2" class="form-label">
@@ -30,6 +33,10 @@
             <input id="confirm_password" type="text" formControlName="confirm_password"
                 class="form-control form-control-sm"
                 [ngClass]="{ 'is-invalid': submitted && f.confirm_password.errors }" />
+            <div class="alert alert-danger" style="font-size: 10px; font-style: italic; padding: 0;">
+                <div *ngIf="f.confirm_password.errors && f.confirm_password.errors.required">Password is required.</div>
+                <div *ngIf="f.confirm_password.errors && f.confirm_password.errors.confirmedValidator">Password and Confirm Password must be match.</div>
+            </div>
         </div>
         <div class="col-md-6 col-lg-4">
             <label for="input2" class="form-label">
@@ -136,7 +143,7 @@
                 <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                     title="Help text to come here"></i>
             </label>
-            <select formControlName="country" id="country" class="form-select form-select-sm">
+            <select formControlName="country" id="country" class="form-select form-select-sm"  [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
                 <option *ngFor="let country of countries" [ngValue]="country.CountryId">{{country.CountryName}}</option>
             </select>
         </div>
@@ -147,7 +154,7 @@
                 <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                     title="Help text to come here"></i>
             </label>
-            <select formControlName="state" id="state" class="form-select form-select-sm">
+            <select formControlName="state" id="state" class="form-select form-select-sm" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
                 <option *ngFor="let state_province of state_province_list" [ngValue]="state_province.id">
                     {{state_province.value}}</option>
             </select>
@@ -185,9 +192,10 @@
                         [ngClass]="{ 'is-invalid': submitted && f.assign_space.errors }" />
                 </div>
                 <div class="col-8">
-                    <select formControlName="assign_space" id="assign_space" class="form-select form-select-sm">
+                    <select formControlName="assign_space" id="assign_space" class="form-select form-select-sm" [ngClass]="{ 'is-invalid': submitted && f.assign_space.errors }">
                         <option *ngFor="let assign_space_unit of assign_space_unit_list"
-                            [ngValue]="assign_space_unit.id">{{assign_space_unit.value}}</option>
+                            [ngValue]="assign_space_unit.id">{{assign_space_unit.value}}
+                        </option>
                     </select>
                 </div>
             </div>
@@ -199,7 +207,7 @@
                 <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                     title="Help text to come here"></i>
             </label>
-            <select formControlName="company" id="company" class="form-select form-select-sm">
+            <select formControlName="company" id="company" class="form-select form-select-sm"  [ngClass]="{ 'is-invalid': submitted && f.company.errors }">
                 <option *ngFor="let company of companies" [ngValue]="company.ID">{{company.COMPANYNAME}}</option>
             </select>
         </div>
@@ -209,11 +217,8 @@
                 <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                     title="Help text to come here"></i>
             </label>
-            <select class="form-select form-select-sm" id="input7">
-                <option>Option 1</option>
-                <option>Option 2</option>
-                <option>Option 3</option>
-                <option>Option 4</option>
+            <select formControlName="role" id="role" class="form-select form-select-sm"  [ngClass]="{ 'is-invalid': submitted && f.role.errors }">
+                <option *ngFor="let role of role_list" [ngValue]="role.id">{{role.value}}</option>
             </select>
         </div>
 

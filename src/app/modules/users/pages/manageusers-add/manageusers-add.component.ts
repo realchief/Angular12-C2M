@@ -6,6 +6,8 @@ import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { AuthService } from 'src/app/_services/auth.service';
 import { ApiService } from 'src/app/_services/api.service';
 import { Title } from '@angular/platform-browser';
+import { ConfirmedValidator } from 'src/app/auth/confirmed.validator';
+
 
 @Component({
   selector: 'app-users-add',
@@ -42,6 +44,13 @@ export class ManageUsersAddComponent implements OnInit, OnDestroy {
       { id: 3, value: "TB" }
     ];
 
+  role_list =
+    [
+      { id: 1, value: "role 1" },
+      { id: 2, value: "role 2" },
+      { id: 3, value: "role 3" }
+    ];
+
   constructor(
     private router: Router,
     private activeRoute: ActivatedRoute,
@@ -71,8 +80,13 @@ export class ManageUsersAddComponent implements OnInit, OnDestroy {
       zip_code: ['', Validators.required],
       assign_space: ['', Validators.required],
       photo: ['', Validators.required],
-      company: ['', Validators.required]
-    });
+      company: ['', Validators.required],
+      role: ['', Validators.required],      
+    },
+      {
+        validator: ConfirmedValidator('password', 'confirm_password')
+      }
+    );
   }
 
   ngOnInit() {
