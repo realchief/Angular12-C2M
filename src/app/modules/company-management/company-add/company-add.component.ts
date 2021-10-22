@@ -15,7 +15,7 @@ import { ApiService } from "src/app/_services/api.service";
 })
 export class CompanyAddComponent implements OnInit {
 
-  addContactForm: FormGroup;
+  addCompanyForm: FormGroup;
   form: any = {
     username: null,
     password: null
@@ -56,7 +56,7 @@ export class CompanyAddComponent implements OnInit {
     private apiService: ApiService,
   ) {
     this.getCountries();
-    this.addContactForm = this.formBuilder.group({
+    this.addCompanyForm = this.formBuilder.group({
       company_name: ['', Validators.required],
       company_url: ['', Validators.required],
       emailaddress: ['', Validators.required],
@@ -76,7 +76,7 @@ export class CompanyAddComponent implements OnInit {
   }
 
   get f() {
-    return this.addContactForm.controls;
+    return this.addCompanyForm.controls;
   }
 
   backClicked() {

@@ -24,28 +24,24 @@ export class AppAddComponent implements OnInit {
   isCreatingFailed = false;
   errorMessage = '';
   countries: any[] = [];
-  policy_bundle_list = [
+  patient_application_list = [
+    { id: 1, value: "application 1" },
+    { id: 2, value: "application 2" },
+    { id: 3, value: "application 3" },
+    { id: 4, value: "application 4" },
+    { id: 5, value: "application 5" }
+  ];
+  sort_order_list = [
     { id: 1, value: "1" },
     { id: 2, value: "2" },
     { id: 3, value: "3" },
     { id: 4, value: "4" },
-    { id: 5, value: "5" }
+    { id: 5, value: "5" },
+    { id: 6, value: "6" },
+    { id: 7, value: "7" },
+    { id: 8, value: "8" },
+    { id: 9, value: "9" },
   ];
-  state_province_list = [
-    { id: 116, value: "A" },
-    { id: 2, value: "B" },
-    { id: 3, value: "C" },
-    { id: 4, value: "D" },
-    { id: 5, value: "E" }
-  ];
-
-  assign_space_unit_list =
-    [
-      { id: 1, value: "MB" },
-      { id: 2, value: "GB" },
-      { id: 3, value: "TB" }
-    ];
-
   constructor(
     private http: HttpClient,
     private _location: Location,
@@ -57,18 +53,14 @@ export class AppAddComponent implements OnInit {
   ) {
     this.getCountries();
     this.addAppForm = this.formBuilder.group({
-      company_name: ['', Validators.required],
-      company_url: ['', Validators.required],
-      emailaddress: ['', Validators.required],
-      phone: ['', Validators.required],
-      address1: ['', Validators.required],
-      address2: ['', Validators.required],
-      country: ['', Validators.required],
-      city: ['', Validators.required],
-      zip_code: ['', Validators.required],
-      assign_space: ['', Validators.required],
-      policy_bundle: ['', Validators.required],
-      state: ['', Validators.required]
+      logo: ['', Validators.required],
+      patient_application: ['', Validators.required],
+      application_name: ['', Validators.required],
+      friendly_name: ['', Validators.required],
+      short_description: ['', Validators.required],
+      description: ['', Validators.required],
+      tags: ['', Validators.required],
+      sort_order: ['', Validators.required]
     });
   }
 
@@ -103,7 +95,7 @@ export class AppAddComponent implements OnInit {
     this.submitted = true;
     let form_data_payload = {
       CountryId: this.f.country.value,
-      PolicyBundleIdntryId: this.f.policy_bundle.value,
+      PolicyBundleIdntryId: this.f.patient_application.value,
       ZipCode: this.f.zip_code.value,
       Address1: this.f.address1.value,
       Address2: this.f.address2.value,
@@ -111,7 +103,7 @@ export class AppAddComponent implements OnInit {
       WebURL: this.f.company_url.value,
       city: this.f.city.value,
       emailaddress: this.f.emailaddress.value,
-      CompanyName: this.f.company_name.value,
+      logo: this.f.logo.value,
       Phone: this.f.phone.value,
       CategoryIds: '13,15',
       Description: 'test',
