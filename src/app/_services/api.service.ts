@@ -47,6 +47,12 @@ export class ApiService {
     return this.http.get<any>(`${this.endpoint}/${url}`, { headers, params });
   }
 
+  getWithApiKey(url: string, parameters?: any): Observable<any> {
+    const headers = this.setHeaders_with_apikey();
+    const params = this.setParams(parameters);
+    return this.http.get<any>(`${this.endpoint}/${url}`, { headers, params });
+  }
+
   post(url: string, data: any, parameters?: any): Observable<any> {
     const headers = this.setHeaders();
     const params = this.setParams(parameters);

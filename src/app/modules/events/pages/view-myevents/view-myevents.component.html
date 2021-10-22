@@ -41,264 +41,28 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr *ngFor="let data of dataSource; let i = index">
                     <td class="text-center">
                         <input type="checkbox" />
                     </td>
                     <td class="text-center">
                         <div class="action-btns">
-                            <a href="adduser.htm" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                            <a [routerLink]="['/events/editEvent/', data.eventid]" title="Edit"><i class="fas fa-pencil-alt"></i></a>
                             <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
                         </div>
                     </td>
                     <td>
-                        Activate Workflow
+                        {{data.eventname}}
                     </td>
                     <td>
-                        API
                     </td>
                     <td>
-                        Description to come here
+                        {{data.eventtitle}}
                     </td>
                     <td>
-                        Shahid Ailia
                     </td>
                     <td>
-                        20/05/2021
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center">
-                        <input type="checkbox" />
-                    </td>
-                    <td class="text-center">
-                        <div class="action-btns">
-                            <a href="adduser.htm" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
-                        </div>
-                    </td>
-                    <td>
-                        Activate Workflow
-                    </td>
-                    <td>
-                        API
-                    </td>
-                    <td>
-                        Description to come here
-                    </td>
-                    <td>
-                        Shahid Ailia
-                    </td>
-                    <td>
-                        20/05/2021
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center">
-                        <input type="checkbox" />
-                    </td>
-                    <td class="text-center">
-                        <div class="action-btns">
-                            <a href="adduser.htm" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
-                        </div>
-                    </td>
-                    <td>
-                        Activate Workflow
-                    </td>
-                    <td>
-                        API
-                    </td>
-                    <td>
-                        Description to come here
-                    </td>
-                    <td>
-                        Shahid Ailia
-                    </td>
-                    <td>
-                        20/05/2021
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center">
-                        <input type="checkbox" />
-                    </td>
-                    <td class="text-center">
-                        <div class="action-btns">
-                            <a href="adduser.htm" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
-                        </div>
-                    </td>
-                    <td>
-                        Activate Workflow
-                    </td>
-                    <td>
-                        API
-                    </td>
-                    <td>
-                        Description to come here
-                    </td>
-                    <td>
-                        Shahid Ailia
-                    </td>
-                    <td>
-                        20/05/2021
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center">
-                        <input type="checkbox" />
-                    </td>
-                    <td class="text-center">
-                        <div class="action-btns">
-                            <a href="adduser.htm" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
-                        </div>
-                    </td>
-                    <td>
-                        Activate Workflow
-                    </td>
-                    <td>
-                        API
-                    </td>
-                    <td>
-                        Description to come here
-                    </td>
-                    <td>
-                        Shahid Ailia
-                    </td>
-                    <td>
-                        20/05/2021
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center">
-                        <input type="checkbox" />
-                    </td>
-                    <td class="text-center">
-                        <div class="action-btns">
-                            <a href="adduser.htm" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
-                        </div>
-                    </td>
-                    <td>
-                        Activate Workflow
-                    </td>
-                    <td>
-                        API
-                    </td>
-                    <td>
-                        Description to come here
-                    </td>
-                    <td>
-                        Shahid Ailia
-                    </td>
-                    <td>
-                        20/05/2021
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center">
-                        <input type="checkbox" />
-                    </td>
-                    <td class="text-center">
-                        <div class="action-btns">
-                            <a href="adduser.htm" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
-                        </div>
-                    </td>
-                    <td>
-                        Activate Workflow
-                    </td>
-                    <td>
-                        API
-                    </td>
-                    <td>
-                        Description to come here
-                    </td>
-                    <td>
-                        Shahid Ailia
-                    </td>
-                    <td>
-                        20/05/2021
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center">
-                        <input type="checkbox" />
-                    </td>
-                    <td class="text-center">
-                        <div class="action-btns">
-                            <a href="adduser.htm" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
-                        </div>
-                    </td>
-                    <td>
-                        Activate Workflow
-                    </td>
-                    <td>
-                        API
-                    </td>
-                    <td>
-                        Description to come here
-                    </td>
-                    <td>
-                        Shahid Ailia
-                    </td>
-                    <td>
-                        20/05/2021
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center">
-                        <input type="checkbox" />
-                    </td>
-                    <td class="text-center">
-                        <div class="action-btns">
-                            <a href="adduser.htm" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
-                        </div>
-                    </td>
-                    <td>
-                        Activate Workflow
-                    </td>
-                    <td>
-                        API
-                    </td>
-                    <td>
-                        Description to come here
-                    </td>
-                    <td>
-                        Shahid Ailia
-                    </td>
-                    <td>
-                        20/05/2021
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center">
-                        <input type="checkbox" />
-                    </td>
-                    <td class="text-center">
-                        <div class="action-btns">
-                            <a href="adduser.htm" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
-                        </div>
-                    </td>
-                    <td>
-                        Activate Workflow
-                    </td>
-                    <td>
-                        API
-                    </td>
-                    <td>
-                        Description to come here
-                    </td>
-                    <td>
-                        Shahid Ailia
-                    </td>
-                    <td>
-                        20/05/2021
+                        {{data.CreatedDate}}
                     </td>
                 </tr>
             </tbody>
