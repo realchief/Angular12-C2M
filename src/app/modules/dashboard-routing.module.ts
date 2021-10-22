@@ -25,6 +25,11 @@ const routes: Routes = [
                 loadChildren: () => import('../modules/company-management/company-management.module').then(m => m.CompanyManagementModule)
             },
             {
+                path: 'role',
+                canActivate: [AuthGuard],
+                loadChildren: () => import('../modules/role-management/role-management.module').then(m => m.RoleManagementModule)
+            },
+            {
                 path: 'users',
                 canActivate: [AuthGuard],
                 loadChildren: () => import('../modules/users/users.module').then(m => m.UsersModule)
