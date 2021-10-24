@@ -53,14 +53,14 @@ export class AppAddComponent implements OnInit {
   ) {
     this.getCountries();
     this.addAppForm = this.formBuilder.group({
-      logo: ['', Validators.required],
+      logo: [''],
       patient_application: ['', Validators.required],
       application_name: ['', Validators.required],
       friendly_name: ['', Validators.required],
       short_description: ['', Validators.required],
-      description: ['', Validators.required],
-      tags: ['', Validators.required],
-      sort_order: ['', Validators.required]
+      description: [''],
+      tags: [''],
+      sort_order: ['']
     });
   }
 
@@ -113,7 +113,7 @@ export class AppAddComponent implements OnInit {
       data => {
         console.log(data);
         if (data.status == 'SUCCESS') {
-          this.router.navigate(['/company']);
+          this.router.navigate(['/app']);
         } else {
           this.errorMessage = data.data.response;
           this.isCreatingFailed = true;

@@ -15,10 +15,13 @@
                 Parent Application*
                 <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip" title="Help text to come here"></i>
             </label>
-            <select formControlName="patient_application" id="patient_application" class="form-select form-select-sm">
+            <select formControlName="patient_application" id="patient_application" class="form-select form-select-sm" [ngClass]="{ 'is-invalid': submitted && f.patient_application.errors }">
                 <option *ngFor="let patient_application_info of patient_application_list" [ngValue]="patient_application_info.id">
                     {{patient_application_info.value}}</option>
             </select>
+            <div *ngIf="submitted" class="alert alert-danger-small">
+                <div *ngIf="f.patient_application.errors && f.patient_application.errors.required">Parent application is required.</div>
+            </div>  
         </div>
         <div class="col-md-6 col-lg-4">
             <label for="input2" class="form-label">
@@ -27,6 +30,9 @@
             </label>
             <input id="application_name" type="text" formControlName="application_name" class="form-control form-control-sm"
                 [ngClass]="{ 'is-invalid': submitted && f.application_name.errors }" />
+            <div *ngIf="submitted" class="alert alert-danger-small">
+                <div *ngIf="f.application_name.errors && f.application_name.errors.required">Application name is required.</div>
+            </div>  
         </div>
         <div class="col-md-6 col-lg-4">
             <label for="input2" class="form-label">
@@ -35,6 +41,9 @@
             </label>
             <input id="friendly_name" type="text" formControlName="friendly_name" class="form-control form-control-sm"
                 [ngClass]="{ 'is-invalid': submitted && f.friendly_name.errors }" />
+            <div *ngIf="submitted" class="alert alert-danger-small">
+                <div *ngIf="f.friendly_name.errors && f.friendly_name.errors.required">Friendly name is required.</div>
+            </div>  
         </div>
 
         <div class="col-md-6 col-lg-4">
@@ -60,6 +69,9 @@
             </label>
             <input id="short_description" type="text" formControlName="short_description" class="form-control form-control-sm"
                 [ngClass]="{ 'is-invalid': submitted && f.short_description.errors }" />
+            <div *ngIf="submitted" class="alert alert-danger-small">
+                <div *ngIf="f.short_description.errors && f.short_description.errors.required">Short description is required.</div>
+            </div>  
         </div>
         <div class="col-md-6 col-lg-4">
             <label for="input3" class="form-label">

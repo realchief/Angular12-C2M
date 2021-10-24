@@ -55,7 +55,7 @@ export class CompanyAddComponent implements OnInit {
     this.addCompanyForm = this.formBuilder.group({
       company_name: ['', Validators.required],
       company_url: ['', Validators.required],
-      emailaddress: ['', Validators.required],
+      emailaddress: ['', Validators.required, Validators.email],
       phone: ['', Validators.required],
       address1: ['', Validators.required],
       address2: ['', Validators.required],
@@ -63,6 +63,7 @@ export class CompanyAddComponent implements OnInit {
       city: ['', Validators.required],
       zip_code: ['', Validators.required],
       assign_space: ['', Validators.required],
+      assign_space_unit: ['', Validators.required],
       policy_bundle: ['', Validators.required],
       state: ['', Validators.required]
     });

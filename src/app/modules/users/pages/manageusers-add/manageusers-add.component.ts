@@ -80,7 +80,7 @@ export class ManageUsersAddComponent implements OnInit, OnDestroy {
       zip_code: ['', Validators.required],
       assign_space: ['', Validators.required],
       company: ['', Validators.required],
-      photo: ['', Validators.required],
+      photo: [''],
       role: ['', Validators.required],      
     },
       {
