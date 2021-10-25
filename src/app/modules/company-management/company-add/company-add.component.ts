@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { Location } from '@angular/common';
 import { AuthService } from "src/app/_services/auth.service";
 import { TokenStorageService } from "src/app/_services/token-storage.service";
+import { Title } from '@angular/platform-browser';
 import { ApiService } from "src/app/_services/api.service";
 
 
@@ -47,6 +48,7 @@ export class CompanyAddComponent implements OnInit {
     private _location: Location,
     private formBuilder: FormBuilder,
     private router: Router,
+    private titleService: Title,
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
     private apiService: ApiService,
@@ -71,6 +73,7 @@ export class CompanyAddComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.titleService.setTitle('ONE | Add a new User');
   }
 
   get f() {
