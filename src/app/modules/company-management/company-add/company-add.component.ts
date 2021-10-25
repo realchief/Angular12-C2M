@@ -51,6 +51,7 @@ export class CompanyAddComponent implements OnInit {
     private tokenStorage: TokenStorageService,
     private apiService: ApiService,
   ) {
+    sessionStorage.setItem('AppTitle', 'Add a new Company');
     this.getCountries();
     this.addCompanyForm = this.formBuilder.group({
       company_name: ['', Validators.required],
