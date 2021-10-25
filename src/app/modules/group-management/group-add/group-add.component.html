@@ -1,0 +1,99 @@
+<div class="mainContent content">
+    <h6>Group Information</h6>
+    <div class="p-3"></div>
+
+    <form [formGroup]="addGroupForm" (ngSubmit)="onSubmit()" class="row gy-3 gx-md-5 ">
+        <div class="col-md-6 col-lg-4">
+            <label for="input1" class="form-label">
+                Group Name*
+                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                    title="Help text to come here"></i>
+            </label>
+            <input id="group_name" type="text" formControlName="group_name" class="form-control form-control-sm"
+                [ngClass]="{ 'is-invalid': submitted && f.group_name.errors }" />
+            <div *ngIf="submitted" class="alert alert-danger-small">
+                <div *ngIf="f.group_name.errors && f.group_name.errors.required">Group name is required.</div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <label for="input4" class="form-label">
+                Application*
+                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                    title="Help text to come here"></i>
+            </label>   
+            <select formControlName="application" id="application" class="form-select form-select-sm"  [ngClass]="{ 'is-invalid': submitted && f.application.errors }">
+                <option *ngFor="let app_type of application_list" [ngValue]="app_type.id">{{app_type.value}}</option>
+            </select>
+            <div *ngIf="submitted" class="alert alert-danger-small">
+                <div *ngIf="f.application.errors && f.application.errors.required">App type is required.</div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <label for="input2" class="form-label">
+                Group Type
+                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip" title="Help text to come here"></i>
+            </label>
+            <div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="group_type" id="user" value="user">
+                    <label class="form-check-label" for="user">User</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="group_type" id="role" value="role">
+                    <label class="form-check-label" for="role">Role</label>
+                </div>
+                <div *ngIf="submitted" class="alert alert-danger-small">
+                    <div *ngIf="f.group_type.errors && f.group_type.errors.required">Group type is required.</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <label for="input1" class="form-label">
+                All users*
+                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                    title="Help text to come here"></i>
+            </label>
+            <input id="all_users" type="text" formControlName="all_users" class="form-control form-control-sm"
+                [ngClass]="{ 'is-invalid': submitted && f.all_users.errors }" />
+            <div *ngIf="submitted" class="alert alert-danger-small">
+                <div *ngIf="f.all_users.errors && f.all_users.errors.required">All users is required.</div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <label for="input1" class="form-label">
+                Select user*
+                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                    title="Help text to come here"></i>
+            </label>
+            <input id="all_uers" type="text" formControlName="select_user" class="form-control form-control-sm"
+                [ngClass]="{ 'is-invalid': submitted && f.select_user.errors }" />
+            <div *ngIf="submitted" class="alert alert-danger-small">
+                <div *ngIf="f.select_user.errors && f.select_user.errors.required">All users is required.</div>
+            </div>
+        </div>
+
+        <div class="p-4"></div>
+
+        <div class="p-2"></div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4 mb-4">
+            <button class="btn btn-link me-md-2" type="button">Cancel</button>
+            <button class="btn btn-dark me-md-2" type="button">Back</button>
+            <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+
+    </form>
+
+    <div class="p-3"></div>
+
+    <div class="form-group">
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="submitted && isCreatingFailed"
+        >
+          Failed: {{ errorMessage }}
+        </div>
+    </div>
+
+</div>

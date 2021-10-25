@@ -25,6 +25,11 @@ const routes: Routes = [
                 component: AppGridComponent
             },
             {
+                path: 'group',
+                canActivate: [AuthGuard],
+                loadChildren: () => import('../modules/group-management/group-management.module').then(m => m.GroupManagementModule)
+            },
+            {
                 path: 'company',
                 canActivate: [AuthGuard],
                 loadChildren: () => import('../modules/company-management/company-management.module').then(m => m.CompanyManagementModule)
