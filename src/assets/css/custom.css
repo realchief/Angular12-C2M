@@ -170,3 +170,8 @@ ul.dashList .dashWrap:hover .dashOverlay a:hover{color:#EA593C;}
     font-style: italic; 
     padding: 0;
 }
+.text-sublink {
+    color: red; 
+    font-size: 15px; 
+    padding-right: 20px;
+}
