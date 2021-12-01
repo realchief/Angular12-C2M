@@ -186,4 +186,10 @@ ul.dashList .dashWrap:hover .dashOverlay a:hover{color:#EA593C;}
     font-size: 18px;
     font-weight: bold;
 }
+.modal-content {
+    border-radius: 15px;
+}
+.modal-dialog {
+    max-width: 600px;
+}
 

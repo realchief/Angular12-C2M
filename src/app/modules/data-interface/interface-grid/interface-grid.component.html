@@ -228,6 +228,19 @@
                         </label>
                         <input id="company_url" type="text"  class="form-control form-control-sm"/>
                     </div>
+                    <div class="col-md-12">
+                        <label for="input8" class="form-label">
+                            Categories
+                            <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                title="Help text to come here"></i>
+                        </label>
+                        <select class="form-select form-select-sm" id="input8">
+                            <option>Automotive</option>
+                            <option>Database</option>
+                            <option>Gateway</option>
+                            <option>Enterprise APIs</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
@@ -238,16 +251,45 @@
                             <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                 title="Help text to come here"></i>
                         </label>
+                    </div>
+                    <div class="col-md-12" style="text-align: center;">
                         <img class="img-responsive" id="preview-show" ng-show="filepreview" style="width: 200px; height: 200px;"/>
-                       
                     </div>
                     <div class="col-md-12" style="text-align: center;">
                         <p style="margin-top: 10px; font-size: 10px;">H 200Px: W 200Px</p>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12" style="text-align: center;">
                         <input type="file" fileinput="file" filepreview="filepreview" id="company-image" (change)="uploadPicture()"/>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-12" style="margin-top: 10px;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="input1" class="form-label">
+                            Brief Description
+                            <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                title="Help text to come here"></i>
+                        </label>
+                        <textarea id="company_description" cols="10" style="height: 100px;" class="form-control form-control-sm"></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="input2" class="form-label">
+                            Enter Tags
+                            <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                title="Help text to come here"></i>
+                        </label>
+                        <textarea id="company_tags" cols="10" style="height: 100px;" class="form-control form-control-sm"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" style="margin-top: 10px;">
+                <label for="input2" class="form-label">
+                    Sub Domain*
+                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                        title="Help text to come here"></i>
+                </label>
+                <input id="sub_domain" type="text"  class="form-control form-control-sm"/>
             </div>
         </div>
     </div>
