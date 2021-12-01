@@ -175,3 +175,15 @@ ul.dashList .dashWrap:hover .dashOverlay a:hover{color:#EA593C;}
     font-size: 15px; 
     padding-right: 20px;
 }
+.button-circle {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background: black;
+    color: white;
+}
+.modal-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+

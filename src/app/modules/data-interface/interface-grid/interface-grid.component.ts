@@ -5,6 +5,8 @@ import { FormControl } from '@angular/forms';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ApiService } from 'src/app/_services/api.service';
 import { Title } from '@angular/platform-browser';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
 
 
 @Component({
@@ -15,12 +17,15 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
 
     dataSource: any;
     itemsCount = 0;
+    closeResult: string = '';
+
 
     constructor(
         private router: Router,
         private activeRoute: ActivatedRoute,
         private apiService: ApiService,
-        private titleService: Title
+        private titleService: Title,
+        private modalService: NgbModal
     ) {
         sessionStorage.setItem('AppTitle', 'Data Interface');
     }
@@ -47,5 +52,34 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         sessionStorage.removeItem('AppTitle');
     }
+
+    uploadPicture() {
+      debugger;
+        const imgInt = <HTMLInputElement> document.getElementById('company-image');
+        const file = imgInt.files
+        if (file) {
+            const previewEle = <HTMLImageElement>document.getElementById('preview-show');
+            previewEle.src = URL.createObjectURL(file[0])
+        }
+
+    }
+
+    open(content:any) {
+        this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+          this.closeResult = `Closed with: ${result}`;
+        }, (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        });
+      }
+      
+      private getDismissReason(reason: any): string {
+        if (reason === ModalDismissReasons.ESC) {
+          return 'by pressing ESC';
+        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+          return 'by clicking on a backdrop';
+        } else {
+          return  `with: ${reason}`;
+        }
+      }
 
 }
