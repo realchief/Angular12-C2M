@@ -11,17 +11,22 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class MenuRightComponent implements OnInit {
 
     companynames = [
-        'Ant-Man',
-        'Aquaman',
-        'Asterix',
-        'The Atom',
-        'The Avengers',
-        'Batgirl',
-        'Batman',
-        'Batwoman'
+        'Microsoft',
+        'Oracle',
+        'Plasma Computing Group',
+        'Microsoft',
+        'Oracle',
+        'Plasma Computing Group',
+        'Microsoft',
+        'Oracle',
+        'Plasma Computing Group',
+        'Microsoft',
+        'Oracle',
+        'Plasma Computing Group'
     ]
 
     closeResult: string = '';
+
     constructor(
         private modalService: NgbModal
     ) {
