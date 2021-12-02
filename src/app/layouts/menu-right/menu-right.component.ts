@@ -1,5 +1,13 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TokenStorageService } from "src/app/_services/token-storage.service";
+import { Title } from '@angular/platform-browser';
+import { Location } from '@angular/common';
+import { AuthService } from "src/app/_services/auth.service";
+import { ApiService } from "src/app/_services/api.service";
 
 
 @Component({
@@ -9,6 +17,18 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
     encapsulation: ViewEncapsulation.None,
 })
 export class MenuRightComponent implements OnInit {
+
+    addCompanyForm: FormGroup;
+    submitted = false;
+    isCreatingFailed = false;
+    errorMessage = '';
+
+    categories = [
+        { id: 1, value: "Automotive" },
+        { id: 2, value: "Database" },
+        { id: 3, value: "Gateway" },
+        { id: 4, value: "Enterprise APIs" }
+    ];
 
     companynames = [
         'Microsoft',
@@ -30,12 +50,30 @@ export class MenuRightComponent implements OnInit {
     closeResult: string = '';
 
     constructor(
-        private modalService: NgbModal
+        private modalService: NgbModal,
+        private http: HttpClient,
+        private _location: Location,
+        private formBuilder: FormBuilder,
+        private router: Router,
+        private titleService: Title,
+        private authService: AuthService,
+        private tokenStorage: TokenStorageService,
+        private apiService: ApiService,
     ) {
+        this.addCompanyForm = this.formBuilder.group({
+            company_name: ['', Validators.required],
+            company_url: ['', Validators.required],        
+            sub_domain: ['', Validators.required]
+        });
     }
     ngOnInit() {
 
     }
+
+    get f() {
+        return this.addCompanyForm.controls;
+    }
+
     uploadPicture() {
         debugger;
         const imgInt = <HTMLInputElement>document.getElementById('company-image');
@@ -63,6 +101,15 @@ export class MenuRightComponent implements OnInit {
         } else {
             return `with: ${reason}`;
         }
+    }
+
+    onSubmit(): void {
+        console.log('hahaha');
+        this.submitted = true;
+    }
+
+    reloadPage(): void {
+        window.location.reload();
     }
 
 }

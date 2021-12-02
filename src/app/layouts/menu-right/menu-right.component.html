@@ -36,6 +36,7 @@
 
 
 <ng-template #mymodal let-modal>
+<form [formGroup]="addCompanyForm" (ngSubmit)="onSubmit()">
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Add New Company</h4>
         <button type="button" class="button button-circle" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -52,7 +53,11 @@
                             <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                 title="Help text to come here"></i>
                         </label>
-                        <input id="company_name" type="text"  class="form-control form-control-sm"/>
+                        <input id="company_name" type="text" formControlName="company_name" class="form-control form-control-sm"
+                            [ngClass]="{ 'is-invalid': submitted && f.company_name.errors }" />
+                        <div *ngIf="submitted" class="alert alert-danger-small">
+                            <div *ngIf="f.company_name.errors && f.company_name.errors.required">Company Name is required.</div>
+                        </div>
                     </div>
                     <div class="col-md-12">
                         <label for="input2" class="form-label">
@@ -60,20 +65,24 @@
                             <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                 title="Help text to come here"></i>
                         </label>
-                        <input id="company_url" type="text"  class="form-control form-control-sm"/>
+                        <input id="company_url" type="text" formControlName="company_url" class="form-control form-control-sm"
+                            [ngClass]="{ 'is-invalid': submitted && f.company_url.errors }" />
+                        <div *ngIf="submitted" class="alert alert-danger-small">
+                            <div *ngIf="f.company_url.errors && f.company_url.errors.required">Company Url is required.</div>
+                        </div>
                     </div>
                     <div class="col-md-12">
-                        <label for="input8" class="form-label">
+                        <label for="categories" class="form-label">
                             Categories
                             <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                 title="Help text to come here"></i>
                         </label>
-                        <select class="form-select form-select-sm" id="input8">
-                            <option>Automotive</option>
-                            <option>Database</option>
-                            <option>Gateway</option>
-                            <option>Enterprise APIs</option>
+                        <select formControlName="category" id="category" class="form-select form-select-sm"  [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
+                            <option *ngFor="let category of categories" [ngValue]="category.id">{{category.value}}</option>
                         </select>
+                        <div *ngIf="submitted" class="alert alert-danger-small">
+                            <div *ngIf="f.category.errors && f.category.errors.required">Category is required.</div>
+                        </div>  
                     </div>
                 </div>
             </div>
@@ -123,13 +132,19 @@
                     <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                         title="Help text to come here"></i>
                 </label>
-                <input id="sub_domain" type="text"  class="form-control form-control-sm"/>
+                <input id="sub_domain" type="text" formControlName="sub_domain" class="form-control form-control-sm"
+                            [ngClass]="{ 'is-invalid': submitted && f.sub_domain.errors }" />
+                <div *ngIf="submitted" class="alert alert-danger-small">
+                    <div *ngIf="f.sub_domain.errors && f.sub_domain.errors.required">Company Sub domain info is required.</div>
+                </div>
             </div>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
-        <button type="submit" class="btn btn-danger" (click)="modal.close('Save click')">Next</button>
+        <!-- <button type="submit" class="btn btn-danger" (click)="modal.close('Save click')">Next</button> -->
+        <button type="submit" class="btn btn-danger">Next</button>
     </div>
+</form>
 </ng-template>
 
