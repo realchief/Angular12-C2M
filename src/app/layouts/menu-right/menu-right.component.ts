@@ -25,6 +25,8 @@ export class MenuRightComponent implements OnInit {
         'Plasma Computing Group'
     ]
 
+    searchText = '';
+
     closeResult: string = '';
 
     constructor(

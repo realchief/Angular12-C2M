@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DashboardComponent } from "./dashboard.component";
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
@@ -15,6 +15,10 @@ import { HomeComponent } from './home/home.component';
 import { AppAddComponent } from './home/app-add/app-add.component';
 import { AppGridComponent } from './home/app-grid/app-grid.component';
 
+import { FilterPipe } from '../_pipes/filter.pipe'; 
+import { HighlightDirective } from '../_directives/highlight.directive';
+
+
 
 @NgModule({
   declarations: [
@@ -26,12 +30,15 @@ import { AppGridComponent } from './home/app-grid/app-grid.component';
     ScrollTopComponent,
     HomeComponent,
     AppAddComponent,
-    AppGridComponent
+    AppGridComponent,
+    FilterPipe,
+    HighlightDirective
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     ReactiveFormsModule,
+    FormsModule
   ],
   exports: [
     HomeComponent,
