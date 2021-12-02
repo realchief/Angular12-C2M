@@ -104,7 +104,7 @@ export class MenuRightComponent implements OnInit {
     }
 
     onSubmit(): void {
-        console.log('hahaha');
+        console.log('submitted');
         this.submitted = true;
     }
 

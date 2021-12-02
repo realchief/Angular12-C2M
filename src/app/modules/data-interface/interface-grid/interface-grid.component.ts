@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe, formatDate } from '@angular/common';
-import { FormControl } from '@angular/forms';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ApiService } from 'src/app/_services/api.service';
 import { Title } from '@angular/platform-browser';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Location } from '@angular/common';
 
 
 
@@ -19,20 +20,43 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
   itemsCount = 0;
   closeResult: string = '';
 
+  addCompanyForm: FormGroup;
+  submitted = false;
+  isCreatingFailed = false;
+  errorMessage = '';
+
+  categories = [
+    { id: 1, value: "Automotive" },
+    { id: 2, value: "Database" },
+    { id: 3, value: "Gateway" },
+    { id: 4, value: "Enterprise APIs" }
+  ];
+
 
   constructor(
     private router: Router,
     private activeRoute: ActivatedRoute,
     private apiService: ApiService,
     private titleService: Title,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private _location: Location,
+    private formBuilder: FormBuilder,
   ) {
     sessionStorage.setItem('AppTitle', 'Data Interface');
+    this.addCompanyForm = this.formBuilder.group({
+      company_name: ['', Validators.required],
+      company_url: ['', Validators.required],
+      sub_domain: ['', Validators.required]
+    });
   }
 
   ngOnInit() {
     this.titleService.setTitle('ONE | Data Interface');
     this.getAllCompany();
+  }
+
+  get f() {
+    return this.addCompanyForm.controls;
   }
 
 
@@ -81,5 +105,14 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
       return `with: ${reason}`;
     }
   }
+
+   onSubmit(): void {
+        console.log('hahaha');
+        this.submitted = true;
+    }
+
+    reloadPage(): void {
+        window.location.reload();
+    }
 
 }
