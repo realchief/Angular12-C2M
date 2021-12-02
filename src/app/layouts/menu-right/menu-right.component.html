@@ -12,67 +12,127 @@
                   <i class="fas fa-search"></i>
                 </span>
             </div>
+            <!-- <div class="form-group">
+                <label for="search-text">Search Text</label>
+                <input type="email" class="form-control" id="search-text" aria-describedby="search-text" 
+                  placeholder="Enter text to search" 
+                  autofocus>
+              </div> -->
             <div class="p-1"></div>
         </div>
         <div class="companiescontent">
-            <div class="p-1"></div>
-            <div class="right_bar_companies_list">
+            <div class="right_bar_companies_list" *ngFor="let companyname of companynames">
+                <div class="p-1"></div>
                 <div class="right_bar_avatar">
                     <img src="../../../assets/images/windows.svg" class="card-img b-avatar-img" alt="avatar">
                 </div>
                 <div class="right_bar_company_name_div">
-                    <p class="right_bar_company_name">Oracle</p>
+                    <p class="right_bar_company_name">{{companyname}}</p>
                 </div>
+                <div class="p-1"></div>
             </div>
-            <div class="p-1"></div>
-            <div class="right_bar_companies_list">
-                <div class="right_bar_avatar">
-                    <img src="../../../assets/images/windows.svg" class="card-img b-avatar-img" alt="avatar">
-                </div>
-                <div class="right_bar_company_name_div">
-                    <p class="right_bar_company_name">Microsoft</p>
-                </div>
-            </div>
-            <div class="p-1"></div>
-            <div class="right_bar_companies_list">
-                <div class="right_bar_avatar">
-                    <img src="../../../assets/images/windows.svg" class="card-img b-avatar-img" alt="avatar">
-                </div>
-                <div class="right_bar_company_name_div">
-                    <p class="right_bar_company_name">Plasma Computing Group</p>
-                </div>
-            </div>
-            <div class="p-1"></div>
-            <div class="right_bar_companies_list">
-                <div class="right_bar_avatar">
-                    <img src="../../../assets/images/windows.svg" class="card-img b-avatar-img" alt="avatar">
-                </div>
-                <div class="right_bar_company_name_div">
-                    <p class="right_bar_company_name">Landmark</p>
-                </div>
-            </div>
-            <div class="p-1"></div>
-            <div class="right_bar_companies_list">
-                <div class="right_bar_avatar">
-                    <img src="../../../assets/images/windows.svg" class="card-img b-avatar-img" alt="avatar">
-                </div>
-                <div class="right_bar_company_name_div">
-                    <p class="right_bar_company_name">Microsoft</p>
-                </div>
-            </div>
-            <div class="p-1"></div>
-            <div class="right_bar_companies_list">
-                <div class="right_bar_avatar">
-                    <img src="../../../assets/images/windows.svg" class="card-img b-avatar-img" alt="avatar">
-                </div>
-                <div class="right_bar_company_name_div">
-                    <p class="right_bar_company_name">Plasma Computing Group</p>
-                </div>
-            </div>
-            <div class="p-1"></div>
         </div>
         <div class="add_company_btn_div">
-            <button class="btn btn-danger add_company_btn">Add Company</button>
+            <button class="btn btn-danger add_company_btn" (click)="open(mymodal)">Add Company</button>
         </div>
     </div>
 </div>
+
+
+<ng-template #mymodal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add New Company</h4>
+        <button type="button" class="button button-circle" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="input1" class="form-label">
+                            Company Name*
+                            <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                title="Help text to come here"></i>
+                        </label>
+                        <input id="company_name" type="text"  class="form-control form-control-sm"/>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="input2" class="form-label">
+                            Company Url*
+                            <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                title="Help text to come here"></i>
+                        </label>
+                        <input id="company_url" type="text"  class="form-control form-control-sm"/>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="input8" class="form-label">
+                            Categories
+                            <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                title="Help text to come here"></i>
+                        </label>
+                        <select class="form-select form-select-sm" id="input8">
+                            <option>Automotive</option>
+                            <option>Database</option>
+                            <option>Gateway</option>
+                            <option>Enterprise APIs</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="input2" class="form-label">
+                            Company Logo*
+                            <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                title="Help text to come here"></i>
+                        </label>
+                    </div>
+                    <div class="col-md-12" style="text-align: center;">
+                        <img class="img-responsive" id="preview-show" ng-show="filepreview" style="width: 200px; height: 200px;"/>
+                    </div>
+                    <div class="col-md-12" style="text-align: center;">
+                        <p style="margin-top: 10px; font-size: 10px;">H 200Px: W 200Px</p>
+                    </div>
+                    <div class="col-md-12" style="text-align: center;">
+                        <input type="file" fileinput="file" filepreview="filepreview" id="company-image" (change)="uploadPicture()"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" style="margin-top: 10px;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="input1" class="form-label">
+                            Brief Description
+                            <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                title="Help text to come here"></i>
+                        </label>
+                        <textarea id="company_description" cols="10" style="height: 100px;" class="form-control form-control-sm"></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="input2" class="form-label">
+                            Enter Tags
+                            <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                title="Help text to come here"></i>
+                        </label>
+                        <textarea id="company_tags" cols="10" style="height: 100px;" class="form-control form-control-sm"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" style="margin-top: 10px;">
+                <label for="input2" class="form-label">
+                    Sub Domain*
+                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                        title="Help text to come here"></i>
+                </label>
+                <input id="sub_domain" type="text"  class="form-control form-control-sm"/>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
+        <button type="submit" class="btn btn-danger" (click)="modal.close('Save click')">Next</button>
+    </div>
+</ng-template>
