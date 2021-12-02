@@ -27,7 +27,12 @@ export class HeaderNavComponent implements OnInit {
   }
 
   show(): void {
-    this.ishidden = !this.ishidden;
+    // this.ishidden = !this.ishidden;
+    let element : any;
+    element = document.getElementsByClassName('menuRight')[0] ? document.getElementsByClassName('menuRight')[0] : null;
+    let displaytype = element.style.display;
+    displaytype = displaytype == 'block' ? 'none' : 'block';
+    element.style.display = displaytype;
   }
 
   logout(): void {

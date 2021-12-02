@@ -1,6 +1,3 @@
-.menuRight {
-    width: 15%;
-}
 .rightbar_title {
     color: black;
     font-size: 15px;
@@ -20,6 +17,7 @@
 }
 .right_bar_companies_list {
     display: flex;
+    margin-left: 5px;
 }
 .right_bar_company_name_div p {
     margin: 0;
@@ -29,4 +27,14 @@
 }
 .companiescontent {
     border-bottom: 1px solid #ddd;
+}
+.companiesheader .nav-search {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.add_company_btn_div {
+    padding: 10px;
+}
+.add_company_btn {
+    width: 100%;
 }
