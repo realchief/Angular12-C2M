@@ -1,0 +1,32 @@
+.menuRight {
+    width: 15%;
+}
+.rightbar_title {
+    color: black;
+    font-size: 15px;
+    margin-left: 10px;
+}
+.right_bar_avatar {
+    display: flex; 
+    align-items: center;
+    width: 30px;
+}
+.right_bar_company_name {
+    font-size: 13px;
+}
+.right_bar_company_name_div {
+    display: flex; 
+    align-items: center;
+}
+.right_bar_companies_list {
+    display: flex;
+}
+.right_bar_company_name_div p {
+    margin: 0;
+}
+.companiesheader {
+    border-bottom: 1px solid #ddd;
+}
+.companiescontent {
+    border-bottom: 1px solid #ddd;
+}
