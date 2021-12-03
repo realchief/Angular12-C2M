@@ -12,7 +12,8 @@ import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-interface-grid',
-  templateUrl: './interface-grid.component.html'
+  templateUrl: './interface-grid.component.html',
+  styleUrls: ['./interface-grid.component.css']
 })
 export class InterfaceGridComponent implements OnInit, OnDestroy {
 
@@ -111,12 +112,15 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
   }
 
    onSubmit(): void {
-        console.log('hahaha');
         this.submitted = true;
     }
 
     reloadPage(): void {
         window.location.reload();
+    }
+
+    gotoDatabase(): void {
+      this.router.navigate(['/data-interface/C2M-DI-MarketPlace/Microsoft/add-channel']);
     }
 
 }
