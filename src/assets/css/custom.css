@@ -214,3 +214,9 @@ ul.dashList .dashWrap:hover .dashOverlay a:hover{color:#EA593C;}
     width: 200px; 
     height: 200px;
 }
+.modal-header {
+    border: none;
+}
+.modal-footer {
+    border: none;
+}
