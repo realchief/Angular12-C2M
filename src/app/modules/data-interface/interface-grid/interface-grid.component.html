@@ -324,27 +324,59 @@
 </ng-template>
 
 <ng-template #addChannel let-modal>
-        <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">Add New Channel</h4>
-            <button type="button" class="button button-circle" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                <span aria-hidden="true">×</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <label class="form-label">What channel would you like to add?</label>
-            <div class="row mt-10">
-                <div class="col-md-3">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add New Channel</h4>
+        <button type="button" class="button button-circle" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <label class="form-label">What channel would you like to add?</label>
+        <div class="row mt-10 add_channel_btn_list">
+            <div class="col-md-3 add_channel_btn">
+                <div class="border_hover">
+                    <div class="add_channel_btn_image"> 
+                        <img src="../../../assets/images/device2.png" alt="avatar">                   
+                    </div>
+                    <div class="add_channel_btn_name">      
+                        Device                  
+                    </div>
                 </div>
-                <div class="col-md-3">
+            </div>
+            <div class="col-md-3 add_channel_btn">
+                <div class="border_hover">
+                    <div class="add_channel_btn_image">  
+                        <img src="../../../assets/images/api2.png" alt="avatar">                  
+                    </div>
+                    <div class="add_channel_btn_name">   
+                        API                 
+                    </div>
                 </div>
-                <div class="col-md-3">
+            </div>
+            <div class="col-md-3 add_channel_btn">
+                <div class="border_hover">
+                    <div class="add_channel_btn_image">  
+                        <img src="../../../assets/images/database3.jpeg" alt="avatar">                  
+                    </div>
+                    <div class="add_channel_btn_name">   
+                        Database                 
+                    </div>
                 </div>
-                <div class="col-md-3">
+            </div>
+            <div class="col-md-3 add_channel_btn">
+                <div class="border_hover">
+                    <div class="add_channel_btn_image">    
+                        <img src="../../../assets/images/fileimage2.jpeg" alt="avatar">                
+                    </div>
+                    <div class="add_channel_btn_name">   
+                        FlatFile                 
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
-            <button type="submit" class="btn btn-danger" (click)="modal.close('Save click')">Next</button>
-        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
+        <button type="submit" class="btn btn-danger" (click)="modal.close('Save click')">Next</button>
+    </div>
 </ng-template>

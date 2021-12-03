@@ -220,3 +220,31 @@ ul.dashList .dashWrap:hover .dashOverlay a:hover{color:#EA593C;}
 .modal-footer {
     border: none;
 }
+.add_channel_btn_list {
+    height: 200px;
+    padding: 5px;
+}
+.border_hover {
+    height: 100%;
+}
+.border_hover:hover {
+    border: solid 1px rgb(216, 16, 16);
+    color: rgb(216, 16, 16);
+}
+.add_channel_btn {    
+    height: 100%;   
+}
+.add_channel_btn_image {
+    border: solid 1px #ddd;
+    height: 70%;
+    padding: 10px;
+}
+.add_channel_btn_name {
+    border: solid 1px #ddd;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ddd; 
+    font-size: 12px;
+}
