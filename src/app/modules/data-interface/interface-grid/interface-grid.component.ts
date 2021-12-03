@@ -77,8 +77,12 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
     sessionStorage.removeItem('AppTitle');
   }
 
+  clickInputButton() {
+    const imgInt = <HTMLInputElement>document.getElementById('company-image');
+    imgInt.click();
+  }
+
   uploadPicture() {
-    debugger;
     const imgInt = <HTMLInputElement>document.getElementById('company-image');
     const file = imgInt.files
     if (file) {

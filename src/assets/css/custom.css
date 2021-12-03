@@ -192,4 +192,25 @@ ul.dashList .dashWrap:hover .dashOverlay a:hover{color:#EA593C;}
 .modal-dialog {
     max-width: 600px;
 }
-
+#subdomain_div{
+    border: 1px solid #ced4da; 
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.subdomain-label-div{
+    padding-left: 0px; 
+    padding-right: 0px; 
+    text-align: center; 
+    background-color: #ddd;
+}
+#sub_domain{
+    border: none;
+}
+#company-image {
+    display: none;
+}
+#preview-show {
+    background-color: #ddd; 
+    width: 200px; 
+    height: 200px;
+}

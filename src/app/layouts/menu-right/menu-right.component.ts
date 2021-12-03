@@ -74,8 +74,12 @@ export class MenuRightComponent implements OnInit {
         return this.addCompanyForm.controls;
     }
 
+    clickInputButton() {
+        const imgInt = <HTMLInputElement>document.getElementById('company-image');
+        imgInt.click();
+    }
+
     uploadPicture() {
-        debugger;
         const imgInt = <HTMLInputElement>document.getElementById('company-image');
         const file = imgInt.files
         if (file) {

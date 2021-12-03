@@ -261,13 +261,16 @@
                                     title="Help text to come here"></i>
                             </label>
                         </div>
-                        <div class="col-md-12" style="text-align: center;">
-                            <img class="img-responsive" id="preview-show" ng-show="filepreview" style="background-color: #ddd; width: 200px; height: 200px;"/>
+                        <div class="col-md-12 text-center">
+                            <img class="img-responsive" id="preview-show" ng-show="filepreview"/>
                         </div>
-                        <div class="col-md-12" style="text-align: center;">
+                        <div class="col-md-12 text-center">
                             <p style="margin-top: 10px; font-size: 10px;">H 200Px: W 200Px</p>
                         </div>
-                        <div class="col-md-12" style="text-align: center;">
+                        <div class="col-md-12 text-center">
+                            <button type="button" class="btn btn-outline-warning" (click)="clickInputButton()">Upload</button>
+                        </div>
+                        <div class="col-md-12 text-center">
                             <input type="file" fileinput="file" filepreview="filepreview" id="company-image" (change)="uploadPicture()"/>
                         </div>
                     </div>
@@ -297,9 +300,15 @@
                         Sub Domain*
                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                             title="Help text to come here"></i>
-                    </label>
-                    <input id="sub_domain" type="text" formControlName="sub_domain" class="form-control form-control-sm"
-                                [ngClass]="{ 'is-invalid': submitted && f.sub_domain.errors }" />
+                    </label>    
+                    <div class="row" id="subdomain_div">
+                        <div class="col-md-2 subdomain-label-div">https://</div>
+                        <div class="col-md-8 p-0">
+                            <input id="sub_domain" type="text" formControlName="sub_domain" class="form-control form-control-sm"
+                                    [ngClass]="{ 'is-invalid': submitted && f.sub_domain.errors }" />
+                        </div>
+                        <div class="col-md-2 subdomain-label-div" >.c2m.ent</div>
+                    </div>
                     <div *ngIf="submitted" class="alert alert-danger-small">
                         <div *ngIf="f.sub_domain.errors && f.sub_domain.errors.required">Company Sub domain info is required.</div>
                     </div>
