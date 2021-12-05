@@ -2,6 +2,10 @@
     display: flex;
     padding-bottom: 0px;
 }
-.addChannel_modal_header button{
+.addChannel_company_header {
+    display: flex;
+    padding-bottom: 0px;
+}
+.button-circle {
     margin-left: auto;
 }
