@@ -8,6 +8,7 @@ import { AuthService } from "src/app/_services/auth.service";
 import { TokenStorageService } from "src/app/_services/token-storage.service";
 import { Title } from '@angular/platform-browser';
 import { ApiService } from "src/app/_services/api.service";
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 
 @Component({
@@ -44,6 +45,29 @@ export class ChannelAddComponent implements OnInit {
     { id: 3, value: "3" },
     { id: 4, value: "4" }
   ];
+
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: 'auto',
+    minHeight: '550',
+    maxHeight: 'auto',
+    width: 'auto',
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: 'Enter text here...',
+    defaultParagraphSeparator: '',
+    defaultFontName: '',
+    defaultFontSize: '',
+    fonts: [
+      {class: 'arial', name: 'Arial'},
+      {class: 'times-new-roman', name: 'Times New Roman'},
+      {class: 'calibri', name: 'Calibri'},
+      {class: 'comic-sans-ms', name: 'Comic Sans MS'}
+    ]
+  };
 
   constructor(
     private http: HttpClient,

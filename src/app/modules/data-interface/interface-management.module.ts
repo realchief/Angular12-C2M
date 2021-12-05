@@ -6,6 +6,8 @@ import { InterfaceGridComponent } from './interface-grid/interface-grid.componen
 import { ChannelAddComponent } from './channel-add/channel-add.component';
 import { InterfaceRoutingModule } from './interface-management-routing.module'
 import { MatTabsModule } from '@angular/material/tabs';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     CommonModule,
     ReactiveFormsModule,
     InterfaceRoutingModule,
-    MatTabsModule
+    MatTabsModule,
+    AngularEditorModule
   ]
 })
 export class InterfaceManagementModule { }
