@@ -49,19 +49,21 @@
                             </div>
                         </div>
                         <div class="row db_channel_info">
-                            <label for="permission" class="form-label">
-                                Permission
-                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                    title="Help text to come here"></i>
-                            </label>
-                            <select formControlName="permission" id="permission" class="form-select form-select-sm">
-                                <option *ngFor="let permission of permissions" [ngValue]="permission.id">{{permission.value}}</option>
-                            </select>
+                            <div class="col-md-12 mt-30">
+                                <label for="permission" class="form-label">
+                                    Permission
+                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                        title="Help text to come here"></i>
+                                </label>
+                                <select formControlName="permission" id="permission" class="form-select form-select-sm">
+                                    <option *ngFor="let permission of permissions" [ngValue]="permission.id">{{permission.value}}</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="row db_channel_info">
-                            <div class="col-md-12">
+                            <div class="col-md-12 mt-30">
                                 <label for="input1" class="form-label">
                                     Channel Name*
                                     <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
@@ -73,7 +75,7 @@
                                     <div *ngIf="f.channel_name.errors && f.channel_name.errors.required">Channel Name is required.</div>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 mt-30">
                                 <label for="channel_type" class="form-label">
                                     Type
                                     <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
@@ -83,10 +85,15 @@
                                     <option *ngFor="let channel_type of channel_type_list" [ngValue]="channel_type.id">{{channel_type.value}}</option>
                                 </select>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 mt-30">
+                                <label for="channel_type" class="form-label">
+                                    Speficiations
+                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                        title="Help text to come here"></i>
+                                </label>
                                 <angular-editor [placeholder]="'Enter text here...'" [config]="editorConfig"></angular-editor>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 mt-30">
                                 <label for="input1" class="form-label">
                                     TTL Period
                                     <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
@@ -99,7 +106,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="row db_channel_info">
-                            <div class="col-md-12">
+                            <div class="col-md-12 mt-30">
                                 <label for="input1" class="form-label">
                                     Short Description
                                     <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
@@ -107,7 +114,7 @@
                                 </label>
                                 <textarea id="channel_description" cols="10" style="height: 100px;" class="form-control form-control-sm"></textarea>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 mt-30">
                                 <label for="input2" class="form-label">
                                     Enter Tags
                                     <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
@@ -115,7 +122,7 @@
                                 </label>
                                 <textarea id="channel_tags" cols="10" style="height: 100px;" class="form-control form-control-sm"></textarea>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 mt-30">
                                 <label for="navigation_tab" class="form-label">
                                     Navigation Tabs
                                     <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
@@ -125,7 +132,7 @@
                                     <option *ngFor="let navigation_tab of navigation_tab_list" [ngValue]="navigation_tab.id">{{navigation_tab.value}}</option>
                                 </select>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 mt-30">
                                 <label for="channel_ttl_rate" class="form-label">
                                     TTL Rate
                                     <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
@@ -145,7 +152,13 @@
                 </div>
             </mat-tab>
             <mat-tab label="2. Resources"> 
-                Resources
+                <div class="row mt-10 db_channel_list">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark">Cancel</button>
+                    <button type="submit" class="btn btn-secondary">Save</button>
+                    <button type="button" class="btn btn-danger">Pevious</button>
+                </div>
             </mat-tab>       
         </mat-tab-group>
     </form>
