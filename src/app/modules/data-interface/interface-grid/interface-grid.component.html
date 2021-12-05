@@ -26,8 +26,8 @@
     <div class="p-2"></div>
     <div class="gridActionsGroup mb-2">
         <div class="actionsWrap" style="margin-left: 0; width: 100%;">
-            <h6 style="margin: 0px;">Channels</h6>
-            <a (click)="open(addChannel)" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Channel</a>
+            <h6 class="content-label">Channels</h6>
+            <a (click)="open(addChannel)" class="pluschannel" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Channel</a>
         </div>
     </div>
     <div class="card mb-3">
@@ -271,8 +271,8 @@
                                 <div class="col-md-12 text-center">
                                     <button type="button" class="btn btn-outline-warning" (click)="clickInputButton()">Upload</button>
                                 </div>
-                                <div class="col-md-12 text-center" style="display: none;">
-                                    <input type="file" fileinput="file" filepreview="filepreview" id="channel-image" (change)="uploadPicture()"/>
+                                <div class="col-md-12 text-center">
+                                    <input type="file" fileinput="file" filepreview="filepreview" id="company-image" (change)="uploadPicture()"/>
                                 </div>
                             </div>
                         </div>

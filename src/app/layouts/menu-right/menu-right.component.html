@@ -37,123 +37,126 @@
 
 <ng-template #mymodal let-modal>
     <form [formGroup]="addCompanyForm" (ngSubmit)="onSubmit()">
-        <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">Add New Company</h4>
+        <div class="modal-header addChannel_company_header">
             <button type="button" class="button button-circle" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">×</span>
             </button>
         </div>
-        <div class="modal-body">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label for="input1" class="form-label">
-                                Company Name*
-                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                    title="Help text to come here"></i>
-                            </label>
-                            <input id="company_name" type="text" formControlName="company_name" class="form-control form-control-sm"
-                                [ngClass]="{ 'is-invalid': submitted && f.company_name.errors }" />
-                            <div *ngIf="submitted" class="alert alert-danger-small">
-                                <div *ngIf="f.company_name.errors && f.company_name.errors.required">Company Name is required.</div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <label for="input2" class="form-label">
-                                Company Url*
-                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                    title="Help text to come here"></i>
-                            </label>
-                            <input id="company_url" type="text" formControlName="company_url" class="form-control form-control-sm"
-                                [ngClass]="{ 'is-invalid': submitted && f.company_url.errors }" />
-                            <div *ngIf="submitted" class="alert alert-danger-small">
-                                <div *ngIf="f.company_url.errors && f.company_url.errors.required">Company Url is required.</div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <label for="categories" class="form-label">
-                                Categories
-                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                    title="Help text to come here"></i>
-                            </label>
-                            <select formControlName="category" id="category" class="form-select form-select-sm"  [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
-                                <option *ngFor="let category of categories" [ngValue]="category.id">{{category.value}}</option>
-                            </select>
-                            <div *ngIf="submitted" class="alert alert-danger-small">
-                                <div *ngIf="f.category.errors && f.category.errors.required">Category is required.</div>
-                            </div>  
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label for="input2" class="form-label">
-                                Company Logo*
-                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                    title="Help text to come here"></i>
-                            </label>
-                        </div>
-                        <div class="col-md-12 text-center">
-                            <img class="img-responsive" id="preview-show" ng-show="filepreview"/>
-                        </div>
-                        <div class="col-md-12 text-center">
-                            <p style="margin-top: 10px; font-size: 10px;">H 200Px: W 200Px</p>
-                        </div>
-                        <div class="col-md-12 text-center">
-                            <button type="button" class="btn btn-outline-warning" (click)="clickInputButton()">Upload</button>
-                        </div>
-                        <div class="col-md-12 text-center">
-                            <input type="file" fileinput="file" filepreview="filepreview" id="company-image" (change)="uploadPicture()"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12" style="margin-top: 10px;">
+        <mat-tab-group>
+            <mat-tab label="Add New Company">
+                <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="input1" class="form-label">
-                                Brief Description
-                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                    title="Help text to come here"></i>
-                            </label>
-                            <textarea id="company_description" cols="10" style="height: 100px;" class="form-control form-control-sm"></textarea>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="input1" class="form-label">
+                                        Company Name*
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="company_name" type="text" formControlName="company_name" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.company_name.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.company_name.errors && f.company_name.errors.required">Company Name is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="input2" class="form-label">
+                                        Company Url*
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="company_url" type="text" formControlName="company_url" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.company_url.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.company_url.errors && f.company_url.errors.required">Company Url is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="categories" class="form-label">
+                                        Categories
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <select formControlName="category" id="category" class="form-select form-select-sm"  [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
+                                        <option *ngFor="let category of categories" [ngValue]="category.id">{{category.value}}</option>
+                                    </select>
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.category.errors && f.category.errors.required">Category is required.</div>
+                                    </div>  
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="input2" class="form-label">
+                                        Company Logo*
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <img class="img-responsive" id="preview-show" ng-show="filepreview"/>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <p style="margin-top: 10px; font-size: 10px;">H 200Px: W 200Px</p>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <button type="button" class="btn btn-outline-warning" (click)="clickInputButton()">Upload</button>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <input type="file" fileinput="file" filepreview="filepreview" id="company-image" (change)="uploadPicture()"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="margin-top: 10px;">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="input1" class="form-label">
+                                        Brief Description
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <textarea id="company_description" cols="10" style="height: 100px;" class="form-control form-control-sm"></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="input2" class="form-label">
+                                        Enter Tags
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <textarea id="company_tags" cols="10" style="height: 100px;" class="form-control form-control-sm"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="margin-top: 10px;">
                             <label for="input2" class="form-label">
-                                Enter Tags
+                                Sub Domain*
                                 <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                     title="Help text to come here"></i>
-                            </label>
-                            <textarea id="company_tags" cols="10" style="height: 100px;" class="form-control form-control-sm"></textarea>
+                            </label>    
+                            <div class="row" id="subdomain_div">
+                                <div class="col-md-2 subdomain-label-div">https://</div>
+                                <div class="col-md-8 p-0">
+                                    <input id="sub_domain" type="text" formControlName="sub_domain" class="form-control form-control-sm"
+                                            [ngClass]="{ 'is-invalid': submitted && f.sub_domain.errors }" />
+                                </div>
+                                <div class="col-md-2 subdomain-label-div" >.c2m.ent</div>
+                            </div>
+                            <div *ngIf="submitted" class="alert alert-danger-small">
+                                <div *ngIf="f.sub_domain.errors && f.sub_domain.errors.required">Company Sub domain info is required.</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12" style="margin-top: 10px;">
-                    <label for="input2" class="form-label">
-                        Sub Domain*
-                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                            title="Help text to come here"></i>
-                    </label>    
-                    <div class="row" id="subdomain_div">
-                        <div class="col-md-2 subdomain-label-div">https://</div>
-                        <div class="col-md-8 p-0">
-                            <input id="sub_domain" type="text" formControlName="sub_domain" class="form-control form-control-sm"
-                                    [ngClass]="{ 'is-invalid': submitted && f.sub_domain.errors }" />
-                        </div>
-                        <div class="col-md-2 subdomain-label-div" >.c2m.ent</div>
-                    </div>
-                    <div *ngIf="submitted" class="alert alert-danger-small">
-                        <div *ngIf="f.sub_domain.errors && f.sub_domain.errors.required">Company Sub domain info is required.</div>
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
+                    <!-- <button type="submit" class="btn btn-danger" (click)="modal.close('Save click')">Next</button> -->
+                    <button type="submit" class="btn btn-danger">Next</button>
                 </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
-            <!-- <button type="submit" class="btn btn-danger" (click)="modal.close('Save click')">Next</button> -->
-            <button type="submit" class="btn btn-danger">Next</button>
-        </div>
+            </mat-tab>
+        </mat-tab-group>
     </form>
 </ng-template>
 

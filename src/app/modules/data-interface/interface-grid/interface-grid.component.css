@@ -9,3 +9,22 @@
 .button-circle {
     margin-left: auto;
 }
+.content-label {
+    margin: 0 0 0 10px;
+    font-size: 15px;
+}
+.fa-plus-circle:hover {
+    cursor: pointer;
+}
+.pluschannel:hover {
+    cursor: pointer;
+}
+.action-btns.card-title .button:hover{
+    cursor: pointer;
+}
+.card-title h6 {
+    font-size: 14px;
+}
+.add_channel_btn:hover {
+    cursor: pointer;
+}

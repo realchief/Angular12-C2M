@@ -47,7 +47,8 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
     this.addCompanyForm = this.formBuilder.group({
       company_name: ['', Validators.required],
       company_url: ['', Validators.required],
-      sub_domain: ['', Validators.required]
+      sub_domain: ['', Validators.required],
+      category: ['']
     });
   }
 
@@ -80,6 +81,7 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
 
   clickInputButton() {
     const imgInt = <HTMLInputElement>document.getElementById('company-image');
+    console.log(imgInt);
     imgInt.click();
   }
 

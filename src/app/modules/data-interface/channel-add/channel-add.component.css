@@ -8,3 +8,6 @@
 .mt-30 {
     margin-top: 30px;
 }
+#channel-image {
+    display: none;
+}

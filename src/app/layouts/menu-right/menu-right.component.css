@@ -19,6 +19,10 @@
     display: flex;
     margin-left: 5px;
 }
+.right_bar_companies_list:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
 .right_bar_company_name_div p {
     margin: 0;
 }
@@ -27,6 +31,10 @@
 }
 .companiescontent {
     border-bottom: 1px solid #ddd;
+}
+.companiesheader h6{
+    font-size: 15px;
+    margin-left: 10px;
 }
 .companiesheader .nav-search {
     margin-left: 10px;
@@ -37,4 +45,15 @@
 }
 .add_company_btn {
     width: 100%;
+}
+.button-circle {
+    margin-left: auto;
+}
+.addChannel_modal_header {
+    display: flex;
+    padding-bottom: 0px;
+}
+.addChannel_company_header {
+    display: flex;
+    padding-bottom: 0px;
 }

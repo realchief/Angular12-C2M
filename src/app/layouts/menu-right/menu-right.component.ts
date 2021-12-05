@@ -63,7 +63,8 @@ export class MenuRightComponent implements OnInit {
         this.addCompanyForm = this.formBuilder.group({
             company_name: ['', Validators.required],
             company_url: ['', Validators.required],        
-            sub_domain: ['', Validators.required]
+            sub_domain: ['', Validators.required],
+            category: ['']
         });
     }
     ngOnInit() {
@@ -76,6 +77,7 @@ export class MenuRightComponent implements OnInit {
 
     clickInputButton() {
         const imgInt = <HTMLInputElement>document.getElementById('company-image');
+        console.log(imgInt);
         imgInt.click();
     }
 

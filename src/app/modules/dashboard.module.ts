@@ -17,6 +17,7 @@ import { AppGridComponent } from './home/app-grid/app-grid.component';
 
 import { FilterPipe } from '../_pipes/filter.pipe'; 
 import { HighlightDirective } from '../_directives/highlight.directive';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 
@@ -38,7 +39,8 @@ import { HighlightDirective } from '../_directives/highlight.directive';
     CommonModule,
     DashboardRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatTabsModule
   ],
   exports: [
     HomeComponent,
