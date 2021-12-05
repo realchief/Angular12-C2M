@@ -1,0 +1,7 @@
+.addChannel_modal_header {
+    display: flex;
+    padding-bottom: 0px;
+}
+.addChannel_modal_header button{
+    margin-left: auto;
+}
