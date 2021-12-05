@@ -22,7 +22,7 @@
             <a style="margin: 0px; font-size: 16px;" (click)="backClicked()">< Back </a>
         </div>
     </div>
-    <form [formGroup]="addChannelForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="addChannelForm" (ngSubmit)="onSubmit()" >
         <mat-tab-group>
             <mat-tab label="1. Channel Info">
                 <div class="row mt-10 db_channel_list">
