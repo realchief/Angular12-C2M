@@ -248,3 +248,11 @@ ul.dashList .dashWrap:hover .dashOverlay a:hover{color:#EA593C;}
     background-color: #ddd; 
     font-size: 12px;
 }
+.mainContent h6{
+    font-size: 16px;
+}
+.card {
+    border-left: none;
+    border-top: none;
+    border-right: none;
+}

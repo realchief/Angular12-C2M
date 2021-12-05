@@ -79,7 +79,7 @@ export class ChannelAddComponent implements OnInit {
     private tokenStorage: TokenStorageService,
     private apiService: ApiService,
   ) {
-    sessionStorage.setItem('AppTitle', 'Add a new Company');
+    sessionStorage.setItem('AppTitle', 'Add Channel');
     this.getCountries();
     this.addChannelForm = this.formBuilder.group({
       channel_name: ['', Validators.required],
@@ -95,7 +95,7 @@ export class ChannelAddComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.titleService.setTitle('ONE | Add a new Group');
+    this.titleService.setTitle('ONE | Add Channel');
   }
 
   get f() {
