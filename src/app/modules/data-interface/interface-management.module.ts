@@ -5,6 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InterfaceGridComponent } from './interface-grid/interface-grid.component';
 import { ChannelAddComponent } from './channel-add/channel-add.component';
 import { InterfaceRoutingModule } from './interface-management-routing.module'
+import { MatTabsModule } from '@angular/material/tabs';
+
 
 @NgModule({
   declarations: [
@@ -14,7 +16,8 @@ import { InterfaceRoutingModule } from './interface-management-routing.module'
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    InterfaceRoutingModule
+    InterfaceRoutingModule,
+    MatTabsModule
   ]
 })
 export class InterfaceManagementModule { }

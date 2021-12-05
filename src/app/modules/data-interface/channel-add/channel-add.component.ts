@@ -17,32 +17,33 @@ import { ApiService } from "src/app/_services/api.service";
 })
 export class ChannelAddComponent implements OnInit {
 
-  addCompanyForm: FormGroup;
+  addChannelForm: FormGroup;
   submitted = false;
   isCreatingFailed = false;
   errorMessage = '';
   countries: any[] = [];
-  policy_bundle_list = [
+  permissions = [
+    { id: 1, value: "Admin" },
+    { id: 2, value: "Management" },
+    { id: 3, value: "General" }
+  ];
+  channel_type_list = [
+    { id: 1, value: "MySQL" },
+    { id: 2, value: "PostgreSQL" },
+    { id: 3, value: "MongoDB" }
+  ];
+  navigation_tab_list = [
+    { id: 1, value: "Speficiations" },
+    { id: 2, value: "API/SDK/Code" },
+    { id: 3, value: "Native Apps" },
+    { id: 4, value: "News" }
+  ];
+  channel_ttl_rate_list = [
     { id: 1, value: "1" },
     { id: 2, value: "2" },
     { id: 3, value: "3" },
-    { id: 4, value: "4" },
-    { id: 5, value: "5" }
+    { id: 4, value: "4" }
   ];
-  state_province_list = [
-    { id: 116, value: "A" },
-    { id: 2, value: "B" },
-    { id: 3, value: "C" },
-    { id: 4, value: "D" },
-    { id: 5, value: "E" }
-  ];
-
-  assign_space_unit_list =
-    [
-      { id: 1, value: "MB" },
-      { id: 2, value: "GB" },
-      { id: 3, value: "TB" }
-    ];
 
   constructor(
     private http: HttpClient,
@@ -56,20 +57,16 @@ export class ChannelAddComponent implements OnInit {
   ) {
     sessionStorage.setItem('AppTitle', 'Add a new Company');
     this.getCountries();
-    this.addCompanyForm = this.formBuilder.group({
-      company_name: ['', Validators.required],
-      company_url: ['', Validators.required],
-      emailaddress: ['', Validators.required, Validators.email],
-      phone: ['', Validators.required],
-      address1: ['', Validators.required],
-      address2: ['', Validators.required],
-      country: ['', Validators.required],
-      city: ['', Validators.required],
-      zip_code: ['', Validators.required],
-      assign_space: ['', Validators.required],
-      assign_space_unit: ['', Validators.required],
-      policy_bundle: ['', Validators.required],
-      state: ['', Validators.required]
+    this.addChannelForm = this.formBuilder.group({
+      channel_name: ['', Validators.required],
+      permission: [''],
+      channel_type: ['', Validators.required],
+      ttl_period: ['', Validators.required],
+      channel_description: ['', Validators.required],
+      channel_tags: ['', Validators.required],
+      navigation_tab: ['', Validators.required],
+      channel_ttl_rate: ['', Validators.required],
+      channel_navigation_tab: ['', Validators.required],
     });
   }
 
@@ -78,11 +75,26 @@ export class ChannelAddComponent implements OnInit {
   }
 
   get f() {
-    return this.addCompanyForm.controls;
+    return this.addChannelForm.controls;
   }
 
   backClicked() {
     this._location.back();
+  }
+
+  uploadPicture() {
+    const imgInt = <HTMLInputElement>document.getElementById('channel-image');
+    const file = imgInt.files
+    if (file) {
+      const previewEle = <HTMLImageElement>document.getElementById('preview-show');
+      previewEle.src = URL.createObjectURL(file[0])
+    }
+
+  }
+
+  clickInputButton() {
+    const imgInt = <HTMLInputElement>document.getElementById('channel-image');
+    imgInt.click();
   }
 
   getCountries() {
