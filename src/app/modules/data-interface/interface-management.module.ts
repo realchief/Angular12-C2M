@@ -4,6 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { InterfaceGridComponent } from './interface-grid/interface-grid.component';
 import { ChannelAddComponent } from './channel-add/channel-add.component';
+import { APIChannelAddComponent } from './api-channel-add/api-channel-add.component';
+import { FileChannelAddComponent } from './file-channel-add/file-channel-add.component';
 import { InterfaceRoutingModule } from './interface-management-routing.module'
 import { MatTabsModule } from '@angular/material/tabs';
 import { AngularEditorModule } from '@kolkov/angular-editor';
@@ -13,7 +15,9 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 @NgModule({
   declarations: [
     InterfaceGridComponent,
-    ChannelAddComponent
+    ChannelAddComponent,
+    APIChannelAddComponent,
+    FileChannelAddComponent
   ],
   imports: [
     CommonModule,

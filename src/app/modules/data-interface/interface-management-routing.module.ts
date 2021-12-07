@@ -5,6 +5,8 @@ import { AuthGuard } from "../../_guards/auth.guard";
 
 import { InterfaceGridComponent } from './interface-grid/interface-grid.component';
 import { ChannelAddComponent } from './channel-add/channel-add.component';
+import { APIChannelAddComponent } from './api-channel-add/api-channel-add.component';
+import { FileChannelAddComponent } from './file-channel-add/file-channel-add.component';
 
 const routes: Routes = [
   
@@ -24,9 +26,19 @@ const routes: Routes = [
     component: InterfaceGridComponent
   },
   {
-    path: 'C2M-DI-MarketPlace/Microsoft/add-channel',
+    path: 'C2M-DI-MarketPlace/Microsoft/add-db-channel',
     canActivateChild: [AuthGuard],
     component: ChannelAddComponent
+  },
+  {
+    path: 'C2M-DI-MarketPlace/Microsoft/add-api-channel',
+    canActivateChild: [AuthGuard],
+    component: APIChannelAddComponent
+  },
+  {
+    path: 'C2M-DI-MarketPlace/Microsoft/add-file-channel',
+    canActivateChild: [AuthGuard],
+    component: FileChannelAddComponent
   },
 ];
 

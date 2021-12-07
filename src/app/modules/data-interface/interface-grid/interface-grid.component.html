@@ -348,7 +348,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 add_channel_btn">
-                        <div class="border_hover">
+                        <div class="border_hover" (click)="gotoAPIChannel(); modal.close('Cancel')">
                             <div class="add_channel_btn_image">  
                                 <img src="../../../assets/images/api2.png" alt="avatar">                  
                             </div>
@@ -358,7 +358,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 add_channel_btn">
-                        <div class="border_hover" (click)="gotoDatabase(); modal.close('Cancel')">
+                        <div class="border_hover" (click)="gotoDatabaseChannel(); modal.close('Cancel')">
                             <div class="add_channel_btn_image">  
                                 <img src="../../../assets/images/database3.jpeg" alt="avatar">                  
                             </div>
@@ -368,7 +368,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 add_channel_btn">
-                        <div class="border_hover">
+                        <div class="border_hover" (click)="gotoFileChannel(); modal.close('Cancel')">
                             <div class="add_channel_btn_image">    
                                 <img src="../../../assets/images/fileimage2.jpeg" alt="avatar">                
                             </div>
