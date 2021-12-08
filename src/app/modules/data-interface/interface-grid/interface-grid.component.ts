@@ -17,6 +17,13 @@ import { Location } from '@angular/common';
 })
 export class InterfaceGridComponent implements OnInit, OnDestroy {
 
+  categories = [
+    { id: 1, value: "Automotive" },
+    { id: 2, value: "Database" },
+    { id: 3, value: "Gateway" },
+    { id: 4, value: "Enterprise APIs" }
+  ];
+
   dataSource: any;
   itemsCount = 0;
   closeResult: string = '';
@@ -26,13 +33,10 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
   isCreatingFailed = false;
   errorMessage = '';
 
-  categories = [
-    { id: 1, value: "Automotive" },
-    { id: 2, value: "Database" },
-    { id: 3, value: "Gateway" },
-    { id: 4, value: "Enterprise APIs" }
+  AppPath = [
+    { "router": "data-interface", "title": "Data Interface" },
+    { "router": "data-interface/c2m-di-marketplace", "title": "C2M DI MarketPlace" }
   ];
-
 
   constructor(
     private router: Router,
@@ -43,7 +47,8 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
     private _location: Location,
     private formBuilder: FormBuilder,
   ) {
-    sessionStorage.setItem('AppTitle', 'Data Interface');
+    sessionStorage.setItem('AppTitle', 'Microsoft');
+    //sessionStorage.setItem('AppPath', JSON.stringify(this.AppPath));
     this.addCompanyForm = this.formBuilder.group({
       company_name: ['', Validators.required],
       company_url: ['', Validators.required],
@@ -53,7 +58,8 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.titleService.setTitle('ONE | Data Interface');
+    this.titleService.setTitle('ONE | Microsoft');
+    sessionStorage.setItem('AppPath', JSON.stringify(this.AppPath));
     this.getAllCompany();
   }
 
@@ -77,6 +83,7 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     sessionStorage.removeItem('AppTitle');
+    sessionStorage.removeItem('AppPath');
   }
 
   clickInputButton() {

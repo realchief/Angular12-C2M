@@ -12,8 +12,17 @@ export class HeaderNavComponent implements OnInit {
   ishidden = false;
   userdropdown_hidden = false;
   currentUser: any;
+  appPathInfo: any;
   get title() {
     return sessionStorage.getItem('AppTitle');
+  }
+  get appPathInfoList() {
+      const appPathInfo = sessionStorage.getItem('AppPath');
+      if (appPathInfo) {
+        const appPathInfoList = JSON.parse(appPathInfo);
+        return appPathInfoList
+      }
+      return [];
   }
 
   constructor(
