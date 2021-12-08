@@ -338,7 +338,7 @@
                 <label class="form-label">What channel would you like to add?</label>
                 <div class="row mt-10 add_channel_btn_list">
                     <div class="col-md-3 add_channel_btn">
-                        <div class="border_hover">
+                        <div class="border_hover" (click)="gotoDeviceChannel(); modal.close('Cancel')">
                             <div class="add_channel_btn_image"> 
                                 <img src="../../../assets/images/device2.png" alt="avatar">                   
                             </div>

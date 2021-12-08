@@ -1,0 +1,201 @@
+<div class="mainContent content">
+    <h4>Add Device Channel Wizard: <b style="color: red;">Microsoft</b></h4>
+    <div class="p-1"></div>
+    <div class="card mb-3" style="border-bottom: none;">
+        <div class="row no-gutters">
+            <div class="col-md-1" style="display: flex; align-items: center;">
+                <img src="../../../assets/images/windows.svg" class="card-img b-avatar-img" alt="avatar"
+                    style="width: 100px;">
+            </div>
+            <div class="col-md-11">
+                <div class="card-body">
+                    <p class="card-text" style="font-size: 15px;">In the wizard, you will create setup template for a specific data group, or channel, based on a that a flat file.
+                        In the wizard, you will create setup template for a specific data group, or channel, based on a that a flat file. In the wizard, you will create setup template for a specific data group, or channel, based on a that a flat file.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="p-2"></div>
+    <div class="gridActionsGroup mb-2">
+        <div class="actionsWrap" style="margin-left: 0; width: 100%;">
+            <a id="backbutton" (click)="backClicked()">< Back </a>
+        </div>
+    </div>
+    <form [formGroup]="addChannelForm" (ngSubmit)="onSubmit()" >
+        <mat-tab-group>
+            <mat-tab label="1. Channel Info">
+                <div class="row mt-10 db_channel_list">
+                    <div class="col-md-4">
+                        <div class="row db_channel_info">
+                            <div class="col-md-12">
+                                <label for="input2" class="form-label">
+                                    Channel Image*
+                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                        title="Help text to come here"></i>
+                                </label>
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <img class="img-responsive" id="preview-show" ng-show="filepreview"/>
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <p style="margin-top: 10px; font-size: 10px;">H 200Px: W 200Px</p>
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <button type="button" class="btn btn-outline-warning" (click)="clickInputButton()">Upload</button>
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <input type="file" fileinput="file" filepreview="filepreview" id="channel-image" (change)="uploadPicture()"/>
+                            </div>
+                        </div>
+                        <div class="row db_channel_info">
+                            <div class="col-md-12 mt-30">
+                                <label for="permission" class="form-label">
+                                    Permission
+                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                        title="Help text to come here"></i>
+                                </label>
+                                <select formControlName="permission" id="permission" class="form-select form-select-sm">
+                                    <option *ngFor="let permission of permissions" [ngValue]="permission.id">{{permission.value}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row db_channel_info">
+                            <div class="col-md-12 mt-30">
+                                <label for="input1" class="form-label">
+                                    Channel Name*
+                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                        title="Help text to come here"></i>
+                                </label>
+                                <input id="channel_name" type="text" formControlName="channel_name" class="form-control form-control-sm"
+                                    [ngClass]="{ 'is-invalid': submitted && f.channel_name.errors }" />
+                                <div *ngIf="submitted" class="alert alert-danger-small">
+                                    <div *ngIf="f.channel_name.errors && f.channel_name.errors.required">Channel Name is required.</div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-30">
+                                <label for="channel_type" class="form-label">
+                                    Type
+                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                        title="Help text to come here"></i>
+                                </label>
+                                <select formControlName="channel_type" id="channel_type" class="form-select form-select-sm">
+                                    <option *ngFor="let channel_type of channel_type_list" [ngValue]="channel_type.id">{{channel_type.value}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 mt-30">
+                                <label for="channel_type" class="form-label">
+                                    Speficiations
+                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                        title="Help text to come here"></i>
+                                </label>
+                                <angular-editor [placeholder]="'Enter text here...'" [config]="editorConfig"></angular-editor>
+                            </div>
+                            <div class="col-md-12 mt-30">
+                                <label for="input1" class="form-label">
+                                    TTL Period
+                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                        title="Help text to come here"></i>
+                                </label>
+                                <input id="ttl_period" type="text" formControlName="ttl_period" class="form-control form-control-sm"
+                                    [ngClass]="{ 'is-invalid': submitted && f.ttl_period.errors }" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row db_channel_info">
+                            <div class="col-md-12 mt-30">
+                                <label for="input1" class="form-label">
+                                    Short Description
+                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                        title="Help text to come here"></i>
+                                </label>
+                                <textarea id="channel_description" cols="10" style="height: 100px;" class="form-control form-control-sm"></textarea>
+                            </div>
+                            <div class="col-md-12 mt-30">
+                                <label for="input2" class="form-label">
+                                    Enter Tags
+                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                        title="Help text to come here"></i>
+                                </label>
+                                <textarea id="channel_tags" cols="10" style="height: 100px;" class="form-control form-control-sm"></textarea>
+                            </div>
+                            <div class="col-md-12 mt-30">
+                                <label for="navigation_tab" class="form-label">
+                                    Navigation Tabs
+                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                        title="Help text to come here"></i>
+                                </label>
+                                <select formControlName="channel_navigation_tab" id="navigation_tab" class="form-select form-select-sm">
+                                    <option *ngFor="let navigation_tab of navigation_tab_list" [ngValue]="navigation_tab.id">{{navigation_tab.value}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 mt-30">
+                                <label for="channel_ttl_rate" class="form-label">
+                                    TTL Rate
+                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                        title="Help text to come here"></i>
+                                </label>
+                                <select formControlName="channel_ttl_rate" id="channel_ttl_rate" class="form-select form-select-sm">
+                                    <option *ngFor="let channel_ttl_rate of channel_ttl_rate_list" [ngValue]="channel_ttl_rate.id">{{channel_ttl_rate.value}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark">Cancel</button>
+                    <button type="submit" class="btn btn-secondary">Save</button>
+                    <button type="button" class="btn btn-danger">Next</button>
+                </div>
+            </mat-tab>
+            <mat-tab label="2. Connection"> 
+                <div class="row mt-10 db_channel_list">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark">Cancel</button>
+                    <button type="submit" class="btn btn-secondary">Next</button>
+                    <button type="button" class="btn btn-danger">Pevious</button>
+                </div>
+            </mat-tab>    
+            <mat-tab label="3. Identification"> 
+                <div class="row mt-10 db_channel_list">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark">Cancel</button>
+                    <button type="submit" class="btn btn-secondary">Next</button>
+                    <button type="button" class="btn btn-danger">Pevious</button>
+                </div>
+            </mat-tab>    
+            <mat-tab label="4. Data Mapping"> 
+                <div class="row mt-10 db_channel_list">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark">Cancel</button>
+                    <button type="submit" class="btn btn-secondary">Next</button>
+                    <button type="button" class="btn btn-danger">Pevious</button>
+                </div>
+            </mat-tab> 
+            <mat-tab label="5. Commands"> 
+                <div class="row mt-10 db_channel_list">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark">Cancel</button>
+                    <button type="submit" class="btn btn-secondary">Next</button>
+                    <button type="button" class="btn btn-danger">Pevious</button>
+                </div>
+            </mat-tab> 
+            <mat-tab label="6. Resources"> 
+                <div class="row mt-10 db_channel_list">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark">Cancel</button>
+                    <button type="submit" class="btn btn-secondary">Save</button>
+                    <button type="button" class="btn btn-danger">Pevious</button>
+                </div>
+            </mat-tab>       
+        </mat-tab-group>
+    </form>
+</div>

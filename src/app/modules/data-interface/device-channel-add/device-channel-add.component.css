@@ -1,0 +1,20 @@
+.db_channel_info {
+    padding: 0 20px 0 20px;
+}
+.db_channel_list {
+    width: 100%;
+    margin-top: 50px;
+}
+.mt-30 {
+    margin-top: 30px;
+}
+#channel-image {
+    display: none;
+}
+#backbutton {
+    margin: 0px; 
+    font-size: 16px;
+}
+#backbutton:hover {
+    cursor: pointer;
+}

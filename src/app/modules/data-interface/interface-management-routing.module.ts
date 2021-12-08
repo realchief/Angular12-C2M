@@ -7,6 +7,7 @@ import { InterfaceGridComponent } from './interface-grid/interface-grid.componen
 import { ChannelAddComponent } from './channel-add/channel-add.component';
 import { APIChannelAddComponent } from './api-channel-add/api-channel-add.component';
 import { FileChannelAddComponent } from './file-channel-add/file-channel-add.component';
+import { DeviceChannelAddComponent } from './device-channel-add/device-channel-add.component';
 
 const routes: Routes = [
   
@@ -40,6 +41,11 @@ const routes: Routes = [
     canActivateChild: [AuthGuard],
     component: FileChannelAddComponent
   },
+  {
+    path: 'C2M-DI-MarketPlace/Microsoft/add-device-channel',
+    canActivateChild: [AuthGuard],
+    component: DeviceChannelAddComponent
+  }
 ];
 
 @NgModule({

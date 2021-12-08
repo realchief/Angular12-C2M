@@ -6,6 +6,7 @@ import { InterfaceGridComponent } from './interface-grid/interface-grid.componen
 import { ChannelAddComponent } from './channel-add/channel-add.component';
 import { APIChannelAddComponent } from './api-channel-add/api-channel-add.component';
 import { FileChannelAddComponent } from './file-channel-add/file-channel-add.component';
+import { DeviceChannelAddComponent } from './device-channel-add/device-channel-add.component';
 import { InterfaceRoutingModule } from './interface-management-routing.module'
 import { MatTabsModule } from '@angular/material/tabs';
 import { AngularEditorModule } from '@kolkov/angular-editor';
@@ -17,7 +18,8 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     InterfaceGridComponent,
     ChannelAddComponent,
     APIChannelAddComponent,
-    FileChannelAddComponent
+    FileChannelAddComponent,
+    DeviceChannelAddComponent
   ],
   imports: [
     CommonModule,

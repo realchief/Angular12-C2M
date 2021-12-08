@@ -124,11 +124,17 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
     gotoDatabaseChannel(): void {
       this.router.navigate(['/data-interface/C2M-DI-MarketPlace/Microsoft/add-db-channel']);
     }
+
     gotoAPIChannel(): void {
       this.router.navigate(['/data-interface/C2M-DI-MarketPlace/Microsoft/add-api-channel']);
     }
+
     gotoFileChannel(): void {
       this.router.navigate(['/data-interface/C2M-DI-MarketPlace/Microsoft/add-file-channel']);
+    }
+
+    gotoDeviceChannel(): void {
+      this.router.navigate(['/data-interface/C2M-DI-MarketPlace/Microsoft/add-device-channel']);
     }
 
 }
