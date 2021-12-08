@@ -28,11 +28,15 @@ export class DeviceChannelAddComponent implements OnInit {
     { id: 2, value: "Management" },
     { id: 3, value: "General" }
   ];
+  channel_cateogry_list = [
+    { id: 1, value: "Automotive" },
+    { id: 2, value: "Database" },
+    { id: 3, value: "Gateway" },
+    { id: 4, value: "Enterprise APIs" }
+  ];
   channel_type_list = [
-    { id: 1, value: "SOAP" },
-    { id: 2, value: "XML-RPC" },
-    { id: 3, value: "JSON-RPC" },
-    { id: 4, value: "REST" }
+    { id: 1, value: "Input Device" },
+    { id: 2, value: "Output Device" }
   ];
   navigation_tab_list = [
     { id: 1, value: "Speficiations" },
@@ -46,6 +50,13 @@ export class DeviceChannelAddComponent implements OnInit {
     { id: 3, value: "3" },
     { id: 4, value: "4" }
   ];
+  unit_increment_list = [
+    { id: 1, value: "1" },
+    { id: 2, value: "2" },
+    { id: 3, value: "3" },
+    { id: 4, value: "4" }
+  ];
+  
 
   editorConfig: AngularEditorConfig = {
     editable: true,
@@ -91,7 +102,10 @@ export class DeviceChannelAddComponent implements OnInit {
       channel_tags: ['', Validators.required],
       navigation_tab: ['', Validators.required],
       channel_ttl_rate: ['', Validators.required],
-      channel_navigation_tab: ['', Validators.required],
+      c2m_pass_frequency: [''],
+      model_number: ['', Validators.required],
+      dataset_feed_merge_count: [''],
+      unit_increment: [''],
     });
   }
 
