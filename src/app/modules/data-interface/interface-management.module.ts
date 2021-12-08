@@ -10,6 +10,7 @@ import { DeviceChannelAddComponent } from './device-channel-add/device-channel-a
 import { InterfaceRoutingModule } from './interface-management-routing.module'
 import { MatTabsModule } from '@angular/material/tabs';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { ToggleButtonComponent } from './toggle-button-component';
 
 
 
@@ -19,14 +20,15 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     ChannelAddComponent,
     APIChannelAddComponent,
     FileChannelAddComponent,
-    DeviceChannelAddComponent
+    DeviceChannelAddComponent,
+    ToggleButtonComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     InterfaceRoutingModule,
     MatTabsModule,
-    AngularEditorModule
+    AngularEditorModule    
   ]
 })
 export class InterfaceManagementModule { }

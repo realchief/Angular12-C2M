@@ -23,6 +23,7 @@ export class DeviceChannelAddComponent implements OnInit {
   isCreatingFailed = false;
   errorMessage = '';
   countries: any[] = [];
+  checked = true;
   permissions = [
     { id: 1, value: "Admin" },
     { id: 2, value: "Management" },
@@ -56,7 +57,6 @@ export class DeviceChannelAddComponent implements OnInit {
     { id: 3, value: "3" },
     { id: 4, value: "4" }
   ];
-  
 
   editorConfig: AngularEditorConfig = {
     editable: true,
@@ -106,6 +106,7 @@ export class DeviceChannelAddComponent implements OnInit {
       model_number: ['', Validators.required],
       dataset_feed_merge_count: [''],
       unit_increment: [''],
+      channel_category: [''],
     });
   }
 

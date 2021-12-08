@@ -68,7 +68,7 @@
                                         title="Help text to come here"></i>
                                 </label>
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="remote_commands" checked>
+                                    <toggle-button (changed)="checked=$event" id="remote_commands"></toggle-button>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                                         title="Help text to come here"></i>
                                 </label>
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="isfota" checked>
+                                    <toggle-button (changed)="checked=$event" id="isfota"></toggle-button>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                                         title="Help text to come here"></i>
                                 </label>
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="legan_documents_required" checked>
+                                    <toggle-button (changed)="checked=$event" id="legan_documents_required"></toggle-button>
                                 </div>
                             </div>
                         </div>
