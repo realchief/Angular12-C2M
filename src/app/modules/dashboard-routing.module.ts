@@ -45,6 +45,11 @@ const routes: Routes = [
                 loadChildren: () => import('./data-interface/interface-management.module').then(m => m.InterfaceManagementModule)
             },
             {
+                path: 'data-interface/c2m-di-marketplace/Microsoft',
+                canActivate: [AuthGuard],
+                loadChildren: () => import('./data-interface/interface-management.module').then(m => m.InterfaceManagementModule)
+            },
+            {
                 path: 'role',
                 canActivate: [AuthGuard],
                 loadChildren: () => import('../modules/role-management/role-management.module').then(m => m.RoleManagementModule)

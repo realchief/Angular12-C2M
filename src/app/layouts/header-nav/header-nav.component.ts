@@ -12,7 +12,6 @@ export class HeaderNavComponent implements OnInit {
   ishidden = false;
   userdropdown_hidden = false;
   currentUser: any;
-  appPathInfo: any;
   get title() {
     return sessionStorage.getItem('AppTitle');
   }

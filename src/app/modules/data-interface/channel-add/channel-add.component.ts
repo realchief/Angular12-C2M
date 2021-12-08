@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,7 +16,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
   templateUrl: './channel-add.component.html',
   styleUrls: ['./channel-add.component.css']
 })
-export class ChannelAddComponent implements OnInit {
+export class ChannelAddComponent implements OnInit, OnDestroy {
 
   addChannelForm: FormGroup;
   submitted = false;
@@ -69,6 +69,12 @@ export class ChannelAddComponent implements OnInit {
     ]
   };
 
+  AppPath = [
+    { "router": "data-interface", "title": "Data Interface" },
+    { "router": "data-interface/c2m-di-marketplace", "title": "C2M DI MarketPlace" },
+    { "router": "data-interface/c2m-di-marketplace/Microsoft", "title": "Microsoft" }
+  ];
+
   constructor(
     private http: HttpClient,
     private _location: Location,
@@ -96,6 +102,11 @@ export class ChannelAddComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('ONE | Add Channel');
+    sessionStorage.setItem('AppPath', JSON.stringify(this.AppPath));
+  }
+  ngOnDestroy() {
+    sessionStorage.removeItem('AppTitle');
+    sessionStorage.removeItem('AppPath');
   }
 
   get f() {
