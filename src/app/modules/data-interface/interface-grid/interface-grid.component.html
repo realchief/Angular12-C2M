@@ -233,7 +233,7 @@
                                             title="Help text to come here"></i>
                                     </label>
                                     <input id="company_url" type="text" formControlName="company_url" class="form-control form-control-sm"
-                                        [ngClass]="{ 'is-invalid': submitted && f.company_url.errors && f.company_url.errors.pattern }" />
+                                        [ngClass]="{ 'is-invalid': submitted && f.company_url.errors }" />
                                     <div *ngIf="submitted" class="alert alert-danger-small">
                                         <div *ngIf="f.company_url.errors && f.company_url.errors.required">Company Url is required.</div>
                                         <div *ngIf="f.company_url.errors && f.company_url.errors.pattern">Please provide valid url.</div>
@@ -273,7 +273,10 @@
                                     <button type="button" class="btn btn-outline-warning" (click)="clickInputButton()">Upload</button>
                                 </div>
                                 <div class="col-md-12 text-center">
-                                    <input type="file" fileinput="file" filepreview="filepreview" id="company-image" (change)="uploadPicture()"/>
+                                    <input type="file" fileinput="file" filepreview="filepreview" id="company-image" name="image" (change)="uploadPicture()"/>
+                                </div>
+                                <div *ngIf="submitted" class="alert alert-danger-small">
+                                    <div *ngIf="f.image.errors && f.image.errors.required" style="text-align: center;">Company Logo is required.</div>
                                 </div>
                             </div>
                         </div>

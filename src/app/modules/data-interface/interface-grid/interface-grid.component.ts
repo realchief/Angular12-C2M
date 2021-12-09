@@ -53,7 +53,8 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
       company_name: ['', Validators.required],
       company_url: ['', [Validators.required, Validators.pattern(reg)]],
       sub_domain: ['', Validators.required],
-      category: ['']
+      category: [''],
+      image: ['', Validators.required],
     });
   }
 
