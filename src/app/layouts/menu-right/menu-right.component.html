@@ -70,6 +70,7 @@
                                         [ngClass]="{ 'is-invalid': submitted && f.company_url.errors }" />
                                     <div *ngIf="submitted" class="alert alert-danger-small">
                                         <div *ngIf="f.company_url.errors && f.company_url.errors.required">Company Url is required.</div>
+                                        <div *ngIf="f.company_url.errors && f.company_url.errors.pattern">Please provide valid url.</div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">

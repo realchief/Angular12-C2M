@@ -48,10 +48,10 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
   ) {
     sessionStorage.setItem('AppTitle', 'Microsoft');
-    //sessionStorage.setItem('AppPath', JSON.stringify(this.AppPath));
+    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.addCompanyForm = this.formBuilder.group({
       company_name: ['', Validators.required],
-      company_url: ['', Validators.required],
+      company_url: ['', [Validators.required, Validators.pattern(reg)]],
       sub_domain: ['', Validators.required],
       category: ['']
     });

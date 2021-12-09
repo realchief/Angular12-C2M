@@ -198,6 +198,7 @@ ul.dashList .dashWrap:hover .dashOverlay a:hover{color:#EA593C;}
     margin-right: 5px;
 }
 .subdomain-label-div{
+    padding-top: 3px;
     padding-left: 0px; 
     padding-right: 0px; 
     text-align: center; 
@@ -255,4 +256,8 @@ ul.dashList .dashWrap:hover .dashOverlay a:hover{color:#EA593C;}
     border-left: none;
     border-top: none;
     border-right: none;
+}
+.mat-tab-header {
+    border-bottom: none;
+    padding-left: 20px;
 }

@@ -233,9 +233,10 @@
                                             title="Help text to come here"></i>
                                     </label>
                                     <input id="company_url" type="text" formControlName="company_url" class="form-control form-control-sm"
-                                        [ngClass]="{ 'is-invalid': submitted && f.company_url.errors }" />
+                                        [ngClass]="{ 'is-invalid': submitted && f.company_url.errors && f.company_url.errors.pattern }" />
                                     <div *ngIf="submitted" class="alert alert-danger-small">
                                         <div *ngIf="f.company_url.errors && f.company_url.errors.required">Company Url is required.</div>
+                                        <div *ngIf="f.company_url.errors && f.company_url.errors.pattern">Please provide valid url.</div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -319,7 +320,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
                     <!-- <button type="submit" class="btn btn-danger" (click)="modal.close('Save click')">Next</button> -->
-                    <button type="submit" class="btn btn-danger">Next</button>
+                    <button type="submit" class="btn btn-danger">Save</button>
                 </div>
             </mat-tab>
         </mat-tab-group>

@@ -60,9 +60,10 @@ export class MenuRightComponent implements OnInit {
         private tokenStorage: TokenStorageService,
         private apiService: ApiService,
     ) {
+        const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
         this.addCompanyForm = this.formBuilder.group({
             company_name: ['', Validators.required],
-            company_url: ['', Validators.required],        
+            company_url: ['', [Validators.required, Validators.pattern(reg)]],   
             sub_domain: ['', Validators.required],
             category: ['']
         });
