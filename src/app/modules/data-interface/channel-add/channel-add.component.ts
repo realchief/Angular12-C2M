@@ -46,6 +46,15 @@ export class ChannelAddComponent implements OnInit, OnDestroy {
     { id: 4, value: "4" }
   ];
 
+  tabLabelList = [
+    'Channel Info',
+    'Resources'
+  ];
+
+  selectedIndex: number = 0;
+  maxNumberOfTabs = 5;
+
+
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
@@ -98,6 +107,9 @@ export class ChannelAddComponent implements OnInit, OnDestroy {
       channel_ttl_rate: [''],
       channel_navigation_tab: [''],
       image: ['', Validators.required],
+      rss_feed_url: [''],
+      buy_it_url: [''],
+      subscribe_url: ['']
     });
   }
 
@@ -126,6 +138,20 @@ export class ChannelAddComponent implements OnInit, OnDestroy {
       previewEle.src = URL.createObjectURL(file[0])
     }
 
+  }  
+
+  nextStep() {
+    if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = this.selectedIndex + 1;
+    }
+    console.log(this.selectedIndex);
+  }
+
+  previousStep() {
+    if (this.selectedIndex != 0) {
+        this.selectedIndex = this.selectedIndex - 1;
+    }
+    console.log(this.selectedIndex);
   }
 
   clickInputButton() {
