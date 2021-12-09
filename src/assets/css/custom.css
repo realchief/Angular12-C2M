@@ -261,3 +261,6 @@ ul.dashList .dashWrap:hover .dashOverlay a:hover{color:#EA593C;}
     border-bottom: none;
     padding-left: 20px;
 }
+#pScrollbar2 {
+    z-index: 1000;
+}

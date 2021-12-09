@@ -104,6 +104,7 @@ export class FileChannelAddComponent implements OnInit, OnDestroy {
       navigation_tab: [''],
       channel_ttl_rate: [''],
       channel_navigation_tab: [''],
+      image: ['', Validators.required]
     });
   }
 

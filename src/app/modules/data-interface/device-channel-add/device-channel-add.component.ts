@@ -114,6 +114,7 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
       dataset_feed_merge_count: [''],
       unit_increment: [''],
       channel_category: [''],
+      image: ['', Validators.required],
     });
   }
 
