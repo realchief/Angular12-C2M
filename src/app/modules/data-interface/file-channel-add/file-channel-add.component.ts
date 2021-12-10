@@ -53,6 +53,14 @@ export class FileChannelAddComponent implements OnInit, OnDestroy {
     { id: 4, value: "4" }
   ];
 
+  tabLabelList = [
+    'Channel Info',
+    'Resources'
+  ];
+
+  selectedIndex: number = 0;
+  maxNumberOfTabs = 2;
+
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
@@ -97,14 +105,16 @@ export class FileChannelAddComponent implements OnInit, OnDestroy {
     this.addChannelForm = this.formBuilder.group({
       channel_name: ['', Validators.required],
       permission: [''],
-      channel_type: [''],
       ttl_period: [''],
       channel_description: [''],
       channel_tags: [''],
       navigation_tab: [''],
       channel_ttl_rate: [''],
       channel_navigation_tab: [''],
-      image: ['', Validators.required]
+      image: ['', Validators.required],
+      rss_feed_url: [''],
+      buy_it_url: [''],
+      subscribe_url: ['']
     });
   }
 
@@ -132,7 +142,20 @@ export class FileChannelAddComponent implements OnInit, OnDestroy {
       const previewEle = <HTMLImageElement>document.getElementById('preview-show');
       previewEle.src = URL.createObjectURL(file[0])
     }
+  }
 
+  nextStep() {
+    if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = this.selectedIndex + 1;
+    }
+    console.log(this.selectedIndex);
+  }
+
+  previousStep() {
+    if (this.selectedIndex != 0) {
+        this.selectedIndex = this.selectedIndex - 1;
+    }
+    console.log(this.selectedIndex);
   }
 
   clickInputButton() {
