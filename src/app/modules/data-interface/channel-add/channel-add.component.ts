@@ -52,7 +52,7 @@ export class ChannelAddComponent implements OnInit, OnDestroy {
   ];
 
   selectedIndex: number = 0;
-  maxNumberOfTabs = 5;
+  maxNumberOfTabs = 2;
 
 
   editorConfig: AngularEditorConfig = {

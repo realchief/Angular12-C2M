@@ -60,6 +60,17 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
   ];
 
 
+  tabLabelList = [
+    'Channel Info',
+    'Connection',
+    'Analytics',
+    'Resources'
+  ];
+
+  selectedIndex: number = 0;
+  maxNumberOfTabs = 4;
+
+
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
@@ -102,7 +113,7 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
     sessionStorage.setItem('AppTitle', 'Add Channel');
     this.getCountries();
     this.addChannelForm = this.formBuilder.group({
-      company_name: ['', Validators.required],
+      channel_name: ['', Validators.required],
       permission: [''],
       channel_type: [''],
       ttl_period: [''],
@@ -145,6 +156,20 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
       previewEle.src = URL.createObjectURL(file[0])
     }
 
+  }
+
+  nextStep() {
+    if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = this.selectedIndex + 1;
+    }
+    console.log(this.selectedIndex);
+  }
+
+  previousStep() {
+    if (this.selectedIndex != 0) {
+        this.selectedIndex = this.selectedIndex - 1;
+    }
+    console.log(this.selectedIndex);
   }
 
   clickInputButton() {
