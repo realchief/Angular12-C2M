@@ -366,17 +366,387 @@
                         <button type="button" class="btn btn-primary" (click)="nextStep()">Next</button>
                         <button type="submit" class="btn btn-danger">Save</button>
                     </div>
-                </div>  
+                </div>
                 <div *ngIf="number==3">
                     <div class="row mt-10 db_channel_list">
+                        <div class="col-md-12">
+                            <div class="row db_channel_info">
+                                <div class="col-md-4 mt-30">
+                                    <h4 class="form-label medium-label">
+                                        News
+                                    </h4>
+                                    <label for="input1" class="form-label">
+                                        RSS Feed URL
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="rss_feed_url" type="text" formControlName="rss_feed_url" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.rss_feed_url.errors }" />
+                                </div>
+                                <div class="col-md-4 mt-30">
+                                </div>
+                                <div class="col-md-4 mt-30">
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row db_channel_info">
+                                <div class="col-md-4 mt-30">
+                                    <h4 class="form-label medium-label">
+                                        Buy
+                                    </h4>
+                                    <label for="buy_it_url" class="form-label">
+                                        Buy it URL
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="buy_it_url" type="text" formControlName="buy_it_url" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.buy_it_url.errors }" />
+                                </div>
+                                <div class="col-md-4 mt-30">
+                                    <h4 class="form-label medium-label">
+                                        Subscribe
+                                    </h4>
+                                    <label for="subscribe_url" class="form-label">
+                                        Subscribe URL
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="subscribe_url" type="text" formControlName="subscribe_url" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.subscribe_url.errors }" />
+                                </div>
+                                <div class="col-md-4 mt-30">
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="row mt-10 db_channel_list">
+
+                        <div class="gridActionsGroup mb-2 tab-black">
+                            <div class="actionsWrap" style="margin-left: 0; width: 100%;">
+                                <h6 class="content-label">Native Apps</h6>
+                                <a class="pluschannel" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Add New</a>
+                            </div>
+                        </div>
+                
+                        <div class="table-responsive">
+                            <table class="table table-striped align-middle table-sm m-0">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Action
+                                        </th>
+                                        <th>
+                                            App Type
+                                        </th>
+                                        <th>
+                                            App URL
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let number_data of [0,1,2,3,4,5,6,7];let i=index;">
+                                        <td class="text-center">
+                                            <div class="action-btns">
+                                                <a title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            Andriod
+                                        </td>
+                                        <td>
+                                            https://play.google.com/store/apps/details?id=com.fibit.FibitMobile
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row mt-10 db_channel_list">
+
+                        <div class="gridActionsGroup mb-2 tab-black">
+                            <div class="actionsWrap" style="margin-left: 0; width: 100%;">
+                                <h6 class="content-label">Developer Resources</h6>
+                                <a class="pluschannel" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Add New</a>
+                            </div>
+                        </div>
+                
+                        <div class="table-responsive">
+                            <table class="table table-striped align-middle table-sm m-0">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Action
+                                        </th>
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Type
+                                        </th>
+                                        <th>
+                                            Description
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let number_data of [0,1,2,3,4,5,6,7];let i=index;">
+                                        <td class="text-center">
+                                            <div class="action-btns">
+                                                <a title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            Resource One
+                                        </td>
+                                        <td>
+                                            File
+                                        </td>
+                                        <td>
+                                            This is a good resource with file type. This is a test example description. This will be replaced with actual value later when api will be ready.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row mt-10 db_channel_list">
+                        <div class="col-md-6">
+                            <div class="gridActionsGroup mb-2 tab-black">
+                                <div class="actionsWrap" style="margin-left: 0; width: 100%;">
+                                    <h6 class="content-label">Marketing Docs</h6>
+                                    <a class="pluschannel" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Add New</a>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped align-middle table-sm m-0">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Action
+                                            </th>
+                                            <th>
+                                                URL
+                                            </th>
+                                            <th>
+                                                Description
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let number_data of [0,1,2,3,4,5,6,7];let i=index;">
+                                            <td class="text-center">
+                                                <div class="action-btns">
+                                                    <a title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                    <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                https://cloudstging
+                                            </td>
+                                            <td>
+                                                This is a good resource with file type. This is a test...
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="gridActionsGroup mb-2 tab-black">
+                                <div class="actionsWrap" style="margin-left: 0; width: 100%;">
+                                    <h6 class="content-label">Marketing Docs</h6>
+                                    <a class="pluschannel" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Add New</a>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped align-middle table-sm m-0">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Action
+                                            </th>
+                                            <th>
+                                                URL
+                                            </th>
+                                            <th>
+                                                Description
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let number_data of [0,1,2,3,4,5,6,7];let i=index;">
+                                            <td class="text-center">
+                                                <div class="action-btns">
+                                                    <a title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                    <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                https://cloudstging
+                                            </td>
+                                            <td>
+                                                This is a good resource with file type. This is a test...
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-10 db_channel_list">
+                        <div class="col-md-6">
+                            <div class="gridActionsGroup mb-2 tab-black">
+                                <div class="actionsWrap" style="margin-left: 0; width: 100%;">
+                                    <h6 class="content-label">Blogs</h6>
+                                    <a class="pluschannel" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Add New</a>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped align-middle table-sm m-0">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Action
+                                            </th>
+                                            <th>
+                                                URL
+                                            </th>
+                                            <th>
+                                                Description
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let number_data of [0,1,2,3,4,5,6,7];let i=index;">
+                                            <td class="text-center">
+                                                <div class="action-btns">
+                                                    <a title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                    <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                https://cloudstging
+                                            </td>
+                                            <td>
+                                                This is a good resource with file type. This is a test...
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="gridActionsGroup mb-2 tab-black">
+                                <div class="actionsWrap" style="margin-left: 0; width: 100%;">
+                                    <h6 class="content-label">Forums</h6>
+                                    <a class="pluschannel" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Add New</a>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped align-middle table-sm m-0">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Action
+                                            </th>
+                                            <th>
+                                                URL
+                                            </th>
+                                            <th>
+                                                Description
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let number_data of [0,1,2,3,4,5,6,7];let i=index;">
+                                            <td class="text-center">
+                                                <div class="action-btns">
+                                                    <a title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                    <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                https://cloudstging
+                                            </td>
+                                            <td>
+                                                This is a good resource with file type. This is a test...
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-10 db_channel_list">
+
+                        <div class="gridActionsGroup mb-2 tab-black">
+                            <div class="actionsWrap" style="margin-left: 0; width: 100%;">
+                                <h6 class="content-label">Videos</h6>
+                                <a class="pluschannel" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Add New</a>
+                            </div>
+                        </div>
+                
+                        <div class="table-responsive">
+                            <table class="table table-striped align-middle table-sm m-0">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Action
+                                        </th>
+                                        <th>
+                                            Featured
+                                        </th>
+                                        <th>
+                                            Title
+                                        </th>
+                                        <th>
+                                            Type
+                                        </th>
+                                        <th>
+                                            Description
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let number_data of [0,1,2,3,4,5,6,7];let i=index;">
+                                        <td class="text-center">
+                                            <div class="action-btns">
+                                                <a title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            On/Off
+                                        </td>
+                                        <td>
+                                            Video One
+                                        </td>
+                                        <td>
+                                            URL
+                                        </td>
+                                        <td>
+                                            This is a good resource with file type. This is a test example. This value will be replaced with actual values from API.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-dark">Cancel</button>
                         <button type="button" class="btn btn-secondary" (click)="previousStep()">Prev</button>
-                        <button type="submit" class="btn btn-danger">Save</button>
-                        
+                        <button type="submit" class="btn btn-danger">Finish</button>
                     </div>
-                </div>   
+                </div>  
             </mat-tab>
         </mat-tab-group>
     </form>
