@@ -11,6 +11,9 @@
 #channel-image {
     display: none;
 }
+#xmlfile {
+    display: none;
+}
 #backbutton {
     margin: 0px; 
     font-size: 16px;
@@ -36,4 +39,10 @@
 }
 .pt-30 {
     padding-top: 30px;
+}
+.xmlbtn-div {
+    width: 30%;
+}
+.xmlbtn {
+    width: 100%;
 }

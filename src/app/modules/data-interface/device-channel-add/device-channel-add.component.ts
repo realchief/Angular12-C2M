@@ -230,6 +230,10 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     const imgInt = <HTMLInputElement>document.getElementById('channel-image');
     imgInt.click();
   }
+  clickInputFileButton() {
+    const fileInt = <HTMLInputElement>document.getElementById('xmlfile');
+    fileInt.click();
+  }
 
   getCountries() {
     let payload = {}

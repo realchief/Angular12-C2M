@@ -435,6 +435,7 @@
                     </div>
                 </div>
                 <div *ngIf="number==3">
+                    
                     <div class="row mt-10 db_channel_list">
                         <div class="row db_channel_info">
                             <div class="col-md-12 mt-30">
@@ -452,6 +453,23 @@
                             <div class="radio-list">
                                 <input type="radio" value="Mannual" name="data_mapping_option" class="radio-left"> Mannual
                                 <input type="radio" value="Data Sample" name="data_mapping_option" class="radio-right"> Data Sample
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-30">
+                            <div class="row db_channel_info">
+                                <div class="col-md-12">
+                                    <label for="input2" class="form-label">
+                                        UPload Entire Datatype XML
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                </div>
+                                <div class="col-md-12 text-center xmlbtn-div">
+                                    <button type="button" class="btn btn-outline-danger xmlbtn" (click)="clickInputFileButton()">+ Choose XML</button>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <input type="file" fileinput="file" filepreview="filepreview" id="xmlfile" name="xmlfile"/>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12 mt-30">
