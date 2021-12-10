@@ -175,10 +175,12 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
       scope: [''],
       authorization_url: [''],
       device_identifiers: [],
-      data_type: [],
+      indentification_data_type: [],
+      file_data_type: [],
       rss_feed_url: [''],
       buy_it_url: [''],
       subscribe_url: [''],
+      data_mapping_option: [''],
     });
   }
 

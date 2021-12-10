@@ -415,7 +415,7 @@
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                             title="Help text to come here"></i>
                                     </label>
-                                    <select formControlName="data_type" id="data_type" class="form-select form-select-sm">
+                                    <select formControlName="indentification_data_type" id="indentification_data_type" class="form-select form-select-sm">
                                         <option *ngFor="let data_type of data_type_list" [ngValue]="data_type.id">{{data_type.value}}</option>
                                     </select>
                                 </div>
@@ -436,6 +436,55 @@
                 </div>
                 <div *ngIf="number==3">
                     <div class="row mt-10 db_channel_list">
+                        <div class="row db_channel_info">
+                            <div class="col-md-12 mt-30">
+                                <label for="isfota" class="form-label">
+                                    Fixed Schema
+                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                        title="Help text to come here"></i>
+                                </label>
+                                <div class="form-check form-switch">
+                                    <toggle-button (changed)="checked=$event" id="isfota"></toggle-button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-30">
+                            <div class="radio-list">
+                                <input type="radio" value="Mannual" name="data_mapping_option" class="radio-left"> Mannual
+                                <input type="radio" value="Data Sample" name="data_mapping_option" class="radio-right"> Data Sample
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-30">
+                            <p style="margin-left: 20px;">Or enter the name and datatype of the data points individually</p>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row db_channel_info" *ngFor="let number of numbers">
+                                <div class="col-md-4 mt-30">
+                                    <label for="device_identifiers" class="form-label">
+                                        Name
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="file_name" type="text" formControlName="file_name" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.device_identifiers.errors }" />
+                                </div>
+                                <div class="col-md-4 mt-30">
+                                    <label for="indentification_data_type" class="form-label">
+                                        Data Type
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <select formControlName="file_data_type" id="file_data_type" class="form-select form-select-sm">
+                                        <option *ngFor="let data_type of data_type_list" [ngValue]="data_type.id">{{data_type.value}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 mt-30 pt-30 icon-button">
+                                    <a *ngIf="number==0" class="pluschannel" style="margin-left: auto;" (click)="addNewForm()"><i class="fas fa-plus-circle add-channel-icon"></i></a>
+                                    <a *ngIf="number!=0" class="pluschannel" style="margin-left: auto;" (click)="removeForm(number)"><i class="fas fa-trash-alt add-channel-icon"></i></a>
+                                    <!-- <a *ngIf="number!=0" class="pluschannel" style="margin-left: auto;" (click)="editForm(number)"><i class="fas fa-edit add-channel-icon"></i></a> -->
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-dark">Cancel</button>
