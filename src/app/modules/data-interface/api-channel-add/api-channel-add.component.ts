@@ -58,6 +58,30 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
     { id: 3, value: "3" },
     { id: 4, value: "4" }
   ];
+  authentication_list = [
+    { id: 1, value: "Yes" },
+    { id: 2, value: "No" }
+  ];
+  key_list = [
+    { id: 1, value: "key1" },
+    { id: 2, value: "key2" },
+    { id: 3, value: "key3" },
+    { id: 4, value: "key4" }
+  ];
+  secrete_key_list = [
+    { id: 1, value: "secet key 1" },
+    { id: 2, value: "secet key 2" },
+    { id: 3, value: "secet key 3" },
+    { id: 4, value: "secet key 4" }
+  ];
+  access_token_list = [
+    { id: 1, value: "access token 1" },
+    { id: 2, value: "access token 2" },
+    { id: 3, value: "access token 3" },
+    { id: 4, value: "access token  4" }
+  ];
+
+
 
 
   tabLabelList = [
@@ -127,6 +151,18 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
       device_pass_frequency: [''],
       unit_increment: [''],
       dataset_feed_merge_count: [''],
+      base_url: [''],
+      consumer_key: [''],
+      consumer_secrete_key: [''],
+      request_token_url: [''],
+      access_token_url: [''],
+      scope: [''],
+      credential: [''],
+      authentication: [''],
+      key: [''],
+      secrete_key: [''],
+      access_token: [''],
+      authorization_url: [''],
     });
   }
 

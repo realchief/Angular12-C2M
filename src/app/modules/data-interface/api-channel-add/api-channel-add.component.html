@@ -204,6 +204,151 @@
                 </div>
                 <div *ngIf="number==1">
                     <div class="row mt-10 db_channel_list">
+                        <div class="col-md-4">
+                            <div class="row db_channel_info">
+                                <div class="col-md-12 mt-30">
+                                    <label for="input1" class="form-label">
+                                        Base URL
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="base_url" type="text" formControlName="base_url" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.base_url.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.base_url.errors && f.base_url.errors.required">Base_URL is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="input1" class="form-label">
+                                        Application Credentials used for onboarding 
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <div class="radio-list">
+                                        <input type="radio" value="Developer Credentials" name="credential" class="radio-left"> Developer Credentials
+                                        <input type="radio" value="Connect2me Credentials" name="credential" class="radio-right"> Connect2me Credentials
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="input1" class="form-label">
+                                        Consumer Key
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="consumer_key" type="text" formControlName="consumer_key" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.consumer_key.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.consumer_key.errors && f.consumer_key.errors.required">Consumer Key is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="input1" class="form-label">
+                                        Consumer Secret Key
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="consumer_secrete_key" type="text" formControlName="consumer_secrete_key" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.consumer_secrete_key.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.consumer_secrete_key.errors && f.consumer_secrete_key.errors.required">Consumer Secrete Key is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="input1" class="form-label">
+                                        Request Token URL
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="request_token_url" type="text" formControlName="request_token_url" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.request_token_url.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.request_token_url.errors && f.request_token_url.errors.required">Request Token URL is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="input1" class="form-label">
+                                        Access Token URL
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="access_token_url" type="text" formControlName="access_token_url" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.access_token_url.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.access_token_url.errors && f.access_token_url.errors.required">Access Token URL is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="input1" class="form-label">
+                                        Scope
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="scope" type="text" formControlName="scope" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.scope.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.scope.errors && f.scope.errors.required">Scope is required.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row db_channel_info">
+                                <div class="col-md-12 mt-30">
+                                    <label for="authentication" class="form-label">
+                                        Authentication
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <select formControlName="authentication" id="authentication" class="form-select form-select-sm">
+                                        <option *ngFor="let authentication of authentication_list" [ngValue]="authentication.id">{{authentication.value}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="key" class="form-label">
+                                        Key
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <select formControlName="key" id="key" class="form-select form-select-sm">
+                                        <option *ngFor="let key of key_list" [ngValue]="key.id">{{key.value}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="key" class="form-label">
+                                        Secret Key
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <select formControlName="secrete_key" id="key" class="form-select form-select-sm">
+                                        <option *ngFor="let secrete_key of secrete_key_list" [ngValue]="secrete_key.id">{{secrete_key.value}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="input1" class="form-label">
+                                        Authorization URL
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="authorization_url" type="text" formControlName="authorization_url" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.base_url.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.authorization_url.errors && f.authorization_url.errors.required">Authorization Url is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="key" class="form-label">
+                                        Access Token
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <select formControlName="access_token" id="access_token" class="form-select form-select-sm">
+                                        <option *ngFor="let access_token of access_token_list" [ngValue]="access_token.id">{{access_token.value}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-dark">Cancel</button>
