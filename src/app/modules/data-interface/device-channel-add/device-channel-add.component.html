@@ -4,7 +4,7 @@
     <div class="card mb-3" style="border-bottom: none;">
         <div class="row no-gutters">
             <div class="col-md-1" style="display: flex; align-items: center;">
-                <img src="../../../assets/images/windows.svg" class="card-img b-avatar-img" alt="avatar"
+                <img src="../../../assets/images/device2.png" class="card-img b-avatar-img" alt="avatar"
                     style="width: 100px;">
             </div>
             <div class="col-md-11">
@@ -23,268 +23,420 @@
         </div>
     </div>
     <form [formGroup]="addChannelForm" (ngSubmit)="onSubmit()" >
-        <mat-tab-group>
-            <mat-tab label="1. Channel Info">
-                <div class="row mt-10 db_channel_list">
-                    <div class="col-md-4">
-                        <div class="row db_channel_info">
-                            <div class="col-md-12">
-                                <label for="input2" class="form-label">
-                                    Channel Image*
-                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                        title="Help text to come here"></i>
-                                </label>
+        <mat-tab-group [selectedIndex]="selectedIndex">
+            <mat-tab label="{{number + 1}}. {{tabLabelList[number]}}" *ngFor="let number of [0,1,2,3,4,5];let i=index; "> 
+                <div *ngIf="number==0">
+                    <div class="row mt-10 db_channel_list">
+                        <div class="col-md-4">
+                            <div class="row db_channel_info">
+                                <div class="col-md-12">
+                                    <label for="input2" class="form-label">
+                                        Channel Image*
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <img class="img-responsive" id="preview-show" ng-show="filepreview"/>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <p style="margin-top: 10px; font-size: 10px;">H 200Px: W 200Px</p>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <button type="button" class="btn btn-outline-warning" (click)="clickInputButton()">Upload</button>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <input type="file" fileinput="file" filepreview="filepreview" id="channel-image" name="image" (change)="uploadPicture()"/>
+                                </div>
+                                <div *ngIf="submitted" class="alert alert-danger-small">
+                                    <div *ngIf="f.image.errors && f.image.errors.required" style="text-align: center;">Channel Image is required.</div>
+                                </div>
                             </div>
-                            <div class="col-md-12 text-center">
-                                <img class="img-responsive" id="preview-show" ng-show="filepreview"/>
+                            <div class="row db_channel_info">
+                                <div class="col-md-12 mt-30">
+                                    <label for="permission" class="form-label">
+                                        Permission
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <select formControlName="permission" id="permission" class="form-select form-select-sm">
+                                        <option *ngFor="let permission of permissions" [ngValue]="permission.id">{{permission.value}}</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="col-md-12 text-center">
-                                <p style="margin-top: 10px; font-size: 10px;">H 200Px: W 200Px</p>
+                            <div class="row db_channel_info">
+                                <div class="col-md-12 mt-30">
+                                    <label for="remote_commands" class="form-label">
+                                        Remote Commands
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <div class="form-check form-switch">
+                                        <toggle-button (changed)="checked=$event" id="remote_commands"></toggle-button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-12 text-center">
-                                <button type="button" class="btn btn-outline-warning" (click)="clickInputButton()">Upload</button>
+                            <div class="row db_channel_info">
+                                <div class="col-md-12 mt-30">
+                                    <label for="isfota" class="form-label">
+                                        Is FOTA
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <div class="form-check form-switch">
+                                        <toggle-button (changed)="checked=$event" id="isfota"></toggle-button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-12 text-center">
-                                <input type="file" fileinput="file" filepreview="filepreview" id="channel-image" name="image" (change)="uploadPicture()"/>
-                            </div>
-                            <div *ngIf="submitted" class="alert alert-danger-small">
-                                <div *ngIf="f.image.errors && f.image.errors.required" style="text-align: center;">Channel Image is required.</div>
-                            </div>
-                        </div>
-                        <div class="row db_channel_info">
-                            <div class="col-md-12 mt-30">
-                                <label for="permission" class="form-label">
-                                    Permission
-                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                        title="Help text to come here"></i>
-                                </label>
-                                <select formControlName="permission" id="permission" class="form-select form-select-sm">
-                                    <option *ngFor="let permission of permissions" [ngValue]="permission.id">{{permission.value}}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row db_channel_info">
-                            <div class="col-md-12 mt-30">
-                                <label for="remote_commands" class="form-label">
-                                    Remote Commands
-                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                        title="Help text to come here"></i>
-                                </label>
-                                <div class="form-check form-switch">
-                                    <toggle-button (changed)="checked=$event" id="remote_commands"></toggle-button>
+                            <div class="row db_channel_info">
+                                <div class="col-md-12 mt-30">
+                                    <label for="legan_documents_required" class="form-label">
+                                        Legal Documents Required
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <div class="form-check form-switch">
+                                        <toggle-button (changed)="checked=$event" id="legan_documents_required"></toggle-button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row db_channel_info">
-                            <div class="col-md-12 mt-30">
-                                <label for="isfota" class="form-label">
-                                    Is FOTA
-                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                        title="Help text to come here"></i>
-                                </label>
-                                <div class="form-check form-switch">
-                                    <toggle-button (changed)="checked=$event" id="isfota"></toggle-button>
+                        <div class="col-md-4">
+                            <div class="row db_channel_info">
+                                <div class="col-md-12 mt-30">
+                                    <label for="input1" class="form-label">
+                                        Channel Name*
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="channel_name" type="text" formControlName="channel_name" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.channel_name.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.channel_name.errors && f.channel_name.errors.required">Channel Name is required.</div>
+                                    </div>
                                 </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="channel_type" class="form-label">
+                                        Categories
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <select formControlName="channel_category" id="channel_category" class="form-select form-select-sm">
+                                        <option *ngFor="let channel_category of channel_cateogry_list" [ngValue]="channel_category.id">{{channel_category.value}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="channel_specifications" class="form-label">
+                                        Speficiations
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <angular-editor [placeholder]="'Enter text here...'" [config]="editorConfig"></angular-editor>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="channel_type" class="form-label">
+                                        Type
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <select formControlName="channel_type" id="channel_type" class="form-select form-select-sm">
+                                        <option *ngFor="let channel_type of channel_type_list" [ngValue]="channel_type.id">{{channel_type.value}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="c2m_pass_frequency" class="form-label">
+                                        How often will the device pass data to C2M?
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="c2m_pass_frequency" type="text" formControlName="c2m_pass_frequency" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.c2m_pass_frequency.errors }" />
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="input1" class="form-label">
+                                        TTL Period
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="ttl_period" type="text" formControlName="ttl_period" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.ttl_period.errors }" />
+                                </div>                            
                             </div>
                         </div>
-                        <div class="row db_channel_info">
-                            <div class="col-md-12 mt-30">
-                                <label for="legan_documents_required" class="form-label">
-                                    Legal Documents Required
-                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                        title="Help text to come here"></i>
-                                </label>
-                                <div class="form-check form-switch">
-                                    <toggle-button (changed)="checked=$event" id="legan_documents_required"></toggle-button>
+                        <div class="col-md-4">
+                            <div class="row db_channel_info">
+                                <div class="col-md-12 mt-30">
+                                    <label for="model_number" class="form-label">
+                                        Model Number*
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="model_number" type="text" formControlName="model_number" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.model_number.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.model_number.errors && f.model_number.errors.required">Model Number is required.</div>
+                                    </div>
+                                </div>    
+                                <div class="col-md-12 mt-30">
+                                    <label for="input1" class="form-label">
+                                        Short Description
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <textarea id="channel_description" cols="10" style="height: 100px;" class="form-control form-control-sm"></textarea>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="input2" class="form-label">
+                                        Enter Tags
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <textarea id="channel_tags" cols="10" style="height: 100px;" class="form-control form-control-sm"></textarea>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="navigation_tab" class="form-label">
+                                        Navigation Tabs
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <select formControlName="navigation_tab" id="navigation_tab" class="form-select form-select-sm">
+                                        <option *ngFor="let navigation_tab of navigation_tab_list" [ngValue]="navigation_tab.id">{{navigation_tab.value}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="dataset_feed_merge_count" class="form-label">
+                                        Dataset Feed Merge Count
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="dataset_feed_merge_count" type="text" formControlName="dataset_feed_merge_count" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.dataset_feed_merge_count.errors }" />
+                                </div>  
+                                <div class="col-md-12 mt-30">
+                                    <label for="unit_increment" class="form-label">
+                                        Unit Increment
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <select formControlName="unit_increment" id="unit_increment" class="form-select form-select-sm">
+                                        <option *ngFor="let unit_increment of unit_increment_list" [ngValue]="unit_increment.id">{{unit_increment.value}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="channel_ttl_rate" class="form-label">
+                                        TTL Rate
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <select formControlName="channel_ttl_rate" id="channel_ttl_rate" class="form-select form-select-sm">
+                                        <option *ngFor="let channel_ttl_rate of channel_ttl_rate_list" [ngValue]="channel_ttl_rate.id">{{channel_ttl_rate.value}}</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="row db_channel_info">
-                            <div class="col-md-12 mt-30">
-                                <label for="input1" class="form-label">
-                                    Channel Name*
-                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                        title="Help text to come here"></i>
-                                </label>
-                                <input id="channel_name" type="text" formControlName="channel_name" class="form-control form-control-sm"
-                                    [ngClass]="{ 'is-invalid': submitted && f.channel_name.errors }" />
-                                <div *ngIf="submitted" class="alert alert-danger-small">
-                                    <div *ngIf="f.channel_name.errors && f.channel_name.errors.required">Channel Name is required.</div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mt-30">
-                                <label for="channel_type" class="form-label">
-                                    Categories
-                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                        title="Help text to come here"></i>
-                                </label>
-                                <select formControlName="channel_category" id="channel_category" class="form-select form-select-sm">
-                                    <option *ngFor="let channel_category of channel_cateogry_list" [ngValue]="channel_category.id">{{channel_category.value}}</option>
-                                </select>
-                            </div>
-                            <div class="col-md-12 mt-30">
-                                <label for="channel_specifications" class="form-label">
-                                    Speficiations
-                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                        title="Help text to come here"></i>
-                                </label>
-                                <angular-editor [placeholder]="'Enter text here...'" [config]="editorConfig"></angular-editor>
-                            </div>
-                            <div class="col-md-12 mt-30">
-                                <label for="channel_type" class="form-label">
-                                    Type
-                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                        title="Help text to come here"></i>
-                                </label>
-                                <select formControlName="channel_type" id="channel_type" class="form-select form-select-sm">
-                                    <option *ngFor="let channel_type of channel_type_list" [ngValue]="channel_type.id">{{channel_type.value}}</option>
-                                </select>
-                            </div>
-                            <div class="col-md-12 mt-30">
-                                <label for="c2m_pass_frequency" class="form-label">
-                                    How often will the device pass data to C2M?
-                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                        title="Help text to come here"></i>
-                                </label>
-                                <input id="c2m_pass_frequency" type="text" formControlName="c2m_pass_frequency" class="form-control form-control-sm"
-                                    [ngClass]="{ 'is-invalid': submitted && f.c2m_pass_frequency.errors }" />
-                            </div>
-                            <div class="col-md-12 mt-30">
-                                <label for="input1" class="form-label">
-                                    TTL Period
-                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                        title="Help text to come here"></i>
-                                </label>
-                                <input id="ttl_period" type="text" formControlName="ttl_period" class="form-control form-control-sm"
-                                    [ngClass]="{ 'is-invalid': submitted && f.ttl_period.errors }" />
-                            </div>                            
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="row db_channel_info">
-                            <div class="col-md-12 mt-30">
-                                <label for="model_number" class="form-label">
-                                    Model Number*
-                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                        title="Help text to come here"></i>
-                                </label>
-                                <input id="model_number" type="text" formControlName="model_number" class="form-control form-control-sm"
-                                    [ngClass]="{ 'is-invalid': submitted && f.model_number.errors }" />
-                                <div *ngIf="submitted" class="alert alert-danger-small">
-                                    <div *ngIf="f.model_number.errors && f.model_number.errors.required">Model Number is required.</div>
-                                </div>
-                            </div>    
-                            <div class="col-md-12 mt-30">
-                                <label for="input1" class="form-label">
-                                    Short Description
-                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                        title="Help text to come here"></i>
-                                </label>
-                                <textarea id="channel_description" cols="10" style="height: 100px;" class="form-control form-control-sm"></textarea>
-                            </div>
-                            <div class="col-md-12 mt-30">
-                                <label for="input2" class="form-label">
-                                    Enter Tags
-                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                        title="Help text to come here"></i>
-                                </label>
-                                <textarea id="channel_tags" cols="10" style="height: 100px;" class="form-control form-control-sm"></textarea>
-                            </div>
-                            <div class="col-md-12 mt-30">
-                                <label for="navigation_tab" class="form-label">
-                                    Navigation Tabs
-                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                        title="Help text to come here"></i>
-                                </label>
-                                <select formControlName="navigation_tab" id="navigation_tab" class="form-select form-select-sm">
-                                    <option *ngFor="let navigation_tab of navigation_tab_list" [ngValue]="navigation_tab.id">{{navigation_tab.value}}</option>
-                                </select>
-                            </div>
-                            <div class="col-md-12 mt-30">
-                                <label for="dataset_feed_merge_count" class="form-label">
-                                    Dataset Feed Merge Count
-                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                        title="Help text to come here"></i>
-                                </label>
-                                <input id="dataset_feed_merge_count" type="text" formControlName="dataset_feed_merge_count" class="form-control form-control-sm"
-                                    [ngClass]="{ 'is-invalid': submitted && f.dataset_feed_merge_count.errors }" />
-                            </div>  
-                            <div class="col-md-12 mt-30">
-                                <label for="unit_increment" class="form-label">
-                                    Unit Increment
-                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                        title="Help text to come here"></i>
-                                </label>
-                                <select formControlName="unit_increment" id="unit_increment" class="form-select form-select-sm">
-                                    <option *ngFor="let unit_increment of unit_increment_list" [ngValue]="unit_increment.id">{{unit_increment.value}}</option>
-                                </select>
-                            </div>
-                            <div class="col-md-12 mt-30">
-                                <label for="channel_ttl_rate" class="form-label">
-                                    TTL Rate
-                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
-                                        title="Help text to come here"></i>
-                                </label>
-                                <select formControlName="channel_ttl_rate" id="channel_ttl_rate" class="form-select form-select-sm">
-                                    <option *ngFor="let channel_ttl_rate of channel_ttl_rate_list" [ngValue]="channel_ttl_rate.id">{{channel_ttl_rate.value}}</option>
-                                </select>
-                            </div>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark">Cancel</button>                        
+                        <button type="button" class="btn btn-primary" (click)="nextStep()">Next</button>
+                        <button type="submit" class="btn btn-danger">Save</button>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-dark">Cancel</button>
-                    <button type="submit" class="btn btn-secondary">Save</button>
-                    <button type="button" class="btn btn-danger">Next</button>
+                <div *ngIf="number==1">
+                    <div class="row mt-10 db_channel_list">
+                        <div class="col-md-4">
+                            <div class="row db_channel_info">
+                                <div class="col-md-12 mt-30">
+                                    <label for="input1" class="form-label">
+                                        Base URL
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="base_url" type="text" formControlName="base_url" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.base_url.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.base_url.errors && f.base_url.errors.required">Base_URL is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="input1" class="form-label">
+                                        Application Credentials used for onboarding 
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <div class="radio-list">
+                                        <input type="radio" value="Developer Credentials" name="credential" class="radio-left"> Developer Credentials
+                                        <input type="radio" value="Connect2me Credentials" name="credential" class="radio-right"> Connect2me Credentials
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="input1" class="form-label">
+                                        Consumer Key
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="consumer_key" type="text" formControlName="consumer_key" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.consumer_key.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.consumer_key.errors && f.consumer_key.errors.required">Consumer Key is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="input1" class="form-label">
+                                        Consumer Secret Key
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="consumer_secrete_key" type="text" formControlName="consumer_secrete_key" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.consumer_secrete_key.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.consumer_secrete_key.errors && f.consumer_secrete_key.errors.required">Consumer Secrete Key is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="input1" class="form-label">
+                                        Request Token URL
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="request_token_url" type="text" formControlName="request_token_url" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.request_token_url.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.request_token_url.errors && f.request_token_url.errors.required">Request Token URL is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="input1" class="form-label">
+                                        Access Token URL
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="access_token_url" type="text" formControlName="access_token_url" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.access_token_url.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.access_token_url.errors && f.access_token_url.errors.required">Access Token URL is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="input1" class="form-label">
+                                        Scope
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="scope" type="text" formControlName="scope" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.scope.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.scope.errors && f.scope.errors.required">Scope is required.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row db_channel_info">
+                                <div class="col-md-12 mt-30">
+                                    <label for="authentication" class="form-label">
+                                        Authentication
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <select formControlName="authentication" id="authentication" class="form-select form-select-sm">
+                                        <option *ngFor="let authentication of authentication_list" [ngValue]="authentication.id">{{authentication.value}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="key" class="form-label">
+                                        Key
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <select formControlName="key" id="key" class="form-select form-select-sm">
+                                        <option *ngFor="let key of key_list" [ngValue]="key.id">{{key.value}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="key" class="form-label">
+                                        Secret Key
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <select formControlName="secrete_key" id="key" class="form-select form-select-sm">
+                                        <option *ngFor="let secrete_key of secrete_key_list" [ngValue]="secrete_key.id">{{secrete_key.value}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="input1" class="form-label">
+                                        Authorization URL
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="authorization_url" type="text" formControlName="authorization_url" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.base_url.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.authorization_url.errors && f.authorization_url.errors.required">Authorization Url is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="key" class="form-label">
+                                        Access Token
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <select formControlName="access_token" id="access_token" class="form-select form-select-sm">
+                                        <option *ngFor="let access_token of access_token_list" [ngValue]="access_token.id">{{access_token.value}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark">Cancel</button>
+                        <button type="button" class="btn btn-secondary" (click)="previousStep()">Prev</button>
+                        <button type="button" class="btn btn-primary" (click)="nextStep()">Next</button>
+                        <button type="submit" class="btn btn-danger">Save</button>
+                    </div>
+                </div> 
+                <div *ngIf="number==2">
+                    <div class="row mt-10 db_channel_list">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark">Cancel</button>
+                        <button type="button" class="btn btn-secondary" (click)="previousStep()">Prev</button>
+                        <button type="button" class="btn btn-primary" (click)="nextStep()">Next</button>
+                        <button type="submit" class="btn btn-danger">Save</button>
+                    </div>
+                </div>
+                <div *ngIf="number==3">
+                    <div class="row mt-10 db_channel_list">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark">Cancel</button>
+                        <button type="button" class="btn btn-secondary" (click)="previousStep()">Prev</button>
+                        <button type="button" class="btn btn-primary" (click)="nextStep()">Next</button>
+                        <button type="submit" class="btn btn-danger">Save</button>
+                    </div>
+                </div>
+                <div *ngIf="number==4">
+                    <div class="row mt-10 db_channel_list">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark">Cancel</button>
+                        <button type="button" class="btn btn-secondary" (click)="previousStep()">Prev</button>
+                        <button type="button" class="btn btn-primary" (click)="nextStep()">Next</button>
+                        <button type="submit" class="btn btn-danger">Save</button>
+                    </div>
+                </div>
+                <div *ngIf="number==5">
+                    <div class="row mt-10 db_channel_list">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark">Cancel</button>
+                        <button type="button" class="btn btn-secondary" (click)="previousStep()">Prev</button>
+                        <button type="button" class="btn btn-primary" (click)="nextStep()">Next</button>
+                        <button type="submit" class="btn btn-danger">Save</button>
+                    </div>
                 </div>
             </mat-tab>
-            <mat-tab label="2. Connection"> 
-                <div class="row mt-10 db_channel_list">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-dark">Cancel</button>
-                    <button type="submit" class="btn btn-secondary">Next</button>
-                    <button type="button" class="btn btn-danger">Pevious</button>
-                </div>
-            </mat-tab>    
-            <mat-tab label="3. Identification"> 
-                <div class="row mt-10 db_channel_list">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-dark">Cancel</button>
-                    <button type="submit" class="btn btn-secondary">Next</button>
-                    <button type="button" class="btn btn-danger">Pevious</button>
-                </div>
-            </mat-tab>    
-            <mat-tab label="4. Data Mapping"> 
-                <div class="row mt-10 db_channel_list">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-dark">Cancel</button>
-                    <button type="submit" class="btn btn-secondary">Next</button>
-                    <button type="button" class="btn btn-danger">Pevious</button>
-                </div>
-            </mat-tab> 
-            <mat-tab label="5. Commands"> 
-                <div class="row mt-10 db_channel_list">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-dark">Cancel</button>
-                    <button type="submit" class="btn btn-secondary">Next</button>
-                    <button type="button" class="btn btn-danger">Pevious</button>
-                </div>
-            </mat-tab> 
-            <mat-tab label="6. Resources"> 
-                <div class="row mt-10 db_channel_list">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-dark">Cancel</button>
-                    <button type="submit" class="btn btn-secondary">Save</button>
-                    <button type="button" class="btn btn-danger">Pevious</button>
-                </div>
-            </mat-tab>       
         </mat-tab-group>
     </form>
 </div>

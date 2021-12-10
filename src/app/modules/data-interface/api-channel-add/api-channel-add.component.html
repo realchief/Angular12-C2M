@@ -24,7 +24,7 @@
     </div>
     <form [formGroup]="addChannelForm" (ngSubmit)="onSubmit()" >
         <mat-tab-group [selectedIndex]="selectedIndex">
-            <mat-tab label="1. Channel Info" label="{{number + 1}}. {{tabLabelList[number]}}" *ngFor="let number of [0,1,2,3];let i=index; "> 
+            <mat-tab label="{{number + 1}}. {{tabLabelList[number]}}" *ngFor="let number of [0,1,2,3];let i=index; "> 
                 <div *ngIf="number==0">
                     <div class="row mt-10 db_channel_list">
                         <div class="col-md-4">

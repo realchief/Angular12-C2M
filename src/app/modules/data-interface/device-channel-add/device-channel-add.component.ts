@@ -57,6 +57,40 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     { id: 3, value: "3" },
     { id: 4, value: "4" }
   ];
+  access_token_list = [
+    { id: 1, value: "access token 1" },
+    { id: 2, value: "access token 2" },
+    { id: 3, value: "access token 3" },
+    { id: 4, value: "access token  4" }
+  ];
+  secrete_key_list = [
+    { id: 1, value: "secet key 1" },
+    { id: 2, value: "secet key 2" },
+    { id: 3, value: "secet key 3" },
+    { id: 4, value: "secet key 4" }
+  ];
+  key_list = [
+    { id: 1, value: "key1" },
+    { id: 2, value: "key2" },
+    { id: 3, value: "key3" },
+    { id: 4, value: "key4" }
+  ];
+  authentication_list = [
+    { id: 1, value: "Yes" },
+    { id: 2, value: "No" }
+  ];
+
+  tabLabelList = [
+    'Channel Info',
+    'Connection',
+    'Identification',
+    'Data Mapping',
+    'Commmands',
+    'Resources',
+  ];
+
+  selectedIndex: number = 0;
+  maxNumberOfTabs = 6;
 
   editorConfig: AngularEditorConfig = {
     editable: true,
@@ -115,6 +149,18 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
       unit_increment: [''],
       channel_category: [''],
       image: ['', Validators.required],
+      access_token: [''],
+      secrete_key: [''],
+      key: [''],
+      authentication: [''],
+      base_url: [''],
+      credential: [''],
+      consumer_key: [''],
+      consumer_secrete_key: [''],
+      request_token_url: [''],
+      access_token_url: [''],
+      scope: [''],
+      authorization_url: [''],
     });
   }
 
@@ -144,6 +190,20 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
       previewEle.src = URL.createObjectURL(file[0])
     }
 
+  }
+
+  nextStep() {
+    if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = this.selectedIndex + 1;
+    }
+    console.log(this.selectedIndex);
+  }
+
+  previousStep() {
+    if (this.selectedIndex != 0) {
+        this.selectedIndex = this.selectedIndex - 1;
+    }
+    console.log(this.selectedIndex);
   }
 
   clickInputButton() {
