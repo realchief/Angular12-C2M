@@ -398,6 +398,34 @@
                 </div> 
                 <div *ngIf="number==2">
                     <div class="row mt-10 db_channel_list">
+                        <div class="col-md-12">
+                            <div class="row db_channel_info" *ngFor="let number of numbers">
+                                <div class="col-md-4 mt-30">
+                                    <label for="device_identifiers" class="form-label">
+                                        Device Identifiers
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="device_identifiers" type="text" formControlName="device_identifiers" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.device_identifiers.errors }" />
+                                </div>
+                                <div class="col-md-4 mt-30">
+                                    <label for="data_type" class="form-label">
+                                        Data Type
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <select formControlName="data_type" id="data_type" class="form-select form-select-sm">
+                                        <option *ngFor="let data_type of data_type_list" [ngValue]="data_type.id">{{data_type.value}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 mt-30 pt-30 icon-button">
+                                    <a *ngIf="number==0" class="pluschannel" style="margin-left: auto;" (click)="addNewForm()"><i class="fas fa-plus-circle add-channel-icon"></i></a>
+                                    <a *ngIf="number!=0" class="pluschannel" style="margin-left: auto;" (click)="removeForm(number)"><i class="fas fa-trash-alt add-channel-icon"></i></a>
+                                    <!-- <a *ngIf="number!=0" class="pluschannel" style="margin-left: auto;" (click)="editForm(number)"><i class="fas fa-edit add-channel-icon"></i></a> -->
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-dark">Cancel</button>

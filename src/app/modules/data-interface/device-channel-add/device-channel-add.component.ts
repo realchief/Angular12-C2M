@@ -79,6 +79,17 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     { id: 1, value: "Yes" },
     { id: 2, value: "No" }
   ];
+  data_type_list = [
+    { id: 1, value: "BOOL" },
+    { id: 2, value: "INT" },
+    { id: 3, value: "FLOAT" },
+    { id: 4, value: "VARCHAR" },
+    { id: 5, value: "LONGTEXT" },
+    { id: 6, value: "ARRAY" },
+    { id: 7, value: "DATE" },
+    { id: 8, value: "ENUMERATED" }
+  ];
+
 
   tabLabelList = [
     'Channel Info',
@@ -91,6 +102,8 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
 
   selectedIndex: number = 0;
   maxNumberOfTabs = 6;
+
+  numbers = [0];
 
   editorConfig: AngularEditorConfig = {
     editable: true,
@@ -161,6 +174,8 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
       access_token_url: [''],
       scope: [''],
       authorization_url: [''],
+      device_identifiers: [],
+      data_type: []
     });
   }
 
@@ -234,6 +249,28 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
 
   reloadPage(): void {
     window.location.reload();
+  }
+
+  addNewForm() :void {
+    this.numbers.push(this.numbers[this.numbers.length - 1] + 1);
+  }
+
+  removeForm(number : any) :void {
+    let i = 0;
+    for(i = 0; i < this.numbers.length; i ++){
+      if(this.numbers[i] == number)
+        break;
+    }
+    this.numbers.splice(i, 1);
+  }
+
+  editForm(number : any) :void {
+    let i = 0;
+    for(i = 0; i < this.numbers.length; i ++){
+      if(this.numbers[i] == number)
+        break;
+    }
+    this.numbers.splice(i, 1);
   }
 
 }
