@@ -46,6 +46,19 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
     { id: 3, value: "3" },
     { id: 4, value: "4" }
   ];
+  category_list = [
+    { id: 1, value: "Automotive" },
+    { id: 2, value: "Database" },
+    { id: 3, value: "Gateway" },
+    { id: 4, value: "Enterprice APIs" }
+  ];
+  unit_increment_list = [
+    { id: 1, value: "1" },
+    { id: 2, value: "2" },
+    { id: 3, value: "3" },
+    { id: 4, value: "4" }
+  ];
+
 
   editorConfig: AngularEditorConfig = {
     editable: true,
@@ -89,16 +102,20 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
     sessionStorage.setItem('AppTitle', 'Add Channel');
     this.getCountries();
     this.addChannelForm = this.formBuilder.group({
-      channel_name: ['', Validators.required],
+      company_name: ['', Validators.required],
       permission: [''],
       channel_type: [''],
       ttl_period: [''],
       channel_description: [''],
       channel_tags: [''],
-      navigation_tab: [''],
       channel_ttl_rate: [''],
-      channel_navigation_tab: [''],
+      navigation_tab: [''],
       image: ['', Validators.required],
+      category: [''],
+      message_second: [''],
+      device_pass_frequency: [''],
+      unit_increment: [''],
+      dataset_feed_merge_count: [''],
     });
   }
 
