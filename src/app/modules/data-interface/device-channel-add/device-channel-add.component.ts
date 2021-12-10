@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -175,7 +175,10 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
       scope: [''],
       authorization_url: [''],
       device_identifiers: [],
-      data_type: []
+      data_type: [],
+      rss_feed_url: [''],
+      buy_it_url: [''],
+      subscribe_url: [''],
     });
   }
 
