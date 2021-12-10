@@ -78,7 +78,7 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
     { id: 1, value: "access token 1" },
     { id: 2, value: "access token 2" },
     { id: 3, value: "access token 3" },
-    { id: 4, value: "access token  4" }
+    { id: 4, value: "access token 4" }
   ];
 
 
