@@ -55,3 +55,6 @@
 .commandfilebtn {
     width: 100%;
 }
+.pluschannel:hover {
+    cursor: pointer;
+}
