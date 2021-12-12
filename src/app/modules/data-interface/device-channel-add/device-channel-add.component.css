@@ -14,6 +14,9 @@
 #xmlfile {
     display: none;
 }
+#commandfile {
+    display: none;
+}
 #backbutton {
     margin: 0px; 
     font-size: 16px;
@@ -44,5 +47,11 @@
     width: 30%;
 }
 .xmlbtn {
+    width: 100%;
+}
+.commandfilebtn-div {
+    width: 30%;
+}
+.commandfilebtn {
     width: 100%;
 }

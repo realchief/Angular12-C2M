@@ -459,7 +459,7 @@
                             <div class="row db_channel_info">
                                 <div class="col-md-12">
                                     <label for="input2" class="form-label">
-                                        UPload Entire Datatype XML
+                                        Upload Entire Datatype XML
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                             title="Help text to come here"></i>
                                     </label>
@@ -513,7 +513,121 @@
                 </div>
                 <div *ngIf="number==4">
                     <div class="row mt-10 db_channel_list">
+                        <div class="col-md-12">
+                            <div class="row db_channel_info">
+                                <div class="col-md-12">
+                                    <h4><b>Remote Command Group</b></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row db_channel_info">
+                                <div class="col-md-12">
+                                    <label for="input2" class="form-label">
+                                        Upload Command File
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                </div>
+                                <div class="col-md-12 text-center commandfilebtn-div">
+                                    <button type="button" class="btn btn-outline-danger commandfilebtn" (click)="clickInputCommandFileButton()">+ Choose File</button>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <input type="file" fileinput="file" filepreview="filepreview" id="commandfile" name="commandfile"/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <div class="row mt-10 db_channel_list">
+                        <div class="col-md-12">
+                            <div class="gridActionsGroup mb-2 tab-black">
+                                <div class="actionsWrap" style="margin-left: 0; width: 100%;">
+                                    <a class="pluschannel" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Command </a>
+                                    <a class="pluschannel"><i class="fas fa-plus-circle"></i> Command Group </a>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped align-middle table-sm m-0">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Action
+                                            </th>
+                                            <th>
+                                                Command Group Name
+                                            </th>
+                                            <th>
+                                                Description
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let number_data of [0,1,2,3,4,5,6];let i=index;">
+                                            <td class="text-center">
+                                                <div class="action-btns">
+                                                    <a title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                    <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                Group Name {{number_data + 1}}
+                                            </td>
+                                            <td>
+                                                This is a sample of description for a command group. This is a test...
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 mt-30">
+                        <div class="row db_channel_info">   
+                            <div class="col-md-12">
+                                <h4><b>Commands</b></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-10 db_channel_list">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-striped align-middle table-sm m-0">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Action
+                                            </th>
+                                            <th>
+                                                Command Name
+                                            </th>
+                                            <th>
+                                                Description
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let number_data of [0,1,2,3,4,5,6];let i=index;">
+                                            <td class="text-center">
+                                                <div class="action-btns">
+                                                    <a title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                    <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                Command {{number_data + 1}}
+                                            </td>
+                                            <td>
+                                                This is a description of command. This is a description of command. This is a test...
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-dark">Cancel</button>
                         <button type="button" class="btn btn-secondary" (click)="previousStep()">Prev</button>

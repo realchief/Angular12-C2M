@@ -235,6 +235,11 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     fileInt.click();
   }
 
+  clickInputCommandFileButton() {
+    const fileInt = <HTMLInputElement>document.getElementById('commandfile');
+    fileInt.click();
+  }
+
   getCountries() {
     let payload = {}
     this.apiService.postWithOutHeader('GetCountryList', payload).subscribe(
