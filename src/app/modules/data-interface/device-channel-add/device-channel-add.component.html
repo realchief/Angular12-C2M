@@ -552,7 +552,7 @@
                             <div class="gridActionsGroup mb-2 tab-black">
                                 <div class="actionsWrap" style="margin-left: 0; width: 100%;">
                                     <a class="pluschannel" (click)="open(newCommandModal)" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Command </a>
-                                    <a class="pluschannel"><i class="fas fa-plus-circle"></i> Command Group </a>
+                                    <a class="pluschannel" (click)="open(newCommandGroupModal)" ><i class="fas fa-plus-circle"></i> Command Group </a>
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -1040,6 +1040,91 @@
     </form>
 </div>
 
+<ng-template #newCommandGroupModal let-modal>
+    <form [formGroup]="addCommandGroupForm" (ngSubmit)="onSubmitCommandGroup()">
+        <div class="modal-header addChannel_company_header">
+            <button type="button" class="button button-circle" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <mat-tab-group>
+            <mat-tab label="Add Remote Command Group">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 mt-10">
+                            <div class="row">
+                                <div class="col-md-6 mt-10">
+                                    <label for="input1" class="form-label">
+                                        Remote Command Group Name*
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="command_group_name" type="text" formControlName="command_group_name" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': command_group_submitted && f_command_group.command_group_name.errors }" />
+                                    <div *ngIf="command_group_submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f_command_group.command_group_name.errors && f_command_group.command_group_name.errors.required">Command Group Name is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-10">
+                                    <label for="input2" class="form-label">
+                                        Friendly Name
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="friendly_name" type="text" formControlName="friendly_name" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': command_group_submitted && f_command_group.friendly_name.errors }" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-10">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="input1" class="form-label">
+                                        Description
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <textarea id="command_verb" cols="10" style="height: 100px;" class="form-control form-control-sm"></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="input2" class="form-label">
+                                        Mode
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <select formControlName="command_group_mode" id="command_group_mode" class="form-select form-select-sm">
+                                        <option *ngFor="let command_group_mode of command_group_mode_list" [ngValue]="command_group_mode.id">{{command_group_mode.value}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-10">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="input2" class="form-label">
+                                        Choose Commands
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <select formControlName="command_info" id="command_info" class="form-select form-select-sm">
+                                        <option *ngFor="let command_info of command_info_list" [ngValue]="command_info.id">{{command_info.value}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
+                    <!-- <button type="submit" class="btn btn-danger" (click)="modal.close('Save click')">Next</button> -->
+                    <button type="submit" class="btn btn-danger">Save</button>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </form>
+</ng-template>
+
+
 <ng-template #newCommandModal let-modal>
     <form [formGroup]="addCommandForm" (ngSubmit)="onSubmitCommand()">
         <div class="modal-header addChannel_company_header">
@@ -1108,7 +1193,7 @@
                                 </div>
                                 <div class="col-md-5 mt-30">
                                     <label for="indentification_data_type" class="form-label">
-                                        Data Type
+                                        DataType
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                             title="Help text to come here"></i>
                                     </label>

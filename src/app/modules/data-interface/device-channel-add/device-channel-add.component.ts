@@ -21,9 +21,11 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
 
   addChannelForm: FormGroup;
   addCommandForm: FormGroup;
+  addCommandGroupForm: FormGroup;
 
   submitted = false;
   command_submitted = false;
+  command_group_submitted = false;
   isCreatingFailed = false;
   errorMessage = '';
   countries: any[] = [];
@@ -92,6 +94,19 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     { id: 6, value: "ARRAY" },
     { id: 7, value: "DATE" },
     { id: 8, value: "ENUMERATED" }
+  ];
+  command_group_mode_list = [
+    { id: 1, value: "Mode 1" },
+    { id: 2, value: "Mode 2" },
+    { id: 3, value: "Mode 3" },
+    { id: 4, value: "Mode 4" },
+    { id: 5, value: "Mode 5" },
+  ];
+  command_info_list = [
+    { id: 1, value: "Command One" },
+    { id: 2, value: "Command Two" },
+    { id: 3, value: "Command Three" },
+    { id: 4, value: "Command Four" },
   ];
 
 
@@ -198,6 +213,12 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
       command_file_name: [],
       command_data_type: [],
     });
+    this.addCommandGroupForm = this.formBuilder.group({
+      command_group_name: ['', Validators.required],
+      command_group_mode: [''],      
+      command_info: [''],   
+      friendly_name: [''],   
+    });
   }
 
   ngOnInit() {
@@ -216,6 +237,10 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
 
   get f_command() {
     return this.addCommandForm.controls;
+  }
+
+  get f_command_group() {
+    return this.addCommandGroupForm.controls;
   }
 
   backClicked() {
@@ -302,6 +327,11 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   onSubmitCommand(): void {
     this.command_submitted = true;
     console.log('Add command form has been submitted');
+  }
+
+  onSubmitCommandGroup(): void {
+    this.command_group_submitted = true;
+    console.log('Add command group form has been submitted');
   }
 
   reloadPage(): void {
