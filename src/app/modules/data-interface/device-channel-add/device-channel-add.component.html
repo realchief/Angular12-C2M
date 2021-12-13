@@ -1112,6 +1112,45 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-12 mt-10">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped align-middle table-sm m-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        Action
+                                                    </th>
+                                                    <th>
+                                                        Command Name
+                                                    </th>
+                                                    <th>
+                                                        Description
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let number_data of [0,1,2,3,4];let i=index;">
+                                                    <td class="text-center">
+                                                        <div class="action-btns">
+                                                            <a title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                            <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        Command {{number_data + 1}}
+                                                    </td>
+                                                    <td>
+                                                        This is a test sample.
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
