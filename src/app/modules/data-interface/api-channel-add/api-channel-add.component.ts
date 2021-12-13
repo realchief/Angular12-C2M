@@ -137,6 +137,7 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
   ) {
     sessionStorage.setItem('AppTitle', 'Add Channel');
     this.getCountries();
+    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.addChannelForm = this.formBuilder.group({
       channel_name: ['', Validators.required],
       permission: [''],
@@ -155,15 +156,18 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
       base_url: [''],
       consumer_key: [''],
       consumer_secrete_key: [''],
-      request_token_url: [''],
-      access_token_url: [''],
+      request_token_url: ['', [Validators.pattern(reg)]],
+      access_token_url: ['', [Validators.pattern(reg)]],
       scope: [''],
       credential: [''],
       authentication: [''],
       key: [''],
       secrete_key: [''],
       access_token: [''],
-      authorization_url: [''],
+      authorization_url: ['', [Validators.pattern(reg)]],
+      rss_feed_url: ['', [Validators.pattern(reg)]],
+      buy_it_url: ['', [Validators.pattern(reg)]],
+      subscribe_url: ['', [Validators.pattern(reg)]]
     });
   }
 
