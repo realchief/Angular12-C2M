@@ -9,6 +9,7 @@ import { TokenStorageService } from "src/app/_services/token-storage.service";
 import { Title } from '@angular/platform-browser';
 import { ApiService } from "src/app/_services/api.service";
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -19,6 +20,8 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 export class DeviceChannelAddComponent implements OnInit, OnDestroy {
 
   addChannelForm: FormGroup;
+  addCommandForm: FormGroup;
+
   submitted = false;
   isCreatingFailed = false;
   errorMessage = '';
@@ -105,6 +108,8 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
 
   numbers = [0];
 
+  
+
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
@@ -135,11 +140,14 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     { "router": "data-interface/c2m-di-marketplace/Microsoft", "title": "Microsoft" }
   ];
 
+  closeResult: string = '';
+
   constructor(
     private http: HttpClient,
     private _location: Location,
     private formBuilder: FormBuilder,
     private router: Router,
+    private modalService: NgbModal,
     private titleService: Title,
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
@@ -183,6 +191,13 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
       subscribe_url: ['', [Validators.pattern(reg)]],
       data_mapping_option: [''],
     });
+    this.addCommandForm = this.formBuilder.group({
+      company_name: ['', Validators.required],
+      company_url: ['', [Validators.required, Validators.pattern(reg)]],
+      sub_domain: ['', Validators.required],
+      category: [''],
+      image: ['', Validators.required],
+    });
   }
 
   ngOnInit() {
@@ -211,6 +226,24 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
       previewEle.src = URL.createObjectURL(file[0])
     }
 
+  }
+
+  open(content: any) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 
   nextStep() {
