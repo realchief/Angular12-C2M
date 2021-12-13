@@ -16,7 +16,7 @@ import { Component, Output, EventEmitter} from '@angular/core';
       display: block;
       position: relative;
       width: 100px;
-      height: 50px;
+      height: 26px;
     }
     
     input[type="checkbox"] {
@@ -28,8 +28,8 @@ import { Component, Output, EventEmitter} from '@angular/core';
       position: absolute;
       top: 2px;
       left: 2px;
-      width: 46px;
-      height: 46px;
+      width: 23px;
+      height: 23px;
       background-color: red;
       border-radius: 100%;
       cursor: pointer;
@@ -39,6 +39,8 @@ import { Component, Output, EventEmitter} from '@angular/core';
 
    
     .toggle-button-text {
+      height: 26px;
+      width: 50px;
       overflow: hidden;
       background-color: #fff;
       border-radius: 25px;
@@ -52,16 +54,17 @@ import { Component, Output, EventEmitter} from '@angular/core';
       float: left;
       width: 50%;
       height: 100%;
-      line-height: 50px;
+      line-height: 25px;
       font-family: Lato, sans-serif;
       font-weight: bold;
       color: #fc3164;
       text-align: center;
+      font-size: 10px;
     }
 
    
     input[type="checkbox"]:checked ~ .toggle-button-switch {
-      left: 52px;
+      left: 26px;
     }
 
     
