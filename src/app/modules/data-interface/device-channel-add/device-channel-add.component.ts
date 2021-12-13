@@ -23,6 +23,7 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   addCommandForm: FormGroup;
 
   submitted = false;
+  command_submitted = false;
   isCreatingFailed = false;
   errorMessage = '';
   countries: any[] = [];
@@ -181,22 +182,21 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
       consumer_secrete_key: [''],
       request_token_url: ['', [Validators.pattern(reg)]],
       access_token_url: ['', [Validators.pattern(reg)]],
-      scope: [''],
+      scope: [''],      
       authorization_url: ['', [Validators.pattern(reg)]],
       device_identifiers: [],
       indentification_data_type: [],
       file_data_type: [],
+      file_name: [],
       rss_feed_url: ['', [Validators.pattern(reg)]],
       buy_it_url: ['', [Validators.pattern(reg)]],
       subscribe_url: ['', [Validators.pattern(reg)]],
       data_mapping_option: [''],
     });
     this.addCommandForm = this.formBuilder.group({
-      company_name: ['', Validators.required],
-      company_url: ['', [Validators.required, Validators.pattern(reg)]],
-      sub_domain: ['', Validators.required],
-      category: [''],
-      image: ['', Validators.required],
+      command_name: ['', Validators.required],
+      command_file_name: [],
+      command_data_type: [],
     });
   }
 
@@ -212,6 +212,10 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
 
   get f() {
     return this.addChannelForm.controls;
+  }
+
+  get f_command() {
+    return this.addCommandForm.controls;
   }
 
   backClicked() {
@@ -293,6 +297,11 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     this.submitted = true;
     console.log('submitted');
+  }
+
+  onSubmitCommand(): void {
+    this.command_submitted = true;
+    console.log('Add command form has been submitted');
   }
 
   reloadPage(): void {
