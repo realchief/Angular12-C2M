@@ -64,9 +64,9 @@
                     <div class="card-text">
                         <a class="text-sublink" (click)="open(modalSpecifications)">Specifications</a>
                         <a class="text-sublink" (click)="open(modalApiSdkCode)">Api/Sdk/Code</a>
-                        <a class="text-sublink">Native Apps</a>
+                        <a class="text-sublink" (click)="open(modalNativeApps)">Native Apps</a>
                         <a class="text-sublink">News</a>
-                        <a class="text-sublink">Resources</a>
+                        <a class="text-sublink" (click)="open(modalResources)">Resources</a>
                     </div>
                 </div>
             </div>
@@ -445,5 +445,95 @@
     <div class="modal-footer">
         <button type="button" class="btn btn-danger" (click)="modal.close('Close')">Close</button>
     </div>
+    
+</ng-template>
+
+<ng-template #modalNativeApps let-modal>
+    
+    <div class="modal-header addChannel_company_header">
+        <button type="button" class="button button-circle" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <mat-tab-group>
+        <mat-tab label="Native Apps">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 mt-10">
+                        <div class="table-responsive">
+                            <table class="table table-striped align-middle table-sm m-0">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            App Type
+                                        </th>
+                                        <th>
+                                            App URL
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let number_data of [0,1,2,3,4,5,6,7];let i=index;">
+                                        <td>
+                                            App Type {{number_data + 1}}
+                                        </td>
+                                        <td>
+                                            https://play.google.com/store/apps/details?id=product_{{number_data + 1}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="modal.close('Close')">Close</button>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+    
+</ng-template>
+
+<ng-template #modalResources let-modal>
+    
+    <div class="modal-header addChannel_company_header">
+        <button type="button" class="button button-circle" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <mat-tab-group>
+        <mat-tab label="Native Apps">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 mt-10">
+                        <div class="table-responsive">
+                            <table class="table table-striped align-middle table-sm m-0">
+                                <tbody>
+                                    <tr *ngFor="let number_data of [0,1,2,3,4];let i=index;">
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-md-2 mt-10">
+                                                    <img src="../../../assets/images/image{{number_data + 1}}.png" class="card-img b-avatar-img" alt="avatar" style="width: 100px;">
+                                                </div>
+                                                <div class="col-md-10 mt-10 pt-10 react-app-info">
+                                                    <h4>Marketing Documents{{number_data + 1}}</h4>
+                                                    <p>This is the test data for native apps tab. <a>Click Here</a></p> 
+                                                    <p>This is another test data for native apps tab. <a>Click Here</a></p> 
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="modal.close('Close')">Close</button>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
     
 </ng-template>

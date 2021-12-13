@@ -34,3 +34,12 @@
 .mt-30 {
     margin-top: 30px;
 }
+.pt-10 {
+    padding-top: 10px;
+}
+.react-app-info h4 {
+    font-weight: bold;
+}
+.react-app-info a {
+    color: red;
+}
