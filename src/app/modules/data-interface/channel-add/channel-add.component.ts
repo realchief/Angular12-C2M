@@ -97,6 +97,7 @@ export class ChannelAddComponent implements OnInit, OnDestroy {
   ) {
     sessionStorage.setItem('AppTitle', 'Add Channel');
     this.getCountries();
+    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.addChannelForm = this.formBuilder.group({
       channel_name: ['', Validators.required],
       permission: [''],
@@ -108,9 +109,9 @@ export class ChannelAddComponent implements OnInit, OnDestroy {
       channel_ttl_rate: [''],
       channel_navigation_tab: [''],
       image: ['', Validators.required],
-      rss_feed_url: [''],
-      buy_it_url: [''],
-      subscribe_url: ['']
+      rss_feed_url: ['', [Validators.pattern(reg)]],
+      buy_it_url: ['', [Validators.pattern(reg)]],
+      subscribe_url: ['', [Validators.pattern(reg)]]
     });
   }
 
