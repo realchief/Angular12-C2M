@@ -23,6 +23,7 @@ export class FileChannelAddComponent implements OnInit, OnDestroy {
   isCreatingFailed = false;
   errorMessage = '';
   countries: any[] = [];
+  checked = true;
   permissions = [
     { id: 1, value: "Admin" },
     { id: 2, value: "Management" },

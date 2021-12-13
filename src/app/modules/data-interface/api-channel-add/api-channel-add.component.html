@@ -724,7 +724,9 @@
                                             </div>
                                         </td>
                                         <td>
-                                            On/Off
+                                            <div class="form-check form-switch">
+                                                <toggle-button (changed)="checked=$event" class="video_featured"></toggle-button>
+                                            </div>
                                         </td>
                                         <td>
                                             Video One
