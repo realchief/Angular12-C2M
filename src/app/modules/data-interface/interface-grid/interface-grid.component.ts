@@ -33,6 +33,15 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
   isCreatingFailed = false;
   errorMessage = '';
 
+  tabLabelList = [
+    'API',
+    'SDK',
+    'Code Library'
+  ];
+
+  selectedIndex: number = 0;
+  maxNumberOfTabs = 3;
+
   AppPath = [
     { "router": "data-interface", "title": "Data Interface" },
     { "router": "data-interface/c2m-di-marketplace", "title": "C2M DI MarketPlace" }
