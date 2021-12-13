@@ -160,6 +160,9 @@
                                     </label>
                                     <input id="rss_feed_url" type="text" formControlName="rss_feed_url" class="form-control form-control-sm"
                                         [ngClass]="{ 'is-invalid': submitted && f.rss_feed_url.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.rss_feed_url.errors && f.rss_feed_url.errors.pattern">Please provide valid url.</div>
+                                    </div>
                                 </div>
                                 <div class="col-md-4 mt-30">
                                 </div>
@@ -180,6 +183,9 @@
                                     </label>
                                     <input id="buy_it_url" type="text" formControlName="buy_it_url" class="form-control form-control-sm"
                                         [ngClass]="{ 'is-invalid': submitted && f.buy_it_url.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.buy_it_url.errors && f.buy_it_url.errors.pattern">Please provide valid url.</div>
+                                    </div>
                                 </div>
                                 <div class="col-md-4 mt-30">
                                     <h4 class="form-label medium-label">
@@ -192,6 +198,9 @@
                                     </label>
                                     <input id="subscribe_url" type="text" formControlName="subscribe_url" class="form-control form-control-sm"
                                         [ngClass]="{ 'is-invalid': submitted && f.subscribe_url.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.subscribe_url.errors && f.subscribe_url.errors.pattern">Please provide valid url.</div>
+                                    </div>
                                 </div>
                                 <div class="col-md-4 mt-30">
                                 </div>
