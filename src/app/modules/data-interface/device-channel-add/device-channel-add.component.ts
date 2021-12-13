@@ -147,6 +147,7 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   ) {
     sessionStorage.setItem('AppTitle', 'Add Channel');
     this.getCountries();
+    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.addChannelForm = this.formBuilder.group({
       channel_name: ['', Validators.required],
       permission: [''],
@@ -166,20 +167,20 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
       secrete_key: [''],
       key: [''],
       authentication: [''],
-      base_url: [''],
+      base_url: ['', [Validators.pattern(reg)]],
       credential: [''],
       consumer_key: [''],
       consumer_secrete_key: [''],
-      request_token_url: [''],
-      access_token_url: [''],
+      request_token_url: ['', [Validators.pattern(reg)]],
+      access_token_url: ['', [Validators.pattern(reg)]],
       scope: [''],
-      authorization_url: [''],
+      authorization_url: ['', [Validators.pattern(reg)]],
       device_identifiers: [],
       indentification_data_type: [],
       file_data_type: [],
-      rss_feed_url: [''],
-      buy_it_url: [''],
-      subscribe_url: [''],
+      rss_feed_url: ['', [Validators.pattern(reg)]],
+      buy_it_url: ['', [Validators.pattern(reg)]],
+      subscribe_url: ['', [Validators.pattern(reg)]],
       data_mapping_option: [''],
     });
   }
