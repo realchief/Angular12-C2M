@@ -28,3 +28,9 @@
 .add_channel_btn:hover {
     cursor: pointer;
 }
+.text-sublink:hover {
+    cursor: pointer;
+}
+.mt-30 {
+    margin-top: 30px;
+}

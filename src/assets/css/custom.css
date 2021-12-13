@@ -264,3 +264,7 @@ ul.dashList .dashWrap:hover .dashOverlay a:hover{color:#EA593C;}
 #pScrollbar2 {
     z-index: 1000;
 }
+.mat-tab-label-content {
+    font-weight: bold;
+    color: black;
+}
