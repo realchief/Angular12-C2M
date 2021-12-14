@@ -9,8 +9,10 @@ import { FileChannelAddComponent } from './file-channel-add/file-channel-add.com
 import { DeviceChannelAddComponent } from './device-channel-add/device-channel-add.component';
 import { InterfaceRoutingModule } from './interface-management-routing.module'
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { ToggleButtonComponent } from './toggle-button-component';
+
 
 
 
@@ -28,6 +30,7 @@ import { ToggleButtonComponent } from './toggle-button-component';
     ReactiveFormsModule,
     InterfaceRoutingModule,
     MatTabsModule,
+    MatTableModule,
     AngularEditorModule    
   ]
 })

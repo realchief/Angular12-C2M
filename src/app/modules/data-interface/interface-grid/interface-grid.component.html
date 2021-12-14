@@ -333,36 +333,67 @@
                 <div *ngIf="number==0">
                     <div class="row">
                         <div class="col-md-12 mt-30"> 
-                            <div class="table-responsive">
-                                <table class="table table-striped align-middle table-sm m-0">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                Calls
-                                            </th>
-                                            <th>
-                                                Resource URL
-                                            </th>
-                                            <th>
-                                                Description
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let number_data of [0,1,2,3,4,5,6,7];let i=index;">
-                                            <td>
-                                                YoutubeAnalyticsReportsQuery_{{number_data + 1}}
-                                            </td>
-                                            <td>
-                                                https://google.com/
-                                            </td>
-                                            <td>
-                                                This is the test example of Description {{number_data + 1}}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>                    
+                            <table mat-table
+                                [dataSource]="dataSource" multiTemplateDataRows
+                                class="mat-elevation-z8">
+                                <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+                                    <th mat-header-cell *matHeaderCellDef class="tableheader"> {{column}} </th>
+                                    <td mat-cell *matCellDef="let element" class="tablecontent"> {{element[column]}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="expandedDetail">
+                                    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                                    <div class="example-element-detail"
+                                        [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                                        <div class="row expanded-info-div">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <h4 class="testparam">Parameters</h4>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <button class="btn btn-danger testbtn">Test</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <h4 class="expanded-content-label">Header</h4>
+                                                        <p>Accept-Language</p>
+                                                        <p>Accept-Locale</p>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <h4 class="expanded-content-label">Body</h4>
+                                                        <p>Body</p>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <h4 class="expanded-content-label">Template</h4>
+                                                        <p>UserID</p>
+                                                        <p>Accept-Locale</p>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <h4 class="expanded-content-label">Query</h4>
+                                                        <p>start-date</p>
+                                                        <p>end-date</p>
+                                                        <p>metrics</p>
+                                                        <p>dimensions</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                                <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+                                    class="example-element-row"
+                                    [class.example-expanded-row]="expandedElement === element"
+                                    (click)="expandedElement = expandedElement === element ? null : element">
+                                </tr>
+                                <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+                            </table>                   
                         </div>
                     </div>
                 </div>

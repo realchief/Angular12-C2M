@@ -7,15 +7,27 @@ import { ApiService } from 'src/app/_services/api.service';
 import { Title } from '@angular/platform-browser';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Location } from '@angular/common';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 
 
 @Component({
   selector: 'app-interface-grid',
   templateUrl: './interface-grid.component.html',
-  styleUrls: ['./interface-grid.component.css']
+  styleUrls: ['./interface-grid.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class InterfaceGridComponent implements OnInit, OnDestroy {
+
+  dataSource = ELEMENT_DATA;
+  columnsToDisplay = ['Calls', 'URL', 'Description'];
+  expandedElement: PeriodicElement | null;
 
   categories = [
     { id: 1, value: "Automotive" },
@@ -24,7 +36,7 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
     { id: 4, value: "Enterprise APIs" }
   ];
 
-  dataSource: any;
+  companyInfoSource: any;
   itemsCount = 0;
   closeResult: string = '';
 
@@ -60,6 +72,7 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
   ) {
     sessionStorage.setItem('AppTitle', 'Microsoft');
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+    this.expandedElement = null;
     this.addCompanyForm = this.formBuilder.group({
       company_name: ['', Validators.required],
       company_url: ['', [Validators.required, Validators.pattern(reg)]],
@@ -91,12 +104,10 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
 
 
   private getAllCompany() {
-    // const apikey = 'bIPXlfzvB1kHilurK4s@jjnOiDCoVQ';
     const apikey = localStorage.getItem("APIKey");
     this.apiService.get('GetCompanies', { 'apiKey': apikey, 'companyname': '' })
       .subscribe(res => {
-        this.dataSource = res.data.companies.company;
-        console.log(this.dataSource);
+        this.companyInfoSource = res.data.companies.company;
       }, error => {
         console.log(error);
       });
@@ -171,3 +182,31 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
   }
 
 }
+
+
+export interface PeriodicElement {
+  Calls: string;
+  URL: string;
+  Description: string;
+}
+
+
+const ELEMENT_DATA: PeriodicElement[] = [
+  {
+    Calls: 'YoutubeInfo_GET',
+    URL: 'https://test.com/youtube/',
+    Description: `Hydrogen is a chemical element with symbol H and atomic number 1`
+  }, {
+    Calls: 'Business_POST',
+    URL: 'https://test.com/business/1',
+    Description: `Helium is a chemical element with symbol He and atomic number 2.`
+  }, {
+    Calls: 'Lab_PATCH',
+    URL: 'https://test/com/lab/1',
+    Description: `Lithium is a chemical element with symbol Li and atomic number 3`
+  }, {
+    Calls: 'getProfileInfo_GET',
+    URL: 'https://user_profile/123',
+    Description: `Beryllium is a chemical element with symbol Be and atomic number 4`
+  }
+];
