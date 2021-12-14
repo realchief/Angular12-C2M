@@ -43,11 +43,11 @@
                         <div class="action-btns d-flex text-right ms-auto">
                             <a class="btn btn-outline-danger" title="Select" style="margin-right: 15px; height: 22px;">Select</a>
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                                <input class="form-check-input text-sublink" type="checkbox" id="flexSwitchCheckChecked" checked>
                             </div>
-                            <a title="Alert"><i class="fa fa-exclamation-triangle"></i></a>
-                            <a title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
+                            <a title="Alert" class="text-sublink" (click)="open(modalAlert)"><i class="fa fa-exclamation-triangle"></i></a>
+                            <a title="Edit" class="text-sublink"><i class="fas fa-pencil-alt"></i></a>
+                            <a class="text-sublink" href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
                         </div>
                     </div>
                     <p class="card-text" style="font-size: 15px;">This is a wider card with supporting text below as a
@@ -536,4 +536,77 @@
         </mat-tab>
     </mat-tab-group>
     
+</ng-template>
+
+<ng-template #modalAlert let-modal>
+    <form [formGroup]="addReportForm" (ngSubmit)="onSubmitReport()">
+        <div class="modal-header addChannel_company_header">
+            <button type="button" class="button button-circle" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <mat-tab-group>
+            <mat-tab label="Report an Error">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 mt-10">
+                            <label for="name" class="form-label">
+                                Name*
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <input id="name" type="text" formControlName="name" class="form-control form-control-sm"
+                                [ngClass]="{ 'is-invalid': submitted_report && f_report.name.errors }" />
+                            <div *ngIf="submitted_report" class="alert alert-danger-small">
+                                <div *ngIf="f_report.name.errors && f_report.name.errors.required">Name is required.</div>
+                            </div>                            
+                        </div>
+                        <div class="col-md-12 mt-20">
+                            <label for="email" class="form-label">
+                                Email*
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <input id="email" type="email" formControlName="email" class="form-control form-control-sm"
+                                [ngClass]="{ 'is-invalid': submitted_report && f_report.email.errors }" />
+                            <div *ngIf="submitted_report" class="alert alert-danger-small">
+                                <div *ngIf="f_report.email.errors && f_report.email.errors.required">Email is required.</div>
+                            </div>
+                            <div *ngIf="submitted_report" class="alert alert-danger-small">
+                                <div *ngIf="f_report.email.errors && f_report.email.errors.email">Put a valid email address.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-20">
+                            <label for="name" class="form-label">
+                                Report Category*
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <input id="report_category" type="text" formControlName="report_category" class="form-control form-control-sm"
+                                [ngClass]="{ 'is-invalid': submitted_report && f_report.report_category.errors }" />
+                            <div *ngIf="submitted_report" class="alert alert-danger-small">
+                                <div *ngIf="f_report.report_category.errors && f_report.report_category.errors.required">Report Category is required.</div>
+                            </div>                            
+                        </div>
+                        <div class="col-md-12 mt-20">
+                            <label for="name" class="form-label">
+                                Brief Description*
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <textarea id="report_description" formControlName="report_description" cols="10" style="height: 100px;" [ngClass]="{ 'is-invalid': submitted_report && f_report.report_description.errors }" class="form-control form-control-sm"></textarea>
+                          
+                            <div *ngIf="submitted_report" class="alert alert-danger-small">
+                                <div *ngIf="f_report.report_description.errors && f_report.report_description.errors.required">Brief Description is required.</div>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Save</button>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </form>
 </ng-template>

@@ -29,7 +29,9 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
   closeResult: string = '';
 
   addCompanyForm: FormGroup;
+  addReportForm: FormGroup;
   submitted = false;
+  submitted_report = false;
   isCreatingFailed = false;
   errorMessage = '';
 
@@ -65,6 +67,12 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
       category: [''],
       image: ['', Validators.required],
     });
+    this.addReportForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      report_category: ['', Validators.required],
+      report_description: ['', Validators.required],
+    });
   }
 
   ngOnInit() {
@@ -75,6 +83,10 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
 
   get f() {
     return this.addCompanyForm.controls;
+  }
+
+  get f_report() {
+    return this.addReportForm.controls;
   }
 
 
@@ -133,6 +145,10 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
    onSubmit(): void {
         this.submitted = true;
     }
+
+    onSubmitReport(): void {
+      this.submitted_report = true;
+  }
 
     reloadPage(): void {
         window.location.reload();
