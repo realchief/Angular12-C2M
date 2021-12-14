@@ -595,7 +595,6 @@
                                     title="Help text to come here"></i>
                             </label>
                             <textarea id="report_description" formControlName="report_description" cols="10" style="height: 100px;" [ngClass]="{ 'is-invalid': submitted_report && f_report.report_description.errors }" class="form-control form-control-sm"></textarea>
-                          
                             <div *ngIf="submitted_report" class="alert alert-danger-small">
                                 <div *ngIf="f_report.report_description.errors && f_report.report_description.errors.required">Brief Description is required.</div>
                             </div>                            

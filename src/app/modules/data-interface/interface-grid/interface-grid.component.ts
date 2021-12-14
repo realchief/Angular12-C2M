@@ -142,32 +142,32 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
     }
   }
 
-   onSubmit(): void {
-        this.submitted = true;
-    }
-
-    onSubmitReport(): void {
-      this.submitted_report = true;
+  onSubmit(): void {
+    this.submitted = true;
   }
 
-    reloadPage(): void {
-        window.location.reload();
-    }
+  onSubmitReport(): void {
+    this.submitted_report = true;
+  }
 
-    gotoDatabaseChannel(): void {
-      this.router.navigate(['/data-interface/C2M-DI-MarketPlace/Microsoft/add-db-channel']);
-    }
+  reloadPage(): void {
+    window.location.reload();
+  }
 
-    gotoAPIChannel(): void {
-      this.router.navigate(['/data-interface/C2M-DI-MarketPlace/Microsoft/add-api-channel']);
-    }
+  gotoDatabaseChannel(): void {
+    this.router.navigate(['/data-interface/C2M-DI-MarketPlace/Microsoft/add-db-channel']);
+  }
 
-    gotoFileChannel(): void {
-      this.router.navigate(['/data-interface/C2M-DI-MarketPlace/Microsoft/add-file-channel']);
-    }
+  gotoAPIChannel(): void {
+    this.router.navigate(['/data-interface/C2M-DI-MarketPlace/Microsoft/add-api-channel']);
+  }
 
-    gotoDeviceChannel(): void {
-      this.router.navigate(['/data-interface/C2M-DI-MarketPlace/Microsoft/add-device-channel']);
-    }
+  gotoFileChannel(): void {
+    this.router.navigate(['/data-interface/C2M-DI-MarketPlace/Microsoft/add-file-channel']);
+  }
+
+  gotoDeviceChannel(): void {
+    this.router.navigate(['/data-interface/C2M-DI-MarketPlace/Microsoft/add-device-channel']);
+  }
 
 }
