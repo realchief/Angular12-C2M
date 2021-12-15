@@ -55,10 +55,13 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
     { id: 4, value: "Enterprice APIs" }
   ];
   unit_increment_list = [
-    { id: 1, value: "1" },
-    { id: 2, value: "2" },
-    { id: 3, value: "3" },
-    { id: 4, value: "4" }
+    { id: 1, value: "Second" },
+    { id: 2, value: "Minute" },
+    { id: 3, value: "Hour" },
+    { id: 4, value: "Day" },
+    { id: 4, value: "Month" },
+    { id: 4, value: "Year" },
+    { id: 4, value: "N/A" }
   ];
   authentication_list = [
     { id: 1, value: "Yes" },
