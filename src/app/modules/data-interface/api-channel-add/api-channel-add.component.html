@@ -365,6 +365,47 @@
                 </div>   
                 <div *ngIf="number==2">
                     <div class="row mt-10 db_channel_list">
+
+                        <div class="gridActionsGroup mb-2 tab-black">
+                            <div class="actionsWrap" style="margin-left: 0; width: 100%;">
+                                <h6 class="content-label">Analytics Available</h6>
+                                <a class="pluschannel" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Add New</a>
+                            </div>
+                        </div>
+                
+                        <div class="table-responsive">
+                            <table class="table table-striped align-middle table-sm m-0">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Action
+                                        </th>
+                                        <th>
+                                            Analytic Name
+                                        </th>
+                                        <th>
+                                            Description
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let number_data of [0,1,2,3,4,5,6,7];let i=index;">
+                                        <td class="text-center">
+                                            <div class="action-btns">
+                                                <a title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            StatuesDestroyId_POST
+                                        </td>
+                                        <td>
+                                            Destroys the status specified by the required ID parameter.	
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-dark">Cancel</button>
