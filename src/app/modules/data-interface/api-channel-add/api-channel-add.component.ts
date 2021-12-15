@@ -42,10 +42,11 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
     { id: 4, value: "News" }
   ];
   channel_ttl_rate_list = [
-    { id: 1, value: "1" },
-    { id: 2, value: "2" },
-    { id: 3, value: "3" },
-    { id: 4, value: "4" }
+    { id: 1, value: "All" },
+    { id: 2, value: "Day" },
+    { id: 3, value: "Week" },
+    { id: 4, value: "Month" },
+    { id: 5, value: "Year" }
   ];
   category_list = [
     { id: 1, value: "Automotive" },
