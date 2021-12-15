@@ -25,9 +25,9 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
   countries: any[] = [];
   checked = true;
   permissions = [
-    { id: 1, value: "Admin" },
-    { id: 2, value: "Management" },
-    { id: 3, value: "General" }
+    { id: 1, value: "Public" },
+    { id: 2, value: "Private" },
+    { id: 3, value: "Company" }
   ];
   channel_type_list = [
     { id: 1, value: "SOAP" },
@@ -82,8 +82,7 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
     { id: 4, value: "access token 4" }
   ];
 
-
-
+  selectedPermissionValue = 1;
 
   tabLabelList = [
     'Channel Info',
@@ -179,6 +178,10 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     sessionStorage.removeItem('AppTitle');
     sessionStorage.removeItem('AppPath');
+  }
+
+  onPermissionChanged() {
+    console.log('onPermissionChanged');
   }
 
   get f() {
