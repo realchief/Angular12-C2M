@@ -59,13 +59,18 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
     { id: 2, value: "Minute" },
     { id: 3, value: "Hour" },
     { id: 4, value: "Day" },
-    { id: 4, value: "Month" },
-    { id: 4, value: "Year" },
-    { id: 4, value: "N/A" }
+    { id: 5, value: "Month" },
+    { id: 6, value: "Year" },
+    { id: 7, value: "N/A" }
   ];
   authentication_list = [
-    { id: 1, value: "Yes" },
-    { id: 2, value: "No" }
+    { id: 0, value: "Select Auth Type" },
+    { id: 1, value: "Basic" },
+    { id: 2, value: "Digist" },
+    { id: 3, value: "0Auth 1.0" },
+    { id: 4, value: "0Auth 1.0a" },
+    { id: 5, value: "0Auth 2.0" },
+    { id: 6, value: "Non-Authenticated" }
   ];
   key_list = [
     { id: 1, value: "key1" },
@@ -87,6 +92,7 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
   ];
 
   selectedPermissionValue = 1;
+  selectedAuthenticationOption = 0;
 
   tabLabelList = [
     'Channel Info',
