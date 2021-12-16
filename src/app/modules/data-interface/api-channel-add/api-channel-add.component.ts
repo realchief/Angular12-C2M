@@ -73,26 +73,26 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
     { id: 6, value: "Non-Authenticated" }
   ];
   key_list = [
-    { id: 1, value: "key1" },
-    { id: 2, value: "key2" },
-    { id: 3, value: "key3" },
-    { id: 4, value: "key4" }
+    { id: 1, value: "api_key" },
+    { id: 2, value: "client_id" },
+    { id: 3, value: "Other" }
   ];
   secrete_key_list = [
-    { id: 1, value: "secet key 1" },
-    { id: 2, value: "secet key 2" },
-    { id: 3, value: "secet key 3" },
-    { id: 4, value: "secet key 4" }
+    { id: 1, value: "api_secret" },
+    { id: 2, value: "client_secret" },
+    { id: 3, value: "Other" }
   ];
   access_token_list = [
-    { id: 1, value: "access token 1" },
-    { id: 2, value: "access token 2" },
-    { id: 3, value: "access token 3" },
-    { id: 4, value: "access token 4" }
+    { id: 1, value: "Heather" },
+    { id: 2, value: "Query String" },
+    { id: 3, value: "Other" }
   ];
 
   selectedPermissionValue = 1;
   selectedAuthenticationOption = 0;
+  selectedSecreteKey = 1;
+  selectedAccessToken = 1;
+  selectedKey = 1;
 
   tabLabelList = [
     'Channel Info',

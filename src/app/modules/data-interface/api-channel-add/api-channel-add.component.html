@@ -316,9 +316,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-8">
                             <div class="row db_channel_info">
-                                <div class="col-md-12 mt-30">
+                                <div class="col-md-6 mt-30">
                                     <label for="authentication" class="form-label">
                                         Authentication
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
@@ -328,27 +328,49 @@
                                         <option *ngFor="let authentication of authentication_list" [ngValue]="authentication.id">{{authentication.value}}</option>
                                     </select>
                                 </div>
+                                <div class="col-md-6 mt-30">
+                                </div>
+                            </div>
+                            <div class="row db_channel_info">
                                 <div *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1" class="col-md-12 mt-30">
                                     <label for="key" class="form-label">
                                         Key
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                             title="Help text to come here"></i>
                                     </label>
-                                    <select formControlName="key" id="key" class="form-select form-select-sm">
-                                        <option *ngFor="let key of key_list" [ngValue]="key.id">{{key.value}}</option>
-                                    </select>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <select formControlName="key" id="key" class="form-select form-select-sm" [(ngModel)]="selectedKey">
+                                                <option *ngFor="let key of key_list" [ngValue]="key.id">{{key.value}}</option>
+                                            </select>
+                                        </div>
+                                        <div *ngIf="selectedKey == 3" class="col-md-6">
+                                            <input id="other_key" type="text" formControlName="other_key" class="form-control form-control-sm" />
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="row db_channel_info">
                                 <div *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1" class="col-md-12 mt-30">
                                     <label for="key" class="form-label">
                                         Secret Key
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                             title="Help text to come here"></i>
                                     </label>
-                                    <select formControlName="secrete_key" id="key" class="form-select form-select-sm">
-                                        <option *ngFor="let secrete_key of secrete_key_list" [ngValue]="secrete_key.id">{{secrete_key.value}}</option>
-                                    </select>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <select formControlName="secrete_key" id="key" class="form-select form-select-sm" [(ngModel)]="selectedSecreteKey">
+                                                <option *ngFor="let secrete_key of secrete_key_list" [ngValue]="secrete_key.id">{{secrete_key.value}}</option>
+                                            </select>
+                                        </div>
+                                        <div *ngIf="selectedSecreteKey == 3" class="col-md-6">
+                                            <input id="other_secrete_key" type="text" formControlName="other_secrete_key" class="form-control form-control-sm" />
+                                        </div>
+                                    </div>
                                 </div>
-                                <div *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1" class="col-md-12 mt-30">
+                            </div>
+                            <div class="row db_channel_info">
+                                <div *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1" class="col-md-6 mt-30">
                                     <label for="input1" class="form-label">
                                         Authorization URL
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
@@ -360,19 +382,28 @@
                                         <div *ngIf="f.authorization_url.errors && f.authorization_url.errors.required">Authorization Url is required.</div>
                                     </div>
                                 </div>
+                                <div class="col-md-6 mt-30">
+                                </div>
+                            </div>
+                            <div class="row db_channel_info">
                                 <div *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1" class="col-md-12 mt-30">
                                     <label for="key" class="form-label">
                                         Access Token
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                             title="Help text to come here"></i>
                                     </label>
-                                    <select formControlName="access_token" id="access_token" class="form-select form-select-sm">
-                                        <option *ngFor="let access_token of access_token_list" [ngValue]="access_token.id">{{access_token.value}}</option>
-                                    </select>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <select formControlName="access_token" id="access_token" class="form-select form-select-sm" [(ngModel)]="selectedAccessToken">
+                                                <option *ngFor="let access_token of access_token_list" [ngValue]="access_token.id">{{access_token.value}}</option>
+                                            </select>
+                                        </div>
+                                        <div *ngIf="selectedAccessToken == 3" class="col-md-6">
+                                            <input id="other_access_token" type="text" formControlName="other_access_token" class="form-control form-control-sm" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
                         </div>
                     </div>
                     <div class="modal-footer">
