@@ -35,3 +35,6 @@
 .pluschannel:hover {
     cursor: pointer;
 }
+#modalAddNewAnalyticBody .modal-dialog {
+    max-width: 900px;
+}

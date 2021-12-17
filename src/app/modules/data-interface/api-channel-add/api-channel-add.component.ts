@@ -90,6 +90,14 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
     { id: 3, value: "Other" }
   ];
 
+  request_format_list = [
+    { id: 1, value: "GET" },
+    { id: 2, value: "POST" },
+    { id: 3, value: "PUT" },
+    { id: 4, value: "PATCH" },
+    { id: 5, value: "DELETE" },
+  ];
+
   selectedPermissionValue = 1;
   selectedAuthenticationOption = 0;
   selectedSecreteKey = 1;

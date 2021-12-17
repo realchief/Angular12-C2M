@@ -88,7 +88,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 mt-30">
-                                    <label for="channel_ttl_rate" class="form-label">
+                                    <label for="category" class="form-label">
                                         Categories
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                             title="Help text to come here"></i>
@@ -115,7 +115,7 @@
                                         [ngClass]="{ 'is-invalid': submitted && f.message_second.errors }" />
                                 </div>
                                 <div class="col-md-12 mt-30">
-                                    <label for="message_second" class="form-label">
+                                    <label for="device_pass_frequency" class="form-label">
                                         How often will the device pass data to C2M?
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                             title="Help text to come here"></i>
@@ -124,7 +124,7 @@
                                         [ngClass]="{ 'is-invalid': submitted && f.device_pass_frequency.errors }" />
                                 </div>
                                 <div class="col-md-12 mt-30">
-                                    <label for="message_second" class="form-label">
+                                    <label for="ttl_period" class="form-label">
                                         TTL Period
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                             title="Help text to come here"></i>
@@ -421,7 +421,7 @@
                                     <div class="gridActionsGroup mb-2 tab-black">
                                         <div class="actionsWrap" style="margin-left: 0; width: 100%;">
                                             <h6 class="content-label">Analytics Available</h6>
-                                            <a class="pluschannel" style="margin-left: auto;" (click)="open(modalAddNewAnalytic)"><i class="fas fa-plus-circle"></i> Add New</a>
+                                            <a class="pluschannel" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Add New</a>
                                         </div>
                                     </div>
                                     <div class="table-responsive">
@@ -863,103 +863,3 @@
         </mat-tab-group>
     </form>
 </div>
-
-<ng-template #modalAddNewAnalytic let-modal>
-    
-    <div class="modal-header addChannel_company_header">
-        <button type="button" class="button button-circle" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">×</span>
-        </button>
-    </div>
-            
-    <mat-tab-group [selectedIndex]="selectedIndex">
-        <mat-tab label="{{homeParameterTabLabelList[number]}}" *ngFor="let number of [0,1,2];let i=index; ">
-            <div class="modal-body">
-                <div *ngIf="number==0">
-                    <div class="row">
-                        <div class="col-md-12 mt-30"> 
-                            test
-                        </div>
-                    </div>
-                </div>
-                <div *ngIf="number==1">
-                    <div class="row">
-                        <div class="col-md-12 mt-30"> 
-                            <div class="table-responsive">
-                                <table class="table table-striped align-middle table-sm m-0">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                Name
-                                            </th>
-                                            <th>
-                                                Download
-                                            </th>
-                                            <th>
-                                                Description
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let number_data of [0,1,2,3,4,5,6,7];let i=index;">
-                                            <td>
-                                                Microsoft SDK for {{number_data + 1}}
-                                            </td>
-                                            <td>
-                                                <a style="color: red;">Click Here</a>
-                                            </td>
-                                            <td>
-                                                This is the test example of Description {{number_data + 1}}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>                        
-                        </div>
-                    </div>
-                </div>
-                <div *ngIf="number==2">
-                    <div class="row">
-                        <div class="col-md-12 mt-30"> 
-                            <div class="table-responsive">
-                                <table class="table table-striped align-middle table-sm m-0">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                Name
-                                            </th>
-                                            <th>
-                                                Code Repository
-                                            </th>
-                                            <th>
-                                                Description
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let number_data of [0,1,2,3,4,5,6,7];let i=index;">
-                                            <td>
-                                                UNO with WiFi Shield {{number_data + 1}}
-                                            </td>
-                                            <td>
-                                                https://github.com/repo{{number_data + 1}}
-                                            </td>
-                                            <td>
-                                                This is the test example of Description {{number_data + 1}}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>                        
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </mat-tab>
-    </mat-tab-group>
-
-    <div class="modal-footer">
-        <button type="button" class="btn btn-danger" (click)="modal.close('Close')">Close</button>
-    </div>
-    
-</ng-template>
