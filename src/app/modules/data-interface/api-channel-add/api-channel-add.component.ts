@@ -292,4 +292,8 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
     window.location.reload();
   }
 
+  gotoAddNewAnalytic(): void {
+    this.router.navigate(['/data-interface/C2M-DI-MarketPlace/Microsoft/add-api-channel/add-analytic']);
+  }
+
 }
