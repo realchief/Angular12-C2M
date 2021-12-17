@@ -32,3 +32,6 @@
     font-size: 11px;
     height: 27px;
 }
+.pluschannel:hover {
+    cursor: pointer;
+}

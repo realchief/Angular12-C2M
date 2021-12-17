@@ -9,6 +9,7 @@ import { TokenStorageService } from "src/app/_services/token-storage.service";
 import { Title } from '@angular/platform-browser';
 import { ApiService } from "src/app/_services/api.service";
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
   errorMessage = '';
   countries: any[] = [];
   checked = true;
+  closeResult: string = '';
   permissions = [
     { id: 1, value: "Public" },
     { id: 2, value: "Private" },
@@ -101,6 +103,13 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
     'Resources'
   ];
 
+  homeParameterTabLabelList = [
+    'Header Parameter',
+    'Template Parameter',
+    'Query Parameter',
+    'Body Parameter'
+  ];
+
   selectedIndex: number = 0;
   maxNumberOfTabs = 4;
 
@@ -141,6 +150,7 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
     private router: Router,
     private titleService: Title,
     private authService: AuthService,
+    private modalService: NgbModal,
     private tokenStorage: TokenStorageService,
     private apiService: ApiService,
   ) {
@@ -210,6 +220,24 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
       previewEle.src = URL.createObjectURL(file[0])
     }
 
+  }
+
+  open(content: any) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 
   nextStep() {
