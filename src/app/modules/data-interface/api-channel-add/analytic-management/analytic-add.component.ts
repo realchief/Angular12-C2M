@@ -48,9 +48,9 @@ export class AnalyticAddComponent implements OnInit, OnDestroy {
 
   AppPath = [
     { "router": "data-interface", "title": "Data Interface" },
-    { "router": "data-interface/c2m-di-marketplace", "title": "C2M DI MarketPlace" },
-    { "router": "data-interface/c2m-di-marketplace/Microsoft", "title": "Microsoft" },
-    { "router": "data-interface/c2m-di-marketplace/Microsoft/add-api-channel", "title": "Add API Channel" }
+    { "router": "data-interface/C2M-DI-MarketPlace", "title": "C2M DI MarketPlace" },
+    { "router": "data-interface/C2M-DI-MarketPlace/Microsoft", "title": "Microsoft" },
+    { "router": "data-interface/C2M-DI-MarketPlace/Microsoft/add-api-channel", "title": "Add API Channel" }
   ];
 
   constructor(
