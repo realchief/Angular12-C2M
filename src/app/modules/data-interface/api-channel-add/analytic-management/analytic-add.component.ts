@@ -34,6 +34,14 @@ export class AnalyticAddComponent implements OnInit, OnDestroy {
     { id: 5, value: "DELETE" },
   ];
 
+  request_info_list = [
+    { method: "GET", name: "My Feed", url: "https://api/jobinfo/all" },
+    { method: "POST", name: "Create a new API", url: "https://api/create" },
+    { method: "PUT", name: "Update existing API", url: "https://api/edit/5" },
+    { method: "PATCH", name: "Business Update", url: "https://api/business/edit" },
+    { method: "DELETE", name: "Delete invalid channels", url: "https://api/bad_channels/remove" },
+  ];
+
   tabLabelList = [
     'Header Parameter',
     'Template Parameter',

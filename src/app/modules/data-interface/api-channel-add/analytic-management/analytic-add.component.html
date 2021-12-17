@@ -39,7 +39,17 @@
 
     <div class="row mt-30 analytic-info-list">
         <div class="col-md-3" id="request-list-block">
-        </div>
+            <label for="call-list" class="form-label mt-30">
+                <b>Select Method</b>
+            </label>
+            <div class="mt-10">
+                <div class="call-list" *ngFor="let request_info of request_info_list">
+                    <label class="request-method">{{request_info.method}}</label>
+                    <label class="request-name">{{request_info.name}}</label>
+                </div>
+            </div>
+        </div>  
+            
         <div class="col-md-9" id="parameter-list-block">            
             <div class="request-parameter-block">
                 <form (ngSubmit)="onSubmit()" >
