@@ -5,3 +5,37 @@
 #backbutton:hover {
     cursor: pointer;
 }
+.mt-30 {
+    margin-top: 30px;
+}
+.analytic-request-div {
+    width: 70%;
+}
+.analytic-request-btn {
+    height: 28px;
+    font-size: 12px;
+}
+.analytic-info-list {
+    min-height: 500px;
+    border: solid 1px #ddd;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+#request-list-block {
+    border-right: solid 4px;
+    min-height: 500px;
+}
+.request-parameter-block {
+    height: 250px;
+    border-bottom: solid 2px;;
+}
+#request-response-block {
+    height: 250px;
+}
+#response-content-block {
+    border-left: solid 1px #ddd;
+    height: 250px;
+}
+#parameter-list-block {
+    padding: 0px;
+}

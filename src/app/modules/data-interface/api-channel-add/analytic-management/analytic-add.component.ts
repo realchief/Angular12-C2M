@@ -23,6 +23,24 @@ export class AnalyticAddComponent implements OnInit, OnDestroy {
   isCreatingFailed = false;
   errorMessage = '';
 
+  selectedIndex: number = 0;
+  maxNumberOfTabs = 4;
+
+  request_type_list = [
+    { id: 1, value: "GET" },
+    { id: 2, value: "POST" },
+    { id: 3, value: "PUT" },
+    { id: 4, value: "PATCH" },
+    { id: 5, value: "DELETE" },
+  ];
+
+  tabLabelList = [
+    'Header Parameter',
+    'Template Parameter',
+    'Query Parameter',
+    'Body Parameter'
+  ];
+
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
@@ -79,6 +97,25 @@ export class AnalyticAddComponent implements OnInit, OnDestroy {
 
   backClicked() {
     this._location.back();
+  }
+
+  nextStep() {
+    if (this.selectedIndex != this.maxNumberOfTabs) {
+        this.selectedIndex = this.selectedIndex + 1;
+    }
+    console.log(this.selectedIndex);
+  }
+
+  previousStep() {
+    if (this.selectedIndex != 0) {
+        this.selectedIndex = this.selectedIndex - 1;
+    }
+    console.log(this.selectedIndex);
+  }
+
+  onSubmit(): void {
+    this.submitted = true;
+    console.log('submitted');
   }
 
 }

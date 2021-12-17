@@ -22,4 +22,62 @@
             <a id="backbutton" (click)="backClicked()">< Back </a>
         </div>
     </div>
+
+    <div class="row mt-30 db_channel_list analytic-request-div">
+        <div class="col-md-2">
+            <select id="request_type" class="form-select form-select-sm" >
+                <option *ngFor="let request_type of request_type_list" [ngValue]="request_type.id">{{request_type.value}}</option>
+            </select>
+        </div>
+        <div class="col-md-8">
+            <input id="request_url" type="text" formControlName="request_url" class="form-control form-control-sm" />
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-primary analytic-request-btn">Send</button>
+        </div>
+    </div>    
+
+    <div class="row mt-30 analytic-info-list">
+        <div class="col-md-3" id="request-list-block">
+        </div>
+        <div class="col-md-9" id="parameter-list-block">            
+            <div class="request-parameter-block">
+                <form (ngSubmit)="onSubmit()" >
+                    <mat-tab-group [selectedIndex]="selectedIndex">
+                        <mat-tab label="{{tabLabelList[number]}}" *ngFor="let number of [0,1,2,3];let i=index; "> 
+                            <div *ngIf="number==0">
+                                <div class="row mt-10 db_channel_list">
+                                </div>
+                            </div>
+                            <div *ngIf="number==1">
+                                <div class="row mt-10 db_channel_list">
+                                </div>
+                            </div>   
+                            <div *ngIf="number==2">
+                                <div class="row mt-10 db_channel_list">
+                                    <div class="col-md-12">
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="number==3">
+                                <div class="row mt-10 db_channel_list">
+                                </div>
+                            </div>  
+                        </mat-tab>
+                    </mat-tab-group>
+                </form>
+            </div>
+            <div class="row" id="request-response-block">
+                <div class="col-md-6" id="request-content-block">
+                </div>
+                <div class="col-md-6" id="response-content-block">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark">Cancel</button>                        
+        <button type="button" class="btn btn-primary">Save Feed</button>
+        <button type="submit" class="btn btn-danger">Finish</button>
+    </div>
 </div>
