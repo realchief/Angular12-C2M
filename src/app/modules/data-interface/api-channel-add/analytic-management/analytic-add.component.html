@@ -92,7 +92,7 @@
                                     <div class="row db_channel_info" *ngFor="let numberQuery of Query_numbers">
                                         <div class="col-md-5 mt-10">
                                             <input type="text" class="form-control form-control-sm query_param_name" placeholder="Name"/>
-                                        </div>
+                                        </div>                                        
                                         <div class="col-md-5 mt-10">
                                             <input type="text" class="form-control form-control-sm query_content" placeholder="Content" />
                                         </div>
@@ -106,10 +106,15 @@
                             <div *ngIf="number==3">
                                 <div class="container mt-10 param_list_div">
                                     <div class="row db_channel_info" *ngFor="let numberBody of Body_numbers">
-                                        <div class="col-md-5 mt-10">
+                                        <div class="col-md-4 mt-10">
                                             <input type="text" class="form-control form-control-sm body_param_name" placeholder="Name"/>
                                         </div>
-                                        <div class="col-md-5 mt-10">
+                                        <div class="col-md-2 mt-10">
+                                            <select class="form-select form-select-sm ">
+                                                <option *ngFor="let datatype of datatype_list">{{datatype.value}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 mt-10">
                                             <input type="text" class="form-control form-control-sm body_value" placeholder="Value" />
                                         </div>
                                         <div class="col-md-2 mt-10 icon-button">

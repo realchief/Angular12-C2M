@@ -42,6 +42,14 @@ export class AnalyticAddComponent implements OnInit, OnDestroy {
     { method: "DELETE", name: "Delete invalid channels", url: "https://api/bad_channels/remove" },
   ];
 
+  datatype_list = [
+    { id: 1, value: "String" },
+    { id: 2, value: "Bool" },
+    { id: 3, value: "Double" },
+    { id: 4, value: "Int" },
+    { id: 5, value: "JSON/XML" }, 
+  ];
+
   tabLabelList = [
     'Header Parameter',
     'Template Parameter',
