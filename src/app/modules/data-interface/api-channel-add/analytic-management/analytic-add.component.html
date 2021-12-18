@@ -57,32 +57,66 @@
                         <mat-tab label="{{tabLabelList[number]}}" *ngFor="let number of [0,1,2,3];let i=index; "> 
                             <div *ngIf="number==0">
                                 <div class="container mt-10 param_list_div">
-                                    <div class="row db_channel_info" *ngFor="let number of numbers">
+                                    <div class="row db_channel_info" *ngFor="let numberHeader of Header_numbers">
                                         <div class="col-md-5 mt-10">
-                                            <input id="param_name" type="text" class="form-control form-control-sm" placeholder="Name"/>
+                                            <input type="text" class="form-control form-control-sm param_name" placeholder="Name"/>
                                         </div>
                                         <div class="col-md-5 mt-10">
-                                            <input id="param_content" type="text" class="form-control form-control-sm" placeholder="Content" />
+                                            <input type="text" class="form-control form-control-sm param_content" placeholder="Content" />
                                         </div>
                                         <div class="col-md-2 mt-10 icon-button">
-                                            <a *ngIf="number==0" class="pluschannel" style="margin-left: auto;" (click)="addNewForm()"><i class="fas fa-plus-circle add-channel-icon"></i></a>
-                                            <a *ngIf="number!=0" class="pluschannel" style="margin-left: auto;" (click)="removeForm(number)"><i class="fas fa-trash-alt add-channel-icon"></i></a>
+                                            <a *ngIf="numberHeader==0" class="pluschannel" style="margin-left: auto;" (click)="addNewFormHeader()"><i class="fas fa-plus-circle add-channel-icon"></i></a>
+                                            <a *ngIf="numberHeader!=0" class="pluschannel" style="margin-left: auto;" (click)="removeFormHeader(numberHeader)"><i class="fas fa-trash-alt add-channel-icon"></i></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div *ngIf="number==1">
-                                <div class="row mt-10 param_list_div">
+                                <div class="container mt-10 param_list_div">
+                                    <div class="row db_channel_info" *ngFor="let numberTemplate of Template_numbers">
+                                        <div class="col-md-5 mt-10">
+                                            <input type="text" class="form-control form-control-sm template_param_name" placeholder="Name"/>
+                                        </div>
+                                        <div class="col-md-5 mt-10">
+                                            <input type="text" class="form-control form-control-sm data_type" placeholder="DataType" />
+                                        </div>
+                                        <div class="col-md-2 mt-10 icon-button">
+                                            <a *ngIf="numberTemplate==0" class="pluschannel" style="margin-left: auto;" (click)="addNewFormTemplate()"><i class="fas fa-plus-circle add-channel-icon"></i></a>
+                                            <a *ngIf="numberTemplate!=0" class="pluschannel" style="margin-left: auto;" (click)="removeFormTemplate(numberTemplate)"><i class="fas fa-trash-alt add-channel-icon"></i></a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>   
                             <div *ngIf="number==2">
-                                <div class="row mt-10 param_list_div">
-                                    <div class="col-md-12">
+                                <div class="container mt-10 param_list_div">
+                                    <div class="row db_channel_info" *ngFor="let numberQuery of Query_numbers">
+                                        <div class="col-md-5 mt-10">
+                                            <input type="text" class="form-control form-control-sm query_param_name" placeholder="Name"/>
+                                        </div>
+                                        <div class="col-md-5 mt-10">
+                                            <input type="text" class="form-control form-control-sm query_data_type" placeholder="DataType" />
+                                        </div>
+                                        <div class="col-md-2 mt-10 icon-button">
+                                            <a *ngIf="numberQuery==0" class="pluschannel" style="margin-left: auto;" (click)="addNewFormQuery()"><i class="fas fa-plus-circle add-channel-icon"></i></a>
+                                            <a *ngIf="numberQuery!=0" class="pluschannel" style="margin-left: auto;" (click)="removeFormQuery(numberQuery)"><i class="fas fa-trash-alt add-channel-icon"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div *ngIf="number==3">
-                                <div class="row mt-10 db_channel_list">
+                                <div class="container mt-10 param_list_div">
+                                    <div class="row db_channel_info" *ngFor="let numberTemplate of Template_numbers">
+                                        <div class="col-md-5 mt-10">
+                                            <input type="text" class="form-control form-control-sm template_param_name" placeholder="Name"/>
+                                        </div>
+                                        <div class="col-md-5 mt-10">
+                                            <input type="text" class="form-control form-control-sm data_type" placeholder="DataType" />
+                                        </div>
+                                        <div class="col-md-2 mt-10 icon-button">
+                                            <a *ngIf="numberTemplate==0" class="pluschannel" style="margin-left: auto;" (click)="addNewFormTemplate()"><i class="fas fa-plus-circle add-channel-icon"></i></a>
+                                            <a *ngIf="numberTemplate!=0" class="pluschannel" style="margin-left: auto;" (click)="removeFormTemplate(numberTemplate)"><i class="fas fa-trash-alt add-channel-icon"></i></a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>  
                         </mat-tab>

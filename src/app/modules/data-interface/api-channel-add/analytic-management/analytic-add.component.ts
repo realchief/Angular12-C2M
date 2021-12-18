@@ -49,7 +49,9 @@ export class AnalyticAddComponent implements OnInit, OnDestroy {
     'Body Parameter'
   ];
 
-  numbers = [0];
+  Header_numbers = [0];
+  Template_numbers = [0];
+  Query_numbers = [0]; 
 
   editorConfig: AngularEditorConfig = {
     editable: true,
@@ -128,26 +130,43 @@ export class AnalyticAddComponent implements OnInit, OnDestroy {
     console.log('submitted');
   }
 
-  addNewForm() :void {
-    this.numbers.push(this.numbers[this.numbers.length - 1] + 1);
+  addNewFormHeader() :void {
+    this.Header_numbers.push(this.Header_numbers[this.Header_numbers.length - 1] + 1);
   }
 
-  removeForm(number : any) :void {
+  removeFormHeader(number : any) :void {
     let i = 0;
-    for(i = 0; i < this.numbers.length; i ++){
-      if(this.numbers[i] == number)
+    for(i = 0; i < this.Header_numbers.length; i ++){
+      if(this.Header_numbers[i] == number)
         break;
     }
-    this.numbers.splice(i, 1);
+    this.Header_numbers.splice(i, 1);
   }
 
-  editForm(number : any) :void {
+  addNewFormTemplate() :void {
+    this.Template_numbers.push(this.Template_numbers[this.Template_numbers.length - 1] + 1);
+  }
+
+  removeFormTemplate(number : any) :void {
     let i = 0;
-    for(i = 0; i < this.numbers.length; i ++){
-      if(this.numbers[i] == number)
+    for(i = 0; i < this.Template_numbers.length; i ++){
+      if(this.Template_numbers[i] == number)
         break;
     }
-    this.numbers.splice(i, 1);
+    this.Template_numbers.splice(i, 1);
+  }
+
+  addNewFormQuery() :void {
+    this.Query_numbers.push(this.Query_numbers[this.Query_numbers.length - 1] + 1);
+  }
+
+  removeFormQuery(number : any) :void {
+    let i = 0;
+    for(i = 0; i < this.Query_numbers.length; i ++){
+      if(this.Query_numbers[i] == number)
+        break;
+    }
+    this.Query_numbers.splice(i, 1);
   }
 
 }
