@@ -94,7 +94,7 @@
                                             <input type="text" class="form-control form-control-sm query_param_name" placeholder="Name"/>
                                         </div>
                                         <div class="col-md-5 mt-10">
-                                            <input type="text" class="form-control form-control-sm query_data_type" placeholder="DataType" />
+                                            <input type="text" class="form-control form-control-sm query_content" placeholder="Content" />
                                         </div>
                                         <div class="col-md-2 mt-10 icon-button">
                                             <a *ngIf="numberQuery==0" class="pluschannel" style="margin-left: auto;" (click)="addNewFormQuery()"><i class="fas fa-plus-circle add-channel-icon"></i></a>
@@ -105,16 +105,16 @@
                             </div>
                             <div *ngIf="number==3">
                                 <div class="container mt-10 param_list_div">
-                                    <div class="row db_channel_info" *ngFor="let numberTemplate of Template_numbers">
+                                    <div class="row db_channel_info" *ngFor="let numberBody of Body_numbers">
                                         <div class="col-md-5 mt-10">
-                                            <input type="text" class="form-control form-control-sm template_param_name" placeholder="Name"/>
+                                            <input type="text" class="form-control form-control-sm body_param_name" placeholder="Name"/>
                                         </div>
                                         <div class="col-md-5 mt-10">
-                                            <input type="text" class="form-control form-control-sm data_type" placeholder="DataType" />
+                                            <input type="text" class="form-control form-control-sm body_value" placeholder="Value" />
                                         </div>
                                         <div class="col-md-2 mt-10 icon-button">
-                                            <a *ngIf="numberTemplate==0" class="pluschannel" style="margin-left: auto;" (click)="addNewFormTemplate()"><i class="fas fa-plus-circle add-channel-icon"></i></a>
-                                            <a *ngIf="numberTemplate!=0" class="pluschannel" style="margin-left: auto;" (click)="removeFormTemplate(numberTemplate)"><i class="fas fa-trash-alt add-channel-icon"></i></a>
+                                            <a *ngIf="numberBody==0" class="pluschannel" style="margin-left: auto;" (click)="addNewFormBody()"><i class="fas fa-plus-circle add-channel-icon"></i></a>
+                                            <a *ngIf="numberBody!=0" class="pluschannel" style="margin-left: auto;" (click)="removeFormBody(numberBody)"><i class="fas fa-trash-alt add-channel-icon"></i></a>
                                         </div>
                                     </div>
                                 </div>

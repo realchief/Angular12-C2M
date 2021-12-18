@@ -52,6 +52,7 @@ export class AnalyticAddComponent implements OnInit, OnDestroy {
   Header_numbers = [0];
   Template_numbers = [0];
   Query_numbers = [0]; 
+  Body_numbers = [0]; 
 
   editorConfig: AngularEditorConfig = {
     editable: true,
@@ -167,6 +168,19 @@ export class AnalyticAddComponent implements OnInit, OnDestroy {
         break;
     }
     this.Query_numbers.splice(i, 1);
+  }
+
+  addNewFormBody() :void {
+    this.Body_numbers.push(this.Body_numbers[this.Body_numbers.length - 1] + 1);
+  }
+
+  removeFormBody(number : any) :void {
+    let i = 0;
+    for(i = 0; i < this.Body_numbers.length; i ++){
+      if(this.Body_numbers[i] == number)
+        break;
+    }
+    this.Body_numbers.splice(i, 1);
   }
 
 }
