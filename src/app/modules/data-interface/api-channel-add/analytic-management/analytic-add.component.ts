@@ -49,6 +49,8 @@ export class AnalyticAddComponent implements OnInit, OnDestroy {
     'Body Parameter'
   ];
 
+  numbers = [0];
+
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
@@ -124,6 +126,28 @@ export class AnalyticAddComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     this.submitted = true;
     console.log('submitted');
+  }
+
+  addNewForm() :void {
+    this.numbers.push(this.numbers[this.numbers.length - 1] + 1);
+  }
+
+  removeForm(number : any) :void {
+    let i = 0;
+    for(i = 0; i < this.numbers.length; i ++){
+      if(this.numbers[i] == number)
+        break;
+    }
+    this.numbers.splice(i, 1);
+  }
+
+  editForm(number : any) :void {
+    let i = 0;
+    for(i = 0; i < this.numbers.length; i ++){
+      if(this.numbers[i] == number)
+        break;
+    }
+    this.numbers.splice(i, 1);
   }
 
 }

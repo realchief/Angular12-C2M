@@ -8,6 +8,9 @@
 .mt-30 {
     margin-top: 30px;
 }
+.mt-10 {
+    margin-top: 10px;
+}
 .analytic-request-div {
     width: 70%;
 }
@@ -27,7 +30,12 @@
 }
 .request-parameter-block {
     height: 250px;
-    border-bottom: solid 2px;;
+    border-bottom: solid 2px;
+    overflow: hidden;
+}
+.request-parameter-block form {
+    overflow: hidden;
+    height: 100%;
 }
 #request-response-block {
     height: 250px;
@@ -51,4 +59,7 @@
 }
 .request-name {
     margin-left: 10px;
+}
+.param_list_div {
+    width: 100%;
 }

@@ -30,7 +30,7 @@
             </select>
         </div>
         <div class="col-md-8">
-            <input id="request_url" type="text" formControlName="request_url" class="form-control form-control-sm" />
+            <input id="request_url" type="text" formControlName="request_url" class="form-control form-control-sm" placeholder="Type URL here" />
         </div>
         <div class="col-md-2">
             <button type="button" class="btn btn-primary analytic-request-btn">Send</button>
@@ -53,18 +53,30 @@
         <div class="col-md-9" id="parameter-list-block">            
             <div class="request-parameter-block">
                 <form (ngSubmit)="onSubmit()" >
-                    <mat-tab-group [selectedIndex]="selectedIndex">
+                    <mat-tab-group [selectedIndex]="selectedIndex" style="height: 100%;">
                         <mat-tab label="{{tabLabelList[number]}}" *ngFor="let number of [0,1,2,3];let i=index; "> 
                             <div *ngIf="number==0">
-                                <div class="row mt-10 db_channel_list">
+                                <div class="container mt-10 param_list_div">
+                                    <div class="row db_channel_info" *ngFor="let number of numbers">
+                                        <div class="col-md-5 mt-10">
+                                            <input id="param_name" type="text" class="form-control form-control-sm" placeholder="Name"/>
+                                        </div>
+                                        <div class="col-md-5 mt-10">
+                                            <input id="param_content" type="text" class="form-control form-control-sm" placeholder="Content" />
+                                        </div>
+                                        <div class="col-md-2 mt-10 icon-button">
+                                            <a *ngIf="number==0" class="pluschannel" style="margin-left: auto;" (click)="addNewForm()"><i class="fas fa-plus-circle add-channel-icon"></i></a>
+                                            <a *ngIf="number!=0" class="pluschannel" style="margin-left: auto;" (click)="removeForm(number)"><i class="fas fa-trash-alt add-channel-icon"></i></a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div *ngIf="number==1">
-                                <div class="row mt-10 db_channel_list">
+                                <div class="row mt-10 param_list_div">
                                 </div>
                             </div>   
                             <div *ngIf="number==2">
-                                <div class="row mt-10 db_channel_list">
+                                <div class="row mt-10 param_list_div">
                                     <div class="col-md-12">
                                     </div>
                                 </div>
