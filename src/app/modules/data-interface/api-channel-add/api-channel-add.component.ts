@@ -20,7 +20,10 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class APIChannelAddComponent implements OnInit, OnDestroy {
 
   addChannelForm: FormGroup;
+  addNativeAppForm: FormGroup;
+
   submitted = false;
+  submitted_app = false;
   isCreatingFailed = false;
   errorMessage = '';
   countries: any[] = [];
@@ -113,6 +116,7 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
   ];
 
   selectedIndex: number = 0;
+  
   maxNumberOfTabs = 4;
 
 
@@ -190,6 +194,10 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
       buy_it_url: ['', [Validators.pattern(reg)]],
       subscribe_url: ['', [Validators.pattern(reg)]]
     });
+    this.addNativeAppForm = this.formBuilder.group({
+      app_url: ['', Validators.required],    
+      app_type: ['', Validators.required],
+    });
   }
 
   ngOnInit() {
@@ -208,6 +216,10 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
 
   get f() {
     return this.addChannelForm.controls;
+  }
+
+  get f_app() {
+    return this.addNativeAppForm.controls;
   }
 
   backClicked() {
@@ -280,6 +292,10 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     this.submitted = true;
     console.log('submitted');
+  }
+
+  onSubmitApp(): void {
+    this.submitted_app = true;
   }
 
   reloadPage(): void {
