@@ -886,7 +886,10 @@
                                 [ngClass]="{ 'is-invalid': submitted_app && f_app.app_url.errors }" />
                             <div *ngIf="submitted_app" class="alert alert-danger-small">
                                 <div *ngIf="f_app.app_url.errors && f_app.app_url.errors.required">App URL is required.</div>
-                            </div>                            
+                            </div> 
+                            <div *ngIf="submitted_app" class="alert alert-danger-small">
+                                <div *ngIf="f_app.app_url.errors && f_app.app_url.errors.pattern">Please provide valid url.</div>
+                            </div>                           
                         </div>
                         <div class="col-md-12 mt-20">
                             <label for="name" class="form-label">
@@ -894,6 +897,9 @@
                                 <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                     title="Help text to come here"></i>
                             </label>
+                            <select formControlName="app_type" id="app_type" class="form-select form-select-sm" [(ngModel)]="selectedAppType">
+                                <option *ngFor="let app_type of app_type_list" [ngValue]="app_type.id">{{app_type.value}}</option>
+                            </select>
                             <div *ngIf="submitted_app" class="alert alert-danger-small">
                                 <div *ngIf="f_app.app_type.errors && f_app.app_type.errors.required">App Type is required.</div>
                             </div>                            

@@ -29,6 +29,16 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
   countries: any[] = [];
   checked = true;
   closeResult: string = '';
+  app_type_list = [
+    { id: 1, value: "Windows" },
+    { id: 2, value: "iOS" },
+    { id: 3, value: "Android" },
+    { id: 4, value: "BlackBerry" },
+    { id: 5, value: "Firefox OS" },
+    { id: 6, value: "Symbian OS" },
+    { id: 6, value: "webOS" },
+
+  ];
   permissions = [
     { id: 1, value: "Public" },
     { id: 2, value: "Private" },
@@ -91,15 +101,14 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
     { id: 1, value: "Heather" },
     { id: 2, value: "Query String" },
     { id: 3, value: "Other" }
-  ];
-
-  
+  ];  
 
   selectedPermissionValue = 1;
   selectedAuthenticationOption = 0;
   selectedSecreteKey = 1;
   selectedAccessToken = 1;
   selectedKey = 1;
+  selectedAppType = 1;
 
   tabLabelList = [
     'Channel Info',
@@ -195,7 +204,7 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
       subscribe_url: ['', [Validators.pattern(reg)]]
     });
     this.addNativeAppForm = this.formBuilder.group({
-      app_url: ['', Validators.required],    
+      app_url: ['', Validators.required, [Validators.pattern(reg)]],    
       app_type: ['', Validators.required],
     });
   }
