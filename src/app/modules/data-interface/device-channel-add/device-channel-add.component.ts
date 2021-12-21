@@ -31,9 +31,9 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   countries: any[] = [];
   checked = true;
   permissions = [
-    { id: 1, value: "Admin" },
-    { id: 2, value: "Management" },
-    { id: 3, value: "General" }
+    { id: 1, value: "Public" },
+    { id: 2, value: "Private" },
+    { id: 3, value: "Company" }
   ];
   channel_cateogry_list = [
     { id: 1, value: "Automotive" },
@@ -52,10 +52,11 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     { id: 4, value: "News" }
   ];
   channel_ttl_rate_list = [
-    { id: 1, value: "1" },
-    { id: 2, value: "2" },
-    { id: 3, value: "3" },
-    { id: 4, value: "4" }
+    { id: 1, value: "All" },
+    { id: 2, value: "Day" },
+    { id: 3, value: "Week" },
+    { id: 4, value: "Month" },
+    { id: 5, value: "Year" },
   ];
   unit_increment_list = [
     { id: 1, value: "1" },
@@ -121,6 +122,7 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
 
   selectedIndex: number = 0;
   maxNumberOfTabs = 6;
+  selectedPermissionOption = 1;
 
   numbers = [0];
 
