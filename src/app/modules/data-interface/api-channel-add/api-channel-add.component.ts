@@ -22,10 +22,12 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
   addChannelForm: FormGroup;
   addNativeAppForm: FormGroup;
   addResourceForm: FormGroup;
+  addMarketingDocForm: FormGroup;
 
   submitted = false;
   submitted_app = false;
   submitted_resource = false;
+  submitted_marketing_doc = false;
   isCreatingFailed = false;
   errorMessage = '';
   countries: any[] = [];
@@ -222,6 +224,10 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
       resource_type: ['', Validators.required],
       resource_description: ['']
     });
+    this.addMarketingDocForm = this.formBuilder.group({
+      marketing_doc_url: ['', Validators.required, [Validators.pattern(reg)]],    
+      marketing_doc_description: ['']
+    });
   }
 
   ngOnInit() {
@@ -248,6 +254,10 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
 
   get f_resource() {
     return this.addResourceForm.controls;
+  }
+
+  get f_marketing_doc() {
+    return this.addMarketingDocForm.controls;
   }
 
   backClicked() {
@@ -324,6 +334,10 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
 
   onSubmitApp(): void {
     this.submitted_app = true;
+  }
+
+  onSubmitMarketingDoc(): void {
+    this.submitted_marketing_doc = true;
   }
 
   onSubmitResource(): void {
