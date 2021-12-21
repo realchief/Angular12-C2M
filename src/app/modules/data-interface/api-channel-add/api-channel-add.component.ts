@@ -21,14 +21,27 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
 
   addChannelForm: FormGroup;
   addNativeAppForm: FormGroup;
+  addResourceForm: FormGroup;
 
   submitted = false;
   submitted_app = false;
+  submitted_resource = false;
   isCreatingFailed = false;
   errorMessage = '';
   countries: any[] = [];
   checked = true;
   closeResult: string = '';
+
+  resource_type_list = [
+    { id: 1, value: "Windows" },
+    { id: 2, value: "iOS" },
+    { id: 3, value: "Android" },
+    { id: 4, value: "BlackBerry" },
+    { id: 5, value: "Firefox OS" },
+    { id: 6, value: "Symbian OS" },
+    { id: 6, value: "webOS" },
+  ];
+
   app_type_list = [
     { id: 1, value: "Windows" },
     { id: 2, value: "iOS" },
@@ -37,8 +50,8 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
     { id: 5, value: "Firefox OS" },
     { id: 6, value: "Symbian OS" },
     { id: 6, value: "webOS" },
-
   ];
+
   permissions = [
     { id: 1, value: "Public" },
     { id: 2, value: "Private" },
@@ -207,6 +220,11 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
       app_url: ['', Validators.required, [Validators.pattern(reg)]],    
       app_type: ['', Validators.required],
     });
+    this.addResourceForm = this.formBuilder.group({
+      resource_name: ['', Validators.required],    
+      resource_type: ['', Validators.required],
+      resource_description: ['']
+    });
   }
 
   ngOnInit() {
@@ -229,6 +247,10 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
 
   get f_app() {
     return this.addNativeAppForm.controls;
+  }
+
+  get f_resource() {
+    return this.addResourceForm.controls;
   }
 
   backClicked() {
@@ -305,6 +327,10 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
 
   onSubmitApp(): void {
     this.submitted_app = true;
+  }
+
+  onSubmitResource(): void {
+    this.submitted_resource = true;
   }
 
   reloadPage(): void {

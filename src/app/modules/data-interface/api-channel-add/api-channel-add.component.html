@@ -580,7 +580,7 @@
                         <div class="gridActionsGroup mb-2 tab-black">
                             <div class="actionsWrap" style="margin-left: 0; width: 100%;">
                                 <h6 class="content-label">Developer Resources</h6>
-                                <a class="pluschannel" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Add New</a>
+                                <a class="pluschannel" style="margin-left: auto;" (click)="open(modalAddNewResource)"><i class="fas fa-plus-circle"></i> Add New</a>
                             </div>
                         </div>
                 
@@ -902,6 +902,62 @@
                             </select>
                             <div *ngIf="submitted_app" class="alert alert-danger-small">
                                 <div *ngIf="f_app.app_type.errors && f_app.app_type.errors.required">App Type is required.</div>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Save</button>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </form>
+</ng-template>
+
+
+<ng-template #modalAddNewResource let-modal>
+    <form [formGroup]="addResourceForm" (ngSubmit)="onSubmitResource()">
+        <div class="modal-header addChannel_company_header">
+            <button type="button" class="button button-circle" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <mat-tab-group>
+            <mat-tab label="Add New Developer Resource">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 mt-10">
+                            <label for="name" class="form-label">
+                                Resource Friendly Name*
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <input id="resource_name" type="text" formControlName="resource_name" class="form-control form-control-sm"
+                                [ngClass]="{ 'is-invalid': submitted_app && f_resource.resource_name.errors }" />
+                            <div *ngIf="submitted_resource" class="alert alert-danger-small">
+                                <div *ngIf="f_resource.resource_name.errors && f_resource.resource_name.errors.required">Resource Name is required.</div>
+                            </div>                                             
+                        </div>
+                        <div class="col-md-12 mt-20">
+                            <label for="name" class="form-label">
+                                Resource Description
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <textarea id="resource_description" cols="10" style="height: 100px;" formControlName="resource_description" class="form-control form-control-sm"></textarea>
+                        </div>
+                        <div class="col-md-12 mt-20">
+                            <label for="name" class="form-label">
+                                Resource Type*
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <select formControlName="resource_type" id="resource_type" class="form-select form-select-sm" [(ngModel)]="selectedAppType">
+                                <option *ngFor="let resource_type of resource_type_list" [ngValue]="resource_type.id">{{resource_type.value}}</option>
+                            </select>
+                            <div *ngIf="submitted_resource" class="alert alert-danger-small">
+                                <div *ngIf="f_resource.resource_type.errors && f_resource.resource_type.errors.required">Resource Type is required.</div>
                             </div>                            
                         </div>
                     </div>
