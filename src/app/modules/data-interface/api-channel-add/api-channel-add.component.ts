@@ -25,6 +25,7 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
   addMarketingDocForm: FormGroup;
   addBlogForm: FormGroup;
   addForumForm: FormGroup;
+  addVideoForm: FormGroup;
 
   submitted = false;
   submitted_app = false;
@@ -32,6 +33,8 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
   submitted_marketing_doc = false;
   submitted_blog = false;
   submitted_forum = false;
+  submitted_video = false;
+
   isCreatingFailed = false;
   errorMessage = '';
   countries: any[] = [];
@@ -240,6 +243,12 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
       forum_url: ['', [Validators.required, Validators.pattern(reg)]],    
       forum_description: ['']
     });
+    this.addVideoForm = this.formBuilder.group({
+      video_title: ['', Validators.required],    
+      video_description: [''],
+      video_url: ['', [Validators.required, Validators.pattern(reg)]],  
+      video_embedded_cdde: ['', [Validators.required, Validators.pattern(reg)]],     
+    });    
   }
 
   ngOnInit() {
@@ -274,6 +283,10 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
 
   get f_blog() {
     return this.addBlogForm.controls;
+  }
+
+  get f_video() {
+    return this.addVideoForm.controls;
   }
 
   get f_forum() {
@@ -366,6 +379,10 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
 
   onSubmitForum(): void {
     this.submitted_forum = true;
+  }
+
+  onSubmitVideo(): void {
+    this.submitted_video = true;
   }
 
   onSubmitResource(): void {

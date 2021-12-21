@@ -800,7 +800,7 @@
                         <div class="gridActionsGroup mb-2 tab-black">
                             <div class="actionsWrap" style="margin-left: 0; width: 100%;">
                                 <h6 class="content-label">Videos</h6>
-                                <a class="pluschannel" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Add New</a>
+                                <a class="pluschannel" style="margin-left: auto;" (click)="open(modalAddNewVideo)"><i class="fas fa-plus-circle"></i> Add New</a>
                             </div>
                         </div>
                 
@@ -1094,6 +1094,71 @@
                                     title="Help text to come here"></i>
                             </label>
                             <textarea id="forum_description" cols="10" style="height: 100px;" formControlName="forum_description" class="form-control form-control-sm"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Save</button>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </form>
+</ng-template>
+
+<ng-template #modalAddNewVideo let-modal>
+    <form [formGroup]="addVideoForm" (ngSubmit)="onSubmitVideo()">
+        <div class="modal-header addChannel_company_header">
+            <button type="button" class="button button-circle" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <mat-tab-group>
+            <mat-tab label="Add New Video">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 mt-10">
+                            <label for="name" class="form-label">
+                                Title*
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <input id="video_title" type="text" formControlName="video_title" class="form-control form-control-sm"
+                                [ngClass]="{ 'is-invalid': submitted_video && f_video.video_title.errors }" />
+                            <div *ngIf="submitted_video" class="alert alert-danger-small">
+                                <div *ngIf="f_video.video_title.errors && f_video.video_title.errors.required">Title is required.</div>
+                            </div> 
+                        </div>
+                        <div class="col-md-12 mt-20">
+                            <label for="name" class="form-label">
+                                Description
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <textarea id="video_description" cols="10" style="height: 100px;" formControlName="video_description" class="form-control form-control-sm"></textarea>
+                        </div>
+                        <div class="col-md-12 mt-20">
+                            <label for="video_url" class="form-label">
+                                URL*
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <input id="video_url" type="text" formControlName="video_url" class="form-control form-control-sm"
+                                [ngClass]="{ 'is-invalid': submitted_video && f_video.video_url.errors }" />
+                            <div *ngIf="submitted_video" class="alert alert-danger-small">
+                                <div *ngIf="f_video.video_url.errors && f_video.video_url.errors.required">URL is required.</div>
+                            </div> 
+                            <div *ngIf="submitted_video" class="alert alert-danger-small">
+                                <div *ngIf="f_video.video_url.errors && f_video.video_url.errors.pattern">Please provide valid url.</div>
+                            </div>      
+                        </div>
+                        <div class="col-md-12 mt-20">
+                            <label for="name" class="form-label">
+                                Embedded Code
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <textarea id="video_embedded_cdde" cols="10" style="height: 100px;" formControlName="video_embedded_cdde" class="form-control form-control-sm"></textarea>
                         </div>
                     </div>
                 </div>
