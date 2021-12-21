@@ -122,7 +122,7 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
 
   selectedIndex: number = 0;
   maxNumberOfTabs = 6;
-  selectedPermissionOption = 1;
+  selectedPermissionValue = 1;
 
   numbers = [0];
 

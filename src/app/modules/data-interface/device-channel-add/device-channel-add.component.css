@@ -61,3 +61,7 @@
 .mt-10 {
     margin-top: 10px;
 }
+.permission_member_add_btn {
+    font-size: 11px;
+    height: 27px;
+}
