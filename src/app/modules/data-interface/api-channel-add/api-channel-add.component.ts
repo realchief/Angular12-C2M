@@ -23,11 +23,15 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
   addNativeAppForm: FormGroup;
   addResourceForm: FormGroup;
   addMarketingDocForm: FormGroup;
+  addBlogForm: FormGroup;
+  addForumForm: FormGroup;
 
   submitted = false;
   submitted_app = false;
   submitted_resource = false;
   submitted_marketing_doc = false;
+  submitted_blog = false;
+  submitted_forum = false;
   isCreatingFailed = false;
   errorMessage = '';
   countries: any[] = [];
@@ -228,6 +232,14 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
       marketing_doc_url: ['', [Validators.required, Validators.pattern(reg)]],    
       marketing_doc_description: ['']
     });
+    this.addBlogForm = this.formBuilder.group({
+      blog_url: ['', [Validators.required, Validators.pattern(reg)]],    
+      blog_description: ['']
+    });
+    this.addForumForm = this.formBuilder.group({
+      forum_url: ['', [Validators.required, Validators.pattern(reg)]],    
+      forum_description: ['']
+    });
   }
 
   ngOnInit() {
@@ -258,6 +270,14 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
 
   get f_marketing_doc() {
     return this.addMarketingDocForm.controls;
+  }
+
+  get f_blog() {
+    return this.addBlogForm.controls;
+  }
+
+  get f_forum() {
+    return this.addForumForm.controls;
   }
 
   backClicked() {
@@ -338,6 +358,14 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
 
   onSubmitMarketingDoc(): void {
     this.submitted_marketing_doc = true;
+  }
+
+  onSubmitBlog(): void {
+    this.submitted_blog = true;
+  }
+
+  onSubmitForum(): void {
+    this.submitted_forum = true;
   }
 
   onSubmitResource(): void {

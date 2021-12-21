@@ -715,7 +715,7 @@
                             <div class="gridActionsGroup mb-2 tab-black">
                                 <div class="actionsWrap" style="margin-left: 0; width: 100%;">
                                     <h6 class="content-label">Blogs</h6>
-                                    <a class="pluschannel" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Add New</a>
+                                    <a class="pluschannel" style="margin-left: auto;" (click)="open(modalAddNewBlog)"><i class="fas fa-plus-circle"></i> Add New</a>
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -756,7 +756,7 @@
                             <div class="gridActionsGroup mb-2 tab-black">
                                 <div class="actionsWrap" style="margin-left: 0; width: 100%;">
                                     <h6 class="content-label">Forums</h6>
-                                    <a class="pluschannel" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Add New</a>
+                                    <a class="pluschannel" style="margin-left: auto;" (click)="open(modalAddNewForum)"><i class="fas fa-plus-circle"></i> Add New</a>
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -1004,6 +1004,96 @@
                                     title="Help text to come here"></i>
                             </label>
                             <textarea id="marketing_doc_description" cols="10" style="height: 100px;" formControlName="marketing_doc_description" class="form-control form-control-sm"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Save</button>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </form>
+</ng-template>
+
+<ng-template #modalAddNewBlog let-modal>
+    <form [formGroup]="addBlogForm" (ngSubmit)="onSubmitBlog()">
+        <div class="modal-header addChannel_company_header">
+            <button type="button" class="button button-circle" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <mat-tab-group>
+            <mat-tab label="Add New Blog">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 mt-10">
+                            <label for="name" class="form-label">
+                                URL*
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <input id="blog_url" type="text" formControlName="blog_url" class="form-control form-control-sm"
+                                [ngClass]="{ 'is-invalid': submitted_blog && f_blog.blog_url.errors }" />
+                            <div *ngIf="submitted_blog" class="alert alert-danger-small">
+                                <div *ngIf="f_blog.blog_url.errors && f_blog.blog_url.errors.required">URL is required.</div>
+                            </div> 
+                            <div *ngIf="submitted_blog" class="alert alert-danger-small">
+                                <div *ngIf="f_blog.blog_url.errors && f_blog.blog_url.errors.pattern">Please provide valid url.</div>
+                            </div>                                            
+                        </div>
+                        <div class="col-md-12 mt-20">
+                            <label for="name" class="form-label">
+                                Description
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <textarea id="blog_description" cols="10" style="height: 100px;" formControlName="blog_description" class="form-control form-control-sm"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Save</button>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </form>
+</ng-template>
+
+<ng-template #modalAddNewForum let-modal>
+    <form [formGroup]="addForumForm" (ngSubmit)="onSubmitForum()">
+        <div class="modal-header addChannel_company_header">
+            <button type="button" class="button button-circle" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <mat-tab-group>
+            <mat-tab label="Add New Forum">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 mt-10">
+                            <label for="name" class="form-label">
+                                URL*
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <input id="forum_url" type="text" formControlName="forum_url" class="form-control form-control-sm"
+                                [ngClass]="{ 'is-invalid': submitted_forum && f_forum.forum_url.errors }" />
+                            <div *ngIf="submitted_forum" class="alert alert-danger-small">
+                                <div *ngIf="f_forum.forum_url.errors && f_forum.forum_url.errors.required">URL is required.</div>
+                            </div> 
+                            <div *ngIf="submitted_forum" class="alert alert-danger-small">
+                                <div *ngIf="f_forum.forum_url.errors && f_forum.forum_url.errors.pattern">Please provide valid url.</div>
+                            </div>                                            
+                        </div>
+                        <div class="col-md-12 mt-20">
+                            <label for="name" class="form-label">
+                                Description
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <textarea id="forum_description" cols="10" style="height: 100px;" formControlName="forum_description" class="form-control form-control-sm"></textarea>
                         </div>
                     </div>
                 </div>
