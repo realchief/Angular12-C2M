@@ -33,13 +33,10 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
   closeResult: string = '';
 
   resource_type_list = [
-    { id: 1, value: "Windows" },
-    { id: 2, value: "iOS" },
-    { id: 3, value: "Android" },
-    { id: 4, value: "BlackBerry" },
-    { id: 5, value: "Firefox OS" },
-    { id: 6, value: "Symbian OS" },
-    { id: 6, value: "webOS" },
+    { id: 1, value: "Code Snippet" },
+    { id: 2, value: "File" },
+    { id: 3, value: "Code Snippet URL" },
+    { id: 4, value: "Sdk URL" },
   ];
 
   app_type_list = [
