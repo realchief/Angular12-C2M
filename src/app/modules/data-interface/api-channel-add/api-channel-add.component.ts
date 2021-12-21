@@ -216,7 +216,7 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
       subscribe_url: ['', [Validators.pattern(reg)]]
     });
     this.addNativeAppForm = this.formBuilder.group({
-      app_url: ['', Validators.required, [Validators.pattern(reg)]],    
+      app_url: ['', [Validators.required, Validators.pattern(reg)]],    
       app_type: ['', Validators.required],
     });
     this.addResourceForm = this.formBuilder.group({
@@ -225,7 +225,7 @@ export class APIChannelAddComponent implements OnInit, OnDestroy {
       resource_description: ['']
     });
     this.addMarketingDocForm = this.formBuilder.group({
-      marketing_doc_url: ['', Validators.required, [Validators.pattern(reg)]],    
+      marketing_doc_url: ['', [Validators.required, Validators.pattern(reg)]],    
       marketing_doc_description: ['']
     });
   }
