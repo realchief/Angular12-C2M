@@ -22,10 +22,23 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   addChannelForm: FormGroup;
   addCommandForm: FormGroup;
   addCommandGroupForm: FormGroup;
+  addNativeAppForm: FormGroup;
+  addResourceForm: FormGroup;
+  addMarketingDocForm: FormGroup;
+  addBlogForm: FormGroup;
+  addForumForm: FormGroup;
+  addVideoForm: FormGroup;
 
   submitted = false;
   command_submitted = false;
   command_group_submitted = false;
+  submitted_app = false;
+  submitted_resource = false;
+  submitted_marketing_doc = false;
+  submitted_blog = false;
+  submitted_forum = false;
+  submitted_video = false;
+
   isCreatingFailed = false;
   errorMessage = '';
   countries: any[] = [];
@@ -110,6 +123,24 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     { id: 4, value: "Command Four" },
   ];
 
+  resource_type_list = [
+    { id: 1, value: "Code Snippet" },
+    { id: 2, value: "File" },
+    { id: 3, value: "Code Snippet URL" },
+    { id: 4, value: "Sdk URL" },
+  ];
+  
+
+  app_type_list = [
+    { id: 1, value: "Windows" },
+    { id: 2, value: "iOS" },
+    { id: 3, value: "Android" },
+    { id: 4, value: "BlackBerry" },
+    { id: 5, value: "Firefox OS" },
+    { id: 6, value: "Symbian OS" },
+    { id: 6, value: "webOS" },
+  ];
+
 
   tabLabelList = [
     'Channel Info',
@@ -123,6 +154,7 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   selectedIndex: number = 0;
   maxNumberOfTabs = 6;
   selectedPermissionValue = 1;
+  selectedAppType = 1;
 
   numbers = [0];
 
@@ -221,6 +253,33 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
       command_info: [''],   
       friendly_name: [''],   
     });
+    this.addNativeAppForm = this.formBuilder.group({
+      app_url: ['', [Validators.required, Validators.pattern(reg)]],    
+      app_type: ['', Validators.required],
+    });
+    this.addResourceForm = this.formBuilder.group({
+      resource_name: ['', Validators.required],    
+      resource_type: ['', Validators.required],
+      resource_description: ['']
+    });
+    this.addMarketingDocForm = this.formBuilder.group({
+      marketing_doc_url: ['', [Validators.required, Validators.pattern(reg)]],    
+      marketing_doc_description: ['']
+    });
+    this.addBlogForm = this.formBuilder.group({
+      blog_url: ['', [Validators.required, Validators.pattern(reg)]],    
+      blog_description: ['']
+    });
+    this.addForumForm = this.formBuilder.group({
+      forum_url: ['', [Validators.required, Validators.pattern(reg)]],    
+      forum_description: ['']
+    });
+    this.addVideoForm = this.formBuilder.group({
+      video_title: ['', Validators.required],    
+      video_description: [''],
+      video_url: ['', [Validators.required, Validators.pattern(reg)]],  
+      video_embedded_cdde: ['', [Validators.required, Validators.pattern(reg)]],     
+    });
   }
 
   ngOnInit() {
@@ -243,6 +302,30 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
 
   get f_command_group() {
     return this.addCommandGroupForm.controls;
+  }
+
+  get f_app() {
+    return this.addNativeAppForm.controls;
+  }
+
+  get f_resource() {
+    return this.addResourceForm.controls;
+  }
+
+  get f_marketing_doc() {
+    return this.addMarketingDocForm.controls;
+  }
+
+  get f_blog() {
+    return this.addBlogForm.controls;
+  }
+
+  get f_video() {
+    return this.addVideoForm.controls;
+  }
+
+  get f_forum() {
+    return this.addForumForm.controls;
   }
 
   backClicked() {
@@ -334,6 +417,30 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   onSubmitCommandGroup(): void {
     this.command_group_submitted = true;
     console.log('Add command group form has been submitted');
+  }
+
+  onSubmitApp(): void {
+    this.submitted_app = true;
+  }
+
+  onSubmitMarketingDoc(): void {
+    this.submitted_marketing_doc = true;
+  }
+
+  onSubmitBlog(): void {
+    this.submitted_blog = true;
+  }
+
+  onSubmitForum(): void {
+    this.submitted_forum = true;
+  }
+
+  onSubmitVideo(): void {
+    this.submitted_video = true;
+  }
+
+  onSubmitResource(): void {
+    this.submitted_resource = true;
   }
 
   reloadPage(): void {
