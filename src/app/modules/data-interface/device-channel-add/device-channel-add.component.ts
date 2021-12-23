@@ -78,26 +78,28 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     { id: 4, value: "4" }
   ];
   access_token_list = [
-    { id: 1, value: "access token 1" },
-    { id: 2, value: "access token 2" },
-    { id: 3, value: "access token 3" },
-    { id: 4, value: "access token  4" }
+    { id: 1, value: "Heather" },
+    { id: 2, value: "Query String" },
+    { id: 3, value: "Other" }
   ];
   secrete_key_list = [
-    { id: 1, value: "secet key 1" },
-    { id: 2, value: "secet key 2" },
-    { id: 3, value: "secet key 3" },
-    { id: 4, value: "secet key 4" }
+    { id: 1, value: "api_secret" },
+    { id: 2, value: "client_secret" },
+    { id: 3, value: "Other" }
   ];
   key_list = [
-    { id: 1, value: "key1" },
-    { id: 2, value: "key2" },
-    { id: 3, value: "key3" },
-    { id: 4, value: "key4" }
+    { id: 1, value: "api_key" },
+    { id: 2, value: "client_id" },
+    { id: 3, value: "Other" }
   ];
   authentication_list = [
-    { id: 1, value: "Yes" },
-    { id: 2, value: "No" }
+    { id: 0, value: "Select Auth Type" },
+    { id: 1, value: "Basic" },
+    { id: 2, value: "Digist" },
+    { id: 3, value: "0Auth 1.0" },
+    { id: 4, value: "0Auth 1.0a" },
+    { id: 5, value: "0Auth 2.0" },
+    { id: 6, value: "Non-Authenticated" }
   ];
   data_type_list = [
     { id: 1, value: "BOOL" },
@@ -155,6 +157,10 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   maxNumberOfTabs = 6;
   selectedPermissionValue = 1;
   selectedAppType = 1;
+  selectedAuthenticationOption = 0;
+  selectedAccessToken = 1;
+  selectedSecreteKey = 1;
+  selectedKey = 1;
 
   numbers = [0];
 
