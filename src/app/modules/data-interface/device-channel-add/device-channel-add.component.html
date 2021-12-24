@@ -98,8 +98,20 @@
                             </div>
                             <div class="row db_channel_info">
                                 <div class="col-md-12 mt-30">
+                                    <label for="legan_consent_required" class="form-label">
+                                        Consent Required
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <div class="form-check form-switch">
+                                        <toggle-button (changed)="checked=$event" id="legan_consent_required"></toggle-button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row db_channel_info">
+                                <div class="col-md-12 mt-30">
                                     <label for="legan_documents_required" class="form-label">
-                                        Legal Documents Required
+                                        Legal Document Required
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                             title="Help text to come here"></i>
                                     </label>
@@ -254,6 +266,26 @@
                         <div class="col-md-4">
                             <div class="row db_channel_info">
                                 <div class="col-md-12 mt-30">
+                                    <label for="network_protocol" class="form-label">
+                                        Network Protocol
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <select formControlName="network_protocol" id="network_protocol" class="form-select form-select-sm" [(ngModel)]="selectedNetworkProtocol">
+                                        <option *ngFor="let network_protocol of network_protocol_list" [ngValue]="network_protocol.id">{{network_protocol.value}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <label for="connection_type" class="form-label">
+                                        Connection Type
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <select formControlName="connection_type" id="connection_type" class="form-select form-select-sm" [(ngModel)]="selectedConnectionType">
+                                        <option *ngFor="let connection_type of connection_type_list" [ngValue]="connection_type.id">{{connection_type.value}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mt-30" *ngIf="[1, 2].indexOf(selectedConnectionType) > -1">                                    
                                     <label for="input1" class="form-label">
                                         Base URL
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
@@ -265,7 +297,7 @@
                                         <div *ngIf="f.base_url.errors && f.base_url.errors.required">Base_URL is required.</div>
                                     </div>
                                 </div>
-                                <div class="col-md-12 mt-30" *ngIf="[1, 2].indexOf(selectedAuthenticationOption) > -1">
+                                <div class="col-md-12 mt-30" *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1 && [1, 2].indexOf(selectedConnectionType) > -1">
                                     <label for="input1" class="form-label">
                                         Application Credentials used for onboarding 
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
@@ -276,7 +308,18 @@
                                         <input type="radio" value="Connect2me Credentials" name="credential" class="radio-right"> Connect2me Credentials
                                     </div>
                                 </div>
-                                <div *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1" class="col-md-12 mt-30">
+                                <div class="col-md-12 mt-30" *ngIf="[1, 2].indexOf(selectedAuthenticationOption) > -1 && [1, 2].indexOf(selectedConnectionType) > -1">
+                                    <label for="input1" class="form-label">
+                                        SSL / Client Certificate  
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <div class="radio-list">
+                                        <input type="radio" value="yes" name="ssl_certificate" class="radio-left"> yes
+                                        <input type="radio" value="no" name="ssl_certificate" class="radio-right"> no
+                                    </div>
+                                </div>
+                                <div *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1 && [1, 2].indexOf(selectedConnectionType) > -1" class="col-md-12 mt-30">
                                     <label for="input1" class="form-label">
                                         Consumer Key
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
@@ -288,7 +331,7 @@
                                         <div *ngIf="f.consumer_key.errors && f.consumer_key.errors.required">Consumer Key is required.</div>
                                     </div>
                                 </div>
-                                <div *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1" class="col-md-12 mt-30">
+                                <div *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1 && [1, 2].indexOf(selectedConnectionType) > -1" class="col-md-12 mt-30">
                                     <label for="input1" class="form-label">
                                         Consumer Secret Key
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
@@ -300,7 +343,7 @@
                                         <div *ngIf="f.consumer_secrete_key.errors && f.consumer_secrete_key.errors.required">Consumer Secrete Key is required.</div>
                                     </div>
                                 </div>
-                                <div *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1" class="col-md-12 mt-30">
+                                <div *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1 && [1, 2].indexOf(selectedConnectionType) > -1" class="col-md-12 mt-30">
                                     <label for="input1" class="form-label">
                                         Request Token URL
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
@@ -315,7 +358,7 @@
                                         <div *ngIf="f.request_token_url.errors && f.request_token_url.errors.pattern">Please provide valid url.</div>
                                     </div>
                                 </div>
-                                <div *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1" class="col-md-12 mt-30">
+                                <div *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1 && [1, 2].indexOf(selectedConnectionType) > -1" class="col-md-12 mt-30">
                                     <label for="input1" class="form-label">
                                         Access Token URL
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
@@ -330,7 +373,7 @@
                                         <div *ngIf="f.access_token_url.errors && f.access_token_url.errors.pattern">Please provide valid url.</div>
                                     </div>
                                 </div>
-                                <div *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1" class="col-md-12 mt-30">
+                                <div *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1 && [1, 2].indexOf(selectedConnectionType) > -1" class="col-md-12 mt-30">
                                     <label for="input1" class="form-label">
                                         Scope
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
@@ -346,7 +389,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="row db_channel_info">
-                                <div class="col-md-12 mt-30">
+                                <div class="col-md-12 mt-30" *ngIf="[1, 2].indexOf(selectedConnectionType) > -1">
                                     <label for="authentication" class="form-label">
                                         Authentication
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
@@ -356,7 +399,7 @@
                                         <option *ngFor="let authentication of authentication_list" [ngValue]="authentication.id">{{authentication.value}}</option>
                                     </select>
                                 </div>
-                                <div *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1" class="col-md-12 mt-30">
+                                <div *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1 && [1, 2].indexOf(selectedConnectionType) > -1" class="col-md-12 mt-30">
                                     <label for="key" class="form-label">
                                         Key
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
@@ -369,7 +412,7 @@
                                         <input id="other_key" type="text" class="form-control form-control-sm" />
                                     </div>
                                 </div>
-                                <div *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1" class="col-md-12 mt-30">
+                                <div *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1 && [1, 2].indexOf(selectedConnectionType) > -1" class="col-md-12 mt-30">
                                     <label for="key" class="form-label">
                                         Secret Key
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
@@ -382,7 +425,7 @@
                                         <input id="other_secrete_key" type="text" class="form-control form-control-sm" />
                                     </div>
                                 </div>
-                                <div *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1" class="col-md-12 mt-30">
+                                <div *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1 && [1, 2].indexOf(selectedConnectionType) > -1" class="col-md-12 mt-30">
                                     <label for="input1" class="form-label">
                                         Authorization URL
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
@@ -397,7 +440,7 @@
                                         <div *ngIf="f.authorization_url.errors && f.authorization_url.errors.pattern">Please provide valid url.</div>
                                     </div>
                                 </div>
-                                <div *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1" class="col-md-12 mt-30">
+                                <div *ngIf="[3, 4, 5].indexOf(selectedAuthenticationOption) > -1 && [1, 2].indexOf(selectedConnectionType) > -1" class="col-md-12 mt-30">
                                     <label for="key" class="form-label">
                                         Access Token
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"

@@ -55,8 +55,12 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     { id: 4, value: "Enterprise APIs" }
   ];
   channel_type_list = [
-    { id: 1, value: "Input Device" },
-    { id: 2, value: "Output Device" }
+    { id: 1, value: "Software" },
+    { id: 2, value: "Device" },
+    { id: 3, value: "Sensor" },
+    { id: 4, value: "Parts/Kits" },
+    { id: 5, value: "Services" },
+    { id: 6, value: "Networks" },
   ];
   navigation_tab_list = [
     { id: 1, value: "Speficiations" },
@@ -72,10 +76,14 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     { id: 5, value: "Year" },
   ];
   unit_increment_list = [
-    { id: 1, value: "1" },
-    { id: 2, value: "2" },
-    { id: 3, value: "3" },
-    { id: 4, value: "4" }
+    { id: 1, value: "Second" },
+    { id: 2, value: "Min" },
+    { id: 3, value: "Hour" },
+    { id: 4, value: "Day" },
+    { id: 5, value: "Month" },
+    { id: 6, value: "Year" },
+    { id: 7, value: "N/A" },
+
   ];
   access_token_list = [
     { id: 1, value: "Heather" },
@@ -91,6 +99,27 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     { id: 1, value: "api_key" },
     { id: 2, value: "client_id" },
     { id: 3, value: "Other" }
+  ];
+  network_protocol_list = [
+    { id: 0, value: "Select Protocol" },
+    { id: 1, value: "2G" },
+    { id: 2, value: "3G" },
+    { id: 3, value: "ANT" },
+    { id: 4, value: "Bluetooth" },
+    { id: 5, value: "Ethernet-IPv4, IPv6" },
+    { id: 6, value: "GPRS" },
+    { id: 7, value: "Low Bluetooth" },
+    { id: 8, value: "NFC" },
+    { id: 9, value: "RFID" },
+    { id: 10, value: "SNMP" },
+    { id: 8, value: "WIFI" },
+    { id: 9, value: "ZigBee" },
+    { id: 10, value: "Zwave" },
+  ];
+  connection_type_list = [
+    { id: 0, value: "Select Connection Type" },
+    { id: 1, value: "Native" },
+    { id: 2, value: "connect2.me" },
   ];
   authentication_list = [
     { id: 0, value: "Select Auth Type" },
@@ -161,6 +190,8 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   selectedAccessToken = 1;
   selectedSecreteKey = 1;
   selectedKey = 1;
+  selectedNetworkProtocol = 0;
+  selectedConnectionType = 0;
 
   numbers = [0];
 
@@ -233,6 +264,7 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
       authentication: [''],
       base_url: ['', [Validators.pattern(reg)]],
       credential: [''],
+      ssl_certificate: [''],
       consumer_key: [''],
       consumer_secrete_key: [''],
       request_token_url: ['', [Validators.pattern(reg)]],
@@ -247,6 +279,8 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
       buy_it_url: ['', [Validators.pattern(reg)]],
       subscribe_url: ['', [Validators.pattern(reg)]],
       data_mapping_option: [''],
+      network_protocol: [''],
+      connection_type: [''],
     });
     this.addCommandForm = this.formBuilder.group({
       command_name: ['', Validators.required],
