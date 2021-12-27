@@ -398,6 +398,102 @@
                                         <div *ngIf="f.TCP_port.errors && f.TCP_port.errors.required">TCP port is required.</div>
                                     </div>
                                 </div>
+                                <div class="col-md-12 mt-30" *ngIf="selectedConnectionType == 2 && UDP == true">                                    
+                                    <label for="input1" class="form-label">
+                                        UDP End point
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="UDP_endpoint" type="text" formControlName="UDP_endpoint" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.UDP_endpoint.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.UDP_endpoint.errors && f.UDP_endpoint.errors.required">UDP endpoint is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-30" *ngIf="selectedConnectionType == 2 && UDP == true">                                    
+                                    <label for="input1" class="form-label">
+                                        UDP Port
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="UDP_port" type="text" formControlName="UDP_port" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.UDP_port.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.UDP_port.errors && f.UDP_port.errors.required">UDP port is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-30" *ngIf="selectedConnectionType == 2 && OMA_DM == true">                                    
+                                    <label for="input1" class="form-label">
+                                        OMA DM End point
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="OMA_DM_endpoint" type="text" formControlName="UDP_endpoint" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.OMA_DM_endpoint.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.OMA_DM_endpoint.errors && f.OMA_DM_endpoint.errors.required">OMA DM endpoint is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-30" *ngIf="selectedConnectionType == 2 && OMA_DM == true">                                    
+                                    <label for="input1" class="form-label">
+                                        OMA DM Port
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="OMA_DM_port" type="text" formControlName="OMA_DM_port" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.OMA_DM_port.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.OMA_DM_port.errors && f.OMA_DM_port.errors.required">OMA DM port is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-30" *ngIf="selectedConnectionType == 2 && HTTP == true">                                    
+                                    <label for="input1" class="form-label">
+                                        HTTP End point
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="HTTP_endpoint" type="text" formControlName="HTTP_endpoint" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.HTTP_endpoint.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.HTTP_endpoint.errors && f.HTTP_endpoint.errors.required">HTTP endpoint is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-30" *ngIf="selectedConnectionType == 2 && HTTP == true">                                    
+                                    <label for="input1" class="form-label">
+                                        HTTP Port
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="HTTP_port" type="text" formControlName="HTTP_port" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.HTTP_port.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.HTTP_port.errors && f.HTTP_port.errors.required">HTTP port is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-30" *ngIf="selectedConnectionType == 2 && HTTPS == true">                                    
+                                    <label for="input1" class="form-label">
+                                        HTTPS End point
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="HTTPS_endpoint" type="text" formControlName="HTTPS_endpoint" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.HTTPS_endpoint.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.HTTPS_endpoint.errors && f.HTTPS_endpoint.errors.required">HTTPS endpoint is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mt-30" *ngIf="selectedConnectionType == 2 && HTTPS == true">                                    
+                                    <label for="input1" class="form-label">
+                                        HTTPS Port
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="HTTPS_port" type="text" formControlName="HTTPS_port" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.HTTPS_port.errors }" />
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.HTTPS_port.errors && f.HTTPS_port.errors.required">HTTPS port is required.</div>
+                                    </div>
+                                </div>
                                 <div class="col-md-12 mt-30" *ngIf="selectedConnectionType == 1">                                    
                                     <label for="input1" class="form-label">
                                         Base URL

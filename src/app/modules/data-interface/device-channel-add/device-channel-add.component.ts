@@ -294,6 +294,14 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
       MQTT_port: [''],
       TCP_endpoint: [''],
       TCP_port: [''],
+      UDP_endpoint: [''],
+      UDP_port: [''],
+      OMA_DM_endpoint: [''],
+      OMA_DM_port: [''],
+      HTTP_endpoint: [''],
+      HTTP_port: [''],
+      HTTPS_endpoint: [''],
+      HTTPS_port: [''],
     });
     this.addCommandForm = this.formBuilder.group({
       command_name: ['', Validators.required],
