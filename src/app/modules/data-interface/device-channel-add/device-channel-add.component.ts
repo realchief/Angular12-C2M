@@ -302,6 +302,12 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
       HTTP_port: [''],
       HTTPS_endpoint: [''],
       HTTPS_port: [''],
+      CoAp_endpoint: [''],
+      CoAp_port: [''],
+      XMPP_endpoint: [''],
+      XMPP_port: [''],
+      LwM2M_endpoint: [''],
+      LwM2M_port: [''],
     });
     this.addCommandForm = this.formBuilder.group({
       command_name: ['', Validators.required],
