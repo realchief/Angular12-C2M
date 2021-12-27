@@ -172,6 +172,15 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     { id: 6, value: "webOS" },
   ];
 
+  MQTT = false; 
+  TCP = false; 
+  UDP = false; 
+  OMA_DM = false; 
+  HTTP = false; 
+  HTTPS = false; 
+  CoAp = false; 
+  XMPP = false; 
+  LwM2M = false; 
 
   tabLabelList = [
     'Channel Info',
@@ -281,6 +290,10 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
       data_mapping_option: [''],
       network_protocol: [''],
       connection_type: [''],
+      MQTT_endpoint: [''],
+      MQTT_port: [''],
+      TCP_endpoint: [''],
+      TCP_port: [''],
     });
     this.addCommandForm = this.formBuilder.group({
       command_name: ['', Validators.required],
