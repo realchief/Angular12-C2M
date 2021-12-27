@@ -795,17 +795,17 @@
                                         title="Help text to come here"></i>
                                 </label>
                                 <div class="form-check form-switch">
-                                    <toggle-button (changed)="checked=$event" id="isfota"></toggle-button>
+                                    <toggle-button (changed)="schemaOption=$event" id="isfota"></toggle-button>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 mt-30">
+                        <div class="col-md-12 mt-30" *ngIf="schemaOption">
                             <div class="radio-list">
                                 <input type="radio" value="Mannual" name="data_mapping_option" class="radio-left"> Mannual
                                 <input type="radio" value="Data Sample" name="data_mapping_option" class="radio-right"> Data Sample
                             </div>
                         </div>
-                        <div class="col-md-12 mt-30">
+                        <div class="col-md-12 mt-30" *ngIf="schemaOption">
                             <div class="row db_channel_info">
                                 <div class="col-md-12">
                                     <label for="input2" class="form-label">
@@ -822,10 +822,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 mt-30">
+                        <div class="col-md-12 mt-30" *ngIf="schemaOption">
                             <p style="margin-left: 20px;">Or enter the name and datatype of the data points individually</p>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-12" *ngIf="schemaOption">
                             <div class="row db_channel_info" *ngFor="let number of numbers">
                                 <div class="col-md-4 mt-30">
                                     <label for="device_identifiers" class="form-label">

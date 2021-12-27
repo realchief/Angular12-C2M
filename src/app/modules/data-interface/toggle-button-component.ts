@@ -79,5 +79,6 @@ export class ToggleButtonComponent  {
       var target = event.target;
       var previousEle = target.previousSibling;
       previousEle.checked = !previousEle.checked;
+      this.changed.emit(previousEle.checked);
   }
 }

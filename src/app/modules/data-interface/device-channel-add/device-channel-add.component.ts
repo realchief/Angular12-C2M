@@ -38,6 +38,7 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   submitted_blog = false;
   submitted_forum = false;
   submitted_video = false;
+  schemaOption = false;
 
   isCreatingFailed = false;
   errorMessage = '';
