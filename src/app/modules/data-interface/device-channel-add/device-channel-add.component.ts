@@ -288,7 +288,6 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
       rss_feed_url: ['', [Validators.pattern(reg)]],
       buy_it_url: ['', [Validators.pattern(reg)]],
       subscribe_url: ['', [Validators.pattern(reg)]],
-      data_mapping_option: [''],
       network_protocol: [''],
       connection_type: [''],
       MQTT_endpoint: [''],
@@ -309,6 +308,7 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
       XMPP_port: [''],
       LwM2M_endpoint: [''],
       LwM2M_port: [''],
+      data_mapping_option: ['', Validators.required],
     });
     this.addCommandForm = this.formBuilder.group({
       command_name: ['', Validators.required],
