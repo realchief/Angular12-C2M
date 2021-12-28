@@ -801,11 +801,11 @@
                         </div>
                         <div class="col-md-12 mt-30" *ngIf="schemaOption">
                             <div class="radio-list">
-                                <input type="radio" value="Manual" name="data_mapping_option" class="radio-left" checked> Manual
-                                <input type="radio" value="Data Sample" name="data_mapping_option" class="radio-right"> Data Sample
+                                <input type="radio" name="data_mapping_option" value="Manual" class="radio-left data-mapping-option"  (click)="selectCategory()" checked> Manual
+                                <input type="radio" name="data_mapping_option" value="Data Sample" class="radio-right data-mapping-option"  (click)="selectCategory()"> Data Sample
                             </div>
                         </div>
-                        <div class="col-md-12 mt-30" *ngIf="schemaOption">
+                        <div class="col-md-12 mt-30" *ngIf="schemaOption && data_mapping_option == 'Manual'">
                             <div class="row db_channel_info">
                                 <div class="col-md-12">
                                     <label for="input2" class="form-label">
@@ -822,10 +822,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 mt-30" *ngIf="schemaOption">
+                        <div class="col-md-12 mt-30" *ngIf="schemaOption && data_mapping_option == 'Manual'">
                             <p style="margin-left: 20px;">Or enter the name and datatype of the data points individually</p>
                         </div>
-                        <div class="col-md-12" *ngIf="schemaOption">
+                        <div class="col-md-12" *ngIf="schemaOption && data_mapping_option == 'Manual'">
                             <div class="row db_channel_info" *ngFor="let number of numbers">
                                 <div class="col-md-4 mt-30">
                                     <label for="device_identifiers" class="form-label">

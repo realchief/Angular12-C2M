@@ -173,6 +173,9 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     { id: 6, value: "webOS" },
   ];
 
+  data_mapping_option = "Manual";
+  
+
   MQTT = false; 
   TCP = false; 
   UDP = false; 
@@ -416,6 +419,11 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+  }
+
+  selectCategory() {
+    this.data_mapping_option = (<HTMLInputElement>document.querySelector('.data-mapping-option:checked')).value;
+    console.log(this.data_mapping_option);
   }
 
   private getDismissReason(reason: any): string {
