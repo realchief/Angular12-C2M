@@ -174,6 +174,7 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   ];
 
   data_mapping_option = "Manual";
+  sample_type = "String";
   
 
   MQTT = false; 
@@ -207,6 +208,7 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   selectedConnectionType = 0;
 
   numbers = [0];
+  ds_numbers  = [0];
 
   
 
@@ -312,6 +314,7 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
       LwM2M_endpoint: [''],
       LwM2M_port: [''],
       data_mapping_option: ['', Validators.required],
+      device_data_sample: [''],
     });
     this.addCommandForm = this.formBuilder.group({
       command_name: ['', Validators.required],
@@ -426,6 +429,11 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     console.log(this.data_mapping_option);
   }
 
+  selectSampleType() {
+    this.sample_type = (<HTMLInputElement>document.querySelector('.sample-type:checked')).value;
+    console.log(this.sample_type);
+  }
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -525,6 +533,19 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
 
   addNewForm() :void {
     this.numbers.push(this.numbers[this.numbers.length - 1] + 1);
+  }
+
+  addNewFormDS() :void {
+    this.ds_numbers.push(this.ds_numbers[this.ds_numbers.length - 1] + 1);
+  }
+
+  removeFormDS(ds_number : any) :void {
+    let i = 0;
+    for(i = 0; i < this.ds_numbers.length; i ++){
+      if(this.ds_numbers[i] == ds_number)
+        break;
+    }
+    this.ds_numbers.splice(i, 1);
   }
 
   removeForm(number : any) :void {

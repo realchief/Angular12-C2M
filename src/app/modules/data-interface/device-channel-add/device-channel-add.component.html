@@ -801,8 +801,8 @@
                         </div>
                         <div class="col-md-12 mt-30" *ngIf="schemaOption">
                             <div class="radio-list">
-                                <input type="radio" name="data_mapping_option" value="Manual" class="radio-left data-mapping-option"  (click)="selectCategory()" checked> Manual
-                                <input type="radio" name="data_mapping_option" value="Data Sample" class="radio-right data-mapping-option"  (click)="selectCategory()"> Data Sample
+                                <input type="radio" name="data_mapping_option" value="Manual" class="radio-left data-mapping-option"  (click)="selectCategory()" [checked]="data_mapping_option == 'Manual'"> Manual
+                                <input type="radio" name="data_mapping_option" value="Data Sample" class="radio-right data-mapping-option"  (click)="selectCategory()" [checked]="data_mapping_option == 'Data Sample'"> Data Sample
                             </div>
                         </div>
                         <div class="col-md-12 mt-30" *ngIf="schemaOption && data_mapping_option == 'Manual'">
@@ -850,6 +850,68 @@
                                     <a *ngIf="number==0" class="pluschannel" style="margin-left: auto;" (click)="addNewForm()"><i class="fas fa-plus-circle add-channel-icon"></i></a>
                                     <a *ngIf="number!=0" class="pluschannel" style="margin-left: auto;" (click)="removeForm(number)"><i class="fas fa-trash-alt add-channel-icon"></i></a>
                                     <!-- <a *ngIf="number!=0" class="pluschannel" style="margin-left: auto;" (click)="editForm(number)"><i class="fas fa-edit add-channel-icon"></i></a> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" *ngIf="schemaOption && data_mapping_option == 'Data Sample'">
+                            <div class="col-md-12 mt-30" style="text-align: left;"> 
+                                <p>Please select data sample type from given below type</p>                               
+                            </div>
+                            <div class="col-md-12 mt-10">
+                                <div class="radio-list">
+                                    <input type="radio" name="sample_type" value="String" class="radio-left sample-type"  (click)="selectSampleType()" checked> String
+                                    <input type="radio" name="sample_type" value="XML" class="radio-right sample-type"  (click)="selectSampleType()"> XML
+                                    <input type="radio" name="sample_type" value="JSON" class="radio-right sample-type"  (click)="selectSampleType()"> JSON
+                                    <input type="radio" name="sample_type" value="Bytes" class="radio-right sample-type"  (click)="selectSampleType()"> Bytes                                  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6" *ngIf="schemaOption && data_mapping_option == 'Data Sample' && sample_type == 'String'">
+                            <div class="col-md-12 mt-30" style="text-align: left;"> 
+                                <p>Please enter data sample of your device to get schema</p>                               
+                            </div>
+                            <div class="col-md-12 mt-10">    
+                                <input id="device_data_sample" type="text" formControlName="device_data_sample" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': submitted && f.device_data_sample.errors }" />                            
+                            </div>
+                        </div>
+                        <div class="col-md-12" *ngIf="schemaOption && data_mapping_option == 'Data Sample'  && sample_type == 'String'">
+                            <div class="row db_channel_info" *ngFor="let ds_number of ds_numbers">
+                                <div class="col-md-2 mt-30">
+                                    <label for="start_text" class="form-label">
+                                        Start Text
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="start_text" type="text" class="form-control form-control-sm" />
+                                </div>
+                                <div class="col-md-2 mt-30">
+                                    <label for="parameter_seperator" class="form-label">
+                                        Parameter Separator	
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="parameter_seperator" type="text" class="form-control form-control-sm" />
+                                </div>
+                                <div class="col-md-2 mt-30">
+                                    <label for="pair_seperator" class="form-label">
+                                        Key Value pair Separator	
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="pair_seperator" type="text" class="form-control form-control-sm" />
+                                </div>
+                                <div class="col-md-2 mt-30">
+                                    <label for="end_text" class="form-label">
+                                        End Text	
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="end_text" type="text" formControlName="end_text" class="form-control form-control-sm" />
+                                </div>
+                                <div class="col-md-4 mt-30 pt-30 icon-button">
+                                    <a *ngIf="ds_number==0" class="pluschannel" style="margin-left: auto;" (click)="addNewFormDS()"><i class="fas fa-plus-circle add-channel-icon"></i></a>
+                                    <a *ngIf="ds_number!=0" class="pluschannel" style="margin-left: auto;" (click)="removeFormDS(ds_number)"><i class="fas fa-trash-alt add-channel-icon"></i></a>
                                 </div>
                             </div>
                         </div>
