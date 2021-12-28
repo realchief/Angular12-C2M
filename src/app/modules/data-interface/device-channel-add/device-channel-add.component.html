@@ -915,6 +915,42 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-12" *ngIf="schemaOption && data_mapping_option == 'Data Sample'  && sample_type == 'XML'">
+                            <div class="row db_channel_info">
+                                <div class="col-md-8 mt-30">
+                                    <label for="start_text" class="form-label">
+                                        Enter XML data
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <textarea id="xml-data" style="min-height: 100px;" class="form-control form-control-sm"></textarea>
+                                </div>                             
+                            </div>
+                        </div>
+                        <div class="col-md-12" *ngIf="schemaOption && data_mapping_option == 'Data Sample'  && sample_type == 'JSON'">
+                            <div class="row db_channel_info">
+                                <div class="col-md-8 mt-30">
+                                    <label for="start_text" class="form-label">
+                                        Enter JSON data
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <textarea id="json-data" style="min-height: 100px;" class="form-control form-control-sm"></textarea>
+                                </div>                             
+                            </div>
+                        </div>
+                        <div class="col-md-12" *ngIf="schemaOption && data_mapping_option == 'Data Sample'  && sample_type == 'Bytes'">
+                            <div class="row db_channel_info">
+                                <div class="col-md-8 mt-30">
+                                    <label for="start_text" class="form-label">
+                                        Enter Bytes data
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <textarea id="json-data" style="min-height: 100px;" class="form-control form-control-sm"></textarea>
+                                </div>                             
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-dark">Cancel</button>
