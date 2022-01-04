@@ -923,7 +923,10 @@
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                             title="Help text to come here"></i>
                                     </label>
-                                    <textarea id="xml-data" style="min-height: 100px;" class="form-control form-control-sm"></textarea>
+                                    <textarea formControlName="xml_data" id="xml-data" style="min-height: 100px;" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.xml_data.errors }"></textarea>
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.xml_data.errors && f.xml_data.errors.pattern">Please provide the valid xml data.</div>
+                                    </div>
                                 </div>                             
                             </div>
                         </div>
@@ -935,7 +938,10 @@
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                             title="Help text to come here"></i>
                                     </label>
-                                    <textarea id="json-data" style="min-height: 100px;" class="form-control form-control-sm"></textarea>
+                                    <textarea id="json-data" formControlName="json_data" style="min-height: 100px;" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.json_data.errors }"></textarea>
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.json_data.errors && f.json_data.errors.pattern">Please provide the valid JSON data.</div>
+                                    </div>
                                 </div>                             
                             </div>
                         </div>
@@ -947,7 +953,10 @@
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                             title="Help text to come here"></i>
                                     </label>
-                                    <textarea id="json-data" style="min-height: 100px;" class="form-control form-control-sm"></textarea>
+                                    <textarea id="bytes-data" formControlName="bytes_data" style="min-height: 100px;" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.bytes_data.errors }"></textarea>
+                                    <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.bytes_data.errors && f.bytes_data.errors.pattern">Please provide the valid Bytes data.</div>
+                                    </div>
                                 </div>                             
                             </div>
                         </div>

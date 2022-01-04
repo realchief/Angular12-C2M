@@ -258,6 +258,9 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     sessionStorage.setItem('AppTitle', 'Add Channel');
     this.getCountries();
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+    const reg_xml = '([^\s\.]*([\s\.]+[^a-z])?)*[\s\.]*';
+    const reg_json = '/^\s*\{\s*[A-Z0-9._]+\s*:\s*[A-Z0-9._]+\s*(,\s*[A-Z0-9._]+\s*:\s*[A-Z0-9._]+\s*)*\}\s*$/i';
+    const reg_bytes = '[A-Za-z]{3}';
     this.addChannelForm = this.formBuilder.group({
       channel_name: ['', Validators.required],
       permission: [''],
@@ -315,6 +318,10 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
       LwM2M_port: [''],
       data_mapping_option: ['', Validators.required],
       device_data_sample: [''],
+      xml_data: ['', [Validators.pattern(reg_xml)]],
+      json_data: ['', [Validators.pattern(reg_json)]],
+      end_text: [''],
+      bytes_data: ['', [Validators.pattern(reg_bytes)]],
     });
     this.addCommandForm = this.formBuilder.group({
       command_name: ['', Validators.required],
