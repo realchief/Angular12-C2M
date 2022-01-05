@@ -758,7 +758,7 @@
                                     </label>
                                     <input type="text" formControlName="device_identifiers" class="form-control form-control-sm device_identifiers"
                                         [ngClass]="{ 'is-invalid': submitted && f.device_identifiers.errors }" />
-                                    <input type="checkbox" formControlName="device_identifiers_checkbox" class="device_identifiers_checkbox">
+                                    <input type="checkbox" class="device_identifiers_checkbox">
                                 </div>
                                 <div class="col-md-4 mt-30">
                                     <label for="data_type" class="form-label">
@@ -820,6 +820,9 @@
                                 </div>
                                 <div class="col-md-12 text-center">
                                     <input type="file" fileinput="file" filepreview="filepreview" id="xmlfile" name="xmlfile"/>
+                                </div>
+                                <div class="col-md-12 mt-30">
+                                    <a href="../../../assets/demoXml/DataMapping.xml" target="_blank" class="viewSXML ng-binding">View Sample XML</a>
                                 </div>
                             </div>
                         </div>

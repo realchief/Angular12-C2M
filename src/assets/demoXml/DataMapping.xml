@@ -1,0 +1,15 @@
+<root>
+    <column name="BatteryStatus" type="int"/>
+    <column name="PhoneMemoryUsed" type="double"/>
+    <column name="PhoneMemoryFree" type="double"/>
+    <column name="ExternalMemoryUsed" type="double"/>
+    <column name="ExternalMemoryFree" type="double"/>
+    <column name="BluetoothStatus" type="int"/>
+    <column name="GprsStatus" type="int"/>
+    <column name="AndroidVersion" type="string"/>
+    <column name="NumberOfInstalledApps" type="int"/>
+    <column name="CurrentLocation" type="string"/>
+    <column name="CurrentLocationZipcode" type="int"/>
+    <column name="RamTotalSize" type="double"/>
+    <column name="RamFreeSize" type="double"/>
+</root>
