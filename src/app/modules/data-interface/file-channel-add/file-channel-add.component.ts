@@ -9,6 +9,7 @@ import { TokenStorageService } from "src/app/_services/token-storage.service";
 import { Title } from '@angular/platform-browser';
 import { ApiService } from "src/app/_services/api.service";
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -19,15 +20,36 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 export class FileChannelAddComponent implements OnInit, OnDestroy {
 
   addChannelForm: FormGroup;
+  addCommandForm: FormGroup;
+  addCommandGroupForm: FormGroup;
+  addNativeAppForm: FormGroup;
+  addResourceForm: FormGroup;
+  addMarketingDocForm: FormGroup;
+  addBlogForm: FormGroup;
+  addForumForm: FormGroup;
+  addVideoForm: FormGroup;  
+
   submitted = false;
+  command_submitted = false;
+  command_group_submitted = false;
+  submitted_app = false;
+  submitted_resource = false;
+  submitted_marketing_doc = false;
+  submitted_blog = false;
+  submitted_forum = false;
+  submitted_video = false;
   isCreatingFailed = false;
   errorMessage = '';
   countries: any[] = [];
   checked = true;
+  selectedAppType = 1;
+
+
+
   permissions = [
-    { id: 1, value: "Admin" },
-    { id: 2, value: "Management" },
-    { id: 3, value: "General" }
+    { id: 1, value: "Public" },
+    { id: 2, value: "Private" },
+    { id: 3, value: "Company" }
   ];
   channel_type_list = [
     { id: 1, value: "CSV" },
@@ -48,10 +70,28 @@ export class FileChannelAddComponent implements OnInit, OnDestroy {
     { id: 4, value: "News" }
   ];
   channel_ttl_rate_list = [
-    { id: 1, value: "1" },
-    { id: 2, value: "2" },
-    { id: 3, value: "3" },
-    { id: 4, value: "4" }
+    { id: 1, value: "All" },
+    { id: 2, value: "Day" },
+    { id: 3, value: "Week" },
+    { id: 4, value: "Month" },
+    { id: 5, value: "Year" },
+  ];
+
+  resource_type_list = [
+    { id: 1, value: "Code Snippet" },
+    { id: 2, value: "File" },
+    { id: 3, value: "Code Snippet URL" },
+    { id: 4, value: "Sdk URL" },
+  ];
+
+  app_type_list = [
+    { id: 1, value: "Windows" },
+    { id: 2, value: "iOS" },
+    { id: 3, value: "Android" },
+    { id: 4, value: "BlackBerry" },
+    { id: 5, value: "Firefox OS" },
+    { id: 6, value: "Symbian OS" },
+    { id: 6, value: "webOS" },
   ];
 
   tabLabelList = [
@@ -59,8 +99,11 @@ export class FileChannelAddComponent implements OnInit, OnDestroy {
     'Resources'
   ];
 
+  
+
   selectedIndex: number = 0;
   maxNumberOfTabs = 2;
+  selectedPermissionValue = 1;
 
   editorConfig: AngularEditorConfig = {
     editable: true,
@@ -91,6 +134,8 @@ export class FileChannelAddComponent implements OnInit, OnDestroy {
     { "router": "data-interface/c2m-di-marketplace/Microsoft", "title": "Microsoft" }
   ];
 
+  closeResult: string = '';
+
   constructor(
     private http: HttpClient,
     private _location: Location,
@@ -100,6 +145,7 @@ export class FileChannelAddComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
     private apiService: ApiService,
+    private modalService: NgbModal,
   ) {
     sessionStorage.setItem('AppTitle', 'Add Channel');
     this.getCountries();
@@ -118,6 +164,44 @@ export class FileChannelAddComponent implements OnInit, OnDestroy {
       buy_it_url: ['', [Validators.pattern(reg)]],
       subscribe_url: ['', [Validators.pattern(reg)]]
     });
+    this.addCommandForm = this.formBuilder.group({
+      command_name: ['', Validators.required],
+      command_file_name: [],
+      command_data_type: [],
+    });
+    this.addCommandGroupForm = this.formBuilder.group({
+      command_group_name: ['', Validators.required],
+      command_group_mode: [''],      
+      command_info: [''],   
+      friendly_name: [''],   
+    });
+    this.addNativeAppForm = this.formBuilder.group({
+      app_url: ['', [Validators.required, Validators.pattern(reg)]],    
+      app_type: ['', Validators.required],
+    });
+    this.addResourceForm = this.formBuilder.group({
+      resource_name: ['', Validators.required],    
+      resource_type: ['', Validators.required],
+      resource_description: ['']
+    });
+    this.addMarketingDocForm = this.formBuilder.group({
+      marketing_doc_url: ['', [Validators.required, Validators.pattern(reg)]],    
+      marketing_doc_description: ['']
+    });
+    this.addBlogForm = this.formBuilder.group({
+      blog_url: ['', [Validators.required, Validators.pattern(reg)]],    
+      blog_description: ['']
+    });
+    this.addForumForm = this.formBuilder.group({
+      forum_url: ['', [Validators.required, Validators.pattern(reg)]],    
+      forum_description: ['']
+    });
+    this.addVideoForm = this.formBuilder.group({
+      video_title: ['', Validators.required],    
+      video_description: [''],
+      video_url: ['', [Validators.required, Validators.pattern(reg)]],  
+      video_embedded_cdde: ['', [Validators.required, Validators.pattern(reg)]],     
+    });
   }
 
   ngOnInit() {
@@ -131,6 +215,56 @@ export class FileChannelAddComponent implements OnInit, OnDestroy {
 
   get f() {
     return this.addChannelForm.controls;
+  }
+
+  get f_command() {
+    return this.addCommandForm.controls;
+  }
+
+  get f_command_group() {
+    return this.addCommandGroupForm.controls;
+  }
+
+  get f_app() {
+    return this.addNativeAppForm.controls;
+  }
+
+  get f_resource() {
+    return this.addResourceForm.controls;
+  }
+
+  get f_marketing_doc() {
+    return this.addMarketingDocForm.controls;
+  }
+
+  get f_blog() {
+    return this.addBlogForm.controls;
+  }
+
+  get f_video() {
+    return this.addVideoForm.controls;
+  }
+
+  get f_forum() {
+    return this.addForumForm.controls;
+  }
+
+  open(content: any) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 
   backClicked() {
@@ -184,6 +318,40 @@ export class FileChannelAddComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     this.submitted = true;
     console.log('submitted');
+  }
+
+  onSubmitCommand(): void {
+    this.command_submitted = true;
+    console.log('Add command form has been submitted');
+  }
+
+  onSubmitCommandGroup(): void {
+    this.command_group_submitted = true;
+    console.log('Add command group form has been submitted');
+  }
+
+  onSubmitApp(): void {
+    this.submitted_app = true;
+  }
+
+  onSubmitMarketingDoc(): void {
+    this.submitted_marketing_doc = true;
+  }
+
+  onSubmitBlog(): void {
+    this.submitted_blog = true;
+  }
+
+  onSubmitForum(): void {
+    this.submitted_forum = true;
+  }
+
+  onSubmitVideo(): void {
+    this.submitted_video = true;
+  }
+
+  onSubmitResource(): void {
+    this.submitted_resource = true;
   }
 
   reloadPage(): void {
