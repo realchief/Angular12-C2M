@@ -78,3 +78,6 @@
     right: 20px;
     bottom: 7px;
 }
+.fa-pencil-alt:hover {
+    cursor: pointer;
+}
