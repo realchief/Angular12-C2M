@@ -750,14 +750,15 @@
                     <div class="row mt-10 db_channel_list">
                         <div class="col-md-12">
                             <div class="row db_channel_info" *ngFor="let number of numbers">
-                                <div class="col-md-4 mt-30">
+                                <div class="col-md-4 mt-30 device-indentifiers-div">
                                     <label for="device_identifiers" class="form-label">
                                         Device Identifiers
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                             title="Help text to come here"></i>
                                     </label>
-                                    <input id="device_identifiers" type="text" formControlName="device_identifiers" class="form-control form-control-sm"
+                                    <input type="text" formControlName="device_identifiers" class="form-control form-control-sm device_identifiers"
                                         [ngClass]="{ 'is-invalid': submitted && f.device_identifiers.errors }" />
+                                    <input type="checkbox" formControlName="device_identifiers_checkbox" class="device_identifiers_checkbox">
                                 </div>
                                 <div class="col-md-4 mt-30">
                                     <label for="data_type" class="form-label">

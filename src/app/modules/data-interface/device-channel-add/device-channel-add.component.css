@@ -70,3 +70,11 @@
     height: 27px;
     width: 100%;
 }
+.device-indentifiers-div {
+    position: relative;
+}
+.device_identifiers_checkbox {
+    position: absolute;
+    right: 20px;
+    bottom: 7px;
+}
