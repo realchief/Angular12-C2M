@@ -59,9 +59,17 @@
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                             title="Help text to come here"></i>
                                     </label>
-                                    <select formControlName="permission" id="permission" class="form-select form-select-sm">
+                                    <select formControlName="permission" id="permission" class="form-select form-select-sm" [(ngModel)]="selectedPermissionValue">
                                         <option *ngFor="let permission of permissions" [ngValue]="permission.id">{{permission.value}}</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div *ngIf="selectedPermissionValue != 1" class="row db_channel_info">
+                                <div class="col-md-8 mt-30">
+                                    <input id="permission_member_name" type="text" class="form-control form-control-sm" />
+                                </div>
+                                <div class="col-md-4 mt-30">
+                                    <button class="btn btn-primary permission_member_add_btn">Add</button>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +89,7 @@
                                 </div>
                                 <div class="col-md-12 mt-30">
                                     <label for="channel_type" class="form-label">
-                                        Type
+                                        Channel Type
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                             title="Help text to come here"></i>
                                     </label>
@@ -103,7 +111,7 @@
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                             title="Help text to come here"></i>
                                     </label>
-                                    <input id="ttl_period" type="text" formControlName="ttl_period" class="form-control form-control-sm"
+                                    <input id="ttl_period" type="number" formControlName="ttl_period" class="form-control form-control-sm"
                                         [ngClass]="{ 'is-invalid': submitted && f.ttl_period.errors }" />
                                 </div>
                             </div>
@@ -224,7 +232,7 @@
                         <div class="gridActionsGroup mb-2 tab-black">
                             <div class="actionsWrap" style="margin-left: 0; width: 100%;">
                                 <h6 class="content-label">Native Apps</h6>
-                                <a class="pluschannel" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Add New</a>
+                                <a class="pluschannel" style="margin-left: auto;" (click)="open(modalAddNewNativeApp)"><i class="fas fa-plus-circle"></i> Add New</a>
                             </div>
                         </div>
                 
@@ -247,7 +255,7 @@
                                     <tr *ngFor="let number_data of [0,1,2,3,4,5,6,7];let i=index;">
                                         <td class="text-center">
                                             <div class="action-btns">
-                                                <a title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                <a title="Edit" (click)="open(modalAddNewNativeApp)"><i class="fas fa-pencil-alt"></i></a>
                                                 <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
                                             </div>
                                         </td>
@@ -268,7 +276,7 @@
                         <div class="gridActionsGroup mb-2 tab-black">
                             <div class="actionsWrap" style="margin-left: 0; width: 100%;">
                                 <h6 class="content-label">Developer Resources</h6>
-                                <a class="pluschannel" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Add New</a>
+                                <a class="pluschannel" style="margin-left: auto;" (click)="open(modalAddNewResource)"><i class="fas fa-plus-circle"></i> Add New</a>
                             </div>
                         </div>
                 
@@ -294,7 +302,7 @@
                                     <tr *ngFor="let number_data of [0,1,2,3,4,5,6,7];let i=index;">
                                         <td class="text-center">
                                             <div class="action-btns">
-                                                <a title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                <a title="Edit" (click)="open(modalAddNewResource)"><i class="fas fa-pencil-alt"></i></a>
                                                 <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
                                             </div>
                                         </td>
@@ -318,7 +326,7 @@
                             <div class="gridActionsGroup mb-2 tab-black">
                                 <div class="actionsWrap" style="margin-left: 0; width: 100%;">
                                     <h6 class="content-label">Marketing Docs</h6>
-                                    <a class="pluschannel" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Add New</a>
+                                    <a class="pluschannel" style="margin-left: auto;" (click)="open(modalAddNewMarketingDoc)"><i class="fas fa-plus-circle"></i> Add New</a>
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -340,7 +348,7 @@
                                         <tr *ngFor="let number_data of [0,1,2,3,4,5,6,7];let i=index;">
                                             <td class="text-center">
                                                 <div class="action-btns">
-                                                    <a title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                    <a title="Edit" (click)="open(modalAddNewMarketingDoc)"><i class="fas fa-pencil-alt"></i></a>
                                                     <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
                                                 </div>
                                             </td>
@@ -359,7 +367,7 @@
                             <div class="gridActionsGroup mb-2 tab-black">
                                 <div class="actionsWrap" style="margin-left: 0; width: 100%;">
                                     <h6 class="content-label">Marketing Docs</h6>
-                                    <a class="pluschannel" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Add New</a>
+                                    <a class="pluschannel" style="margin-left: auto;" (click)="open(modalAddNewMarketingDoc)"><i class="fas fa-plus-circle"></i> Add New</a>
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -381,7 +389,7 @@
                                         <tr *ngFor="let number_data of [0,1,2,3,4,5,6,7];let i=index;">
                                             <td class="text-center">
                                                 <div class="action-btns">
-                                                    <a title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                    <a title="Edit" (click)="open(modalAddNewMarketingDoc)"><i class="fas fa-pencil-alt"></i></a>
                                                     <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
                                                 </div>
                                             </td>
@@ -403,7 +411,7 @@
                             <div class="gridActionsGroup mb-2 tab-black">
                                 <div class="actionsWrap" style="margin-left: 0; width: 100%;">
                                     <h6 class="content-label">Blogs</h6>
-                                    <a class="pluschannel" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Add New</a>
+                                    <a class="pluschannel" style="margin-left: auto;" (click)="open(modalAddNewBlog)"><i class="fas fa-plus-circle"></i> Add New</a>
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -425,7 +433,7 @@
                                         <tr *ngFor="let number_data of [0,1,2,3,4,5,6,7];let i=index;">
                                             <td class="text-center">
                                                 <div class="action-btns">
-                                                    <a title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                    <a title="Edit" (click)="open(modalAddNewBlog)"><i class="fas fa-pencil-alt"></i></a>
                                                     <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
                                                 </div>
                                             </td>
@@ -444,7 +452,7 @@
                             <div class="gridActionsGroup mb-2 tab-black">
                                 <div class="actionsWrap" style="margin-left: 0; width: 100%;">
                                     <h6 class="content-label">Forums</h6>
-                                    <a class="pluschannel" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Add New</a>
+                                    <a class="pluschannel" style="margin-left: auto;" (click)="open(modalAddNewForum)"><i class="fas fa-plus-circle"></i> Add New</a>
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -466,7 +474,7 @@
                                         <tr *ngFor="let number_data of [0,1,2,3,4,5,6,7];let i=index;">
                                             <td class="text-center">
                                                 <div class="action-btns">
-                                                    <a title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                    <a title="Edit" (click)="open(modalAddNewForum)"><i class="fas fa-pencil-alt"></i></a>
                                                     <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
                                                 </div>
                                             </td>
@@ -488,7 +496,7 @@
                         <div class="gridActionsGroup mb-2 tab-black">
                             <div class="actionsWrap" style="margin-left: 0; width: 100%;">
                                 <h6 class="content-label">Videos</h6>
-                                <a class="pluschannel" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Add New</a>
+                                <a class="pluschannel" style="margin-left: auto;" (click)="open(modalAddNewVideo)"><i class="fas fa-plus-circle"></i> Add New</a>
                             </div>
                         </div>
                 
@@ -517,7 +525,7 @@
                                     <tr *ngFor="let number_data of [0,1,2,3,4,5,6,7];let i=index;">
                                         <td class="text-center">
                                             <div class="action-btns">
-                                                <a title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                <a title="Edit" (click)="open(modalAddNewVideo)"><i class="fas fa-pencil-alt"></i></a>
                                                 <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
                                             </div>
                                         </td>
@@ -551,3 +559,310 @@
         </mat-tab-group>
     </form>
 </div>
+
+
+<ng-template #modalAddNewNativeApp let-modal>
+    <form [formGroup]="addNativeAppForm" (ngSubmit)="onSubmitApp()">
+        <div class="modal-header addChannel_company_header">
+            <button type="button" class="button button-circle" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <mat-tab-group>
+            <mat-tab label="Add New Native App">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 mt-10">
+                            <label for="name" class="form-label">
+                                App URL*
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <input id="app_url" type="text" formControlName="app_url" class="form-control form-control-sm"
+                                [ngClass]="{ 'is-invalid': submitted_app && f_app.app_url.errors }" />
+                            <div *ngIf="submitted_app" class="alert alert-danger-small">
+                                <div *ngIf="f_app.app_url.errors && f_app.app_url.errors.required">App URL is required.</div>
+                            </div> 
+                            <div *ngIf="submitted_app" class="alert alert-danger-small">
+                                <div *ngIf="f_app.app_url.errors && f_app.app_url.errors.pattern">Please provide valid url.</div>
+                            </div>                           
+                        </div>
+                        <div class="col-md-12 mt-20">
+                            <label for="name" class="form-label">
+                                App Type*
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <select formControlName="app_type" id="app_type" class="form-select form-select-sm" [(ngModel)]="selectedAppType">
+                                <option *ngFor="let app_type of app_type_list" [ngValue]="app_type.id">{{app_type.value}}</option>
+                            </select>
+                            <div *ngIf="submitted_app" class="alert alert-danger-small">
+                                <div *ngIf="f_app.app_type.errors && f_app.app_type.errors.required">App Type is required.</div>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Save</button>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </form>
+</ng-template>
+
+
+<ng-template #modalAddNewResource let-modal>
+    <form [formGroup]="addResourceForm" (ngSubmit)="onSubmitResource()">
+        <div class="modal-header addChannel_company_header">
+            <button type="button" class="button button-circle" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <mat-tab-group>
+            <mat-tab label="Add New Developer Resource">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 mt-10">
+                            <label for="name" class="form-label">
+                                Resource Friendly Name*
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <input id="resource_name" type="text" formControlName="resource_name" class="form-control form-control-sm"
+                                [ngClass]="{ 'is-invalid': submitted_app && f_resource.resource_name.errors }" />
+                            <div *ngIf="submitted_resource" class="alert alert-danger-small">
+                                <div *ngIf="f_resource.resource_name.errors && f_resource.resource_name.errors.required">Resource Name is required.</div>
+                            </div>                                             
+                        </div>
+                        <div class="col-md-12 mt-20">
+                            <label for="name" class="form-label">
+                                Resource Description
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <textarea id="resource_description" cols="10" style="height: 100px;" formControlName="resource_description" class="form-control form-control-sm"></textarea>
+                        </div>
+                        <div class="col-md-12 mt-20">
+                            <label for="name" class="form-label">
+                                Resource Type*
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <select formControlName="resource_type" id="resource_type" class="form-select form-select-sm" [(ngModel)]="selectedAppType">
+                                <option *ngFor="let resource_type of resource_type_list" [ngValue]="resource_type.id">{{resource_type.value}}</option>
+                            </select>
+                            <div *ngIf="submitted_resource" class="alert alert-danger-small">
+                                <div *ngIf="f_resource.resource_type.errors && f_resource.resource_type.errors.required">Resource Type is required.</div>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Save</button>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </form>
+</ng-template>
+
+<ng-template #modalAddNewMarketingDoc let-modal>
+    <form [formGroup]="addMarketingDocForm" (ngSubmit)="onSubmitMarketingDoc()">
+        <div class="modal-header addChannel_company_header">
+            <button type="button" class="button button-circle" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <mat-tab-group>
+            <mat-tab label="Add New Marketing Doc">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 mt-10">
+                            <label for="name" class="form-label">
+                                URL*
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <input id="marketing_doc_url" type="text" formControlName="marketing_doc_url" class="form-control form-control-sm"
+                                [ngClass]="{ 'is-invalid': submitted_app && f_marketing_doc.marketing_doc_url.errors }" />
+                            <div *ngIf="submitted_marketing_doc" class="alert alert-danger-small">
+                                <div *ngIf="f_marketing_doc.marketing_doc_url.errors && f_marketing_doc.marketing_doc_url.errors.required">URL is required.</div>
+                            </div> 
+                            <div *ngIf="submitted_marketing_doc" class="alert alert-danger-small">
+                                <div *ngIf="f_marketing_doc.marketing_doc_url.errors && f_marketing_doc.marketing_doc_url.errors.pattern">Please provide valid url.</div>
+                            </div>                                            
+                        </div>
+                        <div class="col-md-12 mt-20">
+                            <label for="name" class="form-label">
+                                Description
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <textarea id="marketing_doc_description" cols="10" style="height: 100px;" formControlName="marketing_doc_description" class="form-control form-control-sm"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Save</button>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </form>
+</ng-template>
+
+<ng-template #modalAddNewBlog let-modal>
+    <form [formGroup]="addBlogForm" (ngSubmit)="onSubmitBlog()">
+        <div class="modal-header addChannel_company_header">
+            <button type="button" class="button button-circle" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <mat-tab-group>
+            <mat-tab label="Add New Blog">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 mt-10">
+                            <label for="name" class="form-label">
+                                URL*
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <input id="blog_url" type="text" formControlName="blog_url" class="form-control form-control-sm"
+                                [ngClass]="{ 'is-invalid': submitted_blog && f_blog.blog_url.errors }" />
+                            <div *ngIf="submitted_blog" class="alert alert-danger-small">
+                                <div *ngIf="f_blog.blog_url.errors && f_blog.blog_url.errors.required">URL is required.</div>
+                            </div> 
+                            <div *ngIf="submitted_blog" class="alert alert-danger-small">
+                                <div *ngIf="f_blog.blog_url.errors && f_blog.blog_url.errors.pattern">Please provide valid url.</div>
+                            </div>                                            
+                        </div>
+                        <div class="col-md-12 mt-20">
+                            <label for="name" class="form-label">
+                                Description
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <textarea id="blog_description" cols="10" style="height: 100px;" formControlName="blog_description" class="form-control form-control-sm"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Save</button>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </form>
+</ng-template>
+
+<ng-template #modalAddNewForum let-modal>
+    <form [formGroup]="addForumForm" (ngSubmit)="onSubmitForum()">
+        <div class="modal-header addChannel_company_header">
+            <button type="button" class="button button-circle" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <mat-tab-group>
+            <mat-tab label="Add New Forum">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 mt-10">
+                            <label for="name" class="form-label">
+                                URL*
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <input id="forum_url" type="text" formControlName="forum_url" class="form-control form-control-sm"
+                                [ngClass]="{ 'is-invalid': submitted_forum && f_forum.forum_url.errors }" />
+                            <div *ngIf="submitted_forum" class="alert alert-danger-small">
+                                <div *ngIf="f_forum.forum_url.errors && f_forum.forum_url.errors.required">URL is required.</div>
+                            </div> 
+                            <div *ngIf="submitted_forum" class="alert alert-danger-small">
+                                <div *ngIf="f_forum.forum_url.errors && f_forum.forum_url.errors.pattern">Please provide valid url.</div>
+                            </div>                                            
+                        </div>
+                        <div class="col-md-12 mt-20">
+                            <label for="name" class="form-label">
+                                Description
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <textarea id="forum_description" cols="10" style="height: 100px;" formControlName="forum_description" class="form-control form-control-sm"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Save</button>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </form>
+</ng-template>
+
+<ng-template #modalAddNewVideo let-modal>
+    <form [formGroup]="addVideoForm" (ngSubmit)="onSubmitVideo()">
+        <div class="modal-header addChannel_company_header">
+            <button type="button" class="button button-circle" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <mat-tab-group>
+            <mat-tab label="Add New Video">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 mt-10">
+                            <label for="name" class="form-label">
+                                Title*
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <input id="video_title" type="text" formControlName="video_title" class="form-control form-control-sm"
+                                [ngClass]="{ 'is-invalid': submitted_video && f_video.video_title.errors }" />
+                            <div *ngIf="submitted_video" class="alert alert-danger-small">
+                                <div *ngIf="f_video.video_title.errors && f_video.video_title.errors.required">Title is required.</div>
+                            </div> 
+                        </div>
+                        <div class="col-md-12 mt-20">
+                            <label for="name" class="form-label">
+                                Description
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <textarea id="video_description" cols="10" style="height: 100px;" formControlName="video_description" class="form-control form-control-sm"></textarea>
+                        </div>
+                        <div class="col-md-12 mt-20">
+                            <label for="video_url" class="form-label">
+                                URL*
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <input id="video_url" type="text" formControlName="video_url" class="form-control form-control-sm"
+                                [ngClass]="{ 'is-invalid': submitted_video && f_video.video_url.errors }" />
+                            <div *ngIf="submitted_video" class="alert alert-danger-small">
+                                <div *ngIf="f_video.video_url.errors && f_video.video_url.errors.required">URL is required.</div>
+                            </div> 
+                            <div *ngIf="submitted_video" class="alert alert-danger-small">
+                                <div *ngIf="f_video.video_url.errors && f_video.video_url.errors.pattern">Please provide valid url.</div>
+                            </div>      
+                        </div>
+                        <div class="col-md-12 mt-20">
+                            <label for="name" class="form-label">
+                                Embedded Code
+                                <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                    title="Help text to come here"></i>
+                            </label>
+                            <textarea id="video_embedded_cdde" cols="10" style="height: 100px;" formControlName="video_embedded_cdde" class="form-control form-control-sm"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Save</button>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </form>
+</ng-template>

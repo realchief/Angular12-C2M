@@ -25,3 +25,13 @@
 .tab-black {
     background-color: black;
 }
+.permission_member_add_btn {
+    font-size: 11px;
+    height: 27px;
+}
+.pluschannel:hover {
+    cursor: pointer;
+}
+.fa-pencil-alt:hover {
+    cursor: pointer;
+}

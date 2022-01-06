@@ -28,3 +28,10 @@
 .fa-pencil-alt:hover {
     cursor: pointer;
 }
+.permission_member_add_btn {
+    font-size: 11px;
+    height: 27px;
+}
+.tab-black {
+    background-color: black;
+}
