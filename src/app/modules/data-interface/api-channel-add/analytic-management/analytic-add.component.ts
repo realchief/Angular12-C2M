@@ -19,6 +19,8 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class AnalyticAddComponent implements OnInit, OnDestroy {
 
+  addAnalyticForm: FormGroup;
+
   submitted = false;
   isCreatingFailed = false;
   errorMessage = '';
@@ -104,6 +106,10 @@ export class AnalyticAddComponent implements OnInit, OnDestroy {
     private apiService: ApiService,
   ) {
     sessionStorage.setItem('AppTitle', 'Add Analytic');
+    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+    this.addAnalyticForm = this.formBuilder.group({     
+      request_url: ['', [Validators.pattern(reg)]]
+    });
   }
 
   ngOnInit() {
@@ -114,6 +120,10 @@ export class AnalyticAddComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     sessionStorage.removeItem('AppTitle');
     sessionStorage.removeItem('AppPath');
+  }
+
+  get f() {
+    return this.addAnalyticForm.controls;
   }
 
   backClicked() {
