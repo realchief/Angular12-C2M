@@ -11,6 +11,7 @@ import { ApiService } from "src/app/_services/api.service";
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { TreeviewConfig, TreeviewItem } from 'ngx-treeview';
+import { xml2json } from 'xml-js';
 
 
 @Component({
@@ -479,9 +480,9 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
 
   generateXMLSchema() {
 
-    const json_type_input = (<HTMLInputElement>document.querySelector('#xml-data')).value;
+    const json_type_input = xml2json((<HTMLInputElement>document.querySelector('#xml-data')).value, {compact: true, spaces: 4});
 
-    const json_data_new = [JSON.parse(json_type_input)];
+    const json_data_new = [JSON.parse(json_type_input)['root']];
 
     for (let i = 0; i < json_data_new.length; i++) {
       const json_data_temp = json_data_new[i];
