@@ -13,7 +13,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { ToggleButtonComponent } from './toggle-button-component';
-
+import { TreeviewModule } from 'ngx-treeview';
 
 
 
@@ -33,7 +33,8 @@ import { ToggleButtonComponent } from './toggle-button-component';
     InterfaceRoutingModule,
     MatTabsModule,
     MatTableModule,
-    AngularEditorModule    
+    AngularEditorModule,
+    TreeviewModule.forRoot() 
   ]
 })
 export class InterfaceManagementModule { }

@@ -799,7 +799,15 @@
                                     <div *ngIf="submitted" class="alert alert-danger-small">
                                         <div *ngIf="f.xml_data.errors && f.xml_data.errors.pattern">Please provide the valid xml data.</div>
                                     </div>
-                                </div>                             
+                                </div> 
+                                <div class="col-md-4 mt-60">
+                                    <button type="button" class="btn btn-primary" id="generate-schema-json" (click)="generateXMLSchema()">Generate Schema</button> 
+                                </div>                            
+                            </div>
+                            <div class="row db_channel_info" *ngIf="XMLSchemaOptionSubmitted">
+                                <div class="col-md-12 mt-30">
+                                    <ngx-treeview [items]="items" [config]="config"></ngx-treeview>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12" *ngIf="schemaOption && data_mapping_option == 'Data Sample'  && sample_type == 'JSON'">
@@ -814,7 +822,15 @@
                                     <div *ngIf="submitted" class="alert alert-danger-small">
                                         <div *ngIf="f.json_data.errors && f.json_data.errors.pattern">Please provide the valid JSON data.</div>
                                     </div>
-                                </div>                             
+                                </div> 
+                                <div class="col-md-4 mt-60">
+                                    <button type="button" class="btn btn-primary" id="generate-schema-json" (click)="generateJSONSchema()">Generate Schema</button> 
+                                </div>
+                            </div>
+                            <div class="row db_channel_info" *ngIf="JSONSchemaOptionSubmitted">
+                                <div class="col-md-12 mt-30">
+                                    <ngx-treeview [items]="items" [config]="config"></ngx-treeview>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12" *ngIf="schemaOption && data_mapping_option == 'Data Sample'  && sample_type == 'Bytes'">
