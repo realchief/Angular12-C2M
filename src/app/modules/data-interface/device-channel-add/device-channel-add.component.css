@@ -62,6 +62,9 @@
 .pluschannel:hover {
     cursor: pointer;
 }
+.minuschannel:hover {
+    cursor: pointer;
+}
 .mt-10 {
     margin-top: 10px;
 }
@@ -80,4 +83,10 @@
 }
 .fa-pencil-alt:hover {
     cursor: pointer;
+}
+.first-device-indentifiers-div .minuschannel {
+    display: none;
+}
+.another-device-indentifiers-div .pluschannel {
+    display: none;
 }

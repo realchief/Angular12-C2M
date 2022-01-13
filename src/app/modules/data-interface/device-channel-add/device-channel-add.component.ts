@@ -542,6 +542,40 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     this.numbers.push(this.numbers[this.numbers.length - 1] + 1);
   }
 
+  removeForm(number : any) :void {
+    let i = 0;
+    for(i = 0; i < this.numbers.length; i ++){
+      if(this.numbers[i] == number)
+        break;
+    }
+    this.numbers.splice(i, 1);
+  }
+
+  addNewDeviceForm() :void {
+    const first_device_element = document.getElementsByClassName('first-device-indentifiers-div')[0];
+    const device_input = <HTMLInputElement>(first_device_element.querySelector('.device_identifiers'));
+    const device_checkbox = <HTMLInputElement>(first_device_element.querySelector('.device_identifiers_checkbox'));
+    const device_select = <HTMLInputElement>(first_device_element.querySelector('#indentification_data_type'));
+    
+    if(device_input.value){
+      const new_device_element = <Element>first_device_element.cloneNode(true);
+      new_device_element.classList.remove('first-device-indentifiers-div');
+      new_device_element.classList.add('another-device-indentifiers-div');
+      const new_device_select = <HTMLInputElement>(new_device_element.querySelector('#indentification_data_type'));
+      new_device_select.value = device_select.value;
+      <Element>(first_device_element.parentNode)?.insertBefore(new_device_element, first_device_element.nextSibling);
+      device_input.value = '';
+      device_checkbox.checked = false;
+      device_select.value = '';
+
+      const new_device_button = <HTMLInputElement>(new_device_element.querySelector('.minuschannel'));
+      new_device_button.addEventListener('click', function(event) {
+        const current_element = <Element>event.target;
+        current_element?.closest('.another-device-indentifiers-div')?.remove();
+      });
+    }
+  }
+
   addNewFormDS() :void {
     this.ds_numbers.push(this.ds_numbers[this.ds_numbers.length - 1] + 1);
   }
@@ -553,15 +587,6 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
         break;
     }
     this.ds_numbers.splice(i, 1);
-  }
-
-  removeForm(number : any) :void {
-    let i = 0;
-    for(i = 0; i < this.numbers.length; i ++){
-      if(this.numbers[i] == number)
-        break;
-    }
-    this.numbers.splice(i, 1);
   }
 
   editForm(number : any) :void {

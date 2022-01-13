@@ -617,7 +617,7 @@
                 <div *ngIf="number==2">
                     <div class="row mt-10 db_channel_list">
                         <div class="col-md-12">
-                            <div class="row db_channel_info" *ngFor="let number of numbers">
+                            <div class="row db_channel_info first-device-indentifiers-div">
                                 <div class="col-md-4 mt-30 device-indentifiers-div">
                                     <label for="device_identifiers" class="form-label">
                                         Device Identifiers
@@ -639,8 +639,8 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4 mt-30 pt-30 icon-button">
-                                    <a *ngIf="number==0" class="pluschannel" style="margin-left: auto;" (click)="addNewForm()"><i class="fas fa-plus-circle add-channel-icon"></i></a>
-                                    <a *ngIf="number!=0" class="pluschannel" style="margin-left: auto;" (click)="removeForm(number)"><i class="fas fa-trash-alt add-channel-icon"></i></a>
+                                    <a class="pluschannel" style="margin-left: auto;" (click)="addNewDeviceForm()"><i class="fas fa-plus-circle add-channel-icon"></i></a>
+                                    <a class="minuschannel" style="margin-left: auto;"><i class="fas fa-trash-alt add-channel-icon"></i></a>
                                     <!-- <a *ngIf="number!=0" class="pluschannel" style="margin-left: auto;" (click)="editForm(number)"><i class="fas fa-edit add-channel-icon"></i></a> -->
                                 </div>
                             </div>
