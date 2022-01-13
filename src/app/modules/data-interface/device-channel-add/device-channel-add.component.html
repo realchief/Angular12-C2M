@@ -616,6 +616,9 @@
                 </div> 
                 <div *ngIf="number==2">
                     <div class="row mt-10 db_channel_list">
+                        <div class="col-md-4 notification-error mt-10" *ngIf="identifierError">
+                            Please enter identifier name
+                        </div>
                         <div class="col-md-12">
                             <div class="row db_channel_info first-device-indentifiers-div">
                                 <div class="col-md-4 mt-30 device-indentifiers-div">
@@ -626,8 +629,8 @@
                                     </label>
                                     <input type="text" formControlName="device_identifiers" class="form-control form-control-sm device_identifiers"
                                         [ngClass]="{ 'is-invalid': submitted && f.device_identifiers.errors }" />
-                                    <input type="checkbox" class="device_identifiers_checkbox">
-                                </div>
+                                    <input type="checkbox" class="device_identifiers_checkbox">                                    
+                                </div>                                
                                 <div class="col-md-4 mt-30">
                                     <label for="data_type" class="form-label">
                                         Data Type

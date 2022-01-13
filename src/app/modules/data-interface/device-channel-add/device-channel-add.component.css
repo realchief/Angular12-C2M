@@ -93,3 +93,7 @@
 .another-device-indentifiers-div .pluschannel {
     display: none;
 }
+.notification-error {
+    font-style: italic;
+    color: red;
+}

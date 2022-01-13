@@ -45,6 +45,7 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   XMLSchemaOptionSubmitted = false;
 
   isCreatingFailed = false;
+  identifierError = false;
   errorMessage = '';
   countries: any[] = [];
   checked = true;
@@ -652,6 +653,7 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   }
 
   addNewDeviceForm(): void {
+    this.identifierError = false;
     const first_device_element = document.getElementsByClassName('first-device-indentifiers-div')[0];
     const device_input = <HTMLInputElement>(first_device_element.querySelector('.device_identifiers'));
     const device_checkbox = <HTMLInputElement>(first_device_element.querySelector('.device_identifiers_checkbox'));
@@ -673,6 +675,8 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
         const current_element = <Element>event.target;
         current_element?.closest('.another-device-indentifiers-div')?.remove();
       });
+    } else {
+      this.identifierError = true;
     }
   }
 
