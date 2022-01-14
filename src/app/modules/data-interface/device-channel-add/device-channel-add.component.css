@@ -97,3 +97,7 @@
     font-style: italic;
     color: red;
 }
+
+ngx-treeview .treeview-container .row-item {
+    display: flex;
+}

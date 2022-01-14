@@ -14,6 +14,27 @@ import { TreeviewConfig, TreeviewItem } from 'ngx-treeview';
 import { xml2json } from 'xml-js';
 
 
+const getTreeviewData = (json: any, parentValue: number): any => {
+  if (Array.isArray(json)) {
+    return getTreeviewData(json[0], parentValue)
+  }
+  const data = Object.keys(json).map((key, index) => {
+    if (typeof json[key] === 'object') {
+      return {
+        text: key,
+        value: parentValue * 10 + (index + 1),
+        children: getTreeviewData(json[key], parentValue * 10 + (index + 1))
+      }
+    } else {
+      return {
+        text: key,
+        value: parentValue * 10 + (index + 1),
+      }
+    }
+  })
+  return data
+}
+
 @Component({
   selector: 'app-device-channel-add',
   templateUrl: './device-channel-add.component.html',
@@ -393,11 +414,15 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     sessionStorage.removeItem('AppPath');
   }
 
-  getItems(parentChildObj: any[]) {
+  getItems(parentChildObj: any) {
     let itemsArray: TreeviewItem[] = [];
-    parentChildObj.forEach(set => {
-      itemsArray.push(new TreeviewItem(set))
-    });
+    if (Array.isArray(parentChildObj)) {
+      parentChildObj.forEach(set => {
+        itemsArray.push(new TreeviewItem(set))
+      });
+    } else {
+      itemsArray.push(new TreeviewItem(parentChildObj))
+    }
     return itemsArray;
   }
 
@@ -482,73 +507,26 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   generateXMLSchema() {
 
     const json_type_input = xml2json((<HTMLInputElement>document.querySelector('#xml-data')).value, {compact: true, spaces: 4});
+    const json_data_new = JSON.parse(json_type_input);
+    const data = getTreeviewData(json_data_new, 0)
+    console.log(data)
 
-    const json_data_new = [JSON.parse(json_type_input)['root']];
+    this.items = this.getItems(data);
 
-    for (let i = 0; i < json_data_new.length; i++) {
-      const json_data_temp = json_data_new[i];
-      for (let j in json_data_new[i]) {
-
-        var tempObject = { text: '', children: [] as any };
-        tempObject.text = j;
-        tempObject.children = [];
-        const json_data_temp_temp = json_data_new[i][j as keyof typeof json_data_temp]
-        for (var k = 0; k < json_data_temp_temp.length; k++) {
-          var tempObject2 = { text: '', children: [] as any };
-          tempObject2.text = 'Record ' + (k + 1);
-          tempObject2.children = [];
-
-          for (var l in json_data_temp_temp[k]) {
-            var tempObject3 = { text: '', data: {} };
-            tempObject3.text = l;
-            tempObject3.data = {
-              definition: "This is header",
-              data_can_contain_anything: true
-            }
-            tempObject2.children.push(tempObject3);
-          }
-          tempObject.children.push(tempObject2);
-        }
-        this.simpleItems.push(tempObject);
-      }
-    }
-    this.items = this.getItems([this.simpleItems[0]]);
     this.XMLSchemaOptionSubmitted = true;
   }
 
+  
+
   generateJSONSchema() {
     const json_type_input = (<HTMLInputElement>document.querySelector('#json-data')).value;
-    const json_data_new = [JSON.parse(json_type_input)];
+    const json_data_new = JSON.parse(json_type_input);
 
-    for (let i = 0; i < json_data_new.length; i++) {
-      const json_data_temp = json_data_new[i];
-      for (let j in json_data_new[i]) {
+    const data = getTreeviewData(json_data_new, 0)
+    console.log(data)
 
-        var tempObject = { text: '', children: [] as any };
-        tempObject.text = j;
-        tempObject.children = [];
-        const json_data_temp_temp = json_data_new[i][j as keyof typeof json_data_temp]
-        for (var k = 0; k < json_data_temp_temp.length; k++) {
-          var tempObject2 = { text: '', children: [] as any };
-          tempObject2.text = 'Record ' + (k + 1);
-          tempObject2.children = [];
+    this.items = this.getItems(data);
 
-          for (var l in json_data_temp_temp[k]) {
-            var tempObject3 = { text: '', data: {} };
-            tempObject3.text = l;
-            tempObject3.data = {
-              definition: "This is header",
-              data_can_contain_anything: true
-            }
-            tempObject2.children.push(tempObject3);
-          }
-          tempObject.children.push(tempObject2);
-        }
-        this.simpleItems.push(tempObject);
-      }
-    }
-
-    this.items = this.getItems([this.simpleItems[0]]);
     this.JSONSchemaOptionSubmitted = true;
   }
 
