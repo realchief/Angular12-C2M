@@ -65,6 +65,7 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   JSONSchemaOptionSubmitted = false;
   XMLSchemaOptionSubmitted = false;
   jsonSchemaGeneratingError = false;
+  xmlSchemaGeneratingError = false;
 
   isCreatingFailed = false;
   identifierError = false;
@@ -507,14 +508,17 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
 
   generateXMLSchema() {
 
-    const json_type_input = xml2json((<HTMLInputElement>document.querySelector('#xml-data')).value, {compact: true, spaces: 4});
-    const json_data_new = JSON.parse(json_type_input);
-    console.log(json_data_new)
-
+    this.xmlSchemaGeneratingError = false;
+    let json_data_new = {};
+    let json_type_input = '';
+    try {
+      json_type_input = xml2json((<HTMLInputElement>document.querySelector('#xml-data')).value, {compact: true, spaces: 4});
+      json_data_new = JSON.parse(json_type_input);
+    } catch (exception_var) {
+      this.xmlSchemaGeneratingError = true;
+    }
     const data = getTreeviewData(json_data_new, 0)    
-
     this.items = this.getItems(data);
-
     this.XMLSchemaOptionSubmitted = true;
   }
 
@@ -532,7 +536,6 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
 
     const data = getTreeviewData(json_data_new, 0)
     this.items = this.getItems(data);
-
     this.JSONSchemaOptionSubmitted = true;
   }
 

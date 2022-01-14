@@ -799,6 +799,9 @@
                                             title="Help text to come here"></i>
                                     </label>
                                     <textarea formControlName="xml_data" id="xml-data" style="min-height: 100px;" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.xml_data.errors }"></textarea>
+                                    <div class="alert alert-danger-small">
+                                        <div *ngIf="xmlSchemaGeneratingError" class="notification-error">Please provide the valid XML data.</div>
+                                    </div>
                                     <div *ngIf="submitted" class="alert alert-danger-small">
                                         <div *ngIf="f.xml_data.errors && f.xml_data.errors.pattern">Please provide the valid xml data.</div>
                                     </div>
