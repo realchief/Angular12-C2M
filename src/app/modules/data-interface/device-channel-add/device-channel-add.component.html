@@ -822,6 +822,9 @@
                                             title="Help text to come here"></i>
                                     </label>
                                     <textarea id="json-data" formControlName="json_data" style="min-height: 100px;" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.json_data.errors }"></textarea>
+                                    <div class="alert alert-danger-small">
+                                        <div *ngIf="jsonSchemaGeneratingError" class="notification-error">Please provide the valid JSON data.</div>
+                                    </div>
                                     <div *ngIf="submitted" class="alert alert-danger-small">
                                         <div *ngIf="f.json_data.errors && f.json_data.errors.pattern">Please provide the valid JSON data.</div>
                                     </div>
