@@ -145,6 +145,11 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     { id: 9, value: "ZigBee" },
     { id: 10, value: "Zwave" },
   ];
+  bytes_data_type_list = [
+    { id: 1, value: "Binaly" },
+    { id: 2, value: "Hexadecimal" },
+    { id: 3, value: "Octal" },
+  ];
   connection_type_list = [
     { id: 0, value: "Select Connection Type" },
     { id: 1, value: "Native" },
@@ -364,6 +369,8 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
       json_data: ['', [Validators.pattern(reg_json)]],
       end_text: [''],
       bytes_data: ['', [Validators.pattern(reg_bytes)]],
+      bytes_data_value: [''],
+      bytes_data_type: [''],
     });
     this.addCommandForm = this.formBuilder.group({
       command_name: ['', Validators.required],

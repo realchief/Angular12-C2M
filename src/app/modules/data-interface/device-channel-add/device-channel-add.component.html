@@ -850,10 +850,30 @@
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                             title="Help text to come here"></i>
                                     </label>
-                                    <textarea id="bytes-data" formControlName="bytes_data" style="min-height: 100px;" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.bytes_data.errors }"></textarea>
-                                    <div *ngIf="submitted" class="alert alert-danger-small">
-                                        <div *ngIf="f.bytes_data.errors && f.bytes_data.errors.pattern">Please provide the valid Bytes data.</div>
+                                    <div class="col-md-12 mt-10">
+                                        <div class="row db_channel_info">
+                                            <div class="col-md-12 mt-30">
+                                                <label for="bytes_identifiers" class="form-label">
+                                                    Please enter data sample of your device to get schema
+                                                    <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                                        title="Help text to come here"></i>
+                                                </label>
+                                            </div>
+                                            <div class="col-md-8 mt-10">
+                                                <input id="bytes_data_value" type="text" formControlName="bytes_data_value" class="form-control form-control-sm"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.bytes_data_value.errors }" />
+                                            </div>
+                                            <div class="col-md-4 mt-10">
+                                                <select formControlName="bytes_data_type" id="bytes_data_type" class="form-select form-select-sm">
+                                                    <option *ngFor="let bytes_data_type of bytes_data_type_list" [ngValue]="bytes_data_type.id">{{bytes_data_type.value}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <!-- <textarea id="bytes-data" formControlName="bytes_data" style="min-height: 100px;" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': submitted && f.bytes_data.errors }"></textarea> -->
+                                    <!-- <div *ngIf="submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f.bytes_data.errors && f.bytes_data.errors.pattern">Please provide the valid Bytes data.</div>
+                                    </div> -->
                                 </div>                             
                             </div>
                         </div>
