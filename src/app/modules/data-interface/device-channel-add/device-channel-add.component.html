@@ -24,7 +24,7 @@
     </div>
     <form [formGroup]="addChannelForm" (ngSubmit)="onSubmit()" >
         <mat-tab-group [selectedIndex]="selectedIndex">
-            <mat-tab label="{{number + 1}}. {{tabLabelList[number]}}" *ngFor="let number of [0,1,2,3,4,5];let i=index; "> 
+            <mat-tab label="{{number + 1}}. {{tabLabelList[number]}}" *ngFor="let number of [0,1,2,3,4,5,6];let i=index;"> 
                 <div *ngIf="number==0">
                     <div class="row mt-10 db_channel_list">
                         <div class="col-md-4">
@@ -1013,6 +1013,66 @@
                     <div class="row mt-10 db_channel_list">
                         <div class="col-md-12">
                             <div class="row db_channel_info">
+                                <div class="col-md-12">
+                                    <h4><b>FOTA Group</b></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-10 db_channel_list">
+                        <div class="col-md-12">
+                            <div class="gridActionsGroup mb-2 tab-black">
+                                <div class="actionsWrap" style="margin-left: 0; width: 100%;">
+                                    <a class="pluschannel" (click)="open(newFotaGroupModal)" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> FOTA Group </a>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped align-middle table-sm m-0">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Action
+                                            </th>
+                                            <th>
+                                                FOAT Group Name
+                                            </th>
+                                            <th>
+                                                Description
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let number_data of [0,1,2,3,4,5,6];let i=index;">
+                                            <td class="text-center">
+                                                <div class="action-btns">
+                                                    <a title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                    <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                Group Name {{number_data + 1}}
+                                            </td>
+                                            <td>
+                                                This is a sample of description for a FOTA group. This is a test...
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark">Cancel</button>
+                        <button type="button" class="btn btn-secondary" (click)="previousStep()">Prev</button>
+                        <button type="button" class="btn btn-primary" (click)="nextStep()">Next</button>
+                        <button type="submit" class="btn btn-danger">Save</button>
+                    </div>
+                </div>
+                <div *ngIf="number==6">
+                    <div class="row mt-10 db_channel_list">
+                        <div class="col-md-12">
+                            <div class="row db_channel_info">
                                 <div class="col-md-4 mt-30">
                                     <h4 class="form-label medium-label">
                                         News
@@ -1467,7 +1527,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="input2" class="form-label">
-                                        Choose Commands
+                                        Initiated By
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                             title="Help text to come here"></i>
                                     </label>
@@ -1562,6 +1622,164 @@
         </mat-tab-group>
     </form>
 </ng-template>
+
+<ng-template #newFotaGroupModal let-modal>
+    <form [formGroup]="addFotaGroupForm" (ngSubmit)="onSubmitFotaGroup()">
+        <div class="modal-header addChannel_company_header">
+            <button type="button" class="button button-circle" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <mat-tab-group>
+            <mat-tab label="Add FOTA Command Group">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 mt-10">
+                            <div class="row">
+                                <div class="col-md-6 mt-10">
+                                    <label for="input1" class="form-label">
+                                        Name of FOTA Group*
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="fota_group_name" type="text" formControlName="fota_group_name" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': fota_group_submitted && f_fota_group.fota_group_name.errors }" />
+                                    <div *ngIf="fota_group_submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f_fota_group.command_group_name.errors && f_fota_group.command_group_name.errors.required">Fota Group Name is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-10">
+                                    <label for="input2" class="form-label">
+                                        Friendly Name
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="friendly_name" type="text" formControlName="friendly_name" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': fota_group_submitted && f_fota_group.friendly_name.errors }" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-10">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="input1" class="form-label">
+                                        FOTA Group Description
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <textarea id="fota_verb" cols="10" style="height: 100px;" class="form-control form-control-sm"></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="input2" class="form-label">
+                                        FOTA Mode
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <select formControlName="fota_group_mode" id="fota_group_mode" class="form-select form-select-sm">
+                                        <option *ngFor="let fota_group_mode of fota_group_mode_list" [ngValue]="fota_group_mode.id">{{fota_group_mode.value}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-10">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="input2" class="form-label">
+                                        Initiated By
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <div class="row col-md-12"> 
+                                        <div class="col-md-3">
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    [checked]="USER"
+                                                    (change)="USER = !USER"/>
+                                                User
+                                            </label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    [checked]="EventTriggered"
+                                                    (change)="EventTriggered = !EventTriggered"/>
+                                                Event Triggered
+                                            </label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    [checked]="AutoInitiated"
+                                                    (change)="AutoInitiated = !AutoInitiated"/>
+                                                Auto Initiated
+                                            </label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    [checked]="ExternalCode"
+                                                    (change)="ExternalCode = !ExternalCode"/>
+                                                External Code
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-10">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped align-middle table-sm m-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        Action
+                                                    </th>
+                                                    <th>
+                                                        FOTA Group Name
+                                                    </th>
+                                                    <th>
+                                                        Description
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let number_data of [0,1,2,3,4];let i=index;">
+                                                    <td class="text-center">
+                                                        <div class="action-btns">
+                                                            <a title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                            <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        Command {{number_data + 1}}
+                                                    </td>
+                                                    <td>
+                                                        This is a test sample.
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Save</button>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </form>
+</ng-template>
+
 
 
 <ng-template #newCommandModal let-modal>

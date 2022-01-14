@@ -45,6 +45,7 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   addChannelForm: FormGroup;
   addCommandForm: FormGroup;
   addCommandGroupForm: FormGroup;
+  addFotaGroupForm: FormGroup;
   addNativeAppForm: FormGroup;
   addResourceForm: FormGroup;
   addMarketingDocForm: FormGroup;
@@ -55,6 +56,7 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   submitted = false;
   command_submitted = false;
   command_group_submitted = false;
+  fota_group_submitted = false;
   submitted_app = false;
   submitted_resource = false;
   submitted_marketing_doc = false;
@@ -187,6 +189,14 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     { id: 5, value: "TCP" },
     { id: 5, value: "UDP" },
   ];
+  fota_group_mode_list = [
+    { id: 1, value: "API" },
+    { id: 2, value: "Code" },
+    { id: 3, value: "MQTT" },
+    { id: 4, value: "SMS" },
+    { id: 5, value: "TCP" },
+    { id: 5, value: "UDP" },
+  ];
   command_info_list = [
     { id: 1, value: "Command One" },
     { id: 2, value: "Command Two" },
@@ -235,6 +245,7 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     'Identification',
     'Data Mapping',
     'Commmands',
+    'FOTA',
     'Resources',
   ];
 
@@ -392,6 +403,12 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
       command_info: [''],
       friendly_name: [''],
     });
+    this.addFotaGroupForm = this.formBuilder.group({
+      fota_group_name: ['', Validators.required],
+      fota_group_mode: [''],
+      command_info: [''],
+      friendly_name: [''],
+    });
     this.addNativeAppForm = this.formBuilder.group({
       app_url: ['', [Validators.required, Validators.pattern(reg)]],
       app_type: ['', Validators.required],
@@ -454,6 +471,10 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
 
   get f_command_group() {
     return this.addCommandGroupForm.controls;
+  }
+
+  get f_fota_group() {
+    return this.addFotaGroupForm.controls;
   }
 
   get f_app() {
@@ -612,6 +633,11 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   onSubmitCommandGroup(): void {
     this.command_group_submitted = true;
     console.log('Add command group form has been submitted');
+  }
+
+  onSubmitFotaGroup(): void {
+    this.fota_group_submitted = true;
+    console.log('Add fota group form has been submitted');
   }
 
   onSubmitApp(): void {
