@@ -165,21 +165,27 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     { id: 6, value: "Non-Authenticated" }
   ];
   data_type_list = [
-    { id: 1, value: "BOOL" },
-    { id: 2, value: "INT" },
-    { id: 3, value: "FLOAT" },
-    { id: 4, value: "VARCHAR" },
-    { id: 5, value: "LONGTEXT" },
-    { id: 6, value: "ARRAY" },
-    { id: 7, value: "DATE" },
-    { id: 8, value: "ENUMERATED" }
+    { id: 1, value: "bool" },
+    { id: 2, value: "byte" },
+    { id: 3, value: "ccid" },
+    { id: 4, value: "datetime" },
+    { id: 5, value: "double" },
+    { id: 6, value: "float" },
+    { id: 7, value: "imei" },
+    { id: 8, value: "int" },
+    { id: 9, value: "ip" },
+    { id: 10, value: "long" },
+    { id: 11, value: "mac" },
+    { id: 12, value: "short" },
+    { id: 13, value: "string" },
   ];
   command_group_mode_list = [
-    { id: 1, value: "Mode 1" },
-    { id: 2, value: "Mode 2" },
-    { id: 3, value: "Mode 3" },
-    { id: 4, value: "Mode 4" },
-    { id: 5, value: "Mode 5" },
+    { id: 1, value: "API" },
+    { id: 2, value: "Code" },
+    { id: 3, value: "MQTT" },
+    { id: 4, value: "SMS" },
+    { id: 5, value: "TCP" },
+    { id: 5, value: "UDP" },
   ];
   command_info_list = [
     { id: 1, value: "Command One" },
@@ -209,7 +215,6 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   data_mapping_option = "Manual";
   sample_type = "String";
 
-
   MQTT = false;
   TCP = false;
   UDP = false;
@@ -219,6 +224,10 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   CoAp = false;
   XMPP = false;
   LwM2M = false;
+  USER = false;
+  EventTriggered = false;
+  AutoInitiated = false;
+  ExternalCode = false;
 
   tabLabelList = [
     'Channel Info',

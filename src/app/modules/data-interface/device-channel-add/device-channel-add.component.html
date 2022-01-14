@@ -1445,7 +1445,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="input1" class="form-label">
-                                        Description
+                                        Remote Command Group Description
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                             title="Help text to come here"></i>
                                     </label>
@@ -1453,7 +1453,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="input2" class="form-label">
-                                        Mode
+                                        Remote Command Mode
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                             title="Help text to come here"></i>
                                     </label>
@@ -1471,9 +1471,44 @@
                                         <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                                             title="Help text to come here"></i>
                                     </label>
-                                    <select formControlName="command_info" id="command_info" class="form-select form-select-sm">
-                                        <option *ngFor="let command_info of command_info_list" [ngValue]="command_info.id">{{command_info.value}}</option>
-                                    </select>
+                                    <div class="row col-md-12"> 
+                                        <div class="col-md-3">
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    [checked]="USER"
+                                                    (change)="USER = !USER"/>
+                                                User
+                                            </label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    [checked]="EventTriggered"
+                                                    (change)="EventTriggered = !EventTriggered"/>
+                                                Event Triggered
+                                            </label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    [checked]="AutoInitiated"
+                                                    (change)="AutoInitiated = !AutoInitiated"/>
+                                                Auto Initiated
+                                            </label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    [checked]="ExternalCode"
+                                                    (change)="ExternalCode = !ExternalCode"/>
+                                                External Code
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
