@@ -47,6 +47,7 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   addCommandGroupForm: FormGroup;
   addFotaGroupForm: FormGroup;
   addJsonFeedForm: FormGroup;
+  addXmlFeedForm: FormGroup;
   addNativeAppForm: FormGroup;
   addResourceForm: FormGroup;
   addMarketingDocForm: FormGroup;
@@ -59,6 +60,7 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
   command_group_submitted = false;
   fota_group_submitted = false;
   json_feed_submitted = false;
+  xml_feed_submitted = false;
   submitted_app = false;
   submitted_resource = false;
   submitted_marketing_doc = false;
@@ -414,6 +416,9 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
     this.addJsonFeedForm = this.formBuilder.group({
       json_feed_name: ['', Validators.required],
     });
+    this.addXmlFeedForm = this.formBuilder.group({
+      xml_feed_name: ['', Validators.required],
+    });
     this.addNativeAppForm = this.formBuilder.group({
       app_url: ['', [Validators.required, Validators.pattern(reg)]],
       app_type: ['', Validators.required],
@@ -484,6 +489,10 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
 
   get f_json_feed() {
     return this.addJsonFeedForm.controls;
+  }
+
+  get f_xml_feed() {
+    return this.addXmlFeedForm.controls;
   }
 
   get f_app() {
@@ -651,7 +660,12 @@ export class DeviceChannelAddComponent implements OnInit, OnDestroy {
 
   onSubmitJsonFeed(): void {
     this.json_feed_submitted = true;
-    console.log('Add fota group form has been submitted');
+    console.log('Add json group form has been submitted');
+  }
+
+  onSubmitXmlFeed(): void {
+    this.xml_feed_submitted = true;
+    console.log('Add xml group form has been submitted');
   }
 
   onSubmitApp(): void {
