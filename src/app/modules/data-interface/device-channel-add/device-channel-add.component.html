@@ -877,6 +877,88 @@
                                 </div>                             
                             </div>
                         </div>
+                        <div *ngIf="schemaOption && data_mapping_option == 'Data Sample'  && sample_type == 'JSON'" class="row mt-10 db_channel_list">
+                            <div class="col-md-12">
+                                <div class="gridActionsGroup mb-2 tab-black">
+                                    <div class="actionsWrap" style="margin-left: 0; width: 100%;">
+                                        <a class="pluschannel" (click)="open(newJsonFeedModal)" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Add Feed </a>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped align-middle table-sm m-0">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Action
+                                                </th>
+                                                <th>
+                                                    Feed Name
+                                                </th>
+                                                <th>
+                                                    Description
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let number_data of [0,1,2,3,4,5,6];let i=index;">
+                                                <td class="text-center">
+                                                    <div class="action-btns">
+                                                        <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    feed {{number_data + 1}}
+                                                </td>
+                                                <td>
+                                                    This is a sample of description for a feed. This is a test...
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="schemaOption && data_mapping_option == 'Data Sample'  && sample_type == 'XML'" class="row mt-10 db_channel_list">
+                            <div class="col-md-12">
+                                <div class="gridActionsGroup mb-2 tab-black">
+                                    <div class="actionsWrap" style="margin-left: 0; width: 100%;">
+                                        <a class="pluschannel" (click)="open(newXmlFeedModal)" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Add Feed </a>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped align-middle table-sm m-0">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Action
+                                                </th>
+                                                <th>
+                                                    Feed Name
+                                                </th>
+                                                <th>
+                                                    Description
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let number_data of [0,1,2,3,4,5,6];let i=index;">
+                                                <td class="text-center">
+                                                    <div class="action-btns">
+                                                        <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    feed {{number_data + 1}}
+                                                </td>
+                                                <td>
+                                                    This is a sample of description for a feed. This is a test...
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-dark">Cancel</button>
@@ -1781,6 +1863,212 @@
 </ng-template>
 
 
+<ng-template #newJsonFeedModal let-modal>
+    <form [formGroup]="addJsonFeedForm" (ngSubmit)="onSubmitJsonFeed()">
+        <div class="modal-header addChannel_company_header">
+            <button type="button" class="button button-circle" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <mat-tab-group>
+            <mat-tab label="Add Feed">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 mt-10">
+                            <div class="row">
+                                <div class="col-md-12 mt-10">
+                                    <label for="input1" class="form-label">
+                                        Feed Name*
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="json_feed_name" type="text" formControlName="json_feed_name" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': json_feed_submitted && f_json_feed.json_feed_name.errors }" />
+                                    <div *ngIf="json_feed_submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f_json_feed.json_feed_name.errors && f_json_feed.json_feed_name.errors.required">Feed Name is required.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-10">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="input1" class="form-label">
+                                        Description
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <textarea id="fota_verb" cols="10" style="height: 100px;" class="form-control form-control-sm"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Save</button>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </form>
+</ng-template>
+
+<ng-template #newXmlFeedModal let-modal>
+    <form [formGroup]="addFotaGroupForm" (ngSubmit)="onSubmitFotaGroup()">
+        <div class="modal-header addChannel_company_header">
+            <button type="button" class="button button-circle" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <mat-tab-group>
+            <mat-tab label="Add FOTA Command Group">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 mt-10">
+                            <div class="row">
+                                <div class="col-md-6 mt-10">
+                                    <label for="input1" class="form-label">
+                                        Name of FOTA Group*
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="fota_group_name" type="text" formControlName="fota_group_name" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': fota_group_submitted && f_fota_group.fota_group_name.errors }" />
+                                    <div *ngIf="fota_group_submitted" class="alert alert-danger-small">
+                                        <div *ngIf="f_fota_group.command_group_name.errors && f_fota_group.command_group_name.errors.required">Fota Group Name is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-10">
+                                    <label for="input2" class="form-label">
+                                        Friendly Name
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <input id="friendly_name" type="text" formControlName="friendly_name" class="form-control form-control-sm"
+                                        [ngClass]="{ 'is-invalid': fota_group_submitted && f_fota_group.friendly_name.errors }" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-10">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="input1" class="form-label">
+                                        FOTA Group Description
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <textarea id="fota_verb" cols="10" style="height: 100px;" class="form-control form-control-sm"></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="input2" class="form-label">
+                                        FOTA Mode
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <select formControlName="fota_group_mode" id="fota_group_mode" class="form-select form-select-sm">
+                                        <option *ngFor="let fota_group_mode of fota_group_mode_list" [ngValue]="fota_group_mode.id">{{fota_group_mode.value}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-10">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="input2" class="form-label">
+                                        Initiated By
+                                        <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
+                                            title="Help text to come here"></i>
+                                    </label>
+                                    <div class="row col-md-12"> 
+                                        <div class="col-md-3">
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    [checked]="USER"
+                                                    (change)="USER = !USER"/>
+                                                User
+                                            </label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    [checked]="EventTriggered"
+                                                    (change)="EventTriggered = !EventTriggered"/>
+                                                Event Triggered
+                                            </label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    [checked]="AutoInitiated"
+                                                    (change)="AutoInitiated = !AutoInitiated"/>
+                                                Auto Initiated
+                                            </label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    [checked]="ExternalCode"
+                                                    (change)="ExternalCode = !ExternalCode"/>
+                                                External Code
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-10">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped align-middle table-sm m-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        Action
+                                                    </th>
+                                                    <th>
+                                                        FOTA Group Name
+                                                    </th>
+                                                    <th>
+                                                        Description
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let number_data of [0,1,2,3,4];let i=index;">
+                                                    <td class="text-center">
+                                                        <div class="action-btns">
+                                                            <a title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                            <a href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        Command {{number_data + 1}}
+                                                    </td>
+                                                    <td>
+                                                        This is a test sample.
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cancel')">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Save</button>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </form>
+</ng-template>
 
 <ng-template #newCommandModal let-modal>
     <form [formGroup]="addCommandForm" (ngSubmit)="onSubmitCommand()">
