@@ -46,11 +46,13 @@ export class AuthService {
   
 
   login(username: string, password: string): Observable<any> {
-    const accessToken = localStorage.getItem('AccessToken');
-    return this.http.post(this.endpoint + '/UserLogin', {
-      EmailAddress: username,
+    // const accessToken = localStorage.getItem('AccessToken');
+    return this.http.post(this.endpoint + '/GetAccessToken', {
+      UserName: username,
       Password: password,
-      AccessToken: accessToken
+      AppKey: environment.Setting.AppKey,
+      AppSecret: environment.Setting.AppSecret,
+      // AccessToken: accessToken
     }, httpOptions);
   }
 

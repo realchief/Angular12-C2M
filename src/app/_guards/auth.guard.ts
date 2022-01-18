@@ -9,7 +9,7 @@ export class AuthGuard implements CanActivate {
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        if (localStorage.getItem('APIKey')) {
+        if (localStorage.getItem('AccessToken')) {
             return true;
         }
         this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
     }
 
     canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        if (localStorage.getItem('APIKey')) { 
+        if (localStorage.getItem('AccessToken')) { 
            return true;
         }
         this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });

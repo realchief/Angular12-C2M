@@ -40,16 +40,11 @@ export class AuthComponent implements OnInit {
             data => {
                 console.log(data.status);
                 if (data.status == 'SUCCESS') {
-                    localStorage.setItem('APIKey', data.data.Login.APIKey);
                     localStorage.setItem('Email', username);
-                    this.router.navigate(['']);  
+                    localStorage.setItem('AccessToken', data.data.Tokens.AccessToken);
                     this.isLoginFailed = false;
                     this.isLoggedIn = true;
-                    this.tokenStorage.store_token(environment.Setting.ADMIN_USERNAME, environment.Setting.ADMIN_USER_PASSWORD).subscribe(
-                        data => {
-                            localStorage.setItem('AccessToken', data.data.Tokens.AccessToken);
-                        }
-                    )
+                    this.router.navigate(['']);  
                 } else {                    
                     this.errorMessage = data.message;
                     this.isLoginFailed = true;
