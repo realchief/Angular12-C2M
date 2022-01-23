@@ -36,8 +36,7 @@ export class CompanyGridComponent implements OnInit, OnDestroy {
         const apikey = localStorage.getItem("APIKey");
         this.apiService.get('GetCompanies', {'apiKey': apikey, 'companyname': ''})
             .subscribe(res => {                
-                this.dataSource = res.data.companies.company;
-                console.log(this.dataSource);
+                this.dataSource = res.data.companies.company;                
             }, error => {
                 console.log(error);
             });

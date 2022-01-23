@@ -16,7 +16,6 @@ export const environment = {
     BaseAPIUrl: 'https://cloud-staging-icewebapi.c2m.net/api',
     AppKey: "cxsr5nuDjC1PhvVgL5RR4IpHUDRvBx14", 
     // BaseAPIUrl: 'https://cloud-staging-coreapi.c2m.net/api/v1',
-    // AppKey: "cxsr5nuDjC1PhvVgL5RR4IpHUDRvBx14", 
     AppSecret: "C2M",
     FromEmail: "E-Saleyard@landmark.com.au",
     ADMIN_USERNAME: "henrydejo8",

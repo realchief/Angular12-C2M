@@ -22,6 +22,7 @@ export class MenuRightComponent implements OnInit {
     submitted = false;
     isCreatingFailed = false;
     errorMessage = '';
+    dataSource: any;
 
     categories = [
         { id: 1, value: "Automotive" },
@@ -30,20 +31,20 @@ export class MenuRightComponent implements OnInit {
         { id: 4, value: "Enterprise APIs" }
     ];
 
-    companynames = [
-        'Microsoft',
-        'Oracle',
-        'Plasma Computing Group',
-        'Microsoft',
-        'Oracle',
-        'Plasma Computing Group',
-        'Microsoft',
-        'Oracle',
-        'Plasma Computing Group',
-        'Microsoft',
-        'Oracle',
-        'Plasma Computing Group'
-    ]
+    // companynames = [
+    //     'Microsoft',
+    //     'Oracle',
+    //     'Plasma Computing Group',
+    //     'Microsoft',
+    //     'Oracle',
+    //     'Plasma Computing Group',
+    //     'Microsoft',
+    //     'Oracle',
+    //     'Plasma Computing Group',
+    //     'Microsoft',
+    //     'Oracle',
+    //     'Plasma Computing Group'
+    // ]
 
     searchText = '';
 
@@ -70,11 +71,24 @@ export class MenuRightComponent implements OnInit {
         });
     }
     ngOnInit() {
-
+        this.getAllCompany();
     }
 
     get f() {
         return this.addCompanyForm.controls;
+    }
+
+    private getAllCompany() {
+        // const apikey = 'bIPXlfzvB1kHilurK4s@jjnOiDCoVQ';
+        const apikey = localStorage.getItem("APIKey");
+        this.apiService.get('GetCompanies', {'apiKey': apikey, 'companyname': ''})
+            .subscribe(res => {                
+                this.dataSource = res.data.companies.company;
+                console.log(this.dataSource);
+            }, error => {
+                console.log(error);
+            });
+
     }
 
     clickInputButton() {
