@@ -55,6 +55,7 @@ export class CompanyAddComponent implements OnInit {
   ) {
     sessionStorage.setItem('AppTitle', 'Add a new Company');
     this.getCountries();
+    // this.getStateListByCountryId(120);
     this.addCompanyForm = this.formBuilder.group({
       company_name: ['', Validators.required],
       company_url: ['', Validators.required],
@@ -98,6 +99,15 @@ export class CompanyAddComponent implements OnInit {
         console.log(this.errorMessage);
       }
     );
+  }
+
+  getStateListByCountryId(countryCode: any) {
+    this.apiService.get('GetStateListByCountryId', { 'CountryCode': countryCode })
+      .subscribe(res => {
+        console.log(res.data);
+      }, error => {
+        console.log(error);
+      });
   }
 
   onSubmit(): void {

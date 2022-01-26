@@ -95,8 +95,8 @@
                 <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                     title="Help text to come here"></i>
             </label>
-            <select formControlName="country" id="country" class="form-select form-select-sm"  [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
-                <option *ngFor="let country of countries" [ngValue]="country.CountryId">{{country.CountryName}}</option>
+            <select formControlName="country" id="country" class="form-select form-select-sm"  [ngClass]="{ 'is-invalid': submitted && f.country.errors }" #myCountry (change)="getStateListByCountryId(myCountry.value)">
+                <option *ngFor="let country of countries" value="{{country.CountryCode}}">{{country.CountryName}}</option>
             </select>
             <div *ngIf="submitted" class="alert alert-danger-small">
                 <div *ngIf="f.country.errors && f.country.errors.required">Country is required.</div>
