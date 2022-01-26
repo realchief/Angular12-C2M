@@ -18,12 +18,12 @@ export const environment = {
     // BaseAPIUrl: 'https://cloud-staging-coreapi.c2m.net/api/v1',
     AppSecret: "C2M",
     FromEmail: "E-Saleyard@landmark.com.au",
-    ADMIN_USERNAME: "henrydejo8",
-    ADMIN_USER_APIKey: "Y@MWDENW9U@3F6@U0BoT@9EBF/7i1u",
-    ADMIN_USER_PASSWORD: "Plasma1!",
-    // ADMIN_USERNAME: "superuser@connect2.me",
-    // ADMIN_USER_PASSWORD: "Plasma@123",
-    // ADMIN_USER_APIKey: "Rj0OI4GO6znZrz4F4XTpiB9c2xYdoz",
+    // ADMIN_USERNAME: "henrydejo8",
+    // ADMIN_USER_APIKey: "Y@MWDENW9U@3F6@U0BoT@9EBF/7i1u",
+    // ADMIN_USER_PASSWORD: "Plasma1!",
+    ADMIN_USERNAME: "superuser@connect2.me",
+    ADMIN_USER_PASSWORD: "Plasma@123",
+    ADMIN_USER_APIKey: "Rj0OI4GO6znZrz4F4XTpiB9c2xYdoz",
     SuperAdmin:false
   },
   regex: {
