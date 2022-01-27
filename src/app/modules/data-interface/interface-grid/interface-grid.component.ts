@@ -7,7 +7,7 @@ import { ApiService } from 'src/app/_services/api.service';
 import { Title } from '@angular/platform-browser';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Location } from '@angular/common';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 
 
@@ -17,8 +17,8 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
   styleUrls: ['./interface-grid.component.css'],
   animations: [
     trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
@@ -36,7 +36,7 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
     { id: 4, value: "Enterprise APIs" }
   ];
 
-  companyInfoSource: any;
+  channelInfoSource: any;
   itemsCount = 0;
   closeResult: string = '';
 
@@ -91,7 +91,7 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.titleService.setTitle('ONE | Microsoft');
     sessionStorage.setItem('AppPath', JSON.stringify(this.AppPath));
-    this.getAllCompany();
+    this.getAllChannels();
   }
 
   get f() {
@@ -102,12 +102,14 @@ export class InterfaceGridComponent implements OnInit, OnDestroy {
     return this.addReportForm.controls;
   }
 
-
-  private getAllCompany() {
+  private getAllChannels() {
     const apikey = localStorage.getItem("APIKey");
-    this.apiService.get('GetCompanies', { 'apiKey': apikey, 'companyname': '' })
+    this.apiService.getWithApiKey('v1/getAllChannelsByUserid', { 'apiKey': apikey })
       .subscribe(res => {
-        this.companyInfoSource = res.data.companies.company;
+        if (res.status == 'SUCCESS') {
+          this.channelInfoSource = res.data.root.channel;          
+        }
+        
       }, error => {
         console.log(error);
       });
