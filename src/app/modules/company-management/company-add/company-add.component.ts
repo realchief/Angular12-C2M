@@ -21,6 +21,7 @@ export class CompanyAddComponent implements OnInit {
   isCreatingFailed = false;
   errorMessage = '';
   countries: any[] = [];
+  states: any[] = [];
   policy_bundle_list = [
     { id: 1, value: "1" },
     { id: 2, value: "2" },
@@ -55,7 +56,6 @@ export class CompanyAddComponent implements OnInit {
   ) {
     sessionStorage.setItem('AppTitle', 'Add a new Company');
     this.getCountries();
-    // this.getStateListByCountryId(120);
     this.addCompanyForm = this.formBuilder.group({
       company_name: ['', Validators.required],
       company_url: ['', Validators.required],
@@ -105,6 +105,7 @@ export class CompanyAddComponent implements OnInit {
     this.apiService.get('GetStateListByCountryId', { 'CountryCode': countryCode })
       .subscribe(res => {
         console.log(res.data);
+        this.states = res.data.States.State;
       }, error => {
         console.log(error);
       });

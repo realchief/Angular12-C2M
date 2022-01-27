@@ -95,7 +95,10 @@
                 <i class="fas fa-question-circle js-bs-tooltip-enabled" data-bs-toggle="tooltip"
                     title="Help text to come here"></i>
             </label>
-            <select formControlName="country" id="country" class="form-select form-select-sm"  [ngClass]="{ 'is-invalid': submitted && f.country.errors }" #myCountry (change)="getStateListByCountryId(myCountry.value)">
+            <!-- <select formControlName="country" id="country" class="form-select form-select-sm"  [ngClass]="{ 'is-invalid': submitted && f.country.errors }" #myCountry (change)="getStateListByCountryId(myCountry.value)">
+                <option *ngFor="let country of countries" value="{{country.CountryCode}}">{{country.CountryName}}</option>
+            </select> -->
+            <select formControlName="country" id="country" class="form-select form-select-sm"  [ngClass]="{ 'is-invalid': submitted && f.country.errors }" #myCountry (change)="getStateListByCountryId(120)">
                 <option *ngFor="let country of countries" value="{{country.CountryCode}}">{{country.CountryName}}</option>
             </select>
             <div *ngIf="submitted" class="alert alert-danger-small">
@@ -109,8 +112,8 @@
                     title="Help text to come here"></i>
             </label>
             <select formControlName="state" id="state" class="form-select form-select-sm" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
-                <option *ngFor="let state_province of state_province_list" [ngValue]="state_province.id">
-                    {{state_province.value}}</option>
+                <option *ngFor="let state of states" [ngValue]="state.StateId">
+                    {{state.StateName}}</option>
             </select>
             <div *ngIf="submitted" class="alert alert-danger-small">
                 <div *ngIf="f.state.errors && f.state.errors.required">State is required.</div>
