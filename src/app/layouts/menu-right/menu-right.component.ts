@@ -31,34 +31,13 @@ export class MenuRightComponent implements OnInit {
         { id: 4, value: "Enterprise APIs" }
     ];
 
-    // companynames = [
-    //     'Microsoft',
-    //     'Oracle',
-    //     'Plasma Computing Group',
-    //     'Microsoft',
-    //     'Oracle',
-    //     'Plasma Computing Group',
-    //     'Microsoft',
-    //     'Oracle',
-    //     'Plasma Computing Group',
-    //     'Microsoft',
-    //     'Oracle',
-    //     'Plasma Computing Group'
-    // ]
-
     searchText = '';
 
     closeResult: string = '';
 
     constructor(
         private modalService: NgbModal,
-        private http: HttpClient,
-        private _location: Location,
         private formBuilder: FormBuilder,
-        private router: Router,
-        private titleService: Title,
-        private authService: AuthService,
-        private tokenStorage: TokenStorageService,
         private apiService: ApiService,
     ) {
         const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
@@ -84,7 +63,6 @@ export class MenuRightComponent implements OnInit {
         this.apiService.get('GetCompanies', {'apiKey': apikey, 'companyname': ''})
             .subscribe(res => {                
                 this.dataSource = res.data.companies.company;
-                console.log(this.dataSource);
             }, error => {
                 console.log(error);
             });

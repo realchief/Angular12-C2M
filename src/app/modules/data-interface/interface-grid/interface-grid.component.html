@@ -30,16 +30,16 @@
             <a (click)="open(addChannel)" class="pluschannel" style="margin-left: auto;"><i class="fas fa-plus-circle"></i> Channel</a>
         </div>
     </div>
-    <div class="card mb-3" *ngFor="let number_data of [0,1,2,3,4];let i=index;">
+    <div class="card mb-3" *ngFor="let channelInfo of channelInfoSource; let i = index">
         <div class="row no-gutters">
             <div class="col-md-1" style="display: flex; align-items: center;">
-                <img src="../../../assets/images/Excel.jpg" class="card-img b-avatar-img" alt="avatar"
+                <img src="{{channelInfo.chLogo}}" class="card-img b-avatar-img" alt="avatar"
                     style="width: 50px;">
             </div>
             <div class="col-md-11">
                 <div class="card-body">
                     <div class="card-title d-flex">
-                        <h6><b>MS Excel {{ 2010 + number_data }} </b></h6>
+                        <h6><b>{{channelInfo.chName}} </b></h6>
                         <div class="action-btns d-flex text-right ms-auto">
                             <a class="btn btn-outline-danger" title="Select" style="margin-right: 15px; height: 22px;">Select</a>
                             <div class="form-check form-switch">
@@ -50,17 +50,7 @@
                             <a class="text-sublink" href="javascript:void(0)" title="Delete"><i class="far fa-trash-alt"></i></a>
                         </div>
                     </div>
-                    <p class="card-text" style="font-size: 15px;">This is a wider card with supporting text below as a
-                        natural lead-in to
-                        additional content. This content is a little bit longer. This is a wider card with supporting
-                        text below as a natural lead-in to
-                        additional content. This content is a little bit longer. This is a wider card with supporting
-                        text below as a natural lead-in to
-                        additional content. This content is a little bit longer. This is a wider card with supporting
-                        text below as a natural lead-in to
-                        additional content. This content is a little bit longer. This is a wider card with supporting
-                        text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
+                    <p class="card-text" style="font-size: 15px;">{{channelInfo['chDesc']['#cdata-section']}}</p>
                     <div class="card-text">
                         <a class="text-sublink" (click)="open(modalSpecifications)">Specifications</a>
                         <a class="text-sublink" (click)="open(modalApiSdkCode)">Api/Sdk/Code</a>
@@ -225,7 +215,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-md-3 add_channel_btn">
+                    <div class="col-md-3 add_channel_btn">
                         <div class="border_hover" (click)="gotoAPIChannel(); modal.close('Cancel')">
                             <div class="add_channel_btn_image">  
                                 <img src="../../../assets/images/api2.png" alt="avatar">                  
@@ -254,7 +244,7 @@
                                 FlatFile                 
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
