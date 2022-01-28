@@ -28,7 +28,7 @@ export class HeaderNavComponent implements OnInit {
     private userService: UserService,
     private router: Router,
   ) {
-    this.getUserProfile();
+    // this.getUserProfile();
   }
   ngOnInit() {
 
