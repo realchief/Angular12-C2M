@@ -63,9 +63,12 @@ export class ManageUsersGridComponent implements OnInit, OnDestroy {
   private bindUser(bodyData: any) {
     this.apiService.post('GetAllManageUserList', bodyData)
       .subscribe(res => {
-        this.dataSource = res.data.UserInfo.ManageUsers;
-        this.itemsCount = res.totalrecords;
-        console.log(this.dataSource);
+        if (res.data) {
+          this.dataSource = res.data.UserInfo.ManageUsers;
+          this.itemsCount = res.totalrecords;
+        } else {
+          console.log('There is no response');
+        }
       }, error => {
         console.log(error);
       });

@@ -2,7 +2,10 @@
     <app-header-nav></app-header-nav>
     <app-aside-nav></app-aside-nav>
     <div class="d-flex flex-row-reverse">
-        <app-menu-right></app-menu-right>
+        <div *ngIf="currentRoute!='/company'">
+            <app-menu-right></app-menu-right>
+        </div>
+        
         <div style="flex-grow: 1">
             <router-outlet></router-outlet>
         </div>
