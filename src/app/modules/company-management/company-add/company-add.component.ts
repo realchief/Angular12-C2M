@@ -75,6 +75,7 @@ export class CompanyAddComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('ONE | Add a new Group');
+    this.getStateListByCountryId(120);
   }
 
   get f() {
