@@ -1,13 +1,12 @@
 <div id="pinnedMenu" class="h-100 vertical-menu-modern menu-collapsed">
     <app-header-nav></app-header-nav>
     <app-aside-nav></app-aside-nav>
-    <div class="d-flex flex-row-reverse">
-        <div *ngIf="currentRoute!='/company'">
-            <app-menu-right></app-menu-right>
-        </div>
-        
+    <div class="d-flex">
         <div style="flex-grow: 1">
             <router-outlet></router-outlet>
+        </div>
+        <div *ngIf="currentRoute!='/company'">
+            <app-menu-right></app-menu-right>
         </div>
     </div>
 </div>
