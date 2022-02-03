@@ -5,7 +5,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CompanyGridComponent } from './company-grid/company-grid.component';
 import { CompanyAddComponent } from './company-add/company-add.component';
 import { CompanyManagementRoutingModule } from './company-management-routing.module'
-// import { MaterialModule } from '../material.module';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 

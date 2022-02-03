@@ -1,12 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { DatePipe, formatDate } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { AuthService } from 'src/app/_services/auth.service';
-import { ApiService } from 'src/app/_services/api.service';
 import { Title } from '@angular/platform-browser';
-import { ConfirmedValidator } from 'src/app/auth/confirmed.validator';
 
 
 @Component({
@@ -31,10 +25,6 @@ export class RoleAddComponent implements OnInit, OnDestroy {
   ];
 
   constructor(
-    private router: Router,
-    private activeRoute: ActivatedRoute,
-    private authService: AuthService,
-    private apiService: ApiService,
     private titleService: Title,
     private formBuilder: FormBuilder,
   ) {

@@ -1,8 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { AuthService } from "src/app/_services/auth.service";
 import { TokenStorageService } from "src/app/_services/token-storage.service";
