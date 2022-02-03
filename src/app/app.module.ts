@@ -11,6 +11,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 
 @NgModule({
@@ -26,6 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         DashboardModule,
         NgbModule,
         BrowserAnimationsModule,
+        MatTableModule,
+        MatPaginatorModule
     ],
     providers: [
         authInterceptorProviders
